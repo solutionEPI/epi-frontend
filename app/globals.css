@@ -1,0 +1,367 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer base {
+  :root {
+    /* SolutionEPI Theme Colors - Yellow, White, Black */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    /* Yellow as primary */
+    --primary: 45 93% 47%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 45 93% 85%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 45 93% 47%;
+    --chart-1: 45 93% 47%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 320 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+
+    /* Add spacing variables */
+    --spacing-1: 0.25rem;
+    --spacing-2: 0.5rem;
+    --spacing-3: 0.75rem;
+    --spacing-4: 1rem;
+    --spacing-5: 1.25rem;
+    --spacing-6: 1.5rem;
+    --spacing-7: 1.75rem;
+    --spacing-8: 2rem;
+    --spacing-9: 2.25rem;
+    --spacing-10: 2.5rem;
+    --spacing-11: 2.75rem;
+    --spacing-12: 3rem;
+  }
+
+  .dark {
+    --background: 0 0% 10%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 15%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 15%;
+    --popover-foreground: 0 0% 98%;
+    /* Yellow as primary in dark mode */
+    --primary: 45 93% 47%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 20%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 80%;
+    --accent: 45 80% 30%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 25%;
+    --input: 0 0% 25%;
+    --ring: 45 93% 47%;
+    --chart-1: 45 93% 47%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar: 0 0% 7%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 45 93% 47%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 45 93% 47%;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-size: 16px;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-sans;
+  }
+}
+
+/* SolutionEPI Theme - Custom theme with yellow as primary color */
+.solutionepi {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 7%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 7%;
+  --primary: 45 93% 47%;
+  --primary-foreground: 0 0% 7%;
+  --secondary: 0 0% 96%;
+  --secondary-foreground: 0 0% 7%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 45%;
+  --accent: 45 90% 85%;
+  --accent-foreground: 0 0% 7%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 89%;
+  --input: 0 0% 89%;
+  --ring: 45 93% 47%;
+  --sidebar: 0 0% 7%;
+  --sidebar-foreground: 0 0% 100%;
+  --sidebar-primary: 45 93% 47%;
+  --sidebar-primary-foreground: 0 0% 7%;
+  --sidebar-accent: 0 0% 15%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 45 93% 47%;
+  --sidebar-ring: 45 93% 47%;
+}
+
+/* Sidebar styling for SolutionEPI theme */
+aside[data-style="solutionepi"] {
+  --sidebar: 0 0% 7%;
+  --sidebar-foreground: 0 0% 100%;
+  --sidebar-primary: 45 93% 47%;
+  --sidebar-primary-foreground: 0 0% 7%;
+  --sidebar-accent: 0 0% 15%;
+  --sidebar-accent-foreground: 45 93% 47%;
+  --sidebar-border: 0 0% 15%;
+}
+
+/* Fix for the --spacing function issue */
+[class*="--cell-size:--spacing"] {
+  --cell-size: 2rem; /* Default to 8 spacing */
+}
+
+/* Override problematic class */
+.\[--cell-size\:--spacing\(8\)\] {
+  --cell-size: 2rem !important;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Minimalist Form Styling */
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+  font-weight: normal;
+}
+
+.form-label-required::after {
+  content: " *";
+  color: #6b7280;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: border-color 0.15s ease-in-out;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #000000;
+}
+
+.form-checkbox-container {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 1rem;
+}
+
+.form-checkbox {
+  margin-right: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.form-checkbox-label {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.form-button {
+  background-color: #111111;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 3rem;
+}
+
+.form-button:hover {
+  background-color: #000000;
+}
+
+.form-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.form-button svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.form-error {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.professional {
+  --background: oklch(0.98 0.003 248.25); /* Almost white with a blue tint */
+  --foreground: oklch(0.22 0.048 258.19); /* Dark blue */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.048 258.19);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.048 258.19);
+  --primary: oklch(0.45 0.14 260); /* Professional blue */
+  --primary-foreground: oklch(0.99 0.002 263.2);
+  --secondary: oklch(0.93 0.012 254.1); /* Light blue-gray */
+  --secondary-foreground: oklch(0.22 0.048 258.19);
+  --muted: oklch(0.93 0.012 254.1);
+  --muted-foreground: oklch(0.45 0.033 256.7);
+  --accent: oklch(0.93 0.012 254.1);
+  --accent-foreground: oklch(0.45 0.14 260);
+  --destructive: oklch(0.58 0.22 15.5); /* Muted red */
+  --border: oklch(0.89 0.01 253.33);
+  --input: oklch(0.89 0.01 253.33);
+  --ring: oklch(0.45 0.14 260);
+  --sidebar: oklch(0.22 0.048 258.19); /* Dark blue sidebar */
+  --sidebar-foreground: oklch(0.98 0.003 248.25);
+  --sidebar-primary: oklch(0.45 0.14 260);
+  --sidebar-primary-foreground: oklch(0.99 0.002 263.2);
+  --sidebar-accent: oklch(0.28 0.05 258.5);
+  --sidebar-accent-foreground: oklch(0.99 0.002 263.2);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.45 0.14 260);
+}
+
+.administrator {
+  --background: oklch(1 0 0); /* White */
+  --foreground: oklch(0 0 0); /* Black */
+  --card: oklch(0.98 0 0); /* Very light gray */
+  --card-foreground: oklch(0 0 0);
+  --popover: oklch(0.98 0 0);
+  --popover-foreground: oklch(0 0 0);
+  --primary: oklch(0.62 0.19 23.5); /* A strong, attention-grabbing orange */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.94 0 0); /* Light gray */
+  --secondary-foreground: oklch(0 0 0);
+  --muted: oklch(0.94 0 0);
+  --muted-foreground: oklch(0.35 0 0);
+  --accent: oklch(0.94 0 0);
+  --accent-foreground: oklch(0.62 0.19 23.5);
+  --destructive: oklch(0.58 0.24 15.5); /* A clear red */
+  --border: oklch(0.85 0 0);
+  --input: oklch(0.85 0 0);
+  --ring: oklch(0.62 0.19 23.5);
+  --sidebar: oklch(0.1 0 0); /* Black sidebar */
+  --sidebar-foreground: oklch(0.95 0 0);
+  --sidebar-primary: oklch(0.62 0.19 23.5);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.2 0 0);
+  --sidebar-accent-foreground: oklch(0.95 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.62 0.19 23.5);
+}
+
+.customer {
+  --background: oklch(0.99 0.002 106.4); /* Off-white */
+  --foreground: oklch(0.25 0.01 56);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.25 0.01 56);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.25 0.01 56);
+  --primary: oklch(0.55 0.15 150); /* Friendly green */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.96 0.005 150); /* Light green tint */
+  --secondary-foreground: oklch(0.25 0.01 56);
+  --muted: oklch(0.96 0.005 150);
+  --muted-foreground: oklch(0.5 0.01 56);
+  --accent: oklch(0.96 0.005 150);
+  --accent-foreground: oklch(0.55 0.15 150);
+  --destructive: oklch(0.6 0.2 25);
+  --border: oklch(0.92 0.008 150);
+  --input: oklch(0.92 0.008 150);
+  --ring: oklch(0.55 0.15 150);
+  --sidebar: oklch(0.98 0.003 150); /* Very light green sidebar */
+  --sidebar-foreground: oklch(0.25 0.01 56);
+  --sidebar-primary: oklch(0.55 0.15 150);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.92 0.008 150);
+  --sidebar-accent-foreground: oklch(0.25 0.01 56);
+  --sidebar-border: oklch(0.88 0.01 150);
+  --sidebar-ring: oklch(0.55 0.15 150);
+}
+
+/* Layout Styles */
+aside[data-style="professional"] {
+  --sidebar: oklch(0.98 0.003 248.25);
+  --sidebar-foreground: oklch(0.22 0.048 258.19);
+  --sidebar-primary: oklch(0.45 0.14 260);
+  --sidebar-primary-foreground: oklch(0.99 0.002 263.2);
+  --sidebar-accent: oklch(0.93 0.012 254.1);
+  --sidebar-accent-foreground: oklch(0.22 0.048 258.19);
+  --sidebar-border: oklch(0.89 0.01 253.33);
+}
+
+aside[data-style="customer"] {
+  --sidebar: oklch(0.15 0.02 150);
+  --sidebar-foreground: oklch(0.99 0.002 106.4);
+  --sidebar-primary: oklch(0.99 0.002 106.4);
+  --sidebar-primary-foreground: oklch(0.15 0.02 150);
+  --sidebar-accent: oklch(0.25 0.03 150);
+  --sidebar-accent-foreground: oklch(0.99 0.002 106.4);
+  --sidebar-border: oklch(1 0 0 / 10%);
+}

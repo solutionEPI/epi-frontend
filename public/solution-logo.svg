@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="95" fill="#F8F1E3" stroke="#1D3557" stroke-width="2"/>
+  
+  <!-- Stylized "S" representing Solution -->
+  <path d="M80 60C80 60 60 70 60 90C60 110 95 105 95 125C95 145 75 145 65 140" 
+        stroke="#E63946" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Wheat stalk representing Epi (which means wheat ear in French) -->
+  <path d="M120 60C120 60 115 80 120 100C125 120 125 140 120 145" 
+        stroke="#1D3557" stroke-width="6" stroke-linecap="round"/>
+  
+  <!-- Wheat grains -->
+  <circle cx="120" cy="75" r="6" fill="#F4A261"/>
+  <circle cx="120" cy="95" r="6" fill="#F4A261"/>
+  <circle cx="120" cy="115" r="6" fill="#F4A261"/>
+  <circle cx="120" cy="135" r="6" fill="#F4A261"/>
+  
+  <!-- Small grains -->
+  <circle cx="126" cy="85" r="4" fill="#E9C46A"/>
+  <circle cx="126" cy="105" r="4" fill="#E9C46A"/>
+  <circle cx="126" cy="125" r="4" fill="#E9C46A"/>
+  
+  <!-- Dots representing bread crumbs -->
+  <circle cx="145" cy="70" r="3" fill="#1D3557"/>
+  <circle cx="150" cy="80" r="2" fill="#1D3557"/>
+  <circle cx="140" cy="90" r="2.5" fill="#1D3557"/>
+</svg> 
