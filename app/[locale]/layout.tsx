@@ -1,4 +1,4 @@
-import { Raleway } from "next/font/google";
+import { Roboto, Montserrat } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { Toaster } from "@/components/ui/toaster";
@@ -9,7 +9,15 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import "../globals.css";
 
-const raleway = Raleway({ subsets: ["latin"], variable: "--font-raleway" });
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+});
+const roboto = Roboto({
+  subsets: ["latin"],
+  variable: "--font-roboto",
+  weight: ["400", "500", "700"],
+});
 
 export const metadata = {
   metadataBase: new URL("https://solution-epi.com"),
@@ -19,33 +27,33 @@ export const metadata = {
   },
   description: dashboardConfig.description,
   keywords: [
-    "bakery",
-    "Douala",
-    "Cameroon",
-    "bread",
-    "pastries",
-    "Solution Epi",
+    "EPI",
+    "sécurité",
+    "protection individuelle",
+    "équipements",
+    "Cameroun",
+    "Solution EPI",
   ],
   authors: [
     {
-      name: "Solution Epi",
+      name: "Solution EPI",
       url: "https://solution-epi.com",
     },
   ],
-  creator: "Solution Epi",
+  creator: "Solution EPI",
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "fr_FR",
     url: "https://solution-epi.com",
     title: dashboardConfig.name,
     description: dashboardConfig.description,
     siteName: dashboardConfig.name,
     images: [
       {
-        url: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+        url: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
         width: 1200,
         height: 630,
-        alt: "Solution Epi - Artisanal Bakery",
+        alt: "Solution EPI - Équipements de Protection Individuelle",
       },
     ],
   },
@@ -54,7 +62,7 @@ export const metadata = {
     title: dashboardConfig.name,
     description: dashboardConfig.description,
     images: [
-      "https://images.unsplash.com/photo-1555507036-ab1f4038808a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
     ],
     creator: "@solutionepi",
   },
@@ -85,7 +93,7 @@ export default async function LocaleLayout({
         <DefaultFavicon />
       </head>
       <body
-        className={`${raleway.className} flex flex-col min-h-screen bg-background text-foreground`}>
+        className={`${roboto.variable} ${montserrat.variable} font-sans flex flex-col min-h-screen bg-background text-foreground`}>
         <Providers>
           <NextIntlClientProvider messages={messages}>
             <Header />

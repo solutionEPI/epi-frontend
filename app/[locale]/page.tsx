@@ -7,184 +7,40 @@ import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
 import {
   ArrowRight,
-  Book,
-  Code,
-  Cog,
-  Layers,
-  Lightbulb,
-  MapPin,
   Phone,
-  Clock,
   Mail,
-  Star,
+  MapPin,
+  CheckCircle,
+  ShieldCheck,
+  Users,
+  FileText,
+  HardHat,
+  Headphones,
+  Glasses,
+  Shirt,
+  Footprints,
+  HandMetal,
+  AlertTriangle,
 } from "lucide-react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  AnimatePresence,
-} from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+  gsap.registerPlugin(ScrollTrigger);
 }
-
-// SVG Animated Components
-const WheatAnimation = () => {
-  const pathRef = useRef<SVGPathElement>(null);
-  const circlesRef = useRef<SVGGElement>(null);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const path = pathRef.current;
-    const circles = circlesRef.current?.querySelectorAll("circle");
-
-    if (path && circles) {
-      gsap.set(circles, { scale: 0, opacity: 0 });
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: path,
-          start: "top 70%",
-          end: "bottom 20%",
-          scrub: 1,
-        },
-      });
-
-      tl.fromTo(
-        path,
-        { strokeDashoffset: 1000, strokeDasharray: 1000 },
-        { strokeDashoffset: 0, duration: 2 }
-      );
-
-      circles.forEach((circle, index) => {
-        tl.to(
-          circle,
-          {
-            scale: 1,
-            opacity: 1,
-            duration: 0.3,
-            delay: index * 0.1,
-          },
-          "-=1.5"
-        );
-      });
-    }
-  }, []);
-
-  return (
-    <svg
-      className="absolute right-0 top-10 h-full w-1/2"
-      viewBox="0 0 300 600"
-      fill="none">
-      <path
-        ref={pathRef}
-        d="M150,50 C170,100 120,150 160,200 C200,250 120,300 160,350 C200,400 120,450 150,500"
-        stroke="#1D3557"
-        strokeWidth="3"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <g ref={circlesRef}>
-        {Array.from({ length: 12 }).map((_, index) => {
-          const y = 70 + index * 40;
-          const offset = index % 2 === 0 ? -10 : 10;
-          return (
-            <circle
-              key={index}
-              cx={150 + offset}
-              cy={y}
-              r={index % 3 === 0 ? 8 : 5}
-              fill={index % 2 === 0 ? "#F4A261" : "#E9C46A"}
-            />
-          );
-        })}
-      </g>
-    </svg>
-  );
-};
-
-// Bread SVG Animation
-const BreadAnimation = () => {
-  const breadRef = useRef<SVGGElement>(null);
-
-  useEffect(() => {
-    if (typeof window === "undefined" || !breadRef.current) return;
-
-    const bread = breadRef.current;
-    const parts = bread.querySelectorAll("path");
-
-    gsap.set(parts, { opacity: 0, y: 20 });
-
-    ScrollTrigger.create({
-      trigger: bread,
-      start: "top 80%",
-      onEnter: () => {
-        gsap.to(parts, {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          stagger: 0.1,
-          ease: "power3.out",
-        });
-      },
-      onLeaveBack: () => {
-        gsap.to(parts, {
-          opacity: 0,
-          y: 20,
-          duration: 0.5,
-        });
-      },
-    });
-  }, []);
-
-  return (
-    <svg className="w-full h-auto" viewBox="0 0 400 200" fill="none">
-      <g ref={breadRef}>
-        <path
-          d="M100,50 C150,30 250,30 300,50 C330,60 350,100 340,130 C330,160 270,170 220,170 C170,170 90,160 70,130 C50,100 60,65 100,50Z"
-          fill="#F8DEB5"
-        />
-        <path
-          d="M110,60 C150,45 250,45 290,60 C310,65 320,90 315,110 C310,130 270,140 220,140 C170,140 110,130 95,110 C80,90 85,70 110,60Z"
-          fill="#EAC989"
-        />
-        <path
-          d="M180,80 C170,90 170,110 180,120"
-          stroke="#9E7540"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-        <path
-          d="M220,80 C230,90 230,110 220,120"
-          stroke="#9E7540"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-        <path
-          d="M150,100 L250,100"
-          stroke="#9E7540"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-      </g>
-    </svg>
-  );
-};
 
 export default function HomePage() {
   const t = useTranslations("HomePage");
   const { data: session } = useSession();
   const heroRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
-  const productRef = useRef<HTMLDivElement>(null);
-  const testimonialsRef = useRef<HTMLDivElement>(null);
+  const productsRef = useRef<HTMLDivElement>(null);
+  const servicesRef = useRef<HTMLDivElement>(null);
+  const standardsRef = useRef<HTMLDivElement>(null);
+  const industriesRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
   // Parallax effect
@@ -194,12 +50,14 @@ export default function HomePage() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // Fade-in animations for section titles
+    // Animate section titles
     const sections = [
       heroRef,
       aboutRef,
-      productRef,
-      testimonialsRef,
+      productsRef,
+      servicesRef,
+      standardsRef,
+      industriesRef,
       contactRef,
     ];
 
@@ -223,15 +81,16 @@ export default function HomePage() {
       });
     });
 
-    // Product cards animation
-    const productCards = productRef.current?.querySelectorAll(".product-card");
-    if (productCards) {
+    // Product category animations
+    const productItems =
+      productsRef.current?.querySelectorAll(".product-category");
+    if (productItems) {
       ScrollTrigger.create({
-        trigger: productRef.current,
+        trigger: productsRef.current,
         start: "top 70%",
         onEnter: () => {
           gsap.fromTo(
-            productCards,
+            productItems,
             { opacity: 0, y: 50 },
             {
               opacity: 1,
@@ -246,21 +105,20 @@ export default function HomePage() {
       });
     }
 
-    // Testimonial cards animation
-    const testimonialItems =
-      testimonialsRef.current?.querySelectorAll(".testimonial-card");
-    if (testimonialItems) {
+    // Service animations
+    const serviceItems = servicesRef.current?.querySelectorAll(".service-item");
+    if (serviceItems) {
       ScrollTrigger.create({
-        trigger: testimonialsRef.current,
+        trigger: servicesRef.current,
         start: "top 70%",
         onEnter: () => {
           gsap.fromTo(
-            testimonialItems,
-            { opacity: 0, scale: 0.9 },
+            serviceItems,
+            { opacity: 0, scale: 0.95 },
             {
               opacity: 1,
               scale: 1,
-              stagger: 0.2,
+              stagger: 0.15,
               duration: 0.7,
               ease: "back.out(1.2)",
             }
@@ -270,15 +128,16 @@ export default function HomePage() {
       });
     }
 
-    // Contact info items animation
-    const contactItems = contactRef.current?.querySelectorAll(".contact-item");
-    if (contactItems) {
+    // Standards list animation
+    const standardItems =
+      standardsRef.current?.querySelectorAll(".standard-item");
+    if (standardItems) {
       ScrollTrigger.create({
-        trigger: contactRef.current,
+        trigger: standardsRef.current,
         start: "top 80%",
         onEnter: () => {
           gsap.fromTo(
-            contactItems,
+            standardItems,
             { opacity: 0, x: -20 },
             {
               opacity: 1,
@@ -292,66 +151,161 @@ export default function HomePage() {
         once: true,
       });
     }
+
+    // Industry card animations
+    const industryCards =
+      industriesRef.current?.querySelectorAll(".industry-card");
+    if (industryCards) {
+      ScrollTrigger.create({
+        trigger: industriesRef.current,
+        start: "top 70%",
+        onEnter: () => {
+          gsap.fromTo(
+            industryCards,
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              stagger: 0.2,
+              duration: 0.7,
+              ease: "power3.out",
+            }
+          );
+        },
+        once: true,
+      });
+    }
   }, []);
 
-  // Product data
-  const products = [
+  // EPI Categories
+  const epiCategories = [
     {
-      name: "Baguette Traditionnelle",
-      description:
-        "Classic French-style baguette with crispy exterior and soft, airy interior.",
-      price: "1.200 FCFA",
+      name: "Protection de la tête",
+      icon: <HardHat className="w-12 h-12 text-primary" />,
+      products: [
+        "Casques de sécurité",
+        "Casques anti-bruit",
+        "Casques de chantier",
+      ],
       image:
-        "https://images.unsplash.com/photo-1549931319-a545dcf3bc73?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-      featured: true,
+        "https://images.unsplash.com/photo-1618753970367-d94366db73c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
     },
     {
-      name: "Pain au Chocolat",
-      description: "Buttery, flaky pastry filled with rich, smooth chocolate.",
-      price: "800 FCFA",
+      name: "Protection auditive",
+      icon: <Headphones className="w-12 h-12 text-primary" />,
+      products: [
+        "Bouchons d'oreilles",
+        "Casques anti-bruit",
+        "Protection auditive électronique",
+      ],
       image:
-        "https://images.unsplash.com/photo-1592985684811-6c0f98adb014?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1609218176629-7e4a2a97887e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
     },
     {
-      name: "Brioche",
-      description: "Light, slightly sweet bread enriched with butter and eggs.",
-      price: "1.500 FCFA",
+      name: "Protection oculaire",
+      icon: <Glasses className="w-12 h-12 text-primary" />,
+      products: [
+        "Lunettes de sécurité",
+        "Visières de protection",
+        "Lunettes contre produits chimiques",
+      ],
       image:
-        "https://images.unsplash.com/photo-1620921568790-c1cf8984624c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1572635196243-4dd75fbdbd7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
     },
     {
-      name: "Pain de Campagne",
-      description:
-        "Rustic country bread with a hearty crust and complex flavor.",
-      price: "2.000 FCFA",
+      name: "Vêtements de protection",
+      icon: <Shirt className="w-12 h-12 text-primary" />,
+      products: [
+        "Combinaisons",
+        "Vêtements haute-visibilité",
+        "Vêtements résistants au feu",
+      ],
       image:
-        "https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1588774069410-84ae30757c8e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    },
+    {
+      name: "Protection des pieds",
+      icon: <Footprints className="w-12 h-12 text-primary" />,
+      products: [
+        "Chaussures de sécurité",
+        "Bottes",
+        "Protection métatarsienne",
+      ],
+      image:
+        "https://images.unsplash.com/photo-1520639888713-7851133b1ed0?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    },
+    {
+      name: "Protection des mains",
+      icon: <HandMetal className="w-12 h-12 text-primary" />,
+      products: [
+        "Gants anti-coupure",
+        "Gants résistants aux produits chimiques",
+        "Gants isolants",
+      ],
+      image:
+        "https://images.unsplash.com/photo-1576615278693-f8e095e37e01?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
     },
   ];
 
-  // Testimonial data
-  const testimonials = [
+  // Services
+  const services = [
     {
-      name: "Marie Tchouta",
-      role: "Restaurant Owner",
-      content:
-        "Solution Epi consistently provides the finest quality bread for our restaurant. Their baguettes are simply exceptional.",
-      rating: 5,
+      title: "Conseil en sécurité",
+      description:
+        "Évaluation des risques et recommandations d'équipements adaptés à votre environnement de travail spécifique.",
+      icon: <AlertTriangle className="w-12 h-12 text-primary" />,
     },
     {
-      name: "Jean Mbarga",
-      role: "Regular Customer",
-      content:
-        "I've been buying bread here for years. The quality is always outstanding and the service is friendly and professional.",
-      rating: 5,
+      title: "Formation sur les EPI",
+      description:
+        "Sessions de formation sur l'utilisation correcte des équipements de protection individuelle pour vos employés.",
+      icon: <Users className="w-12 h-12 text-primary" />,
     },
     {
-      name: "Sophie Nkoulou",
-      role: "Cafe Manager",
-      content:
-        "Our cafe relies on Solution Epi for all our pastry needs. Their consistent quality and on-time delivery make them invaluable partners.",
-      rating: 5,
+      title: "Audit de conformité",
+      description:
+        "Vérification de la conformité de vos équipements aux normes et réglementations en vigueur.",
+      icon: <FileText className="w-12 h-12 text-primary" />,
     },
+    {
+      title: "Maintenance préventive",
+      description:
+        "Services d'entretien régulier et vérification de l'état de vos équipements de protection.",
+      icon: <ShieldCheck className="w-12 h-12 text-primary" />,
+    },
+  ];
+
+  // Industries
+  const industries = [
+    {
+      name: "Construction",
+      image:
+        "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    },
+    {
+      name: "Industrie pétrolière",
+      image:
+        "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    },
+    {
+      name: "Secteur médical",
+      image:
+        "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    },
+    {
+      name: "Industrie manufacturière",
+      image:
+        "https://images.unsplash.com/photo-1581093196277-9f608732adf8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    },
+  ];
+
+  // Safety standards
+  const safetyStandards = [
+    "ISO 45001 - Systèmes de management de la santé et de la sécurité au travail",
+    "EN 166 - Protection individuelle de l'œil",
+    "EN 397 - Casques de protection pour l'industrie",
+    "EN 388 - Gants de protection contre les risques mécaniques",
+    "EN 352 - Protecteurs individuels contre le bruit",
   ];
 
   return (
@@ -366,8 +320,8 @@ export default function HomePage() {
             className="w-full h-full relative"
             style={{ y: heroImageY }}>
             <Image
-              src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
-              alt="Fresh bread and pastries"
+              src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
+              alt="Équipement de protection individuelle"
               fill
               priority
               className="object-cover object-center brightness-50"
@@ -383,11 +337,12 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              {t("hero.title")}
+              Solution EPI
             </h1>
 
             <p className="text-xl md:text-2xl mb-8 text-gray-100">
-              {t("hero.description")}
+              Votre partenaire pour la sécurité au travail. Des équipements de
+              protection individuelle conformes aux normes les plus strictes.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -396,7 +351,7 @@ export default function HomePage() {
                 className="bg-primary hover:bg-primary/90 text-black font-medium px-8 py-6 text-lg"
                 asChild>
                 <Link href="#products">
-                  {t("hero.cta")}
+                  Découvrir nos produits
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
@@ -406,7 +361,7 @@ export default function HomePage() {
                 size="lg"
                 className="border-white text-white hover:text-white hover:bg-white/20 px-8 py-6 text-lg"
                 asChild>
-                <Link href="/contact">{t("hero.contact")}</Link>
+                <Link href="/contact">Nous contacter</Link>
               </Button>
             </div>
           </motion.div>
@@ -417,62 +372,73 @@ export default function HomePage() {
       <section id="about" ref={aboutRef} className="py-24 bg-background">
         <div className="container mx-auto px-6 md:px-10">
           <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
-            <div className="md:w-1/2 order-2 md:order-1">
+            <div className="md:w-1/2">
               <h2 className="text-3xl md:text-4xl font-bold mb-6 opacity-0">
-                {t("about.title")}
+                À propos de Solution EPI
               </h2>
+              <div className="w-24 h-1 bg-primary mb-8"></div>
 
               <p className="text-lg text-muted-foreground mb-6">
-                {t("about.description")}
+                Depuis plus de 15 ans, Solution EPI est le leader dans la
+                fourniture d'équipements de protection individuelle au Cameroun.
+                Notre mission est de garantir la sécurité des travailleurs dans
+                tous les secteurs d'activité.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
+              <p className="text-lg text-muted-foreground mb-8">
+                Nous proposons une gamme complète d'équipements certifiés
+                conformes aux normes internationales, adaptés aux besoins
+                spécifiques de chaque industrie et environnement de travail.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                 <div className="flex items-start">
                   <div className="mr-4 bg-primary/10 p-3 rounded-full">
-                    <Clock className="h-6 w-6 text-primary" />
+                    <CheckCircle className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1">Established 2008</h3>
+                    <h3 className="font-semibold mb-1">Qualité certifiée</h3>
                     <p className="text-muted-foreground">
-                      Over 15 years of excellence
+                      Produits conformes aux normes
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
                   <div className="mr-4 bg-primary/10 p-3 rounded-full">
-                    <Star className="h-6 w-6 text-primary" />
+                    <CheckCircle className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1">Quality Ingredients</h3>
+                    <h3 className="font-semibold mb-1">Expertise</h3>
                     <p className="text-muted-foreground">
-                      Premium locally sourced
+                      Conseil personnalisé
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-10">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-primary text-primary hover:bg-primary hover:text-white"
-                  asChild>
-                  <Link href="#contact">Visit Our Bakery</Link>
-                </Button>
-              </div>
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-primary text-primary hover:bg-primary hover:text-white"
+                asChild>
+                <Link href="/about">
+                  En savoir plus
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
             </div>
 
-            <div className="md:w-1/2 order-1 md:order-2">
+            <div className="md:w-1/2">
               <motion.div
                 className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden shadow-xl"
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}>
                 <Image
-                  src="https://images.unsplash.com/photo-1605807646983-377bc5a76493?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                  alt="Our Bakery"
+                  src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                  alt="Équipe Solution EPI"
                   fill
                   className="object-cover"
                 />
@@ -482,49 +448,57 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Products Section */}
-      <section id="products" ref={productRef} className="py-24 bg-secondary/5">
+      {/* Product Categories Section */}
+      <section id="products" ref={productsRef} className="py-24 bg-secondary/5">
         <div className="container mx-auto px-6 md:px-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 opacity-0">
-              {t("products.title")}
+              Nos catégories d'EPI
             </h2>
             <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Discover our selection of freshly baked artisanal breads and
-              pastries, crafted daily using traditional methods.
+              Des équipements de protection individuelle adaptés à tous les
+              types de risques professionnels.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {products.map((product, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {epiCategories.map((category, i) => (
               <div
                 key={i}
-                className={`product-card bg-card rounded-lg overflow-hidden border shadow-md ${
-                  product.featured ? "md:col-span-2" : ""
-                }`}>
-                <div
-                  className={`h-64 relative overflow-hidden ${
-                    product.featured ? "md:h-80" : ""
-                  }`}>
+                className="product-category bg-card rounded-lg overflow-hidden border shadow-md transition-all duration-300 hover:-translate-y-2">
+                <div className="h-48 relative overflow-hidden">
                   <Image
-                    src={product.image}
-                    alt={product.name}
+                    src={category.image}
+                    alt={category.name}
                     fill
                     className="object-cover transition-transform hover:scale-105 duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-4 right-4 bg-primary text-black font-medium px-3 py-1 rounded-full text-sm">
-                    {product.price}
-                  </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2">{product.name}</h3>
-                  <p className="text-muted-foreground mb-4">
-                    {product.description}
-                  </p>
-                  <Button variant="outline" size="sm" className="w-full">
-                    View Details
+                  <div className="flex items-center mb-4">
+                    {category.icon}
+                    <h3 className="text-xl font-bold ml-3">{category.name}</h3>
+                  </div>
+                  <ul className="mb-6 space-y-2">
+                    {category.products.map((product, j) => (
+                      <li key={j} className="flex items-center">
+                        <span className="h-1.5 w-1.5 rounded-full bg-primary mr-2"></span>
+                        <span>{product}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full border-primary text-primary hover:bg-primary hover:text-white"
+                    asChild>
+                    <Link
+                      href={`/products/${category.name
+                        .toLowerCase()
+                        .replace(/\s+/g, "-")}`}>
+                      Voir les produits
+                    </Link>
                   </Button>
                 </div>
               </div>
@@ -532,9 +506,12 @@ export default function HomePage() {
           </div>
 
           <div className="text-center mt-16">
-            <Button size="lg" className="px-8" asChild>
+            <Button
+              size="lg"
+              className="bg-primary hover:bg-primary/90 text-black px-8"
+              asChild>
               <Link href="/products">
-                View All Products
+                Voir tous les produits
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -542,51 +519,156 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Services Section */}
+      <section id="services" ref={servicesRef} className="py-24 bg-background">
+        <div className="container mx-auto px-6 md:px-10">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 opacity-0">
+              Nos services
+            </h2>
+            <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Au-delà de la fourniture d'équipements, nous offrons une gamme
+              complète de services pour garantir la sécurité de vos
+              collaborateurs.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map((service, i) => (
+              <div
+                key={i}
+                className="service-item bg-card rounded-lg p-6 border shadow-md h-full flex flex-col">
+                <div className="flex justify-center mb-4">{service.icon}</div>
+                <h3 className="text-xl font-bold mb-3 text-center">
+                  {service.title}
+                </h3>
+                <p className="text-muted-foreground mb-6 text-center flex-grow">
+                  {service.description}
+                </p>
+                <Button
+                  variant="outline"
+                  className="mt-auto w-full border-primary text-primary hover:bg-primary hover:text-white"
+                  asChild>
+                  <Link href="/services">En savoir plus</Link>
+                </Button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Standards Section */}
       <section
-        id="testimonials"
-        ref={testimonialsRef}
+        id="standards"
+        ref={standardsRef}
+        className="py-24 bg-secondary/5">
+        <div className="container mx-auto px-6 md:px-10">
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            <div className="md:w-1/2 order-2 md:order-1">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 opacity-0">
+                Normes et réglementations
+              </h2>
+              <div className="w-24 h-1 bg-primary mb-8"></div>
+
+              <p className="text-lg text-muted-foreground mb-6">
+                La sécurité au travail est encadrée par des normes strictes.
+                Chez Solution EPI, tous nos produits sont conformes aux normes
+                internationales et locales en vigueur.
+              </p>
+
+              <ul className="space-y-4 mb-8">
+                {safetyStandards.map((standard, i) => (
+                  <li key={i} className="standard-item flex items-start">
+                    <CheckCircle className="h-6 w-6 text-primary shrink-0 mt-1 mr-3" />
+                    <span>{standard}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                <div className="bg-amber-100 border-l-4 border-amber-500 p-4 flex items-start">
+                  <AlertTriangle className="text-amber-500 h-6 w-6 shrink-0 mt-0.5 mr-3" />
+                  <p>
+                    <strong className="font-semibold">
+                      Obligation légale:
+                    </strong>{" "}
+                    L'employeur doit fournir gratuitement les EPI adaptés aux
+                    risques.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="md:w-1/2 order-1 md:order-2">
+              <motion.div
+                className="relative h-[400px] rounded-lg overflow-hidden shadow-xl"
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}>
+                <Image
+                  src="https://images.unsplash.com/photo-1564156280315-1d42b4651629?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                  alt="Certifications de sécurité"
+                  fill
+                  className="object-cover"
+                />
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Industries Section */}
+      <section
+        id="industries"
+        ref={industriesRef}
         className="py-24 bg-background">
         <div className="container mx-auto px-6 md:px-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 opacity-0">
-              What Our Customers Say
+              Secteurs d'activité
             </h2>
             <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Hear from our satisfied customers about their experience with
-              Solution Epi.
+              Nos solutions de sécurité sont adaptées à tous les secteurs
+              industriels.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {industries.map((industry, i) => (
               <div
                 key={i}
-                className="testimonial-card bg-card border rounded-lg p-8 shadow-sm">
-                <div className="flex items-center mb-4">
-                  {Array(5)
-                    .fill(0)
-                    .map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`h-5 w-5 ${
-                          i < testimonial.rating
-                            ? "text-primary fill-primary"
-                            : "text-gray-300"
-                        }`}
-                      />
-                    ))}
-                </div>
-                <p className="text-lg mb-8 italic">"{testimonial.content}"</p>
-                <div>
-                  <h4 className="font-bold">{testimonial.name}</h4>
-                  <p className="text-sm text-muted-foreground">
-                    {testimonial.role}
-                  </p>
+                className="industry-card relative h-64 rounded-lg overflow-hidden">
+                <Image
+                  src={industry.image}
+                  alt={industry.name}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20 flex items-end">
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-white">
+                      {industry.name}
+                    </h3>
+                  </div>
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-primary text-primary hover:bg-primary hover:text-white"
+              asChild>
+              <Link href="/industries">
+                Voir tous les secteurs
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -596,22 +678,22 @@ export default function HomePage() {
         <div className="container mx-auto px-6 md:px-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 opacity-0">
-              Visit Our Bakery
+              Contactez-nous
             </h2>
             <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Come experience the aroma of freshly baked bread and pastries at
-              our location in Douala.
+              Besoin d'équipements de protection ou de conseils ? Notre équipe
+              d'experts est à votre disposition.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="bg-card border rounded-lg overflow-hidden shadow-lg">
                 <div className="h-[400px] relative">
                   <Image
-                    src="https://images.unsplash.com/photo-1590237080369-092a9ecf60a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                    alt="Solution Epi location"
+                    src="https://images.unsplash.com/photo-1554774853-aae0a22c8aa4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="Bureau de Solution EPI"
                     fill
                     className="object-cover"
                   />
@@ -620,7 +702,7 @@ export default function HomePage() {
             </div>
 
             <div>
-              <h3 className="text-2xl font-bold mb-8">Contact Information</h3>
+              <h3 className="text-2xl font-bold mb-8">Coordonnées</h3>
 
               <div className="space-y-6">
                 <div className="contact-item flex items-start">
@@ -628,11 +710,11 @@ export default function HomePage() {
                     <MapPin className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold mb-1">Address</h4>
+                    <h4 className="font-semibold mb-1">Adresse</h4>
                     <p className="text-muted-foreground">
                       Boulangerie Saker, Deido
                       <br />
-                      Douala, Cameroon
+                      Douala, Cameroun
                     </p>
                   </div>
                 </div>
@@ -642,7 +724,7 @@ export default function HomePage() {
                     <Phone className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold mb-1">Phone</h4>
+                    <h4 className="font-semibold mb-1">Téléphone</h4>
                     <p className="text-muted-foreground">+237 6XX XXX XXX</p>
                   </div>
                 </div>
@@ -658,31 +740,22 @@ export default function HomePage() {
                     </p>
                   </div>
                 </div>
-
-                <div className="contact-item flex items-start">
-                  <div className="mr-4 bg-primary/10 p-3 rounded-full">
-                    <Clock className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1">Hours</h4>
-                    <p className="text-muted-foreground">
-                      Monday - Saturday: 7AM - 7PM
-                      <br />
-                      Sunday: Closed
-                    </p>
-                  </div>
-                </div>
               </div>
 
-              <div className="mt-10">
+              <div className="flex gap-4 mt-10">
                 <Button
                   size="lg"
-                  className="bg-primary hover:bg-primary/90 text-black"
+                  className="bg-primary hover:bg-primary/90 text-black flex-1"
                   asChild>
-                  <Link href="/contact">
-                    Contact Us
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
+                  <Link href="/contact">Demander un devis</Link>
+                </Button>
+
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-primary text-primary hover:bg-primary hover:text-white flex-1"
+                  asChild>
+                  <Link href="/contact">Nous contacter</Link>
                 </Button>
               </div>
             </div>

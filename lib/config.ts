@@ -1,6 +1,6 @@
 /**
- * Solution Epi Configuration
- * Artisanal Bakery in Douala, Cameroon
+ * Solution EPI Configuration
+ * Protection Equipment & Safety Solutions
  */
 
 export interface NavigationItem {
@@ -40,9 +40,9 @@ export interface DashboardConfig {
 }
 
 export const dashboardConfig: DashboardConfig = {
-  name: "Solution Epi",
+  name: "Solution EPI",
   description:
-    "Artisanal bakery offering authentic breads and pastries in Douala, Cameroon",
+    "Équipements de Protection Individuelle pour la sécurité au travail",
   repositoryUrl: "https://github.com/asbilim/solution-epi.git",
   logoUrl: "/solution-logo.svg",
   favicon: "/favicon.svg",
@@ -55,19 +55,19 @@ export const dashboardConfig: DashboardConfig = {
   },
   blog: {
     enabled: true,
-    name: "Bread & Pastry Journal",
+    name: "Blog Sécurité & EPI",
   },
   brand: {
     colors: {
-      primary: "#E63946", // Red
-      secondary: "#1D3557", // Dark blue
-      background: "#F8F1E3", // Light cream
-      text: "#293241", // Dark navy
-      accent: "#F4A261", // Orange/wheat
+      primary: "#FF6B00", // Safety Orange
+      secondary: "#0055A4", // Blue
+      background: "#FFFFFF", // White
+      text: "#1A1A1A", // Almost Black
+      accent: "#FFCC00", // Yellow for safety/warning
     },
     typography: {
-      headingFont: "Playfair Display, serif",
-      bodyFont: "Raleway, sans-serif",
+      headingFont: "Montserrat, sans-serif",
+      bodyFont: "Roboto, sans-serif",
     },
   },
 };

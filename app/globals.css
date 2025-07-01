@@ -2,37 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @layer base {
   :root {
-    /* SolutionEPI Theme Colors - Yellow, White, Black */
+    /* Solution EPI Theme Colors - Orange, Blue, Yellow for safety */
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 0 0% 10%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 0 0% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    /* Yellow as primary */
-    --primary: 45 93% 47%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 45 93% 85%;
-    --accent-foreground: 0 0% 0%;
-    --destructive: 0 84.2% 60.2%;
+    --popover-foreground: 0 0% 10%;
+    /* Safety Orange as primary */
+    --primary: 25 100% 50%;
+    --primary-foreground: 0 0% 10%;
+    /* Blue as secondary */
+    --secondary: 214 100% 32%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 45%;
+    /* Warning yellow as accent */
+    --accent: 48 100% 50%;
+    --accent-foreground: 0 0% 10%;
+    --destructive: 0 85% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 45 93% 47%;
-    --chart-1: 45 93% 47%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 320 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 25 100% 50%;
+    --chart-1: 25 100% 50%; /* Orange */
+    --chart-2: 214 100% 32%; /* Blue */
+    --chart-3: 48 100% 50%; /* Yellow */
+    --chart-4: 180 100% 30%; /* Teal */
+    --chart-5: 0 0% 20%; /* Dark Grey */
+    --radius: 0.375rem;
 
     /* Add spacing variables */
     --spacing-1: 0.25rem;
@@ -51,38 +51,38 @@
 
   .dark {
     --background: 0 0% 10%;
-    --foreground: 0 0% 98%;
+    --foreground: 0 0% 95%;
     --card: 0 0% 15%;
-    --card-foreground: 0 0% 98%;
+    --card-foreground: 0 0% 95%;
     --popover: 0 0% 15%;
-    --popover-foreground: 0 0% 98%;
-    /* Yellow as primary in dark mode */
-    --primary: 45 93% 47%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 0 0% 20%;
-    --secondary-foreground: 0 0% 98%;
+    --popover-foreground: 0 0% 95%;
+    /* Safety Orange in dark mode */
+    --primary: 25 100% 50%;
+    --primary-foreground: 0 0% 10%;
+    --secondary: 214 90% 45%;
+    --secondary-foreground: 0 0% 95%;
     --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 80%;
-    --accent: 45 80% 30%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 25%;
-    --input: 0 0% 25%;
-    --ring: 45 93% 47%;
-    --chart-1: 45 93% 47%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 48 90% 50%;
+    --accent-foreground: 0 0% 10%;
+    --destructive: 0 75% 50%;
+    --destructive-foreground: 0 0% 95%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 25 100% 50%;
+    --chart-1: 25 100% 50%; /* Orange */
+    --chart-2: 214 90% 45%; /* Blue */
+    --chart-3: 48 90% 50%; /* Yellow */
+    --chart-4: 180 80% 40%; /* Teal */
+    --chart-5: 0 0% 70%; /* Light Grey */
     --sidebar: 0 0% 7%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 45 93% 47%;
-    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 25 100% 50%;
+    --sidebar-primary-foreground: 0 0% 10%;
     --sidebar-accent: 0 0% 15%;
-    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-accent-foreground: 0 0% 95%;
     --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 45 93% 47%;
+    --sidebar-ring: 25 100% 50%;
   }
 
   * {
@@ -98,7 +98,7 @@
   h4,
   h5,
   h6 {
-    @apply font-sans;
+    @apply font-heading;
   }
 }
 
@@ -259,32 +259,33 @@ aside[data-style="solutionepi"] {
 }
 
 .professional {
-  --background: oklch(0.98 0.003 248.25); /* Almost white with a blue tint */
-  --foreground: oklch(0.22 0.048 258.19); /* Dark blue */
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.048 258.19);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.048 258.19);
-  --primary: oklch(0.45 0.14 260); /* Professional blue */
-  --primary-foreground: oklch(0.99 0.002 263.2);
-  --secondary: oklch(0.93 0.012 254.1); /* Light blue-gray */
-  --secondary-foreground: oklch(0.22 0.048 258.19);
-  --muted: oklch(0.93 0.012 254.1);
-  --muted-foreground: oklch(0.45 0.033 256.7);
-  --accent: oklch(0.93 0.012 254.1);
-  --accent-foreground: oklch(0.45 0.14 260);
-  --destructive: oklch(0.58 0.22 15.5); /* Muted red */
-  --border: oklch(0.89 0.01 253.33);
-  --input: oklch(0.89 0.01 253.33);
-  --ring: oklch(0.45 0.14 260);
-  --sidebar: oklch(0.22 0.048 258.19); /* Dark blue sidebar */
-  --sidebar-foreground: oklch(0.98 0.003 248.25);
-  --sidebar-primary: oklch(0.45 0.14 260);
-  --sidebar-primary-foreground: oklch(0.99 0.002 263.2);
-  --sidebar-accent: oklch(0.28 0.05 258.5);
-  --sidebar-accent-foreground: oklch(0.99 0.002 263.2);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.45 0.14 260);
+  --background: 0 0% 100%;
+  --foreground: 0 0% 7%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 7%;
+  --primary: 25 100% 50%;
+  --primary-foreground: 0 0% 7%;
+  --secondary: 214 100% 32%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 45%;
+  --accent: 48 100% 50%;
+  --accent-foreground: 0 0% 7%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 89%;
+  --input: 0 0% 89%;
+  --ring: 25 100% 50%;
+  --sidebar: 214 100% 32%;
+  --sidebar-foreground: 0 0% 100%;
+  --sidebar-primary: 25 100% 50%;
+  --sidebar-primary-foreground: 0 0% 7%;
+  --sidebar-accent: 214 90% 25%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 214 80% 30%;
+  --sidebar-ring: 25 100% 50%;
 }
 
 .administrator {
@@ -347,13 +348,13 @@ aside[data-style="solutionepi"] {
 
 /* Layout Styles */
 aside[data-style="professional"] {
-  --sidebar: oklch(0.98 0.003 248.25);
-  --sidebar-foreground: oklch(0.22 0.048 258.19);
-  --sidebar-primary: oklch(0.45 0.14 260);
-  --sidebar-primary-foreground: oklch(0.99 0.002 263.2);
-  --sidebar-accent: oklch(0.93 0.012 254.1);
-  --sidebar-accent-foreground: oklch(0.22 0.048 258.19);
-  --sidebar-border: oklch(0.89 0.01 253.33);
+  --sidebar: 214 100% 32%;
+  --sidebar-foreground: 0 0% 100%;
+  --sidebar-primary: 25 100% 50%;
+  --sidebar-primary-foreground: 0 0% 7%;
+  --sidebar-accent: 214 90% 25%;
+  --sidebar-accent-foreground: 25 100% 50%;
+  --sidebar-border: 214 80% 30%;
 }
 
 aside[data-style="customer"] {
@@ -364,4 +365,47 @@ aside[data-style="customer"] {
   --sidebar-accent: oklch(0.25 0.03 150);
   --sidebar-accent-foreground: oklch(0.99 0.002 106.4);
   --sidebar-border: oklch(1 0 0 / 10%);
+}
+
+/* Font family utilities */
+.font-heading {
+  font-family: var(--font-montserrat), ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
+}
+
+.font-sans {
+  font-family: var(--font-roboto), ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, sans-serif;
+}
+
+/* Custom EPI button styles */
+.btn-safety {
+  @apply bg-primary text-primary-foreground font-bold px-6 py-3 rounded-md transition-all duration-300 hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2;
+}
+
+.btn-secondary-safety {
+  @apply bg-secondary text-secondary-foreground font-bold px-6 py-3 rounded-md transition-all duration-300 hover:bg-secondary/90 focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:ring-offset-2;
+}
+
+.btn-warning {
+  @apply bg-accent text-accent-foreground font-bold px-6 py-3 rounded-md transition-all duration-300 hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2;
+}
+
+/* Safety badge styles */
+.safety-badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.safety-badge-primary {
+  @apply bg-primary/10 text-primary;
+}
+
+.safety-badge-warning {
+  @apply bg-accent/10 text-accent-foreground;
+}
+
+/* Safety card effect */
+.safety-card {
+  @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
 }
