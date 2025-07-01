@@ -15,10 +15,12 @@
   },
   "HomePage": {
     "hero": {
-      "title": "Tableau de bord Solution EPI",
-      "description": "Un tableau de bord d'administration moderne et réactif pour Django avec Next.js, shadcn/ui et des outils alimentés par l'IA pour augmenter votre productivité.",
+      "title": "Solution EPI",
+      "description": "Votre partenaire pour la sécurité au travail. Des équipements de protection individuelle conformes aux normes les plus strictes.",
+      "cta": "Découvrir nos produits",
+      "contact": "Nous contacter",
       "loginButton": "Commencer",
-      "dashboardButton": "Aller au tableau de bord",
+      "dashboardButton": "Voir le tableau de bord",
       "learnMoreButton": "En savoir plus"
     },
     "features": {
@@ -71,7 +73,9 @@
     "adminDashboard": "Tableau de bord admin",
     "signOut": "Se déconnecter",
     "signOutSuccessTitle": "Déconnecté",
-    "signOutSuccessDescription": "Vous avez été déconnecté avec succès."
+    "signOutSuccessDescription": "Vous avez été déconnecté avec succès.",
+    "products": "Produits",
+    "contact": "Contact"
   },
   "Footer": {
     "siteName": "Solution EPI",

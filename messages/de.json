@@ -15,8 +15,10 @@
   },
   "HomePage": {
     "hero": {
-      "title": "Solution EPI Dashboard",
-      "description": "Ein modernes, reaktionsschnelles Admin-Dashboard für Django mit Next.js, shadcn/ui und KI-gestützten Tools zur Steigerung Ihrer Produktivität.",
+      "title": "Solution EPI",
+      "description": "Ihr Partner für Arbeitssicherheit. Zertifizierte persönliche Schutzausrüstung nach höchsten Standards.",
+      "cta": "Unsere Produkte entdecken",
+      "contact": "Kontaktieren Sie uns",
       "loginButton": "Loslegen",
       "dashboardButton": "Zum Dashboard",
       "learnMoreButton": "Mehr erfahren"
@@ -71,7 +73,9 @@
     "adminDashboard": "Admin-Dashboard",
     "signOut": "Abmelden",
     "signOutSuccessTitle": "Abgemeldet",
-    "signOutSuccessDescription": "Sie wurden erfolgreich abgemeldet."
+    "signOutSuccessDescription": "Sie wurden erfolgreich abgemeldet.",
+    "products": "Produkte",
+    "contact": "Kontakt"
   },
   "Footer": {
     "siteName": "Solution EPI",

@@ -188,7 +188,7 @@ export default function HomePage() {
         "Casques de chantier",
       ],
       image:
-        "https://images.unsplash.com/photo-1618753970367-d94366db73c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+        "https://images.pexels.com/photos/209265/pexels-photo-209265.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
       name: "Protection auditive",
@@ -199,7 +199,7 @@ export default function HomePage() {
         "Protection auditive électronique",
       ],
       image:
-        "https://images.unsplash.com/photo-1609218176629-7e4a2a97887e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+        "https://images.pexels.com/photos/416430/pexels-photo-416430.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
       name: "Protection oculaire",
@@ -210,7 +210,7 @@ export default function HomePage() {
         "Lunettes contre produits chimiques",
       ],
       image:
-        "https://images.unsplash.com/photo-1572635196243-4dd75fbdbd7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+        "https://images.pexels.com/photos/414860/pexels-photo-414860.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
       name: "Vêtements de protection",
@@ -221,7 +221,7 @@ export default function HomePage() {
         "Vêtements résistants au feu",
       ],
       image:
-        "https://images.unsplash.com/photo-1588774069410-84ae30757c8e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+        "https://images.pexels.com/photos/122477/pexels-photo-122477.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
       name: "Protection des pieds",
@@ -232,7 +232,7 @@ export default function HomePage() {
         "Protection métatarsienne",
       ],
       image:
-        "https://images.unsplash.com/photo-1520639888713-7851133b1ed0?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+        "https://images.pexels.com/photos/66134/boots-shoes-couple-jump-66134.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
       name: "Protection des mains",
@@ -243,7 +243,7 @@ export default function HomePage() {
         "Gants isolants",
       ],
       image:
-        "https://images.unsplash.com/photo-1576615278693-f8e095e37e01?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+        "https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
   ];
 
@@ -280,22 +280,22 @@ export default function HomePage() {
     {
       name: "Construction",
       image:
-        "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+        "https://images.pexels.com/photos/5449713/pexels-photo-5449713.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
       name: "Industrie pétrolière",
       image:
-        "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+        "https://images.pexels.com/photos/256296/pexels-photo-256296.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
       name: "Secteur médical",
       image:
-        "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+        "https://images.pexels.com/photos/4483535/pexels-photo-4483535.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
       name: "Industrie manufacturière",
       image:
-        "https://images.unsplash.com/photo-1581093196277-9f608732adf8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+        "https://images.pexels.com/photos/3739201/pexels-photo-3739201.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
   ];
 
@@ -320,12 +320,13 @@ export default function HomePage() {
             className="w-full h-full relative"
             style={{ y: heroImageY }}>
             <Image
-              src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
+              src="https://images.pexels.com/photos/5854192/pexels-photo-5854192.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80"
               alt="Équipement de protection individuelle"
               fill
               priority
-              className="object-cover object-center brightness-50"
+              className="object-cover object-center brightness-40"
             />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/40"></div>
           </motion.div>
         </div>
 
@@ -348,7 +349,7 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-4">
               <Button
                 size="lg"
-                className="bg-primary hover:bg-primary/90 text-black font-medium px-8 py-6 text-lg"
+                className="bg-primary hover:bg-primary/90 text-white font-bold px-8 py-6 text-lg shadow-lg"
                 asChild>
                 <Link href="#products">
                   Découvrir nos produits
@@ -359,7 +360,7 @@ export default function HomePage() {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-white text-white hover:text-white hover:bg-white/20 px-8 py-6 text-lg"
+                className="border-white text-white hover:text-white hover:bg-white/20 px-8 py-6 text-lg font-bold"
                 asChild>
                 <Link href="/contact">Nous contacter</Link>
               </Button>
@@ -373,19 +374,19 @@ export default function HomePage() {
         <div className="container mx-auto px-6 md:px-10">
           <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
             <div className="md:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 opacity-0">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 opacity-0 text-foreground">
                 À propos de Solution EPI
               </h2>
               <div className="w-24 h-1 bg-primary mb-8"></div>
 
-              <p className="text-lg text-muted-foreground mb-6">
+              <p className="text-lg text-foreground mb-6">
                 Depuis plus de 15 ans, Solution EPI est le leader dans la
                 fourniture d'équipements de protection individuelle au Cameroun.
                 Notre mission est de garantir la sécurité des travailleurs dans
                 tous les secteurs d'activité.
               </p>
 
-              <p className="text-lg text-muted-foreground mb-8">
+              <p className="text-lg text-foreground mb-8">
                 Nous proposons une gamme complète d'équipements certifiés
                 conformes aux normes internationales, adaptés aux besoins
                 spécifiques de chaque industrie et environnement de travail.
@@ -397,7 +398,9 @@ export default function HomePage() {
                     <CheckCircle className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1">Qualité certifiée</h3>
+                    <h3 className="font-semibold mb-1 text-foreground">
+                      Qualité certifiée
+                    </h3>
                     <p className="text-muted-foreground">
                       Produits conformes aux normes
                     </p>
@@ -409,7 +412,9 @@ export default function HomePage() {
                     <CheckCircle className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1">Expertise</h3>
+                    <h3 className="font-semibold mb-1 text-foreground">
+                      Expertise
+                    </h3>
                     <p className="text-muted-foreground">
                       Conseil personnalisé
                     </p>
@@ -420,7 +425,7 @@ export default function HomePage() {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-primary text-primary hover:bg-primary hover:text-white"
+                className="border-primary text-primary hover:bg-primary hover:text-white font-bold"
                 asChild>
                 <Link href="/about">
                   En savoir plus
@@ -437,7 +442,7 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}>
                 <Image
-                  src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                  src="https://images.pexels.com/photos/130472/pexels-photo-130472.jpeg?auto=compress&cs=tinysrgb&w=800&q=80"
                   alt="Équipe Solution EPI"
                   fill
                   className="object-cover"
@@ -452,11 +457,11 @@ export default function HomePage() {
       <section id="products" ref={productsRef} className="py-24 bg-secondary/5">
         <div className="container mx-auto px-6 md:px-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 opacity-0">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 opacity-0 text-foreground">
               Nos catégories d'EPI
             </h2>
             <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-foreground max-w-2xl mx-auto">
               Des équipements de protection individuelle adaptés à tous les
               types de risques professionnels.
             </p>
@@ -478,11 +483,13 @@ export default function HomePage() {
                 <div className="p-6">
                   <div className="flex items-center mb-4">
                     {category.icon}
-                    <h3 className="text-xl font-bold ml-3">{category.name}</h3>
+                    <h3 className="text-xl font-bold ml-3 text-foreground">
+                      {category.name}
+                    </h3>
                   </div>
                   <ul className="mb-6 space-y-2">
                     {category.products.map((product, j) => (
-                      <li key={j} className="flex items-center">
+                      <li key={j} className="flex items-center text-foreground">
                         <span className="h-1.5 w-1.5 rounded-full bg-primary mr-2"></span>
                         <span>{product}</span>
                       </li>
@@ -491,7 +498,7 @@ export default function HomePage() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="w-full border-primary text-primary hover:bg-primary hover:text-white"
+                    className="w-full border-primary text-primary hover:bg-primary hover:text-white font-medium"
                     asChild>
                     <Link
                       href={`/products/${category.name
@@ -523,11 +530,11 @@ export default function HomePage() {
       <section id="services" ref={servicesRef} className="py-24 bg-background">
         <div className="container mx-auto px-6 md:px-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 opacity-0">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 opacity-0 text-foreground">
               Nos services
             </h2>
             <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-foreground max-w-2xl mx-auto">
               Au-delà de la fourniture d'équipements, nous offrons une gamme
               complète de services pour garantir la sécurité de vos
               collaborateurs.
@@ -540,15 +547,15 @@ export default function HomePage() {
                 key={i}
                 className="service-item bg-card rounded-lg p-6 border shadow-md h-full flex flex-col">
                 <div className="flex justify-center mb-4">{service.icon}</div>
-                <h3 className="text-xl font-bold mb-3 text-center">
+                <h3 className="text-xl font-bold mb-3 text-center text-foreground">
                   {service.title}
                 </h3>
-                <p className="text-muted-foreground mb-6 text-center flex-grow">
+                <p className="text-foreground mb-6 text-center flex-grow">
                   {service.description}
                 </p>
                 <Button
                   variant="outline"
-                  className="mt-auto w-full border-primary text-primary hover:bg-primary hover:text-white"
+                  className="mt-auto w-full border-primary text-primary hover:bg-primary hover:text-white font-medium"
                   asChild>
                   <Link href="/services">En savoir plus</Link>
                 </Button>
@@ -566,12 +573,12 @@ export default function HomePage() {
         <div className="container mx-auto px-6 md:px-10">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="md:w-1/2 order-2 md:order-1">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 opacity-0">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 opacity-0 text-foreground">
                 Normes et réglementations
               </h2>
               <div className="w-24 h-1 bg-primary mb-8"></div>
 
-              <p className="text-lg text-muted-foreground mb-6">
+              <p className="text-lg text-foreground mb-6">
                 La sécurité au travail est encadrée par des normes strictes.
                 Chez Solution EPI, tous nos produits sont conformes aux normes
                 internationales et locales en vigueur.
@@ -581,7 +588,7 @@ export default function HomePage() {
                 {safetyStandards.map((standard, i) => (
                   <li key={i} className="standard-item flex items-start">
                     <CheckCircle className="h-6 w-6 text-primary shrink-0 mt-1 mr-3" />
-                    <span>{standard}</span>
+                    <span className="text-foreground">{standard}</span>
                   </li>
                 ))}
               </ul>
@@ -608,7 +615,7 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}>
                 <Image
-                  src="https://images.unsplash.com/photo-1564156280315-1d42b4651629?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                  src="https://images.pexels.com/photos/3825583/pexels-photo-3825583.jpeg?auto=compress&cs=tinysrgb&w=800&q=80"
                   alt="Certifications de sécurité"
                   fill
                   className="object-cover"
@@ -626,11 +633,11 @@ export default function HomePage() {
         className="py-24 bg-background">
         <div className="container mx-auto px-6 md:px-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 opacity-0">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 opacity-0 text-foreground">
               Secteurs d'activité
             </h2>
             <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-foreground max-w-2xl mx-auto">
               Nos solutions de sécurité sont adaptées à tous les secteurs
               industriels.
             </p>
@@ -677,11 +684,11 @@ export default function HomePage() {
       <section id="contact" ref={contactRef} className="py-24 bg-secondary/5">
         <div className="container mx-auto px-6 md:px-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 opacity-0">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 opacity-0 text-foreground">
               Contactez-nous
             </h2>
             <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-foreground max-w-2xl mx-auto">
               Besoin d'équipements de protection ou de conseils ? Notre équipe
               d'experts est à votre disposition.
             </p>
@@ -692,7 +699,7 @@ export default function HomePage() {
               <div className="bg-card border rounded-lg overflow-hidden shadow-lg">
                 <div className="h-[400px] relative">
                   <Image
-                    src="https://images.unsplash.com/photo-1554774853-aae0a22c8aa4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    src="https://images.pexels.com/photos/886743/pexels-photo-886743.jpeg?auto=compress&cs=tinysrgb&w=800&q=80"
                     alt="Bureau de Solution EPI"
                     fill
                     className="object-cover"
@@ -710,7 +717,9 @@ export default function HomePage() {
                     <MapPin className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold mb-1">Adresse</h4>
+                    <h4 className="font-semibold mb-1 text-foreground">
+                      Adresse
+                    </h4>
                     <p className="text-muted-foreground">
                       Boulangerie Saker, Deido
                       <br />
@@ -724,7 +733,9 @@ export default function HomePage() {
                     <Phone className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold mb-1">Téléphone</h4>
+                    <h4 className="font-semibold mb-1 text-foreground">
+                      Téléphone
+                    </h4>
                     <p className="text-muted-foreground">+237 6XX XXX XXX</p>
                   </div>
                 </div>
@@ -734,7 +745,9 @@ export default function HomePage() {
                     <Mail className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold mb-1">Email</h4>
+                    <h4 className="font-semibold mb-1 text-foreground">
+                      Email
+                    </h4>
                     <p className="text-muted-foreground">
                       contact@solution-epi.com
                     </p>

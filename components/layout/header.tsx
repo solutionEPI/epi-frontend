@@ -9,17 +9,11 @@ import { ThemeSwitcher } from "@/components/theme-switcher";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { DefaultLogo } from "@/components/ui/default-logo";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-  DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { getInitials } from "@/lib/utils";
 import { LogOutIcon, Menu, X, ShieldCheck } from "lucide-react";
+import Image from "next/image";
+import { useLocale } from "next-intl";
 
 export function Header() {
   const t = useTranslations("Header");
@@ -27,6 +21,7 @@ export function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const locale = useLocale();
 
   // Handle scroll effect
   useEffect(() => {
@@ -42,16 +37,16 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navigation = [
-    { name: t("home"), href: "/" },
-    { name: t("blog"), href: "/blog" },
-    { name: t("features"), href: "/#features" },
-    { name: t("about"), href: "/about" },
+  const routes = [
+    { name: t("home"), path: "/" },
+    { name: t("blog"), path: "/blog" },
+    { name: t("products"), path: "/products" },
+    { name: t("contact"), path: "/contact" },
   ];
 
   const isActive = (path: string) => {
-    if (path === "/") return pathname === path;
-    return pathname.startsWith(path);
+    if (path === "/") return pathname === `/${locale}`;
+    return pathname.startsWith(`/${locale}${path}`);
   };
 
   const handleSignOut = async () => {
@@ -73,24 +68,31 @@ export function Header() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
-              <DefaultLogo className="h-8 w-8" />
-              <span className="ml-3 text-lg font-bold">{t("siteName")}</span>
+              <div className="w-10 h-10 relative mr-3">
+                <Image
+                  src="/solution-logo.svg"
+                  alt="Solution EPI"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <span className="text-lg font-bold hidden sm:inline-block text-foreground">
+                Solution EPI
+              </span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            {navigation.map((item) => (
+            {routes.map((route) => (
               <Link
-                key={item.name}
-                href={item.href}
+                key={route.path}
+                href={route.path}
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-primary",
-                  isActive(item.href)
-                    ? "text-foreground"
-                    : "text-muted-foreground"
+                  isActive(route.path) ? "text-primary" : "text-foreground"
                 )}>
-                {item.name}
+                {route.name}
               </Link>
             ))}
           </nav>
@@ -195,18 +197,18 @@ export function Header() {
         <div className="md:hidden bg-background border-b">
           <div className="container px-4 pt-2 pb-4 space-y-4">
             <nav className="flex flex-col space-y-2">
-              {navigation.map((item) => (
+              {routes.map((route) => (
                 <Link
-                  key={item.name}
-                  href={item.href}
+                  key={route.path}
+                  href={route.path}
                   className={cn(
                     "px-3 py-2 rounded-md text-base font-medium",
-                    isActive(item.href)
+                    isActive(route.path)
                       ? "bg-primary/10 text-primary"
-                      : "text-muted-foreground hover:bg-muted"
+                      : "text-foreground hover:bg-muted/80"
                   )}
                   onClick={() => setMobileMenuOpen(false)}>
-                  {item.name}
+                  {route.name}
                 </Link>
               ))}
             </nav>

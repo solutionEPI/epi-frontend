@@ -15,8 +15,8 @@
   },
   "HomePage": {
     "hero": {
-      "title": "Solution Epi",
-      "description": "Artisanal bakery offering authentic breads and pastries in Douala, Cameroon",
+      "title": "Solution EPI",
+      "description": "Your partner for workplace safety. Certified personal protective equipment that meets the strictest standards.",
       "cta": "Discover Our Products",
       "contact": "Contact Us",
       "loginButton": "Get Started",
@@ -85,7 +85,9 @@
     "adminDashboard": "Admin Dashboard",
     "signOut": "Sign Out",
     "signOutSuccessTitle": "Signed Out",
-    "signOutSuccessDescription": "You have been successfully signed out."
+    "signOutSuccessDescription": "You have been successfully signed out.",
+    "products": "Products",
+    "contact": "Contact"
   },
   "Footer": {
     "siteName": "Solution EPI",

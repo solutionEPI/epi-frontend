@@ -4,35 +4,52 @@
 
 @layer base {
   :root {
-    /* Solution EPI Theme Colors - Orange, Blue, Yellow for safety */
-    --background: 0 0% 100%;
-    --foreground: 0 0% 10%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
-    /* Safety Orange as primary */
-    --primary: 25 100% 50%;
-    --primary-foreground: 0 0% 10%;
-    /* Blue as secondary */
-    --secondary: 214 100% 32%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 95%;
-    --muted-foreground: 0 0% 45%;
-    /* Warning yellow as accent */
-    --accent: 48 100% 50%;
-    --accent-foreground: 0 0% 10%;
-    --destructive: 0 85% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 25 100% 50%;
-    --chart-1: 25 100% 50%; /* Orange */
-    --chart-2: 214 100% 32%; /* Blue */
-    --chart-3: 48 100% 50%; /* Yellow */
-    --chart-4: 180 100% 30%; /* Teal */
-    --chart-5: 0 0% 20%; /* Dark Grey */
-    --radius: 0.375rem;
+    /* Base colors */
+    --radius: 0.5rem;
+
+    /* Main theme colors - Light Mode */
+    --background: 0 0% 100%; /* Pure White */
+    --foreground: 215 28% 17%; /* Dark Slate */
+
+    /* Card colors */
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 215 28% 17%; /* Dark Slate */
+
+    /* Popover colors */
+    --popover: 0 0% 100%; /* White */
+    --popover-foreground: 215 28% 17%; /* Dark Slate */
+
+    /* Primary colors - Safety Orange */
+    --primary: 24 95% 53%; /* Orange-500 */
+    --primary-foreground: 0 0% 100%; /* White */
+
+    /* Secondary colors - Slate */
+    --secondary: 215 28% 17%; /* Dark Slate */
+    --secondary-foreground: 0 0% 100%; /* White */
+
+    /* Muted colors */
+    --muted: 214 32% 91%; /* Slate-200 */
+    --muted-foreground: 215 25% 27%; /* Slate-600 */
+
+    /* Accent colors - Warning Yellow */
+    --accent: 43 96% 56%; /* Amber-400 */
+    --accent-foreground: 215 28% 17%; /* Dark Slate */
+
+    /* Destructive colors */
+    --destructive: 0 84% 60%; /* Red-600 */
+    --destructive-foreground: 0 0% 100%; /* White */
+
+    /* Border, input and ring colors */
+    --border: 216 34% 87%; /* Slate-100/200 */
+    --input: 216 34% 87%; /* Slate-100/200 */
+    --ring: 24 95% 53%; /* Orange-500 */
+
+    /* Chart colors for data visualization */
+    --chart-1: 24 95% 53%; /* Orange-500 */
+    --chart-2: 215 25% 27%; /* Slate-700 */
+    --chart-3: 43 96% 56%; /* Amber-400 */
+    --chart-4: 187 92% 34%; /* Cyan-600 */
+    --chart-5: 215 25% 47%; /* Slate-500 */
 
     /* Add spacing variables */
     --spacing-1: 0.25rem;
@@ -50,39 +67,59 @@
   }
 
   .dark {
-    --background: 0 0% 10%;
-    --foreground: 0 0% 95%;
-    --card: 0 0% 15%;
-    --card-foreground: 0 0% 95%;
-    --popover: 0 0% 15%;
-    --popover-foreground: 0 0% 95%;
-    /* Safety Orange in dark mode */
-    --primary: 25 100% 50%;
-    --primary-foreground: 0 0% 10%;
-    --secondary: 214 90% 45%;
-    --secondary-foreground: 0 0% 95%;
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 70%;
-    --accent: 48 90% 50%;
-    --accent-foreground: 0 0% 10%;
-    --destructive: 0 75% 50%;
-    --destructive-foreground: 0 0% 95%;
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 25 100% 50%;
-    --chart-1: 25 100% 50%; /* Orange */
-    --chart-2: 214 90% 45%; /* Blue */
-    --chart-3: 48 90% 50%; /* Yellow */
-    --chart-4: 180 80% 40%; /* Teal */
-    --chart-5: 0 0% 70%; /* Light Grey */
-    --sidebar: 0 0% 7%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 25 100% 50%;
-    --sidebar-primary-foreground: 0 0% 10%;
-    --sidebar-accent: 0 0% 15%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 25 100% 50%;
+    /* Dark mode colors - Much darker */
+    --background: 222 47% 11%; /* Very Dark Slate */
+    --foreground: 210 40% 98%; /* Almost White */
+
+    /* Card colors */
+    --card: 222 47% 8%; /* Even Darker Slate */
+    --card-foreground: 210 40% 98%; /* Almost White */
+
+    /* Popover colors */
+    --popover: 222 47% 8%; /* Even Darker Slate */
+    --popover-foreground: 210 40% 98%; /* Almost White */
+
+    /* Primary colors - Safety Orange - brighter in dark mode */
+    --primary: 24 100% 58%; /* Brighter Orange */
+    --primary-foreground: 210 40% 98%; /* Almost White */
+
+    /* Secondary colors - Light Slate for dark mode */
+    --secondary: 210 40% 90%; /* Light Slate */
+    --secondary-foreground: 222 47% 11%; /* Very Dark Slate */
+
+    /* Muted colors */
+    --muted: 217 33% 17%; /* Dark Slate-700 */
+    --muted-foreground: 215 20% 65%; /* Light Slate */
+
+    /* Accent colors - Warning Yellow adjusted for dark mode */
+    --accent: 43 100% 64%; /* Brighter Amber in dark mode */
+    --accent-foreground: 222 47% 11%; /* Very Dark Slate */
+
+    /* Destructive colors */
+    --destructive: 0 70% 50%; /* Darker Red */
+    --destructive-foreground: 210 40% 98%; /* Almost White */
+
+    /* Border, input and ring colors */
+    --border: 217 33% 17%; /* Dark Slate-700 */
+    --input: 217 33% 17%; /* Dark Slate-700 */
+    --ring: 24 100% 58%; /* Brighter Orange */
+
+    /* Chart colors for data visualization in dark mode */
+    --chart-1: 24 95% 53%; /* Orange-500 */
+    --chart-2: 213 27% 84%; /* Slate-300 */
+    --chart-3: 43 96% 56%; /* Amber-400 */
+    --chart-4: 187 92% 69%; /* Lighter Cyan */
+    --chart-5: 0 0% 95%; /* White-ish */
+
+    /* Sidebar specific colors */
+    --sidebar: 222 47% 8%; /* Even Darker Slate */
+    --sidebar-foreground: 210 40% 98%; /* Almost White */
+    --sidebar-primary: 24 100% 58%; /* Brighter Orange */
+    --sidebar-primary-foreground: 210 40% 98%; /* Almost White */
+    --sidebar-accent: 43 100% 64%; /* Brighter Amber */
+    --sidebar-accent-foreground: 222 47% 8%; /* Even Darker Slate */
+    --sidebar-border: 217 33% 17%; /* Dark Slate-700 */
+    --sidebar-ring: 24 100% 58%; /* Brighter Orange */
   }
 
   * {
@@ -105,43 +142,43 @@
 /* SolutionEPI Theme - Custom theme with yellow as primary color */
 .solutionepi {
   --background: 0 0% 100%;
-  --foreground: 0 0% 7%;
+  --foreground: 215 25% 27%;
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 7%;
+  --card-foreground: 215 25% 27%;
   --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 7%;
-  --primary: 45 93% 47%;
-  --primary-foreground: 0 0% 7%;
-  --secondary: 0 0% 96%;
-  --secondary-foreground: 0 0% 7%;
-  --muted: 0 0% 96%;
-  --muted-foreground: 0 0% 45%;
-  --accent: 45 90% 85%;
-  --accent-foreground: 0 0% 7%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 89%;
-  --input: 0 0% 89%;
-  --ring: 45 93% 47%;
-  --sidebar: 0 0% 7%;
+  --popover-foreground: 215 25% 27%;
+  --primary: 43 96% 56%;
+  --primary-foreground: 215 25% 27%;
+  --secondary: 215 25% 27%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 214 32% 91%;
+  --muted-foreground: 215 19% 35%;
+  --accent: 24 95% 53%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 216 34% 87%;
+  --input: 216 34% 87%;
+  --ring: 43 96% 56%;
+  --sidebar: 215 25% 27%;
   --sidebar-foreground: 0 0% 100%;
-  --sidebar-primary: 45 93% 47%;
-  --sidebar-primary-foreground: 0 0% 7%;
-  --sidebar-accent: 0 0% 15%;
-  --sidebar-accent-foreground: 0 0% 100%;
-  --sidebar-border: 45 93% 47%;
-  --sidebar-ring: 45 93% 47%;
+  --sidebar-primary: 43 96% 56%;
+  --sidebar-primary-foreground: 215 25% 27%;
+  --sidebar-accent: 215 25% 17%;
+  --sidebar-accent-foreground: 43 96% 56%;
+  --sidebar-border: 215 25% 27%;
+  --sidebar-ring: 43 96% 56%;
 }
 
 /* Sidebar styling for SolutionEPI theme */
 aside[data-style="solutionepi"] {
-  --sidebar: 0 0% 7%;
+  --sidebar: 215 25% 27%;
   --sidebar-foreground: 0 0% 100%;
-  --sidebar-primary: 45 93% 47%;
-  --sidebar-primary-foreground: 0 0% 7%;
-  --sidebar-accent: 0 0% 15%;
-  --sidebar-accent-foreground: 45 93% 47%;
-  --sidebar-border: 0 0% 15%;
+  --sidebar-primary: 43 96% 56%;
+  --sidebar-primary-foreground: 215 25% 27%;
+  --sidebar-accent: 215 25% 17%;
+  --sidebar-accent-foreground: 43 96% 56%;
+  --sidebar-border: 215 25% 17%;
 }
 
 /* Fix for the --spacing function issue */
@@ -258,113 +295,118 @@ aside[data-style="solutionepi"] {
   margin-top: 0.25rem;
 }
 
+/* Professional safety theme - main theme */
 .professional {
   --background: 0 0% 100%;
-  --foreground: 0 0% 7%;
+  --foreground: 215 25% 27%;
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 7%;
+  --card-foreground: 215 25% 27%;
   --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 7%;
-  --primary: 25 100% 50%;
-  --primary-foreground: 0 0% 7%;
-  --secondary: 214 100% 32%;
+  --popover-foreground: 215 25% 27%;
+  --primary: 24 95% 53%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 215 25% 27%;
   --secondary-foreground: 0 0% 100%;
-  --muted: 0 0% 96%;
-  --muted-foreground: 0 0% 45%;
-  --accent: 48 100% 50%;
-  --accent-foreground: 0 0% 7%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 89%;
-  --input: 0 0% 89%;
-  --ring: 25 100% 50%;
-  --sidebar: 214 100% 32%;
+  --muted: 214 32% 91%;
+  --muted-foreground: 215 19% 35%;
+  --accent: 43 96% 56%;
+  --accent-foreground: 215 25% 27%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 216 34% 87%;
+  --input: 216 34% 87%;
+  --ring: 24 95% 53%;
+  --sidebar: 215 25% 27%;
   --sidebar-foreground: 0 0% 100%;
-  --sidebar-primary: 25 100% 50%;
-  --sidebar-primary-foreground: 0 0% 7%;
-  --sidebar-accent: 214 90% 25%;
+  --sidebar-primary: 24 95% 53%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 215 28% 17%;
   --sidebar-accent-foreground: 0 0% 100%;
-  --sidebar-border: 214 80% 30%;
-  --sidebar-ring: 25 100% 50%;
+  --sidebar-border: 215 28% 17%;
+  --sidebar-ring: 24 95% 53%;
 }
 
+/* Administrator theme - keep but update colors */
 .administrator {
-  --background: oklch(1 0 0); /* White */
-  --foreground: oklch(0 0 0); /* Black */
-  --card: oklch(0.98 0 0); /* Very light gray */
-  --card-foreground: oklch(0 0 0);
-  --popover: oklch(0.98 0 0);
-  --popover-foreground: oklch(0 0 0);
-  --primary: oklch(0.62 0.19 23.5); /* A strong, attention-grabbing orange */
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.94 0 0); /* Light gray */
-  --secondary-foreground: oklch(0 0 0);
-  --muted: oklch(0.94 0 0);
-  --muted-foreground: oklch(0.35 0 0);
-  --accent: oklch(0.94 0 0);
-  --accent-foreground: oklch(0.62 0.19 23.5);
-  --destructive: oklch(0.58 0.24 15.5); /* A clear red */
-  --border: oklch(0.85 0 0);
-  --input: oklch(0.85 0 0);
-  --ring: oklch(0.62 0.19 23.5);
-  --sidebar: oklch(0.1 0 0); /* Black sidebar */
-  --sidebar-foreground: oklch(0.95 0 0);
-  --sidebar-primary: oklch(0.62 0.19 23.5);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.2 0 0);
-  --sidebar-accent-foreground: oklch(0.95 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.62 0.19 23.5);
+  --background: 0 0% 100%; /* White */
+  --foreground: 216 28% 7%; /* Slate-900 */
+  --card: 214 32% 91%; /* Slate-200 */
+  --card-foreground: 216 28% 7%; /* Slate-900 */
+  --popover: 214 32% 91%; /* Slate-200 */
+  --popover-foreground: 216 28% 7%; /* Slate-900 */
+  --primary: 24 95% 53%; /* Orange-500 */
+  --primary-foreground: 0 0% 100%; /* White */
+  --secondary: 215 25% 27%; /* Slate-700 */
+  --secondary-foreground: 0 0% 100%; /* White */
+  --muted: 213 27% 84%; /* Slate-300 */
+  --muted-foreground: 215 25% 27%; /* Slate-700 */
+  --accent: 43 96% 56%; /* Amber-400 */
+  --accent-foreground: 215 25% 27%; /* Slate-700 */
+  --destructive: 0 84% 60%; /* Red-600 */
+  --destructive-foreground: 0 0% 100%; /* White */
+  --border: 213 27% 84%; /* Slate-300 */
+  --input: 213 27% 84%; /* Slate-300 */
+  --ring: 24 95% 53%; /* Orange-500 */
+  --sidebar: 216 28% 7%; /* Slate-900 */
+  --sidebar-foreground: 0 0% 100%; /* White */
+  --sidebar-primary: 24 95% 53%; /* Orange-500 */
+  --sidebar-primary-foreground: 0 0% 100%; /* White */
+  --sidebar-accent: 215 28% 17%; /* Darker Slate */
+  --sidebar-accent-foreground: 0 0% 100%; /* White */
+  --sidebar-border: 0 0% 100% / 10%; /* Transparent white */
+  --sidebar-ring: 24 95% 53%; /* Orange-500 */
 }
 
+/* Customer theme - keep but update colors */
 .customer {
-  --background: oklch(0.99 0.002 106.4); /* Off-white */
-  --foreground: oklch(0.25 0.01 56);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.25 0.01 56);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.25 0.01 56);
-  --primary: oklch(0.55 0.15 150); /* Friendly green */
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.96 0.005 150); /* Light green tint */
-  --secondary-foreground: oklch(0.25 0.01 56);
-  --muted: oklch(0.96 0.005 150);
-  --muted-foreground: oklch(0.5 0.01 56);
-  --accent: oklch(0.96 0.005 150);
-  --accent-foreground: oklch(0.55 0.15 150);
-  --destructive: oklch(0.6 0.2 25);
-  --border: oklch(0.92 0.008 150);
-  --input: oklch(0.92 0.008 150);
-  --ring: oklch(0.55 0.15 150);
-  --sidebar: oklch(0.98 0.003 150); /* Very light green sidebar */
-  --sidebar-foreground: oklch(0.25 0.01 56);
-  --sidebar-primary: oklch(0.55 0.15 150);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.92 0.008 150);
-  --sidebar-accent-foreground: oklch(0.25 0.01 56);
-  --sidebar-border: oklch(0.88 0.01 150);
-  --sidebar-ring: oklch(0.55 0.15 150);
+  --background: 210 40% 98%; /* Very light blue */
+  --foreground: 215 25% 27%; /* Slate-700 */
+  --card: 0 0% 100%; /* White */
+  --card-foreground: 215 25% 27%; /* Slate-700 */
+  --popover: 0 0% 100%; /* White */
+  --popover-foreground: 215 25% 27%; /* Slate-700 */
+  --primary: 43 96% 56%; /* Amber-400 */
+  --primary-foreground: 215 25% 27%; /* Slate-700 */
+  --secondary: 199 89% 48%; /* Light blue */
+  --secondary-foreground: 0 0% 100%; /* White */
+  --muted: 210 40% 93%; /* Lighter blue */
+  --muted-foreground: 215 19% 35%; /* Slate-500 */
+  --accent: 24 95% 53%; /* Orange-500 */
+  --accent-foreground: 0 0% 100%; /* White */
+  --destructive: 0 84% 60%; /* Red-600 */
+  --destructive-foreground: 0 0% 100%; /* White */
+  --border: 210 40% 90%; /* Very light blue border */
+  --input: 210 40% 90%; /* Very light blue input */
+  --ring: 43 96% 56%; /* Amber-400 */
+  --sidebar: 199 89% 48%; /* Light blue */
+  --sidebar-foreground: 0 0% 100%; /* White */
+  --sidebar-primary: 43 96% 56%; /* Amber-400 */
+  --sidebar-primary-foreground: 215 25% 27%; /* Slate-700 */
+  --sidebar-accent: 199 89% 40%; /* Slightly darker blue */
+  --sidebar-accent-foreground: 0 0% 100%; /* White */
+  --sidebar-border: 199 89% 40%; /* Slightly darker blue */
+  --sidebar-ring: 43 96% 56%; /* Amber-400 */
 }
 
-/* Layout Styles */
+/* Sidebar styling for Professional theme */
 aside[data-style="professional"] {
-  --sidebar: 214 100% 32%;
-  --sidebar-foreground: 0 0% 100%;
-  --sidebar-primary: 25 100% 50%;
-  --sidebar-primary-foreground: 0 0% 7%;
-  --sidebar-accent: 214 90% 25%;
-  --sidebar-accent-foreground: 25 100% 50%;
-  --sidebar-border: 214 80% 30%;
+  --sidebar: 215 25% 27%; /* Slate-700 */
+  --sidebar-foreground: 0 0% 100%; /* White */
+  --sidebar-primary: 24 95% 53%; /* Orange-500 */
+  --sidebar-primary-foreground: 0 0% 100%; /* White */
+  --sidebar-accent: 215 28% 17%; /* Darker slate */
+  --sidebar-accent-foreground: 24 95% 53%; /* Orange-500 */
+  --sidebar-border: 215 28% 17%; /* Darker slate */
 }
 
 aside[data-style="customer"] {
-  --sidebar: oklch(0.15 0.02 150);
-  --sidebar-foreground: oklch(0.99 0.002 106.4);
-  --sidebar-primary: oklch(0.99 0.002 106.4);
-  --sidebar-primary-foreground: oklch(0.15 0.02 150);
-  --sidebar-accent: oklch(0.25 0.03 150);
-  --sidebar-accent-foreground: oklch(0.99 0.002 106.4);
-  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar: 199 89% 48%; /* Light blue */
+  --sidebar-foreground: 0 0% 100%; /* White */
+  --sidebar-primary: 43 96% 56%; /* Amber-400 */
+  --sidebar-primary-foreground: 215 25% 27%; /* Slate-700 */
+  --sidebar-accent: 199 89% 40%; /* Slightly darker blue */
+  --sidebar-accent-foreground: 0 0% 100%; /* White */
+  --sidebar-border: 0 0% 100% / 10%; /* Transparent white */
 }
 
 /* Font family utilities */
