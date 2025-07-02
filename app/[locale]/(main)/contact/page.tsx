@@ -256,19 +256,20 @@ export default function ContactPage() {
   ];
 
   return (
-    <main className="relative pt-24 pb-20">
+    <main className="relative pt-24 pb-20 overflow-x-hidden">
       {/* Hero section with background pattern */}
-      <div className="absolute inset-0 bg-gradient-to-b from-secondary/5 to-transparent h-96 -z-10">
+      <div className="absolute inset-0 bg-gradient-to-b from-secondary/5 to-transparent h-96 -z-10 overflow-hidden">
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 overflow-hidden"
           style={{
             backgroundImage:
               "radial-gradient(circle at 1px 1px, var(--primary-50) 1px, transparent 0)",
             backgroundSize: "40px 40px",
+            width: "100%",
           }}></div>
       </div>
 
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 overflow-hidden">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -521,11 +522,11 @@ export default function ContactPage() {
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15919.204534680436!2d9.69606535!3d4.0623265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1061128c8c1af2b9%3A0x65fc9e1e3c3c9b0d!2sDeido%2C%20Douala%2C%20Cameroon!5e0!3m2!1sen!2sus!4v1652345678901!5m2!1sen!2sus"
                 width="100%"
                 height="100%"
-                style={{ border: 0 }}
+                style={{ border: 0, maxWidth: "100%" }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="absolute inset-0"></iframe>
+                className="absolute inset-0 w-full"></iframe>
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <motion.div
                   className="map-pin bg-primary text-white p-3 rounded-full shadow-lg"
@@ -572,7 +573,7 @@ export default function ContactPage() {
         </div>
 
         {/* FAQ Section */}
-        <div ref={faqRef} className="mb-16">
+        <div ref={faqRef} className="mb-16 w-full">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold mb-4">Questions fréquentes</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -581,7 +582,7 @@ export default function ContactPage() {
             </p>
           </div>
 
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-3xl mx-auto w-full">
             <Accordion type="single" collapsible className="w-full">
               {faqItems.map((item, i) => (
                 <AccordionItem
@@ -602,7 +603,7 @@ export default function ContactPage() {
 
         {/* CTA Section */}
         <motion.div
-          className="bg-primary/10 rounded-2xl p-8 md:p-12 text-center"
+          className="bg-primary/10 rounded-2xl p-8 md:p-12 text-center w-full max-w-full"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
