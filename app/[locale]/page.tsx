@@ -337,22 +337,22 @@ export default function HomePage() {
     {
       name: "Construction",
       image:
-        "https://images.pexels.com/photos/8961162/pexels-photo-8961162.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+        "https://images.unsplash.com/photo-1541976590-920116f6c29c?auto=format&fit=crop",
     },
     {
       name: "Industrie pétrolière",
       image:
-        "https://images.pexels.com/photos/2581087/pexels-photo-2581087.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+        "https://images.unsplash.com/photo-1579463148228-138296ac3b98?auto=format&fit=crop",
     },
     {
       name: "Secteur médical",
       image:
-        "https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+        "https://images.unsplash.com/photo-1582560474981-e5d9accfb685?auto=format&fit=crop",
     },
     {
       name: "Industrie manufacturière",
       image:
-        "https://images.pexels.com/photos/3771110/pexels-photo-3771110.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+        "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop",
     },
   ];
 
@@ -597,9 +597,11 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}>
                 <Image
-                  src="https://images.unsplash.com/photo-1574755471511-bdcd1ad7df05?q=80&w=1470&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1560249956-9fead937d178?auto=format&fit=crop"
                   alt="Équipe Solution EPI"
                   fill
+                  unoptimized
+                  priority
                   className="object-cover rounded-lg"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-secondary/70 to-transparent">
@@ -969,9 +971,11 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}>
                 <Image
-                  src="https://images.unsplash.com/photo-1569171206684-dfb2749d96fd?q=80&w=1469&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1600566452203-a6d617bb7a5e?auto=format&fit=crop"
                   alt="Certification et normes"
                   fill
+                  unoptimized
+                  priority
                   className="object-cover rounded-lg"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end">
@@ -1073,6 +1077,7 @@ export default function HomePage() {
                   src={industry.image}
                   alt={industry.name}
                   fill
+                  unoptimized
                   className="object-cover transition-transform duration-700 hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-secondary/90 via-secondary/40 to-transparent">
@@ -1131,9 +1136,10 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}>
                 <Image
-                  src="https://images.unsplash.com/photo-1556745753-b2904692b3cd?q=80&w=1470&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?auto=format&fit=crop"
                   alt="Contactez Solution EPI"
                   fill
+                  unoptimized
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-secondary/30 flex items-center justify-center">
