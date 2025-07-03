@@ -44,7 +44,7 @@ export const dashboardConfig: DashboardConfig = {
   description:
     "Équipements de Protection Individuelle pour la sécurité au travail",
   repositoryUrl: "https://github.com/asbilim/solution-epi.git",
-  logoUrl: "/solution-logo.svg",
+  logoUrl: "/logo-solution.png",
   favicon: "/favicon.svg",
   backendUrl:
     process.env.NEXT_PUBLIC_BACKEND_URL || "https://api.solution-epi.com",

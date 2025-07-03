@@ -28,6 +28,7 @@ import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AlertCircle, CheckCircle } from "lucide-react";
 import Image from "next/image";
+import { UserProfile } from "@/components/layout/dashboard-layout";
 
 // Zod schema creators for form validation
 const createProfileFormSchema = (t: (key: string) => string) =>
@@ -81,14 +82,14 @@ export default function SettingsPage() {
   return (
     <div className="space-y-8">
       <h1 className="text-2xl font-bold">{t("title")}</h1>
-      <ProfileForm user={user} />
+      {user && <ProfileForm user={user} />}
       <PasswordForm />
-      <TwoFactorAuthForm is2FAEnabled={user?.is_2fa_enabled} />
+      <TwoFactorAuthForm is2FAEnabled={user?.is_2fa_enabled ?? false} />
     </div>
   );
 }
 
-function ProfileForm({ user }: { user: any }) {
+function ProfileForm({ user }: { user: UserProfile }) {
   const t = useTranslations("SettingsPage");
   const tCommon = useTranslations("Common");
   const { toast } = useToast();

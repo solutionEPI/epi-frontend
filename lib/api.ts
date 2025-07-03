@@ -10,7 +10,7 @@ import {
   Comment,
   BlogStats,
 } from "@/types/blog";
-import { Service, PaginatedResponse, Employee } from "@/types/salon";
+import { Service, PaginatedResponse, Employee, AdminConfig, UserProfile } from "@/types/salon";
 
 function getRelativePath(fullOrRelativeUrl: string): string {
   if (fullOrRelativeUrl.startsWith('http')) {
@@ -326,7 +326,7 @@ async function publicApiFetch<T>(
 }
 
 export const api = {
-  getAdminConfig: () => apiRequest("GET", "/api/admin/"),
+  getAdminConfig: (): Promise<AdminConfig> => apiRequest("GET", "/api/admin/"),
   getDashboardStats: () => apiFetch<any>("/api/admin/dashboard-stats/"),
   getModelConfig: (configUrl: string) => {
     return apiFetch<any>(getRelativePath(configUrl));
@@ -397,7 +397,7 @@ export const api = {
   },
 
   // Auth and User Management
-  getUserProfile: () => apiRequest("GET", "/api/auth/me/"),
+  getUserProfile: (): Promise<UserProfile> => apiRequest("GET", "/api/auth/me/"),
   updateUserProfile: (data: any) => apiRequest("PATCH", "/api/auth/me/", data),
   changePassword: (data: any) =>
     apiRequest("POST", "/api/auth/me/change-password/", JSON.stringify(data)),
@@ -409,12 +409,12 @@ export const api = {
       "/api/auth/password_reset/confirm/",
       JSON.stringify(data)
     ),
-  get2FASecret: () => apiRequest("GET", "/api/auth/2fa/enable/"),
+  get2FASecret: (): Promise<{ qr_code?: string; qr_code_url?: string; secret_key: string; }> => apiRequest("GET", "/api/auth/2fa/enable/"),
   verify2FA: (otp: string) =>
     apiRequest("POST", "/api/auth/2fa/verify/", JSON.stringify({ otp })),
   disable2FA: (password: string) =>
     apiRequest("POST", "/api/auth/2fa/disable/", JSON.stringify({ password })),
-  importModelItems: (modelKey: string, data: FormData) => {
+  importModelItems: (modelKey: string, data: FormData): Promise<{ count: number }> => {
     return apiFetch(`/api/admin/models/${modelKey}/import/`, {
       method: "POST",
       body: data,

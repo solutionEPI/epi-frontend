@@ -102,7 +102,7 @@ interface AdminConfig {
   };
 }
 
-interface UserProfile {
+export interface UserProfile {
   first_name: string;
   email: string;
   avatar_url?: string;
@@ -110,6 +110,7 @@ interface UserProfile {
     theme?: string;
     sidebar_collapsed?: boolean;
   };
+  is_2fa_enabled?: boolean;
   [key: string]: any;
 }
 

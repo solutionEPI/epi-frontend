@@ -23,7 +23,7 @@ export async function POST(req: Request) {
       model: openrouter(
         process.env.OPENROUTER_MODEL ||
           "mistralai/mistral-small-3.2-24b-instruct:free"
-      ),
+      ) as any,
       prompt,
       temperature: process.env.AI_TEMPERATURE
         ? parseFloat(process.env.AI_TEMPERATURE)

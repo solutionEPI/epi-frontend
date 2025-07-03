@@ -119,7 +119,7 @@ const FormFileUpload = React.forwardRef<HTMLInputElement, FormFileUploadProps>(
 
     return (
       <div className="form-group">
-        <FormLabel htmlFor={props.id || name} required={required}>
+        <FormLabel htmlFor={props.id || name}>
           {label}
         </FormLabel>
         <div
