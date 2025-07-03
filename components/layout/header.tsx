@@ -5,6 +5,13 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { cn } from "@/lib/utils";
@@ -70,7 +77,7 @@ export function Header() {
             <Link href="/" className="flex items-center">
               <div className="w-10 h-10 relative mr-3">
                 <Image
-                  src="/solution-logo.svg"
+                  src="/logo-solution.png"
                   alt="Solution EPI"
                   fill
                   className="object-contain"
@@ -105,7 +112,7 @@ export function Header() {
             {/* Auth Buttons */}
             {status === "loading" ? (
               <div className="w-20 h-9 bg-muted animate-pulse rounded-md"></div>
-            ) : session ? (
+            ) : session?.user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
@@ -222,7 +229,7 @@ export function Header() {
                 </Button>
               )}
 
-              {session && (
+              {session?.user && (
                 <div className="flex items-center gap-4">
                   <div>
                     <div className="font-medium">{session.user.name}</div>
@@ -246,7 +253,7 @@ export function Header() {
               )}
             </div>
 
-            {session && (
+            {session?.user && (
               <div className="pt-2 space-y-2">
                 <Button
                   variant="ghost"

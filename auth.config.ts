@@ -61,7 +61,7 @@ export const authConfig = {
         // If OTP is provided, verify it
         if (otp) {
           const res = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL}/api/auth/token/verify/`,
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/token/verify/`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -89,7 +89,7 @@ export const authConfig = {
 
         // Standard username/password login attempt
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/token/`,
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/token/`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

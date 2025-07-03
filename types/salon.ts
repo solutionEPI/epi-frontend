@@ -94,3 +94,23 @@ export interface BookingData {
   home_address: string;
   client_notes: string;
 }
+
+export interface AdminConfig {
+  models: any;
+  frontend_options: any;
+  categories: Record<string, string[]>;
+  [key: string]: any;
+}
+
+export interface UserProfile {
+  id: number;
+  email: string;
+  first_name: string;
+  last_name: string;
+  preferences: {
+    theme?: string;
+    sidebar_collapsed?: boolean;
+  };
+  is_2fa_enabled?: boolean;
+  // Add other fields as needed
+}

@@ -5,8 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { dashboardConfig } from "@/lib/config";
 import { Providers } from "@/components/providers";
 import { DefaultFavicon } from "@/components/ui/default-favicon";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
+import { MainLayoutWrapper } from "@/components/layout/main-layout-wrapper";
 import "../globals.css";
 
 const montserrat = Montserrat({
@@ -96,9 +95,7 @@ export default async function LocaleLayout({
         className={`${roboto.variable} ${montserrat.variable} font-sans flex flex-col min-h-screen bg-background text-foreground`}>
         <Providers>
           <NextIntlClientProvider messages={messages}>
-            <Header />
-            <main className="flex-grow">{children}</main>
-            <Footer />
+            <MainLayoutWrapper>{children}</MainLayoutWrapper>
             <Toaster />
           </NextIntlClientProvider>
         </Providers>

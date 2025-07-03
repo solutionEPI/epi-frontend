@@ -63,7 +63,7 @@ interface ModelFormProps {
   modelKey: string;
   modelConfig: ModelConfig;
   initialData?: Record<string, any>;
-  itemId?: string;
+  itemId?: string | number;
 }
 
 export function ModelForm({

@@ -44,7 +44,7 @@ export const dashboardConfig: DashboardConfig = {
   description:
     "Équipements de Protection Individuelle pour la sécurité au travail",
   repositoryUrl: "https://github.com/asbilim/solution-epi.git",
-  logoUrl: "/solution-logo.svg",
+  logoUrl: "/logo-solution.png",
   favicon: "/favicon.svg",
   backendUrl:
     process.env.NEXT_PUBLIC_BACKEND_URL || "https://api.solution-epi.com",
@@ -59,11 +59,11 @@ export const dashboardConfig: DashboardConfig = {
   },
   brand: {
     colors: {
-      primary: "#FF6B00", // Safety Orange
-      secondary: "#0055A4", // Blue
+      primary: "#FFD700", // Gold (Yellow)
+      secondary: "#64748B", // Slate Gray
       background: "#FFFFFF", // White
-      text: "#1A1A1A", // Almost Black
-      accent: "#FFCC00", // Yellow for safety/warning
+      text: "#1E293B", // Dark Slate
+      accent: "#CBD5E1", // Light Slate for accent
     },
     typography: {
       headingFont: "Montserrat, sans-serif",

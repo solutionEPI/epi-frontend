@@ -23,16 +23,13 @@ const getCorrectImageUrl = (url: string) => {
   }
   // If URL is relative, prepend the API base URL
   if (url.startsWith("/media")) {
-    return `${process.env.NEXT_PUBLIC_API_URL}${url}`;
+    return `${process.env.NEXT_PUBLIC_BACKEND_URL}${url}`;
   }
   return url;
 };
 
-export default function BlogPostPage({
-  params: { locale, id },
-}: {
-  params: { locale: string; id: string };
-}) {
+export default async function BlogPostPage({ params }: { params: any }) {
+  const { locale, id } = await params;
   const t = useTranslations("BlogPage");
 
   const {

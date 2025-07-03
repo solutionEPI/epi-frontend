@@ -10,7 +10,16 @@ import {
   Comment,
   BlogStats,
 } from "@/types/blog";
-import { Service, PaginatedResponse, Employee } from "@/types/salon";
+import { Service, PaginatedResponse, Employee, AdminConfig, UserProfile } from "@/types/salon";
+
+function getRelativePath(fullOrRelativeUrl: string): string {
+  if (fullOrRelativeUrl.startsWith('http')) {
+    // If it's a full URL, extract the pathname
+    return new URL(fullOrRelativeUrl).pathname;
+  }
+  // If it's already a relative path, ensure it starts with a '/'
+  return fullOrRelativeUrl.startsWith('/') ? fullOrRelativeUrl : `/${fullOrRelativeUrl}`;
+}
 
 const REFRESH_ATTEMPT_LIMIT = 3;
 const REFRESH_ATTEMPT_WINDOW_MS = 30000;
@@ -79,7 +88,7 @@ const refreshManager = {
   },
 };
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
 
 const getApiHeaders = async (locale?: string) => {
   const session = await getSession();
@@ -101,7 +110,7 @@ const apiRequest = async <T>(
   body?: any,
   locale?: string
 ): Promise<T> => {
-  const url = `${API_BASE_URL}${endpoint}`;
+  const url = `${dashboardConfig.api.baseUrl}${endpoint}`;
   const headers = await getApiHeaders(locale);
 
   const config: RequestInit = {
@@ -113,21 +122,16 @@ const apiRequest = async <T>(
     config.body = JSON.stringify(body);
   }
 
-  try {
-    const response = await fetch(url, config);
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(
-        `API request failed: ${response.statusText} - ${JSON.stringify(
-          errorData
-        )}`
-      );
-    }
-    return response.json();
-  } catch (error) {
-    console.error(`API Error (${method} ${endpoint}):`, error);
-    throw error;
+  const response = await fetch(url, config);
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(
+      `API request failed: ${response.statusText} - ${JSON.stringify(
+        errorData
+      )}`
+    );
   }
+  return response.json();
 };
 
 async function apiFetch<T>(
@@ -322,20 +326,14 @@ async function publicApiFetch<T>(
 }
 
 export const api = {
-  getAdminConfig: () => apiRequest("GET", "/api/admin/"),
+  getAdminConfig: (): Promise<AdminConfig> => apiRequest("GET", "/api/admin/"),
   getDashboardStats: () => apiFetch<any>("/api/admin/dashboard-stats/"),
   getModelConfig: (configUrl: string) => {
-    const url = configUrl.startsWith("http")
-      ? new URL(configUrl).pathname
-      : configUrl;
-    return apiFetch<any>(url);
+    return apiFetch<any>(getRelativePath(configUrl));
   },
   getModelList: (modelUrl: string, params?: Record<string, string>) => {
-    const url = new URL(
-      `${dashboardConfig.api.baseUrl}${
-        modelUrl.startsWith("http") ? new URL(modelUrl).pathname : modelUrl
-      }`
-    );
+    const basePath = getRelativePath(modelUrl);
+    const url = new URL(`${dashboardConfig.api.baseUrl}${basePath}`);
     if (params) {
       Object.entries(params).forEach(([key, value]) => {
         url.searchParams.append(key, value);
@@ -344,16 +342,13 @@ export const api = {
     return apiFetch<any>(`${url.pathname}${url.search}`);
   },
   getAllModelItems: async (modelUrl: string) => {
-    const url = modelUrl.startsWith("http")
-      ? new URL(modelUrl).pathname
-      : modelUrl;
-
+    const basePath = getRelativePath(modelUrl);
     let results: any[] = [];
     let page = 1;
     let hasNext = true;
 
     while (hasNext) {
-      const response = await apiFetch<any>(`${url}?page=${page}`);
+      const response = await apiFetch<any>(`${basePath}?page=${page}`);
       results = results.concat(response.results);
       // The backend should provide a `next` field, which is null when there are no more pages.
       hasNext = response.next !== null;
@@ -362,16 +357,12 @@ export const api = {
     return results;
   },
   getModelItem: (modelUrl: string, id: string | number) => {
-    const url = modelUrl.startsWith("http")
-      ? new URL(modelUrl).pathname
-      : modelUrl;
-    return apiFetch<any>(`${url}${id}/`);
+    const basePath = getRelativePath(modelUrl);
+    return apiFetch<any>(`${basePath}${id}/`);
   },
   createModelItem: (modelUrl: string, data: Record<string, any> | FormData) => {
-    const url = modelUrl.startsWith("http")
-      ? new URL(modelUrl).pathname
-      : modelUrl;
-    return apiFetch<any>(url, {
+    const basePath = getRelativePath(modelUrl);
+    return apiFetch<any>(basePath, {
       method: "POST",
       body: data instanceof FormData ? data : JSON.stringify(data),
     });
@@ -381,40 +372,32 @@ export const api = {
     id: string | number,
     data: Record<string, any> | FormData
   ) => {
-    const url = modelUrl.startsWith("http")
-      ? new URL(modelUrl).pathname
-      : modelUrl;
-    return apiFetch<any>(`${url}${id}/`, {
+    const basePath = getRelativePath(modelUrl);
+    return apiFetch<any>(`${basePath}${id}/`, {
       method: "PATCH",
       body: data instanceof FormData ? data : JSON.stringify(data),
     });
   },
   deleteModelItem: (modelUrl: string, id: string | number) => {
-    const url = modelUrl.startsWith("http")
-      ? new URL(modelUrl).pathname
-      : modelUrl;
-    return apiFetch<void>(`${url}${id}/`, { method: "DELETE" });
+    const basePath = getRelativePath(modelUrl);
+    return apiFetch<void>(`${basePath}${id}/`, { method: "DELETE" });
   },
 
   // Import/Export
   exportModelData: (modelUrl: string, format: "csv" | "json") => {
-    const url = modelUrl.startsWith("http")
-      ? new URL(modelUrl).pathname
-      : modelUrl;
-    return apiFileFetch(`${url}export/?format=${format}`);
+    const basePath = getRelativePath(modelUrl);
+    return apiFileFetch(`${basePath}export/?format=${format}`);
   },
   importModelData: (importUrl: string, data: FormData) => {
-    const url = importUrl.startsWith("http")
-      ? new URL(importUrl).pathname
-      : importUrl;
-    return apiFetch<any>(url, {
+    const basePath = getRelativePath(importUrl);
+    return apiFetch<any>(basePath, {
       method: "POST",
       body: data,
     });
   },
 
   // Auth and User Management
-  getUserProfile: () => apiRequest("GET", "/api/auth/me/"),
+  getUserProfile: (): Promise<UserProfile> => apiRequest("GET", "/api/auth/me/"),
   updateUserProfile: (data: any) => apiRequest("PATCH", "/api/auth/me/", data),
   changePassword: (data: any) =>
     apiRequest("POST", "/api/auth/me/change-password/", JSON.stringify(data)),
@@ -426,12 +409,12 @@ export const api = {
       "/api/auth/password_reset/confirm/",
       JSON.stringify(data)
     ),
-  get2FASecret: () => apiRequest("GET", "/api/auth/2fa/enable/"),
+  get2FASecret: (): Promise<{ qr_code?: string; qr_code_url?: string; secret_key: string; }> => apiRequest("GET", "/api/auth/2fa/enable/"),
   verify2FA: (otp: string) =>
     apiRequest("POST", "/api/auth/2fa/verify/", JSON.stringify({ otp })),
   disable2FA: (password: string) =>
     apiRequest("POST", "/api/auth/2fa/disable/", JSON.stringify({ password })),
-  importModelItems: (modelKey: string, data: FormData) => {
+  importModelItems: (modelKey: string, data: FormData): Promise<{ count: number }> => {
     return apiFetch(`/api/admin/models/${modelKey}/import/`, {
       method: "POST",
       body: data,
