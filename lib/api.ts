@@ -12,6 +12,15 @@ import {
 } from "@/types/blog";
 import { Service, PaginatedResponse, Employee } from "@/types/salon";
 
+function getRelativePath(fullOrRelativeUrl: string): string {
+  if (fullOrRelativeUrl.startsWith('http')) {
+    // If it's a full URL, extract the pathname
+    return new URL(fullOrRelativeUrl).pathname;
+  }
+  // If it's already a relative path, ensure it starts with a '/'
+  return fullOrRelativeUrl.startsWith('/') ? fullOrRelativeUrl : `/${fullOrRelativeUrl}`;
+}
+
 const REFRESH_ATTEMPT_LIMIT = 3;
 const REFRESH_ATTEMPT_WINDOW_MS = 30000;
 
@@ -320,17 +329,11 @@ export const api = {
   getAdminConfig: () => apiRequest("GET", "/api/admin/"),
   getDashboardStats: () => apiFetch<any>("/api/admin/dashboard-stats/"),
   getModelConfig: (configUrl: string) => {
-    const url = configUrl.startsWith("http")
-      ? new URL(configUrl).pathname
-      : configUrl;
-    return apiFetch<any>(url);
+    return apiFetch<any>(getRelativePath(configUrl));
   },
   getModelList: (modelUrl: string, params?: Record<string, string>) => {
-    const url = new URL(
-      `${dashboardConfig.api.baseUrl}${
-        modelUrl.startsWith("http") ? new URL(modelUrl).pathname : modelUrl
-      }`
-    );
+    const basePath = getRelativePath(modelUrl);
+    const url = new URL(`${dashboardConfig.api.baseUrl}${basePath}`);
     if (params) {
       Object.entries(params).forEach(([key, value]) => {
         url.searchParams.append(key, value);
@@ -339,16 +342,13 @@ export const api = {
     return apiFetch<any>(`${url.pathname}${url.search}`);
   },
   getAllModelItems: async (modelUrl: string) => {
-    const url = modelUrl.startsWith("http")
-      ? new URL(modelUrl).pathname
-      : modelUrl;
-
+    const basePath = getRelativePath(modelUrl);
     let results: any[] = [];
     let page = 1;
     let hasNext = true;
 
     while (hasNext) {
-      const response = await apiFetch<any>(`${url}?page=${page}`);
+      const response = await apiFetch<any>(`${basePath}?page=${page}`);
       results = results.concat(response.results);
       // The backend should provide a `next` field, which is null when there are no more pages.
       hasNext = response.next !== null;
@@ -357,16 +357,12 @@ export const api = {
     return results;
   },
   getModelItem: (modelUrl: string, id: string | number) => {
-    const url = modelUrl.startsWith("http")
-      ? new URL(modelUrl).pathname
-      : modelUrl;
-    return apiFetch<any>(`${url}${id}/`);
+    const basePath = getRelativePath(modelUrl);
+    return apiFetch<any>(`${basePath}${id}/`);
   },
   createModelItem: (modelUrl: string, data: Record<string, any> | FormData) => {
-    const url = modelUrl.startsWith("http")
-      ? new URL(modelUrl).pathname
-      : modelUrl;
-    return apiFetch<any>(url, {
+    const basePath = getRelativePath(modelUrl);
+    return apiFetch<any>(basePath, {
       method: "POST",
       body: data instanceof FormData ? data : JSON.stringify(data),
     });
@@ -376,33 +372,25 @@ export const api = {
     id: string | number,
     data: Record<string, any> | FormData
   ) => {
-    const url = modelUrl.startsWith("http")
-      ? new URL(modelUrl).pathname
-      : modelUrl;
-    return apiFetch<any>(`${url}${id}/`, {
+    const basePath = getRelativePath(modelUrl);
+    return apiFetch<any>(`${basePath}${id}/`, {
       method: "PATCH",
       body: data instanceof FormData ? data : JSON.stringify(data),
     });
   },
   deleteModelItem: (modelUrl: string, id: string | number) => {
-    const url = modelUrl.startsWith("http")
-      ? new URL(modelUrl).pathname
-      : modelUrl;
-    return apiFetch<void>(`${url}${id}/`, { method: "DELETE" });
+    const basePath = getRelativePath(modelUrl);
+    return apiFetch<void>(`${basePath}${id}/`, { method: "DELETE" });
   },
 
   // Import/Export
   exportModelData: (modelUrl: string, format: "csv" | "json") => {
-    const url = modelUrl.startsWith("http")
-      ? new URL(modelUrl).pathname
-      : modelUrl;
-    return apiFileFetch(`${url}export/?format=${format}`);
+    const basePath = getRelativePath(modelUrl);
+    return apiFileFetch(`${basePath}export/?format=${format}`);
   },
   importModelData: (importUrl: string, data: FormData) => {
-    const url = importUrl.startsWith("http")
-      ? new URL(importUrl).pathname
-      : importUrl;
-    return apiFetch<any>(url, {
+    const basePath = getRelativePath(importUrl);
+    return apiFetch<any>(basePath, {
       method: "POST",
       body: data,
     });

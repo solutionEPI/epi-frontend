@@ -262,7 +262,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                   {modelKeys.map((modelKey) => {
                     const model = adminConfig.models[modelKey];
                     if (!model) return null;
-                    const href = `/models/${model.model_name}`;
+                    const href = `/dashboard/models/${model.model_name}`;
                     return (
                       <SidebarLink
                         key={href}
