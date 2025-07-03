@@ -8,7 +8,7 @@
     --radius: 0.5rem;
 
     /* Main theme colors - Light Mode */
-    --background: 0 0% 100%; /* Pure White */
+    --background: 0 0% 100%; /* White */
     --foreground: 215 28% 17%; /* Dark Slate */
 
     /* Card colors */
@@ -19,20 +19,20 @@
     --popover: 0 0% 100%; /* White */
     --popover-foreground: 215 28% 17%; /* Dark Slate */
 
-    /* Primary colors - Safety Orange */
-    --primary: 24 95% 53%; /* Orange-500 */
-    --primary-foreground: 0 0% 100%; /* White */
+    /* Primary colors - Gold (Yellow) */
+    --primary: 43 96% 56%; /* Yellow */
+    --primary-foreground: 215 28% 17%; /* Dark Slate */
 
-    /* Secondary colors - Slate */
-    --secondary: 215 28% 17%; /* Dark Slate */
+    /* Secondary colors - Slate Gray */
+    --secondary: 215 14% 45%; /* Slate Gray */
     --secondary-foreground: 0 0% 100%; /* White */
 
     /* Muted colors */
-    --muted: 214 32% 91%; /* Slate-200 */
+    --muted: 214 32% 91%; /* Light Slate */
     --muted-foreground: 215 25% 27%; /* Slate-600 */
 
-    /* Accent colors - Warning Yellow */
-    --accent: 43 96% 56%; /* Amber-400 */
+    /* Accent colors - Light Slate */
+    --accent: 210 20% 90%; /* Light Slate */
     --accent-foreground: 215 28% 17%; /* Dark Slate */
 
     /* Destructive colors */
@@ -40,14 +40,14 @@
     --destructive-foreground: 0 0% 100%; /* White */
 
     /* Border, input and ring colors */
-    --border: 216 34% 87%; /* Slate-100/200 */
-    --input: 216 34% 87%; /* Slate-100/200 */
-    --ring: 24 95% 53%; /* Orange-500 */
+    --border: 216 34% 87%; /* Light Slate */
+    --input: 216 34% 87%; /* Light Slate */
+    --ring: 43 96% 56%; /* Yellow */
 
     /* Chart colors for data visualization */
-    --chart-1: 24 95% 53%; /* Orange-500 */
+    --chart-1: 43 96% 56%; /* Yellow */
     --chart-2: 215 25% 27%; /* Slate-700 */
-    --chart-3: 43 96% 56%; /* Amber-400 */
+    --chart-3: 210 20% 90%; /* Light Slate */
     --chart-4: 187 92% 34%; /* Cyan-600 */
     --chart-5: 215 25% 47%; /* Slate-500 */
 
@@ -67,7 +67,7 @@
   }
 
   .dark {
-    /* Dark mode colors - Much darker */
+    /* Dark mode colors */
     --background: 222 47% 11%; /* Very Dark Slate */
     --foreground: 210 40% 98%; /* Almost White */
 
@@ -79,8 +79,8 @@
     --popover: 222 47% 8%; /* Even Darker Slate */
     --popover-foreground: 210 40% 98%; /* Almost White */
 
-    /* Primary colors - Safety Orange - brighter in dark mode */
-    --primary: 24 100% 58%; /* Brighter Orange */
+    /* Primary colors - Yellow */
+    --primary: 43 96% 56%;
     --primary-foreground: 210 40% 98%; /* Almost White */
 
     /* Secondary colors - Light Slate for dark mode */
@@ -91,8 +91,8 @@
     --muted: 217 33% 17%; /* Dark Slate-700 */
     --muted-foreground: 215 20% 65%; /* Light Slate */
 
-    /* Accent colors - Warning Yellow adjusted for dark mode */
-    --accent: 43 100% 64%; /* Brighter Amber in dark mode */
+    /* Accent colors - Light Slate */
+    --accent: 210 20% 90%;
     --accent-foreground: 222 47% 11%; /* Very Dark Slate */
 
     /* Destructive colors */
@@ -102,24 +102,24 @@
     /* Border, input and ring colors */
     --border: 217 33% 17%; /* Dark Slate-700 */
     --input: 217 33% 17%; /* Dark Slate-700 */
-    --ring: 24 100% 58%; /* Brighter Orange */
+    --ring: 43 96% 56%; /* Yellow */
 
     /* Chart colors for data visualization in dark mode */
-    --chart-1: 24 95% 53%; /* Orange-500 */
+    --chart-1: 43 96% 56%; /* Yellow */
     --chart-2: 213 27% 84%; /* Slate-300 */
-    --chart-3: 43 96% 56%; /* Amber-400 */
+    --chart-3: 210 20% 90%; /* Light Slate */
     --chart-4: 187 92% 69%; /* Lighter Cyan */
     --chart-5: 0 0% 95%; /* White-ish */
 
     /* Sidebar specific colors */
     --sidebar: 222 47% 8%; /* Even Darker Slate */
     --sidebar-foreground: 210 40% 98%; /* Almost White */
-    --sidebar-primary: 24 100% 58%; /* Brighter Orange */
+    --sidebar-primary: 43 96% 56%; /* Yellow */
     --sidebar-primary-foreground: 210 40% 98%; /* Almost White */
-    --sidebar-accent: 43 100% 64%; /* Brighter Amber */
+    --sidebar-accent: 210 20% 90%; /* Light Slate */
     --sidebar-accent-foreground: 222 47% 8%; /* Even Darker Slate */
     --sidebar-border: 217 33% 17%; /* Dark Slate-700 */
-    --sidebar-ring: 24 100% 58%; /* Brighter Orange */
+    --sidebar-ring: 43 96% 56%; /* Yellow */
   }
 
   * {
@@ -147,27 +147,27 @@
   --card-foreground: 215 25% 27%;
   --popover: 0 0% 100%;
   --popover-foreground: 215 25% 27%;
-  --primary: 43 96% 56%;
-  --primary-foreground: 215 25% 27%;
-  --secondary: 215 25% 27%;
-  --secondary-foreground: 0 0% 100%;
+  --primary: 43 96% 56%; /* Yellow */
+  --primary-foreground: 215 25% 27%; /* Dark Slate */
+  --secondary: 215 14% 45%; /* Slate Gray */
+  --secondary-foreground: 0 0% 100%; /* White */
   --muted: 214 32% 91%;
   --muted-foreground: 215 19% 35%;
-  --accent: 24 95% 53%;
-  --accent-foreground: 0 0% 100%;
+  --accent: 210 20% 90%; /* Light Slate */
+  --accent-foreground: 215 25% 27%; /* Dark Slate */
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
   --border: 216 34% 87%;
   --input: 216 34% 87%;
-  --ring: 43 96% 56%;
+  --ring: 43 96% 56%; /* Yellow */
   --sidebar: 215 25% 27%;
   --sidebar-foreground: 0 0% 100%;
-  --sidebar-primary: 43 96% 56%;
+  --sidebar-primary: 43 96% 56%; /* Yellow */
   --sidebar-primary-foreground: 215 25% 27%;
   --sidebar-accent: 215 25% 17%;
   --sidebar-accent-foreground: 43 96% 56%;
   --sidebar-border: 215 25% 27%;
-  --sidebar-ring: 43 96% 56%;
+  --sidebar-ring: 43 96% 56%; /* Yellow */
 }
 
 /* Sidebar styling for SolutionEPI theme */
@@ -303,27 +303,27 @@ aside[data-style="solutionepi"] {
   --card-foreground: 215 25% 27%;
   --popover: 0 0% 100%;
   --popover-foreground: 215 25% 27%;
-  --primary: 24 95% 53%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 215 25% 27%;
-  --secondary-foreground: 0 0% 100%;
+  --primary: 43 96% 56%; /* Yellow */
+  --primary-foreground: 215 25% 27%; /* Dark Slate */
+  --secondary: 215 14% 45%; /* Slate Gray */
+  --secondary-foreground: 0 0% 100%; /* White */
   --muted: 214 32% 91%;
   --muted-foreground: 215 19% 35%;
-  --accent: 43 96% 56%;
-  --accent-foreground: 215 25% 27%;
+  --accent: 210 20% 90%; /* Light Slate */
+  --accent-foreground: 215 25% 27%; /* Dark Slate */
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
   --border: 216 34% 87%;
   --input: 216 34% 87%;
-  --ring: 24 95% 53%;
+  --ring: 43 96% 56%; /* Yellow */
   --sidebar: 215 25% 27%;
   --sidebar-foreground: 0 0% 100%;
-  --sidebar-primary: 24 95% 53%;
-  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-primary: 43 96% 56%; /* Yellow */
+  --sidebar-primary-foreground: 215 25% 27%;
   --sidebar-accent: 215 28% 17%;
   --sidebar-accent-foreground: 0 0% 100%;
   --sidebar-border: 215 28% 17%;
-  --sidebar-ring: 24 95% 53%;
+  --sidebar-ring: 43 96% 56%; /* Yellow */
 }
 
 /* Administrator theme - keep but update colors */
@@ -334,79 +334,90 @@ aside[data-style="solutionepi"] {
   --card-foreground: 216 28% 7%; /* Slate-900 */
   --popover: 214 32% 91%; /* Slate-200 */
   --popover-foreground: 216 28% 7%; /* Slate-900 */
-  --primary: 24 95% 53%; /* Orange-500 */
+  --primary: 43 96% 56%; /* Yellow */
   --primary-foreground: 0 0% 100%; /* White */
-  --secondary: 215 25% 27%; /* Slate-700 */
+  --secondary: 215 14% 45%; /* Slate Gray */
   --secondary-foreground: 0 0% 100%; /* White */
   --muted: 213 27% 84%; /* Slate-300 */
   --muted-foreground: 215 25% 27%; /* Slate-700 */
-  --accent: 43 96% 56%; /* Amber-400 */
+  --accent: 210 20% 90%; /* Light Slate */
   --accent-foreground: 215 25% 27%; /* Slate-700 */
   --destructive: 0 84% 60%; /* Red-600 */
   --destructive-foreground: 0 0% 100%; /* White */
   --border: 213 27% 84%; /* Slate-300 */
   --input: 213 27% 84%; /* Slate-300 */
-  --ring: 24 95% 53%; /* Orange-500 */
+  --ring: 43 96% 56%; /* Yellow */
   --sidebar: 216 28% 7%; /* Slate-900 */
   --sidebar-foreground: 0 0% 100%; /* White */
-  --sidebar-primary: 24 95% 53%; /* Orange-500 */
+  --sidebar-primary: 43 96% 56%; /* Yellow */
   --sidebar-primary-foreground: 0 0% 100%; /* White */
   --sidebar-accent: 215 28% 17%; /* Darker Slate */
   --sidebar-accent-foreground: 0 0% 100%; /* White */
   --sidebar-border: 0 0% 100% / 10%; /* Transparent white */
-  --sidebar-ring: 24 95% 53%; /* Orange-500 */
+  --sidebar-ring: 43 96% 56%; /* Yellow */
 }
 
 /* Customer theme - keep but update colors */
 .customer {
-  --background: 210 40% 98%; /* Very light blue */
+  --background: 0 0% 100%; /* White */
   --foreground: 215 25% 27%; /* Slate-700 */
   --card: 0 0% 100%; /* White */
   --card-foreground: 215 25% 27%; /* Slate-700 */
   --popover: 0 0% 100%; /* White */
   --popover-foreground: 215 25% 27%; /* Slate-700 */
-  --primary: 43 96% 56%; /* Amber-400 */
+  --primary: 43 96% 56%; /* Yellow */
   --primary-foreground: 215 25% 27%; /* Slate-700 */
-  --secondary: 199 89% 48%; /* Light blue */
+  --secondary: 215 14% 45%; /* Slate Gray */
   --secondary-foreground: 0 0% 100%; /* White */
-  --muted: 210 40% 93%; /* Lighter blue */
+  --muted: 214 32% 91%; /* Light Slate */
   --muted-foreground: 215 19% 35%; /* Slate-500 */
-  --accent: 24 95% 53%; /* Orange-500 */
-  --accent-foreground: 0 0% 100%; /* White */
+  --accent: 210 20% 90%; /* Light Slate */
+  --accent-foreground: 215 25% 27%; /* Slate-700 */
   --destructive: 0 84% 60%; /* Red-600 */
   --destructive-foreground: 0 0% 100%; /* White */
-  --border: 210 40% 90%; /* Very light blue border */
-  --input: 210 40% 90%; /* Very light blue input */
-  --ring: 43 96% 56%; /* Amber-400 */
-  --sidebar: 199 89% 48%; /* Light blue */
+  --border: 216 34% 87%; /* Light Slate */
+  --input: 216 34% 87%; /* Light Slate */
+  --ring: 43 96% 56%; /* Yellow */
+  --sidebar: 215 25% 27%; /* Slate-700 */
   --sidebar-foreground: 0 0% 100%; /* White */
-  --sidebar-primary: 43 96% 56%; /* Amber-400 */
+  --sidebar-primary: 43 96% 56%; /* Yellow */
   --sidebar-primary-foreground: 215 25% 27%; /* Slate-700 */
-  --sidebar-accent: 199 89% 40%; /* Slightly darker blue */
+  --sidebar-accent: 215 28% 17%; /* Darker Slate */
   --sidebar-accent-foreground: 0 0% 100%; /* White */
-  --sidebar-border: 199 89% 40%; /* Slightly darker blue */
-  --sidebar-ring: 43 96% 56%; /* Amber-400 */
+  --sidebar-border: 215 28% 17%; /* Darker Slate */
+  --sidebar-ring: 43 96% 56%; /* Yellow */
 }
 
 /* Sidebar styling for Professional theme */
 aside[data-style="professional"] {
   --sidebar: 215 25% 27%; /* Slate-700 */
   --sidebar-foreground: 0 0% 100%; /* White */
-  --sidebar-primary: 24 95% 53%; /* Orange-500 */
+  --sidebar-primary: 43 96% 56%; /* Yellow */
   --sidebar-primary-foreground: 0 0% 100%; /* White */
   --sidebar-accent: 215 28% 17%; /* Darker slate */
-  --sidebar-accent-foreground: 24 95% 53%; /* Orange-500 */
+  --sidebar-accent-foreground: 43 96% 56%; /* Yellow */
   --sidebar-border: 215 28% 17%; /* Darker slate */
 }
 
 aside[data-style="customer"] {
-  --sidebar: 199 89% 48%; /* Light blue */
+  --sidebar: 215 14% 45%; /* Slate Gray */
   --sidebar-foreground: 0 0% 100%; /* White */
-  --sidebar-primary: 43 96% 56%; /* Amber-400 */
+  --sidebar-primary: 43 96% 56%; /* Yellow */
   --sidebar-primary-foreground: 215 25% 27%; /* Slate-700 */
-  --sidebar-accent: 199 89% 40%; /* Slightly darker blue */
+  --sidebar-accent: 210 20% 90%; /* Light Slate */
   --sidebar-accent-foreground: 0 0% 100%; /* White */
-  --sidebar-border: 0 0% 100% / 10%; /* Transparent white */
+  --sidebar-border: 210 20% 90%; /* Light Slate */
+}
+
+/* Sidebar styling for SolutionEPI theme */
+aside[data-style="solutionepi"] {
+  --sidebar: 215 25% 27%; /* Slate-700 */
+  --sidebar-foreground: 0 0% 100%; /* White */
+  --sidebar-primary: 43 96% 56%; /* Yellow */
+  --sidebar-primary-foreground: 215 25% 27%; /* Slate-700 */
+  --sidebar-accent: 215 25% 17%; /* Darker slate */
+  --sidebar-accent-foreground: 43 96% 56%; /* Yellow */
+  --sidebar-border: 215 25% 17%; /* Darker slate */
 }
 
 /* Font family utilities */
