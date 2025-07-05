@@ -80,7 +80,6 @@ export default function HomePage() {
   const productsRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLDivElement>(null);
   const standardsRef = useRef<HTMLDivElement>(null);
-  const industriesRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
   // Animated icons state
@@ -107,7 +106,6 @@ export default function HomePage() {
       productsRef,
       servicesRef,
       standardsRef,
-      industriesRef,
       contactRef,
     ];
 
@@ -200,30 +198,6 @@ export default function HomePage() {
               stagger: 0.1,
               duration: 0.6,
               ease: "power2.out",
-            }
-          );
-        },
-        once: true,
-      });
-    }
-
-    // Industry card animations
-    const industryCards =
-      industriesRef.current?.querySelectorAll(".industry-card");
-    if (industryCards) {
-      ScrollTrigger.create({
-        trigger: industriesRef.current,
-        start: "top 70%",
-        onEnter: () => {
-          gsap.fromTo(
-            industryCards,
-            { opacity: 0, y: 30 },
-            {
-              opacity: 1,
-              y: 0,
-              stagger: 0.2,
-              duration: 0.7,
-              ease: "power3.out",
             }
           );
         },
@@ -332,30 +306,6 @@ export default function HomePage() {
     },
   ];
 
-  // Industries
-  const industries = [
-    {
-      name: "Construction",
-      image:
-        "https://images.unsplash.com/photo-1541976590-920116f6c29c?auto=format&fit=crop",
-    },
-    {
-      name: "Industrie pétrolière",
-      image:
-        "https://images.unsplash.com/photo-1579463148228-138296ac3b98?auto=format&fit=crop",
-    },
-    {
-      name: "Secteur médical",
-      image:
-        "https://images.unsplash.com/photo-1582560474981-e5d9accfb685?auto=format&fit=crop",
-    },
-    {
-      name: "Industrie manufacturière",
-      image:
-        "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop",
-    },
-  ];
-
   // Safety standards
   const safetyStandards = [
     "ISO 45001 - Systèmes de management de la santé et de la sécurité au travail",
@@ -371,6 +321,16 @@ export default function HomePage() {
       <section
         ref={heroRef}
         className="relative min-h-[90vh] flex items-center pt-16 pb-24 overflow-hidden bg-gradient-to-br from-secondary to-secondary/90 dark:from-secondary/80 dark:to-secondary">
+        {/* Background Image */}
+        <Image
+          src="https://images.unsplash.com/photo-1593916272050-2e7b88ef9adb?auto=format&fit=crop&w=1600&q=80"
+          alt="Travailleur équipé d'EPI"
+          fill
+          unoptimized
+          priority
+          className="absolute inset-0 -z-10 object-cover object-center"
+        />
+
         {/* Animated SVG Pattern Background */}
         <motion.div
           className="absolute inset-0 z-0 overflow-hidden text-primary/10 opacity-70"
@@ -1038,77 +998,6 @@ export default function HomePage() {
                 </div>
               </motion.div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Industries Section */}
-      <section
-        id="industries"
-        ref={industriesRef}
-        className="py-24 bg-background">
-        <div className="container mx-auto px-6 md:px-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 opacity-0 text-foreground">
-              Secteurs d'activité
-            </h2>
-            <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
-            <p className="text-lg text-foreground max-w-2xl mx-auto">
-              Nos solutions de sécurité sont adaptées à tous les secteurs
-              industriels.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {industries.map((industry, i) => (
-              <motion.div
-                key={i}
-                className="industry-card relative h-64 rounded-lg overflow-hidden shadow-lg"
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow:
-                    "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-                }}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}>
-                <Image
-                  src={industry.image}
-                  alt={industry.name}
-                  fill
-                  unoptimized
-                  className="object-cover transition-transform duration-700 hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-secondary/90 via-secondary/40 to-transparent">
-                  <div className="absolute bottom-0 left-0 p-6 w-full">
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.2 + i * 0.1 }}>
-                      <h3 className="text-xl font-bold text-white mb-2">
-                        {industry.name}
-                      </h3>
-                      <div className="h-1 w-12 bg-primary rounded-full"></div>
-                    </motion.div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Button
-              variant="outline"
-              size="lg"
-              className="border-primary text-primary hover:bg-primary hover:text-white"
-              asChild>
-              <Link href="/industries">
-                Voir tous les secteurs
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
           </div>
         </div>
       </section>
