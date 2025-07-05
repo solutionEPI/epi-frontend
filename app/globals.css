@@ -9,47 +9,47 @@
 
     /* Main theme colors - Light Mode */
     --background: 0 0% 100%; /* White */
-    --foreground: 215 28% 17%; /* Dark Slate */
+    --foreground: 0 0% 0%; /* Pure Black */
 
     /* Card colors */
     --card: 0 0% 100%; /* White */
-    --card-foreground: 215 28% 17%; /* Dark Slate */
+    --card-foreground: 0 0% 0%; /* Pure Black */
 
     /* Popover colors */
     --popover: 0 0% 100%; /* White */
-    --popover-foreground: 215 28% 17%; /* Dark Slate */
+    --popover-foreground: 0 0% 0%; /* Pure Black */
 
-    /* Primary colors - Gold (Yellow) */
-    --primary: 43 96% 56%; /* Yellow */
-    --primary-foreground: 215 28% 17%; /* Dark Slate */
+    /* Primary colors - Pure Yellow */
+    --primary: 52 100% 50%; /* Pure Yellow #FFDD00 */
+    --primary-foreground: 0 0% 0%; /* Pure Black */
 
-    /* Secondary colors - Slate Gray */
-    --secondary: 215 14% 45%; /* Slate Gray */
+    /* Secondary colors - Black */
+    --secondary: 0 0% 0%; /* Pure Black */
     --secondary-foreground: 0 0% 100%; /* White */
 
     /* Muted colors */
-    --muted: 214 32% 91%; /* Light Slate */
-    --muted-foreground: 215 25% 27%; /* Slate-600 */
+    --muted: 0 0% 96%; /* Very Light Gray */
+    --muted-foreground: 0 0% 40%; /* Gray */
 
-    /* Accent colors - Light Slate */
-    --accent: 210 20% 90%; /* Light Slate */
-    --accent-foreground: 215 28% 17%; /* Dark Slate */
+    /* Accent colors - Light Yellow */
+    --accent: 52 100% 94%; /* Light Yellow */
+    --accent-foreground: 0 0% 0%; /* Pure Black */
 
     /* Destructive colors */
     --destructive: 0 84% 60%; /* Red-600 */
     --destructive-foreground: 0 0% 100%; /* White */
 
     /* Border, input and ring colors */
-    --border: 216 34% 87%; /* Light Slate */
-    --input: 216 34% 87%; /* Light Slate */
-    --ring: 43 96% 56%; /* Yellow */
+    --border: 0 0% 90%; /* Light Gray */
+    --input: 0 0% 90%; /* Light Gray */
+    --ring: 52 100% 50%; /* Pure Yellow #FFDD00 */
 
     /* Chart colors for data visualization */
-    --chart-1: 43 96% 56%; /* Yellow */
-    --chart-2: 215 25% 27%; /* Slate-700 */
-    --chart-3: 210 20% 90%; /* Light Slate */
-    --chart-4: 187 92% 34%; /* Cyan-600 */
-    --chart-5: 215 25% 47%; /* Slate-500 */
+    --chart-1: 52 100% 50%; /* Pure Yellow #FFDD00 */
+    --chart-2: 0 0% 0%; /* Pure Black */
+    --chart-3: 0 0% 100%; /* White */
+    --chart-4: 0 0% 75%; /* Light Gray */
+    --chart-5: 0 0% 50%; /* Medium Gray */
 
     /* Add spacing variables */
     --spacing-1: 0.25rem;
@@ -68,58 +68,58 @@
 
   .dark {
     /* Dark mode colors */
-    --background: 222 47% 11%; /* Very Dark Slate */
-    --foreground: 210 40% 98%; /* Almost White */
+    --background: 0 0% 10%; /* Very Dark Gray (almost black) */
+    --foreground: 0 0% 100%; /* Pure White */
 
     /* Card colors */
-    --card: 222 47% 8%; /* Even Darker Slate */
-    --card-foreground: 210 40% 98%; /* Almost White */
+    --card: 0 0% 15%; /* Dark Gray */
+    --card-foreground: 0 0% 100%; /* Pure White */
 
     /* Popover colors */
-    --popover: 222 47% 8%; /* Even Darker Slate */
-    --popover-foreground: 210 40% 98%; /* Almost White */
+    --popover: 0 0% 15%; /* Dark Gray */
+    --popover-foreground: 0 0% 100%; /* Pure White */
 
-    /* Primary colors - Yellow */
-    --primary: 43 96% 56%;
-    --primary-foreground: 210 40% 98%; /* Almost White */
+    /* Primary colors - Pure Yellow */
+    --primary: 52 100% 50%; /* Pure Yellow #FFDD00 */
+    --primary-foreground: 0 0% 0%; /* Pure Black */
 
-    /* Secondary colors - Light Slate for dark mode */
-    --secondary: 210 40% 90%; /* Light Slate */
-    --secondary-foreground: 222 47% 11%; /* Very Dark Slate */
+    /* Secondary colors - Light Gray for dark mode */
+    --secondary: 0 0% 25%; /* Dark Gray */
+    --secondary-foreground: 0 0% 100%; /* Pure White */
 
     /* Muted colors */
-    --muted: 217 33% 17%; /* Dark Slate-700 */
-    --muted-foreground: 215 20% 65%; /* Light Slate */
+    --muted: 0 0% 20%; /* Dark Gray */
+    --muted-foreground: 0 0% 70%; /* Light Gray */
 
-    /* Accent colors - Light Slate */
-    --accent: 210 20% 90%;
-    --accent-foreground: 222 47% 11%; /* Very Dark Slate */
+    /* Accent colors - Dark Yellow */
+    --accent: 52 100% 25%; /* Dark Yellow */
+    --accent-foreground: 0 0% 100%; /* Pure White */
 
     /* Destructive colors */
     --destructive: 0 70% 50%; /* Darker Red */
-    --destructive-foreground: 210 40% 98%; /* Almost White */
+    --destructive-foreground: 0 0% 100%; /* Pure White */
 
     /* Border, input and ring colors */
-    --border: 217 33% 17%; /* Dark Slate-700 */
-    --input: 217 33% 17%; /* Dark Slate-700 */
-    --ring: 43 96% 56%; /* Yellow */
+    --border: 0 0% 25%; /* Dark Gray */
+    --input: 0 0% 25%; /* Dark Gray */
+    --ring: 52 100% 50%; /* Pure Yellow #FFDD00 */
 
     /* Chart colors for data visualization in dark mode */
-    --chart-1: 43 96% 56%; /* Yellow */
-    --chart-2: 213 27% 84%; /* Slate-300 */
-    --chart-3: 210 20% 90%; /* Light Slate */
-    --chart-4: 187 92% 69%; /* Lighter Cyan */
-    --chart-5: 0 0% 95%; /* White-ish */
+    --chart-1: 52 100% 50%; /* Pure Yellow #FFDD00 */
+    --chart-2: 0 0% 100%; /* Pure White */
+    --chart-3: 0 0% 75%; /* Light Gray */
+    --chart-4: 0 0% 50%; /* Medium Gray */
+    --chart-5: 0 0% 25%; /* Dark Gray */
 
     /* Sidebar specific colors */
-    --sidebar: 222 47% 8%; /* Even Darker Slate */
-    --sidebar-foreground: 210 40% 98%; /* Almost White */
-    --sidebar-primary: 43 96% 56%; /* Yellow */
-    --sidebar-primary-foreground: 210 40% 98%; /* Almost White */
-    --sidebar-accent: 210 20% 90%; /* Light Slate */
-    --sidebar-accent-foreground: 222 47% 8%; /* Even Darker Slate */
-    --sidebar-border: 217 33% 17%; /* Dark Slate-700 */
-    --sidebar-ring: 43 96% 56%; /* Yellow */
+    --sidebar: 0 0% 15%; /* Dark Gray */
+    --sidebar-foreground: 0 0% 100%; /* Pure White */
+    --sidebar-primary: 52 100% 50%; /* Pure Yellow #FFDD00 */
+    --sidebar-primary-foreground: 0 0% 0%; /* Pure Black */
+    --sidebar-accent: 0 0% 20%; /* Dark Gray */
+    --sidebar-accent-foreground: 52 100% 50%; /* Pure Yellow #FFDD00 */
+    --sidebar-border: 0 0% 25%; /* Dark Gray */
+    --sidebar-ring: 52 100% 50%; /* Pure Yellow #FFDD00 */
   }
 
   * {
@@ -139,46 +139,45 @@
   }
 }
 
-/* SolutionEPI Theme - Custom theme with yellow as primary color */
+/* SolutionEPI Theme - Custom theme with pure yellow as primary color */
 .solutionepi {
-  --background: 0 0% 100%;
-  --foreground: 215 25% 27%;
-  --card: 0 0% 100%;
-  --card-foreground: 215 25% 27%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 215 25% 27%;
-  --primary: 43 96% 56%; /* Yellow */
-  --primary-foreground: 215 25% 27%; /* Dark Slate */
-  --secondary: 215 14% 45%; /* Slate Gray */
-  --secondary-foreground: 0 0% 100%; /* White */
-  --muted: 214 32% 91%;
-  --muted-foreground: 215 19% 35%;
-  --accent: 210 20% 90%; /* Light Slate */
-  --accent-foreground: 215 25% 27%; /* Dark Slate */
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 100%;
-  --border: 216 34% 87%;
-  --input: 216 34% 87%;
-  --ring: 43 96% 56%; /* Yellow */
-  --sidebar: 215 25% 27%;
-  --sidebar-foreground: 0 0% 100%;
-  --sidebar-primary: 43 96% 56%; /* Yellow */
-  --sidebar-primary-foreground: 215 25% 27%;
-  --sidebar-accent: 215 25% 17%;
-  --sidebar-accent-foreground: 43 96% 56%;
-  --sidebar-border: 215 25% 27%;
-  --sidebar-ring: 43 96% 56%; /* Yellow */
+  --background: 0 0% 100%; /* Pure White */
+  --foreground: 0 0% 0%; /* Pure Black */
+  --card: 0 0% 100%; /* Pure White */
+  --card-foreground: 0 0% 0%; /* Pure Black */
+  --popover: 0 0% 100%; /* Pure White */
+  --popover-foreground: 0 0% 0%; /* Pure Black */
+  --primary: 52 100% 50%; /* Pure Yellow #FFDD00 */
+  --primary-foreground: 0 0% 0%; /* Pure Black */
+  --secondary: 0 0% 0%; /* Pure Black */
+  --secondary-foreground: 0 0% 100%; /* Pure White */
+  --muted: 0 0% 96%; /* Very Light Gray */
+  --muted-foreground: 0 0% 40%; /* Gray */
+  --accent: 52 100% 94%; /* Light Yellow */
+  --accent-foreground: 0 0% 0%; /* Pure Black */
+  --destructive: 0 84% 60%; /* Red */
+  --destructive-foreground: 0 0% 100%; /* White */
+  --border: 0 0% 90%; /* Light Gray */
+  --input: 0 0% 90%; /* Light Gray */
+  --ring: 52 100% 50%; /* Pure Yellow #FFDD00 */
+  --sidebar: 0 0% 0%; /* Pure Black */
+  --sidebar-foreground: 0 0% 100%; /* Pure White */
+  --sidebar-primary: 52 100% 50%; /* Pure Yellow #FFDD00 */
+  --sidebar-primary-foreground: 0 0% 0%; /* Pure Black */
+  --sidebar-accent: 0 0% 15%; /* Dark Gray */
+  --sidebar-accent-foreground: 52 100% 50%; /* Pure Yellow #FFDD00 */
+  --sidebar-border: 0 0% 15%; /* Dark Gray */
 }
 
 /* Sidebar styling for SolutionEPI theme */
 aside[data-style="solutionepi"] {
-  --sidebar: 215 25% 27%;
-  --sidebar-foreground: 0 0% 100%;
-  --sidebar-primary: 43 96% 56%;
-  --sidebar-primary-foreground: 215 25% 27%;
-  --sidebar-accent: 215 25% 17%;
-  --sidebar-accent-foreground: 43 96% 56%;
-  --sidebar-border: 215 25% 17%;
+  --sidebar: 0 0% 0%; /* Pure Black */
+  --sidebar-foreground: 0 0% 100%; /* Pure White */
+  --sidebar-primary: 52 100% 50%; /* Pure Yellow #FFDD00 */
+  --sidebar-primary-foreground: 0 0% 0%; /* Pure Black */
+  --sidebar-accent: 0 0% 15%; /* Dark Gray */
+  --sidebar-accent-foreground: 52 100% 50%; /* Pure Yellow #FFDD00 */
+  --sidebar-border: 0 0% 15%; /* Dark Gray */
 }
 
 /* Fix for the --spacing function issue */
@@ -407,17 +406,6 @@ aside[data-style="customer"] {
   --sidebar-accent: 210 20% 90%; /* Light Slate */
   --sidebar-accent-foreground: 0 0% 100%; /* White */
   --sidebar-border: 210 20% 90%; /* Light Slate */
-}
-
-/* Sidebar styling for SolutionEPI theme */
-aside[data-style="solutionepi"] {
-  --sidebar: 215 25% 27%; /* Slate-700 */
-  --sidebar-foreground: 0 0% 100%; /* White */
-  --sidebar-primary: 43 96% 56%; /* Yellow */
-  --sidebar-primary-foreground: 215 25% 27%; /* Slate-700 */
-  --sidebar-accent: 215 25% 17%; /* Darker slate */
-  --sidebar-accent-foreground: 43 96% 56%; /* Yellow */
-  --sidebar-border: 215 25% 17%; /* Darker slate */
 }
 
 /* Font family utilities */
