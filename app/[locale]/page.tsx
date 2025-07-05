@@ -323,7 +323,7 @@ export default function HomePage() {
         className="relative min-h-[90vh] flex items-center pt-16 pb-24 overflow-hidden bg-gradient-to-br from-secondary to-secondary/90 dark:from-secondary/80 dark:to-secondary">
         {/* Background Image */}
         <Image
-          src="https://images.unsplash.com/photo-1593916272050-2e7b88ef9adb?auto=format&fit=crop&w=1600&q=80"
+          src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1600&q=80"
           alt="Travailleur équipé d'EPI"
           fill
           unoptimized
@@ -557,7 +557,7 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}>
                 <Image
-                  src="https://images.unsplash.com/photo-1560249956-9fead937d178?auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1618498082410-b4aa22193b38?auto=format&fit=crop"
                   alt="Équipe Solution EPI"
                   fill
                   unoptimized
@@ -931,7 +931,7 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}>
                 <Image
-                  src="https://images.unsplash.com/photo-1600566452203-a6d617bb7a5e?auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop"
                   alt="Certification et normes"
                   fill
                   unoptimized
