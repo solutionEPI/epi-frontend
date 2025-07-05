@@ -25,6 +25,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
+import { useTranslations } from "next-intl";
+
 export type Product = {
   id: string;
   name: string;
@@ -61,6 +63,7 @@ export function QuickViewModal({
   onClose,
   onAddToCart,
 }: QuickViewModalProps) {
+  const t = useTranslations("QuickViewModal");
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState<string | undefined>(
     undefined
@@ -130,7 +133,7 @@ export function QuickViewModal({
       <DialogContent className="sm:max-w-3xl max-h-[90vh] overflow-y-auto">
         <DialogHeader className="flex items-center justify-between">
           <DialogTitle className="text-2xl font-bold">
-            Aperçu rapide
+            {t("quickView")}
           </DialogTitle>
           <Button
             variant="ghost"
@@ -139,7 +142,7 @@ export function QuickViewModal({
             onClick={onClose}
           >
             <X className="h-4 w-4" />
-            <span className="sr-only">Close</span>
+            <span className="sr-only">{t("close")}</span>
           </Button>
         </DialogHeader>
 
@@ -158,11 +161,11 @@ export function QuickViewModal({
             <div className="absolute top-4 left-4 flex flex-col gap-2">
               {product.isNew && (
                 <Badge className="bg-blue-500 hover:bg-blue-600">
-                  Nouveau
+                  {t("new")}
                 </Badge>
               )}
               {!product.inStock && (
-                <Badge variant="destructive">Rupture de stock</Badge>
+                <Badge variant="destructive">{t("outOfStock")}</Badge>
               )}
             </div>
           </div>
@@ -196,12 +199,12 @@ export function QuickViewModal({
               {product.inStock ? (
                 <span className="text-green-600 flex items-center">
                   <CheckCircle2 className="h-4 w-4 mr-1" />
-                  En stock
+                  {t("inStock")}
                 </span>
               ) : (
                 <span className="text-red-500 flex items-center">
                   <AlertCircle className="h-4 w-4 mr-1" />
-                  Rupture de stock
+                  {t("rupture")}
                 </span>
               )}
             </div>
@@ -210,7 +213,7 @@ export function QuickViewModal({
             {product.colors && product.colors.length > 0 && (
               <div className="mb-4">
                 <label className="block text-sm font-medium mb-2">
-                  Couleur:{" "}
+                  {t("color")}:{" "}
                   {selectedColor && (
                     <span className="font-normal">{selectedColor}</span>
                   )}
@@ -237,7 +240,7 @@ export function QuickViewModal({
             {product.sizes && product.sizes.length > 0 && (
               <div className="mb-6">
                 <label className="block text-sm font-medium mb-2">
-                  Taille:{" "}
+                  {t("size")}:{" "}
                   {selectedSize && (
                     <span className="font-normal">{selectedSize}</span>
                   )}
@@ -263,7 +266,7 @@ export function QuickViewModal({
             {/* Certifications */}
             {product.certifications && product.certifications.length > 0 && (
               <div className="mb-6">
-                <div className="text-sm font-medium mb-2">Certifications</div>
+                <div className="text-sm font-medium mb-2">{t("certifications")}</div>
                 <div className="flex flex-wrap gap-2">
                   {product.certifications.map((cert) => (
                     <Badge
@@ -310,12 +313,12 @@ export function QuickViewModal({
                   onClick={handleAddToCart}
                 >
                   <ShoppingCart className="mr-2 h-5 w-5" />
-                  Ajouter au panier
+                  {t("addToCart")}
                 </Button>
 
                 <Button variant="outline" size="lg" asChild>
                   <Link href={`/products/${product.id}`}>
-                    Voir les détails
+                    {t("viewDetails")}
                   </Link>
                 </Button>
               </div>

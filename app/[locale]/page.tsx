@@ -85,10 +85,10 @@ export default function HomePage() {
   // Animated icons state
   const [activeIcon, setActiveIcon] = useState(0);
   const icons = [
-    { icon: HardHat, label: "Protection de la tête" },
-    { icon: Headphones, label: "Protection auditive" },
-    { icon: Glasses, label: "Protection oculaire" },
-    { icon: Shield, label: "Protection corporelle" },
+    { icon: HardHat, label: t("hero.headProtection") },
+    { icon: Headphones, label: t("hero.hearingProtection") },
+    { icon: Glasses, label: t("hero.eyeProtection") },
+    { icon: Shield, label: t("hero.bodyProtection") },
   ];
 
   // Parallax effect
@@ -211,67 +211,67 @@ export default function HomePage() {
   // EPI Categories
   const epiCategories = [
     {
-      name: "Protection de la tête",
+      name: t("productCategories.headProtection.name"),
       icon: <HardHat className="w-12 h-12 text-primary" />,
       products: [
-        "Casques de sécurité",
-        "Casques anti-bruit",
-        "Casques de chantier",
+        t("productCategories.headProtection.products.0"),
+        t("productCategories.headProtection.products.1"),
+        t("productCategories.headProtection.products.2"),
       ],
       image:
         "https://images.pexels.com/photos/8961277/pexels-photo-8961277.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
-      name: "Protection auditive",
+      name: t("productCategories.hearingProtection.name"),
       icon: <Headphones className="w-12 h-12 text-primary" />,
       products: [
-        "Bouchons d'oreilles",
-        "Casques anti-bruit",
-        "Protection auditive électronique",
+        t("productCategories.hearingProtection.products.0"),
+        t("productCategories.hearingProtection.products.1"),
+        t("productCategories.hearingProtection.products.2"),
       ],
       image:
         "https://images.pexels.com/photos/1078058/pexels-photo-1078058.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
-      name: "Protection oculaire",
+      name: t("productCategories.eyeProtection.name"),
       icon: <Glasses className="w-12 h-12 text-primary" />,
       products: [
-        "Lunettes de sécurité",
-        "Visières de protection",
-        "Lunettes contre produits chimiques",
+        t("productCategories.eyeProtection.products.0"),
+        t("productCategories.eyeProtection.products.1"),
+        t("productCategories.eyeProtection.products.2"),
       ],
       image:
         "https://images.pexels.com/photos/4492346/pexels-photo-4492346.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
-      name: "Vêtements de protection",
+      name: t("productCategories.protectiveClothing.name"),
       icon: <Shirt className="w-12 h-12 text-primary" />,
       products: [
-        "Combinaisons",
-        "Vêtements haute-visibilité",
-        "Vêtements résistants au feu",
+        t("productCategories.protectiveClothing.products.0"),
+        t("productCategories.protectiveClothing.products.1"),
+        t("productCategories.protectiveClothing.products.2"),
       ],
       image:
         "https://images.pexels.com/photos/3912364/pexels-photo-3912364.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
-      name: "Protection des pieds",
+      name: t("productCategories.footProtection.name"),
       icon: <Footprints className="w-12 h-12 text-primary" />,
       products: [
-        "Chaussures de sécurité",
-        "Bottes",
-        "Protection métatarsienne",
+        t("productCategories.footProtection.products.0"),
+        t("productCategories.footProtection.products.1"),
+        t("productCategories.footProtection.products.2"),
       ],
       image:
         "https://images.pexels.com/photos/4492141/pexels-photo-4492141.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
-      name: "Protection des mains",
+      name: t("productCategories.handProtection.name"),
       icon: <HandMetal className="w-12 h-12 text-primary" />,
       products: [
-        "Gants anti-coupure",
-        "Gants résistants aux produits chimiques",
-        "Gants isolants",
+        t("productCategories.handProtection.products.0"),
+        t("productCategories.handProtection.products.1"),
+        t("productCategories.handProtection.products.2"),
       ],
       image:
         "https://images.pexels.com/photos/4491470/pexels-photo-4491470.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
@@ -281,27 +281,23 @@ export default function HomePage() {
   // Services
   const services = [
     {
-      title: "Conseil en sécurité",
-      description:
-        "Évaluation des risques et recommandations d'équipements adaptés à votre environnement de travail spécifique.",
+      title: t("services.safetyConsulting.title"),
+      description: t("services.safetyConsulting.description"),
       icon: <AlertTriangle className="w-12 h-12 text-primary" />,
     },
     {
-      title: "Formation sur les EPI",
-      description:
-        "Sessions de formation sur l'utilisation correcte des équipements de protection individuelle pour vos employés.",
+      title: t("services.ppeTraining.title"),
+      description: t("services.ppeTraining.description"),
       icon: <Users className="w-12 h-12 text-primary" />,
     },
     {
-      title: "Audit de conformité",
-      description:
-        "Vérification de la conformité de vos équipements aux normes et réglementations en vigueur.",
+      title: t("services.complianceAudit.title"),
+      description: t("services.complianceAudit.description"),
       icon: <FileText className="w-12 h-12 text-primary" />,
     },
     {
-      title: "Maintenance préventive",
-      description:
-        "Services d'entretien régulier et vérification de l'état de vos équipements de protection.",
+      title: t("services.preventiveMaintenance.title"),
+      description: t("services.preventiveMaintenance.description"),
       icon: <ShieldCheck className="w-12 h-12 text-primary" />,
     },
   ];
@@ -387,12 +383,11 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                Solution EPI
+                {t("hero.title")}
               </h1>
 
               <p className="text-xl md:text-2xl mb-8 text-white/90">
-                Votre partenaire pour la sécurité au travail. Des équipements de
-                protection individuelle conformes aux normes les plus strictes.
+                {t("hero.description")}
               </p>
 
               <div className="flex flex-wrap gap-4">
@@ -401,7 +396,7 @@ export default function HomePage() {
                   className="bg-primary hover:bg-primary/90 text-white font-bold px-8 py-6 text-lg shadow-lg"
                   asChild>
                   <Link href="#products">
-                    Découvrir nos produits
+                    {t("hero.discoverProducts")}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
@@ -411,7 +406,7 @@ export default function HomePage() {
                   size="lg"
                   className="border-white text-slate-900 hover:text-white hover:bg-white/20 px-8 py-6 text-lg font-bold"
                   asChild>
-                  <Link href="/contact">Nous contacter</Link>
+                  <Link href="/contact">{t("hero.contactUs")}</Link>
                 </Button>
               </div>
             </motion.div>
@@ -490,21 +485,16 @@ export default function HomePage() {
           <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
             <div className="md:w-1/2">
               <h2 className="text-3xl md:text-4xl font-bold mb-6 opacity-0 text-foreground">
-                À propos de Solution EPI
+                {t("about.title")}
               </h2>
               <div className="w-24 h-1 bg-primary mb-8"></div>
 
               <p className="text-lg text-foreground mb-6">
-                Depuis plus de 15 ans, Solution EPI est le leader dans la
-                fourniture d'équipements de protection individuelle au Cameroun.
-                Notre mission est de garantir la sécurité des travailleurs dans
-                tous les secteurs d'activité.
+                {t("about.description1")}
               </p>
 
               <p className="text-lg text-foreground mb-8">
-                Nous proposons une gamme complète d'équipements certifiés
-                conformes aux normes internationales, adaptés aux besoins
-                spécifiques de chaque industrie et environnement de travail.
+                {t("about.description2")}
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
@@ -514,10 +504,10 @@ export default function HomePage() {
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1 text-foreground">
-                      Qualité certifiée
+                      {t("about.certifiedQuality")}
                     </h3>
                     <p className="text-muted-foreground">
-                      Produits conformes aux normes
+                      {t("about.productsComplyWithStandards")}
                     </p>
                   </div>
                 </div>
@@ -528,10 +518,10 @@ export default function HomePage() {
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1 text-foreground">
-                      Expertise
+                      {t("about.expertise")}
                     </h3>
                     <p className="text-muted-foreground">
-                      Conseil personnalisé
+                      {t("about.personalizedAdvice")}
                     </p>
                   </div>
                 </div>
@@ -543,7 +533,7 @@ export default function HomePage() {
                 className="border-primary text-primary hover:bg-primary hover:text-white font-bold"
                 asChild>
                 <Link href="/about">
-                  En savoir plus
+                  {t("about.learnMore")}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -571,10 +561,10 @@ export default function HomePage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}>
                     <span className="bg-primary text-black px-4 py-2 rounded-full font-bold inline-block mb-4">
-                      15+ ans d'expérience
+                      {t("about.yearsOfExperience", { years: 15 })}
                     </span>
                     <p className="text-white font-medium">
-                      Une équipe de professionnels dédiée à votre sécurité
+                      {t("about.dedicatedTeam")}
                     </p>
                   </motion.div>
                 </div>
@@ -589,12 +579,11 @@ export default function HomePage() {
         <div className="container mx-auto px-6 md:px-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 opacity-0 text-foreground">
-              Nos catégories d'EPI
+              {t("productCategories.title")}
             </h2>
             <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
             <p className="text-lg text-foreground max-w-2xl mx-auto">
-              Des équipements de protection individuelle adaptés à tous les
-              types de risques professionnels.
+              {t("productCategories.description")}
             </p>
           </div>
 
@@ -820,7 +809,7 @@ export default function HomePage() {
                       href={`/products/${category.name
                         .toLowerCase()
                         .replace(/\s+/g, "-")}`}>
-                      Voir les produits
+                      {t("productCategories.viewProducts")}
                     </Link>
                   </Button>
                 </div>
@@ -834,7 +823,7 @@ export default function HomePage() {
               className="bg-primary hover:bg-primary/90 text-black px-8"
               asChild>
               <Link href="/products">
-                Voir tous les produits
+                {t("productCategories.viewAllProducts")}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -847,13 +836,11 @@ export default function HomePage() {
         <div className="container mx-auto px-6 md:px-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 opacity-0 text-foreground">
-              Nos services
+              {t("services.title")}
             </h2>
             <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
             <p className="text-lg text-foreground max-w-2xl mx-auto">
-              Au-delà de la fourniture d'équipements, nous offrons une gamme
-              complète de services pour garantir la sécurité de vos
-              collaborateurs.
+              {t("services.description")}
             </p>
           </div>
 
@@ -873,7 +860,7 @@ export default function HomePage() {
                   variant="outline"
                   className="mt-auto w-full border-primary text-primary hover:bg-primary hover:text-white font-medium"
                   asChild>
-                  <Link href="/services">En savoir plus</Link>
+                  <Link href="/services">{t("services.learnMore")}</Link>
                 </Button>
               </div>
             ))}
@@ -890,14 +877,12 @@ export default function HomePage() {
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="md:w-1/2 order-2 md:order-1">
               <h2 className="text-3xl md:text-4xl font-bold mb-6 opacity-0 text-foreground">
-                Normes et réglementations
+                {t("standards.title")}
               </h2>
               <div className="w-24 h-1 bg-primary mb-8"></div>
 
               <p className="text-lg text-foreground mb-6">
-                La sécurité au travail est encadrée par des normes strictes.
-                Chez Solution EPI, tous nos produits sont conformes aux normes
-                internationales et locales en vigueur.
+                {t("standards.description")}
               </p>
 
               <ul className="space-y-4 mb-8">
@@ -914,10 +899,9 @@ export default function HomePage() {
                   <AlertTriangle className="text-amber-500 h-6 w-6 shrink-0 mt-0.5 mr-3" />
                   <p>
                     <strong className="font-semibold">
-                      Obligation légale:
+                      {t("standards.legalObligation")}
                     </strong>{" "}
-                    L'employeur doit fournir gratuitement les EPI adaptés aux
-                    risques.
+                    {t("standards.employerMustProvidePPE")}
                   </p>
                 </div>
               </div>
@@ -991,8 +975,7 @@ export default function HomePage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.8 }}>
-                      Tous nos produits respectent les standards internationaux
-                      les plus exigeants
+                      {t("standards.allProductsMeetStandards")}
                     </motion.p>
                   </div>
                 </div>
@@ -1007,12 +990,11 @@ export default function HomePage() {
         <div className="container mx-auto px-6 md:px-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 opacity-0 text-foreground">
-              Contactez-nous
+              {t("contact.title")}
             </h2>
             <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
             <p className="text-lg text-foreground max-w-2xl mx-auto">
-              Besoin d'équipements de protection ou de conseils ? Notre équipe
-              d'experts est à votre disposition.
+              {t("contact.description")}
             </p>
           </div>
 
@@ -1039,10 +1021,9 @@ export default function HomePage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}>
                     <Mail className="h-12 w-12 text-primary mx-auto mb-4" />
-                    <h3 className="font-bold text-xl mb-2">Prenez contact</h3>
+                    <h3 className="font-bold text-xl mb-2">{t("contact.getInTouch")}</h3>
                     <p className="text-muted-foreground mb-4">
-                      Notre équipe est disponible pour répondre à toutes vos
-                      questions
+                      {t("contact.teamAvailable")}
                     </p>
                     <div className="flex gap-2 justify-center">
                       <div className="h-2 w-2 rounded-full bg-primary"></div>
@@ -1055,7 +1036,7 @@ export default function HomePage() {
             </div>
 
             <div>
-              <h3 className="text-2xl font-bold mb-8">Coordonnées</h3>
+              <h3 className="text-2xl font-bold mb-8">{t("contact.coordinates")}</h3>
 
               <div className="space-y-6">
                 <div className="contact-item flex items-start">
@@ -1064,12 +1045,10 @@ export default function HomePage() {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1 text-foreground">
-                      Adresse
+                      {t("contact.address")}
                     </h4>
                     <p className="text-muted-foreground">
-                      Boulangerie Saker, Deido
-                      <br />
-                      Douala, Cameroun
+                      {t("contact.addressValue")}
                     </p>
                   </div>
                 </div>
@@ -1080,7 +1059,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1 text-foreground">
-                      Téléphone
+                      {t("contact.phone")}
                     </h4>
                     <p className="text-muted-foreground">+237 6XX XXX XXX</p>
                   </div>
@@ -1092,7 +1071,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1 text-foreground">
-                      Email
+                      {t("contact.email")}
                     </h4>
                     <p className="text-muted-foreground">
                       contact@solution-epi.com
@@ -1106,7 +1085,7 @@ export default function HomePage() {
                   size="lg"
                   className="bg-primary hover:bg-primary/90 text-black flex-1"
                   asChild>
-                  <Link href="/contact">Demander un devis</Link>
+                  <Link href="/contact">{t("contact.requestQuote")}</Link>
                 </Button>
 
                 <Button
@@ -1114,7 +1093,7 @@ export default function HomePage() {
                   size="lg"
                   className="border-primary text-primary hover:bg-primary hover:text-white flex-1"
                   asChild>
-                  <Link href="/contact">Nous contacter</Link>
+                  <Link href="/contact">{t("contact.contactUs")}</Link>
                 </Button>
               </div>
             </div>

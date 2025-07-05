@@ -15,6 +15,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslations } from "next-intl";
 
 interface AiGenerateButtonProps {
   modelConfig: any;
@@ -22,6 +23,7 @@ interface AiGenerateButtonProps {
 }
 
 export function AiGenerateButton({ modelConfig, form }: AiGenerateButtonProps) {
+  const t = useTranslations("AiGenerateButton");
   const [isOpen, setIsOpen] = useState(false);
   const [prompt, setPrompt] = useState("");
   const { toast } = useToast();
@@ -34,7 +36,7 @@ export function AiGenerateButton({ modelConfig, form }: AiGenerateButtonProps) {
         // We'll extract the JSON part of the response.
         const match = completion.match(/{[\s\S]*}/);
         if (!match) {
-          throw new Error("No valid JSON object found in the AI response.");
+          throw new Error(t("noJsonError"));
         }
         const jsonString = match[0];
         const jsonResponse = JSON.parse(jsonString);
@@ -45,18 +47,16 @@ export function AiGenerateButton({ modelConfig, form }: AiGenerateButtonProps) {
           }
         });
         toast({
-          title: "Success",
-          description: "AI data has been populated in the form.",
+          title: t("successTitle"),
+          description: t("successDescription"),
         });
         setIsOpen(false);
       } catch (error) {
         const errorMessage =
-          error instanceof Error
-            ? error.message
-            : "The AI response was not valid JSON. Please try again.";
+          error instanceof Error ? error.message : t("errorParsingDescription");
         toast({
           variant: "destructive",
-          title: "Error parsing AI response",
+          title: t("errorParsingTitle"),
           description: errorMessage,
         });
         console.error(
@@ -70,7 +70,7 @@ export function AiGenerateButton({ modelConfig, form }: AiGenerateButtonProps) {
     onError: (err) => {
       toast({
         variant: "destructive",
-        title: "AI Generation Error",
+        title: t("generationErrorTitle"),
         description: err.message,
       });
     },
@@ -118,20 +118,18 @@ export function AiGenerateButton({ modelConfig, form }: AiGenerateButtonProps) {
       <DialogTrigger asChild>
         <Button variant="outline">
           <Sparkles className="h-4 w-4 mr-2" />
-          Generate with AI
+          {t("generateWithAI")}
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Generate with AI</DialogTitle>
+          <DialogTitle>{t("dialogTitle")}</DialogTitle>
           <DialogDescription>
-            Describe the data you want to generate for this{" "}
-            {modelConfig.verbose_name}. For example, "a new user named John Doe
-            who is a developer".
+            {t("dialogDescription", { modelName: modelConfig.verbose_name })}
           </DialogDescription>
         </DialogHeader>
         <Textarea
-          placeholder="Enter your prompt here..."
+          placeholder={t("promptPlaceholder")}
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           rows={4}
@@ -141,7 +139,7 @@ export function AiGenerateButton({ modelConfig, form }: AiGenerateButtonProps) {
             onClick={handleGenerate}
             disabled={isLoading || !prompt}
             className="w-full">
-            {isLoading ? "Generating..." : "Generate"}
+            {isLoading ? t("generatingButton") : t("generateButton")}
           </Button>
         </DialogFooter>
       </DialogContent>

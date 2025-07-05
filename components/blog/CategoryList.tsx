@@ -45,7 +45,7 @@ export function CategoryList({
         }
       } catch (err) {
         console.error("Failed to fetch categories", err);
-        setError("Failed to load categories");
+        setError(t("failedToLoadCategories"));
         setCategories([]);
       } finally {
         setIsLoading(false);

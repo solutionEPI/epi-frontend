@@ -25,21 +25,14 @@ export const metadata = {
     template: `%s | ${dashboardConfig.name}`,
   },
   description: dashboardConfig.description,
-  keywords: [
-    "EPI",
-    "sécurité",
-    "protection individuelle",
-    "équipements",
-    "Cameroun",
-    "Solution EPI",
-  ],
+  keywords: dashboardConfig.keywords,
   authors: [
     {
-      name: "Solution EPI",
+      name: dashboardConfig.authorName,
       url: "https://solution-epi.com",
     },
   ],
-  creator: "Solution EPI",
+  creator: dashboardConfig.creator,
   openGraph: {
     type: "website",
     locale: "fr_FR",
@@ -52,7 +45,7 @@ export const metadata = {
         url: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
         width: 1200,
         height: 630,
-        alt: "Solution EPI - Équipements de Protection Individuelle",
+        alt: dashboardConfig.openGraphAlt,
       },
     ],
   },
@@ -63,7 +56,7 @@ export const metadata = {
     images: [
       "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
     ],
-    creator: "@solutionepi",
+    creator: dashboardConfig.twitterCreator,
   },
   icons: {
     icon: "/favicon.svg",

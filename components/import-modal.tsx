@@ -74,7 +74,7 @@ export function ImportModal({
       toast({
         variant: "destructive",
         title: t("importErrorTitle"),
-        description: "Please select a file to import.",
+        description: t("importErrorSelectFile"),
       });
       return;
     }

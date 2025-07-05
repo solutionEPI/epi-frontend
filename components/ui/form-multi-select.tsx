@@ -32,6 +32,8 @@ import { useToast } from "@/hooks/use-toast";
 import { api } from "@/lib/api";
 import { useMutation } from "@tanstack/react-query";
 
+import { useTranslations } from "next-intl";
+
 export interface Option {
   value: any;
   label: string;
@@ -60,6 +62,7 @@ export function FormMultiSelect({
   displayField = "name",
   disabled,
 }: FormMultiSelectProps) {
+  const t = useTranslations("FormMultiSelect");
   const [open, setOpen] = React.useState(false);
   const [dialogOpen, setDialogOpen] = React.useState(false);
   const [newItemsInput, setNewItemsInput] = React.useState("");
@@ -71,7 +74,7 @@ export function FormMultiSelect({
     onError: (error: Error, itemName) => {
       toast({
         variant: "destructive",
-        title: `Error creating "${itemName}"`,
+        title: t("errorCreating", { itemName }),
         description: error.message,
       });
     },
@@ -81,8 +84,8 @@ export function FormMultiSelect({
     if (!creatableApiUrl) {
       toast({
         variant: "destructive",
-        title: "Error",
-        description: "Creation is not configured for this field.",
+        title: t("error"),
+        description: t("creationNotConfigured"),
       });
       return;
     }
@@ -106,8 +109,8 @@ export function FormMultiSelect({
 
     if (createdItems.length > 0) {
       toast({
-        title: "Success",
-        description: `${createdItems.length} new item(s) created.`,
+        title: t("success"),
+        description: t("itemsCreated", { count: createdItems.length }),
       });
       onNewItemsCreated?.();
       onChange([...value, ...createdItems]);
@@ -141,7 +144,7 @@ export function FormMultiSelect({
                 ))
               ) : (
                 <span className="text-muted-foreground font-normal">
-                  {placeholder}
+                  {t("selectOptions")}
                 </span>
               )}
             </div>
@@ -150,27 +153,26 @@ export function FormMultiSelect({
         </PopoverTrigger>
         <PopoverContent className="w-[--radix-popover-trigger-width] p-0">
           <Command>
-            <CommandInput placeholder="Search or create..." />
+            <CommandInput placeholder={t("searchOrCreate")} />
             <CommandList>
               <CommandEmpty>
                 <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
                   <DialogTrigger asChild>
                     <Button variant="ghost" className="w-full justify-start">
                       <PlusCircle className="mr-2 h-4 w-4" />
-                      Create new
+                      {t("createNew")}
                     </Button>
                   </DialogTrigger>
                   <DialogContent>
                     <DialogHeader>
-                      <DialogTitle>Create New Item(s)</DialogTitle>
+                      <DialogTitle>{t("createNewItems")}</DialogTitle>
                       <DialogDescription>
-                        You can create multiple items by separating them with a
-                        comma (,).
+                        {t("createMultipleItemsDescription")}
                       </DialogDescription>
                     </DialogHeader>
                     <div className="py-4">
                       <Textarea
-                        placeholder="e.g., New Tag 1, Another Tag, Final Tag"
+                        placeholder={t("exampleTags")}
                         value={newItemsInput}
                         onChange={(e) => setNewItemsInput(e.target.value)}
                         rows={4}
@@ -180,12 +182,12 @@ export function FormMultiSelect({
                       <Button
                         variant="outline"
                         onClick={() => setDialogOpen(false)}>
-                        Cancel
+                        {t("cancel")}
                       </Button>
                       <Button
                         onClick={handleCreateNewItems}
                         disabled={createMutation.isPending}>
-                        {createMutation.isPending ? "Creating..." : "Create"}
+                        {createMutation.isPending ? t("creating") : t("create")}
                       </Button>
                     </DialogFooter>
                   </DialogContent>

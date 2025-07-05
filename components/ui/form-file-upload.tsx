@@ -6,6 +6,8 @@ import { FormLabel } from "./form";
 import { Button } from "./button";
 import { X, Paperclip, FileImage, FileIcon } from "lucide-react";
 
+import { useTranslations } from "next-intl";
+
 export interface FormFileUploadProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "value"> {
   label: string;
@@ -34,6 +36,7 @@ const FormFileUpload = React.forwardRef<HTMLInputElement, FormFileUploadProps>(
     },
     ref
   ) => {
+    const t = useTranslations("FormFileUpload");
     const [preview, setPreview] = React.useState<string | null>(null);
 
     React.useEffect(() => {
@@ -74,7 +77,7 @@ const FormFileUpload = React.forwardRef<HTMLInputElement, FormFileUploadProps>(
           <div className="mt-2 relative w-32 h-32">
             <img
               src={preview}
-              alt="Preview"
+              alt={t("preview")}
               className="w-full h-full object-cover rounded-md border"
             />
             {onRemove && (
@@ -133,7 +136,7 @@ const FormFileUpload = React.forwardRef<HTMLInputElement, FormFileUploadProps>(
               <label
                 htmlFor={props.id || name}
                 className="relative cursor-pointer bg-background rounded-md font-medium text-primary hover:text-primary/80 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-ring">
-                <span>Upload a file</span>
+                <span>{t("uploadFile")}</span>
                 <input
                   id={props.id || name}
                   name={name}
@@ -145,7 +148,7 @@ const FormFileUpload = React.forwardRef<HTMLInputElement, FormFileUploadProps>(
                   {...props}
                 />
               </label>
-              <p className="pl-1">or drag and drop</p>
+              <p className="pl-1">{t("dragAndDrop")}</p>
             </div>
             <p className="text-xs text-muted-foreground">
               {helpText || accept}

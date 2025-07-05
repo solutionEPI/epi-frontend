@@ -279,7 +279,7 @@ export function ModelForm({
               break;
             case "foreignkey_select": // This is now handled by RelationField, but keeping as fallback
             case "manytomany_select": // This is now handled by RelationField, but keeping as fallback
-              component = <p>Loading options...</p>;
+              component = <p>{t("loadingOptions")}</p>;
               break;
             case "image_upload":
             case "file_upload":

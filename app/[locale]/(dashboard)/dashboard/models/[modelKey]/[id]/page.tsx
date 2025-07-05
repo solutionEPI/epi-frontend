@@ -61,7 +61,7 @@ export default function EditModelPage() {
   }
 
   if (error) {
-    return <div className="text-destructive">{error.message}</div>;
+    return <div className="text-destructive">{t("errorLoadingData")}</div>;
   }
 
   if (!modelConfig || !initialData) {

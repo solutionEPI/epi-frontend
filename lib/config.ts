@@ -12,6 +12,11 @@ export interface NavigationItem {
 export interface DashboardConfig {
   name: string;
   description: string;
+  keywords: string[];
+  authorName: string;
+  creator: string;
+  openGraphAlt: string;
+  twitterCreator: string;
   logoUrl: string;
   favicon: string;
   repositoryUrl: string;
@@ -43,6 +48,18 @@ export const dashboardConfig: DashboardConfig = {
   name: "Solution EPI",
   description:
     "Équipements de Protection Individuelle pour la sécurité au travail",
+  keywords: [
+    "EPI",
+    "sécurité",
+    "protection individuelle",
+    "équipements",
+    "Cameroun",
+    "Solution EPI",
+  ],
+  authorName: "Solution EPI",
+  creator: "Solution EPI",
+  openGraphAlt: "Solution EPI - Équipements de Protection Individuelle",
+  twitterCreator: "@solutionepi",
   repositoryUrl: "https://github.com/asbilim/solution-epi.git",
   logoUrl: "/logo-solution.png",
   favicon: "/favicon.svg",

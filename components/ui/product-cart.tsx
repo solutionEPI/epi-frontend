@@ -23,6 +23,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Card, CardContent } from "@/components/ui/card";
+import { useTranslations } from "next-intl";
 
 // Product type
 export type Product = {
@@ -58,6 +59,7 @@ export const ProductCart = ({
   delay = 0,
 }: ProductCartProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const t = useTranslations("ProductCart");
 
   // Render star rating
   const renderStarRating = (rating: number) => {
@@ -117,11 +119,11 @@ export const ProductCart = ({
           <div className="absolute top-2 left-2 flex flex-col gap-2">
             {product.isNew && (
               <Badge className="bg-blue-500 hover:bg-blue-600">
-                Nouveau
+                {t("new")}
               </Badge>
             )}
             {!product.inStock && (
-              <Badge variant="destructive">Rupture de stock</Badge>
+              <Badge variant="destructive">{t("outOfStock")}</Badge>
             )}
           </div>
 
@@ -148,7 +150,7 @@ export const ProductCart = ({
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Ajouter aux favoris</p>
+                  <p>{t("addToWishlist")}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -170,7 +172,7 @@ export const ProductCart = ({
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Aperçu rapide</p>
+                  <p>{t("quickView")}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -192,7 +194,7 @@ export const ProductCart = ({
               }}
             >
               <ShoppingCart className="mr-2 h-4 w-4" />
-              {product.inStock ? "Ajouter au panier" : "Indisponible"}
+              {product.inStock ? t("addToCart") : t("unavailable")}
             </Button>
           </div>
         </div>
@@ -221,12 +223,12 @@ export const ProductCart = ({
                   {product.inStock ? (
                     <span className="text-green-600 flex items-center">
                       <CheckCircle2 className="h-3 w-3 mr-1" />
-                      En stock
+                      {t("inStock")}
                     </span>
                   ) : (
                     <span className="text-red-500 flex items-center">
                       <AlertCircle className="h-3 w-3 mr-1" />
-                      Rupture
+                      {t("rupture")}
                     </span>
                   )}
                 </div>

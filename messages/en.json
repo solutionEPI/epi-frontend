@@ -11,7 +11,9 @@
     "toastUnexpectedErrorTitle": "An Unexpected Error Occurred",
     "toastUnexpectedErrorDescription": "Something went wrong. Please try again later.",
     "toastOtpInvalidTitle": "Invalid OTP",
-    "toastOtpInvalidDescription": "The one-time password you entered is incorrect."
+    "toastOtpInvalidDescription": "The one-time password you entered is incorrect.",
+    "dashboardName": "Solution EPI",
+    "dashboardDescription": "Your partner for workplace safety. Certified personal protective equipment that meets the strictest standards."
   },
   "HomePage": {
     "hero": {
@@ -87,7 +89,8 @@
     "signOutSuccessTitle": "Signed Out",
     "signOutSuccessDescription": "You have been successfully signed out.",
     "products": "Products",
-    "contact": "Contact"
+    "contact": "Contact",
+    "user": "User"
   },
   "Footer": {
     "siteName": "Solution EPI",
@@ -101,6 +104,12 @@
       "legal": "Legal",
       "language": "Language",
       "followUs": "Follow Us"
+    },
+    "social": {
+      "github": "GitHub",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "instagram": "Instagram"
     },
     "solutions": {
       "admin": "Admin Dashboard",
@@ -214,7 +223,11 @@
     "createTitle": "Create new {modelName}",
     "loadModelConfigFailed": "Failed to load configuration for model: {modelName}",
     "loadModelDataFailed": "Failed to load data for model: {modelName}",
-    "loadingRelationOptions": "Loading options for {fieldName}..."
+    "loadingRelationOptions": "Loading options for {fieldName}...",
+    "loadingOptions": "Loading options...",
+    "emptyCellValue": "-",
+    "errorLoadingData": "Error loading data",
+    "errorLoadingConfig": "Error loading configuration"
   },
   "ModelForm": {
     "saveSuccessTitle": "Item Saved",
@@ -262,6 +275,7 @@
     "twoFactorEnableSuccessDescription": "Two-factor authentication has been successfully enabled.",
     "twoFactorDisableErrorTitle": "Failed to Disable 2FA",
     "twoFactorDisableSuccessTitle": "2FA Disabled",
+    "loadError": "Failed to load settings",
     "validation": {
       "invalidEmail": "Invalid email address.",
       "oldPasswordRequired": "Current password is required.",
@@ -373,7 +387,70 @@
     "settings": "Settings",
     "signOut": "Sign Out",
     "signOutSuccessTitle": "Signed Out",
-    "signOutSuccessDescription": "You have been successfully signed out."
+    "signOutSuccessDescription": "You have been successfully signed out.",
+    "failedToUpdatePreferences": "Failed to update preferences",
+    "tools": "Tools",
+    "system": "System"
+  },
+  "Breadcrumb": {
+    "more": "More"
+  },
+  "FormFileUpload": {
+    "preview": "Preview",
+    "uploadFile": "Upload a file",
+    "dragAndDrop": "or drag and drop"
+  },
+  "FormJsonEditor": {
+    "key": "Key",
+    "value": "Value",
+    "addItem": "Add Item"
+  },
+  "FormMultiSelect": {
+    "selectOptions": "Select options...",
+    "searchOrCreate": "Search or create...",
+    "createNew": "Create new",
+    "createNewItems": "Create New Item(s)",
+    "createMultipleItemsDescription": "You can create multiple items by separating them with a comma (,).",
+    "exampleTags": "e.g., New Tag 1, Another Tag, Final Tag",
+    "cancel": "Cancel",
+    "creating": "Creating...",
+    "create": "Create",
+    "errorCreating": "Error creating {itemName}",
+    "creationNotConfigured": "Creation is not configured for this field.",
+    "success": "Success",
+    "itemsCreated": "{count} new item(s) created."
+  },
+  "ProductCart": {
+    "new": "New",
+    "outOfStock": "Out of Stock",
+    "addToWishlist": "Add to Wishlist",
+    "quickView": "Quick View",
+    "addToCart": "Add to Cart",
+    "unavailable": "Unavailable",
+    "inStock": "In Stock",
+    "rupture": "Rupture"
+  },
+  "QuickViewModal": {
+    "quickView": "Quick View",
+    "close": "Close",
+    "new": "New",
+    "outOfStock": "Out of Stock",
+    "inStock": "In Stock",
+    "rupture": "Rupture de stock",
+    "color": "Color",
+    "size": "Size",
+    "certifications": "Certifications",
+    "addToCart": "Add to Cart",
+    "viewDetails": "View Details"
+  },
+  "Metadata": {
+    "title": "Solution EPI",
+    "titleTemplate": "%s | Solution EPI",
+    "description": "Your partner for workplace safety. Certified personal protective equipment that meets the strictest standards.",
+    "keywords": "EPI, sécurité, protection individuelle, équipements, Cameroun, Solution EPI",
+    "authorName": "Solution EPI",
+    "openGraphAlt": "Solution EPI - Équipements de Protection Individuelle",
+    "twitterCreator": "@solutionepi"
   },
   "Time": {
     "years": "{count, plural, one {# year ago} other {# years ago}}",
@@ -395,7 +472,25 @@
     "importing": "Importing...",
     "importSuccessTitle": "Import Successful",
     "importSuccessDescription": "{count} items have been imported successfully.",
-    "importErrorTitle": "Import Failed"
+    "importErrorTitle": "Import Failed",
+    "importErrorSelectFile": "Please select a file to import."
+  },
+  "Languages": {
+    "en": "English",
+    "fr": "French",
+    "de": "German"
+  },
+  "ThemeSwitcher": {
+    "toggleTheme": "Toggle theme",
+    "selectTheme": "Select a theme",
+    "system": "System",
+    "systemDescription": "Follow system preferences",
+    "light": "Light",
+    "lightDescription": "Light mode",
+    "dark": "Dark",
+    "darkDescription": "Dark mode",
+    "safety": "Safety",
+    "safetyDescription": "Safety equipment theme"
   },
   "Common": {
     "saving": "Saving...",
@@ -410,6 +505,7 @@
     "loadingCategories": "Loading categories...",
     "categoriesTitle": "Categories",
     "allCategories": "All",
+    "failedToLoadCategories": "Failed to load categories",
     "commentsTitle": "Comments",
     "commentPlaceholder": "Write a comment...",
     "replyPlaceholder": "Write a reply...",
@@ -419,6 +515,7 @@
     "submittingComment": "Submitting...",
     "commentSuccess": "Comment posted successfully!",
     "commentError": "Failed to post comment.",
+    "failedToLoadComments": "Failed to load comments",
     "loadingComments": "Loading comments...",
     "noComments": "Be the first to comment.",
     "reply": "Reply",
@@ -466,6 +563,134 @@
         "message": "Thank you for reaching out. We'll get back to you as soon as possible.",
         "button": "Send Another Message"
       }
+    }
+  },
+  "AiGenerateButton": {
+    "generateWithAI": "Generate with AI",
+    "successTitle": "Success",
+    "successDescription": "AI data has been populated in the form.",
+    "errorParsingTitle": "Error parsing AI response",
+    "errorParsingDescription": "The AI response was not valid JSON. Please try again.",
+    "noJsonError": "No valid JSON object found in the AI response.",
+    "generationErrorTitle": "AI Generation Error",
+    "dialogTitle": "Generate with AI",
+    "dialogDescription": "Describe the data you want to generate for this {modelName}. For example, 'a new user named John Doe who is a developer'.",
+    "promptPlaceholder": "Enter your prompt here...",
+    "generateButton": "Generate",
+    "generatingButton": "Generating..."
+  },
+  "HomePage": {
+    "hero": {
+      "title": "Solution EPI",
+      "description": "Your partner for workplace safety. Certified personal protective equipment that meets the strictest standards.",
+      "discoverProducts": "Discover Our Products",
+      "contactUs": "Contact Us",
+      "headProtection": "Head Protection",
+      "hearingProtection": "Hearing Protection",
+      "eyeProtection": "Eye Protection",
+      "bodyProtection": "Body Protection"
+    },
+    "about": {
+      "title": "About Solution EPI",
+      "description1": "For over 15 years, Solution EPI has been the leader in providing personal protective equipment in Cameroon. Our mission is to ensure the safety of workers in all sectors of activity.",
+      "description2": "We offer a complete range of certified equipment compliant with international standards, adapted to the specific needs of each industry and work environment.",
+      "certifiedQuality": "Certified Quality",
+      "productsComplyWithStandards": "Products comply with standards",
+      "expertise": "Expertise",
+      "personalizedAdvice": "Personalized advice",
+      "learnMore": "Learn More",
+      "yearsOfExperience": "{years}+ years of experience",
+      "dedicatedTeam": "A team of professionals dedicated to your safety"
+    },
+    "productCategories": {
+      "title": "Our PPE Categories",
+      "description": "Personal protective equipment adapted to all types of occupational hazards.",
+      "headProtection": {
+        "name": "Head Protection",
+        "products": [
+          "Safety helmets",
+          "Noise-canceling helmets",
+          "Construction helmets"
+        ]
+      },
+      "hearingProtection": {
+        "name": "Hearing Protection",
+        "products": [
+          "Earplugs",
+          "Noise-canceling headphones",
+          "Electronic hearing protection"
+        ]
+      },
+      "eyeProtection": {
+        "name": "Eye Protection",
+        "products": [
+          "Safety glasses",
+          "Protective visors",
+          "Chemical splash goggles"
+        ]
+      },
+      "protectiveClothing": {
+        "name": "Protective Clothing",
+        "products": [
+          "Overalls",
+          "High-visibility clothing",
+          "Flame-resistant clothing"
+        ]
+      },
+      "footProtection": {
+        "name": "Foot Protection",
+        "products": ["Safety shoes", "Boots", "Metatarsal protection"]
+      },
+      "handProtection": {
+        "name": "Hand Protection",
+        "products": [
+          "Cut-resistant gloves",
+          "Chemical-resistant gloves",
+          "Insulating gloves"
+        ]
+      },
+      "viewProducts": "View Products",
+      "viewAllProducts": "View all products"
+    },
+    "services": {
+      "title": "Our Services",
+      "description": "Beyond equipment supply, we offer a comprehensive range of services to ensure the safety of your employees.",
+      "safetyConsulting": {
+        "title": "Safety Consulting",
+        "description": "Risk assessment and equipment recommendations tailored to your specific work environment."
+      },
+      "ppeTraining": {
+        "title": "PPE Training",
+        "description": "Training sessions on the correct use of personal protective equipment for your employees."
+      },
+      "complianceAudit": {
+        "title": "Compliance Audit",
+        "description": "Verification of your equipment's compliance with current standards and regulations."
+      },
+      "preventiveMaintenance": {
+        "title": "Preventive Maintenance",
+        "description": "Regular maintenance services and verification of the condition of your protective equipment."
+      },
+      "learnMore": "Learn More"
+    },
+    "standards": {
+      "title": "Standards and Regulations",
+      "description": "Workplace safety is governed by strict standards. At Solution EPI, all our products comply with current international and local standards.",
+      "legalObligation": "Legal obligation:",
+      "employerMustProvidePPE": "The employer must provide appropriate PPE free of charge.",
+      "allProductsMeetStandards": "All our products meet the most demanding international standards"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "description": "Need protective equipment or advice? Our team of experts is at your disposal.",
+      "getInTouch": "Get in touch",
+      "teamAvailable": "Our team is available to answer all your questions",
+      "coordinates": "Contact Information",
+      "address": "Address",
+      "addressValue": "Boulangerie Saker, Deido\nDouala, Cameroun",
+      "phone": "Phone",
+      "email": "Email",
+      "requestQuote": "Request a quote"
     }
   }
 }

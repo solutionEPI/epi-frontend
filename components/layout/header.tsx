@@ -122,11 +122,11 @@ export function Header() {
                       {session.user.image ? (
                         <AvatarImage
                           src={session.user.image}
-                          alt={session.user.name || "User"}
+                          alt={session.user.name || t("user")}
                         />
                       ) : (
                         <AvatarFallback>
-                          {getInitials(session.user.name || "User")}
+                          {getInitials(session.user.name || t("user"))}
                         </AvatarFallback>
                       )}
                     </Avatar>

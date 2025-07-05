@@ -147,7 +147,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
     onError: (error) => {
       toast({
         variant: "destructive",
-        title: "Failed to update preferences",
+        title: t("failedToUpdatePreferences"),
         description: error.message,
       });
     },

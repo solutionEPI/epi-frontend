@@ -374,7 +374,7 @@ export default function ModelListPage() {
                       }
                       const displayValue =
                         cellValue === null || cellValue === ""
-                          ? "-"
+                          ? t("emptyCellValue")
                           : String(cellValue);
                       if (index === 0) {
                         return (

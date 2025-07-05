@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Moon, Sun, Palette, HardHat, Monitor } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -16,45 +17,46 @@ import { cn } from "@/lib/utils";
 
 interface ThemeOption {
   value: string;
-  label: string;
+  labelKey: keyof IntlMessages["ThemeSwitcher"];
+  descriptionKey: keyof IntlMessages["ThemeSwitcher"];
   icon: React.ReactNode;
-  description: string;
   colors: string[];
 }
 
 const themeOptions: ThemeOption[] = [
   {
     value: "system",
-    label: "System",
+    labelKey: "system",
+    descriptionKey: "systemDescription",
     icon: <Monitor className="h-4 w-4" />,
-    description: "Follow system preferences",
     colors: ["#ffffff", "#1e293b", "#f59e0b"],
   },
   {
     value: "light",
-    label: "Light",
+    labelKey: "light",
+    descriptionKey: "lightDescription",
     icon: <Sun className="h-4 w-4" />,
-    description: "Light mode",
     colors: ["#ffffff", "#f8fafc", "#f59e0b"],
   },
   {
     value: "dark",
-    label: "Dark",
+    labelKey: "dark",
+    descriptionKey: "darkDescription",
     icon: <Moon className="h-4 w-4" />,
-    description: "Dark mode",
     colors: ["#1e293b", "#0f172a", "#f59e0b"],
   },
   {
     value: "professional",
-    label: "Safety",
+    labelKey: "safety",
+    descriptionKey: "safetyDescription",
     icon: <HardHat className="h-4 w-4" />,
-    description: "Safety equipment theme",
     colors: ["#ffffff", "#f59e0b", "#fbbf24"],
   },
 ];
 
 export function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
+  const t = useTranslations("ThemeSwitcher");
   const [isMounted, setIsMounted] = React.useState(false);
 
   // Handle hydration
@@ -70,7 +72,7 @@ export function ThemeSwitcher() {
       <Button variant="ghost" size="sm" className="w-9 px-0">
         <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
         <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-        <span className="sr-only">Toggle theme</span>
+        <span className="sr-only">{t("toggleTheme")}</span>
       </Button>
     );
   }
@@ -80,12 +82,12 @@ export function ThemeSwitcher() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="sm" className="w-9 px-0">
           {currentTheme.icon}
-          <span className="sr-only">Toggle theme</span>
+          <span className="sr-only">{t("toggleTheme")}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-52">
         <DropdownMenuLabel className="text-xs font-normal text-muted-foreground">
-          Select a theme
+          {t("selectTheme")}
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         {themeOptions.map((option) => (
@@ -101,9 +103,9 @@ export function ThemeSwitcher() {
                 {option.icon}
               </div>
               <div>
-                <div className="text-sm font-medium">{option.label}</div>
+                <div className="text-sm font-medium">{t(option.labelKey)}</div>
                 <div className="text-xs text-muted-foreground">
-                  {option.description}
+                  {t(option.descriptionKey)}
                 </div>
               </div>
             </div>

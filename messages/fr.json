@@ -412,5 +412,123 @@
     "cancel": "Annuler",
     "verifying": "Vérification...",
     "verify": "Vérifier"
+  },
+  "HomePage": {
+    "hero": {
+      "title": "Solution EPI",
+      "description": "Votre partenaire pour la sécurité au travail. Des équipements de protection individuelle conformes aux normes les plus strictes.",
+      "discoverProducts": "Découvrir nos produits",
+      "contactUs": "Nous contacter",
+      "headProtection": "Protection de la tête",
+      "hearingProtection": "Protection auditive",
+      "eyeProtection": "Protection oculaire",
+      "bodyProtection": "Protection corporelle"
+    },
+    "about": {
+      "title": "À propos de Solution EPI",
+      "description1": "Depuis plus de 15 ans, Solution EPI est le leader dans la fourniture d'équipements de protection individuelle au Cameroun. Notre mission est de garantir la sécurité des travailleurs dans tous les secteurs d'activité.",
+      "description2": "Nous proposons une gamme complète d'équipements certifiés conformes aux normes internationales, adaptés aux besoins spécifiques de chaque industrie et environnement de travail.",
+      "certifiedQuality": "Qualité certifiée",
+      "productsComplyWithStandards": "Produits conformes aux normes",
+      "expertise": "Expertise",
+      "personalizedAdvice": "Conseil personnalisé",
+      "learnMore": "En savoir plus",
+      "yearsOfExperience": "{years}+ ans d'expérience",
+      "dedicatedTeam": "Une équipe de professionnels dédiée à votre sécurité"
+    },
+    "productCategories": {
+      "title": "Nos catégories d'EPI",
+      "description": "Des équipements de protection individuelle adaptés à tous les types de risques professionnels.",
+      "headProtection": {
+        "name": "Protection de la tête",
+        "products": [
+          "Casques de sécurité",
+          "Casques anti-bruit",
+          "Casques de chantier"
+        ]
+      },
+      "hearingProtection": {
+        "name": "Protection auditive",
+        "products": [
+          "Bouchons d'oreilles",
+          "Casques anti-bruit",
+          "Protection auditive électronique"
+        ]
+      },
+      "eyeProtection": {
+        "name": "Protection oculaire",
+        "products": [
+          "Lunettes de sécurité",
+          "Visières de protection",
+          "Lunettes contre produits chimiques"
+        ]
+      },
+      "protectiveClothing": {
+        "name": "Vêtements de protection",
+        "products": [
+          "Combinaisons",
+          "Vêtements haute-visibilité",
+          "Vêtements résistants au feu"
+        ]
+      },
+      "footProtection": {
+        "name": "Protection des pieds",
+        "products": [
+          "Chaussures de sécurité",
+          "Bottes",
+          "Protection métatarsienne"
+        ]
+      },
+      "handProtection": {
+        "name": "Protection des mains",
+        "products": [
+          "Gants anti-coupure",
+          "Gants résistants aux produits chimiques",
+          "Gants isolants"
+        ]
+      },
+      "viewProducts": "Voir les produits",
+      "viewAllProducts": "Voir tous les produits"
+    },
+    "services": {
+      "title": "Nos services",
+      "description": "Au-delà de la fourniture d'équipements, nous offrons une gamme complète de services pour garantir la sécurité de vos collaborateurs.",
+      "safetyConsulting": {
+        "title": "Conseil en sécurité",
+        "description": "Évaluation des risques et recommandations d'équipements adaptés à votre environnement de travail spécifique."
+      },
+      "ppeTraining": {
+        "title": "Formation sur les EPI",
+        "description": "Sessions de formation sur l'utilisation correcte des équipements de protection individuelle pour vos employés."
+      },
+      "complianceAudit": {
+        "title": "Audit de conformité",
+        "description": "Vérification de la conformité de vos équipements aux normes et réglementations en vigueur."
+      },
+      "preventiveMaintenance": {
+        "title": "Maintenance préventive",
+        "description": "Services d'entretien régulier et vérification de l'état de vos équipements de protection."
+      },
+      "learnMore": "En savoir plus"
+    },
+    "standards": {
+      "title": "Normes et réglementations",
+      "description": "La sécurité au travail est encadrée par des normes strictes. Chez Solution EPI, tous nos produits sont conformes aux normes internationales et locales en vigueur.",
+      "legalObligation": "Obligation légale:",
+      "employerMustProvidePPE": "L'employeur doit fournir gratuitement les EPI adaptés aux risques.",
+      "allProductsMeetStandards": "Tous nos produits respectent les standards internationaux les plus exigeants"
+    },
+    "contact": {
+      "title": "Contactez-nous",
+      "description": "Besoin d'équipements de protection ou de conseils ? Notre équipe d'experts est à votre disposition.",
+      "getInTouch": "Prenez contact",
+      "teamAvailable": "Notre équipe est disponible pour répondre à toutes vos questions",
+      "coordinates": "Coordonnées",
+      "address": "Adresse",
+      "addressValue": "Boulangerie Saker, Deido\nDouala, Cameroun",
+      "phone": "Téléphone",
+      "email": "Email",
+      "requestQuote": "Demander un devis"
+    }
   }
 }

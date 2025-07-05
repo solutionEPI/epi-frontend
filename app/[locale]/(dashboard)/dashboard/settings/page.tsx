@@ -75,7 +75,7 @@ export default function SettingsPage() {
   if (error)
     return (
       <div className="text-destructive">
-        {t("loadError", { message: error.message })}
+        {t("loadError")}
       </div>
     );
 

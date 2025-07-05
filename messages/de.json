@@ -420,5 +420,123 @@
     "cancel": "Abbrechen",
     "verifying": "Überprüfen...",
     "verify": "Überprüfen"
+  },
+  "HomePage": {
+    "hero": {
+      "title": "Solution EPI",
+      "description": "Ihr Partner für Arbeitssicherheit. Zertifizierte persönliche Schutzausrüstung nach höchsten Standards.",
+      "discoverProducts": "Unsere Produkte entdecken",
+      "contactUs": "Kontaktieren Sie uns",
+      "headProtection": "Kopfschutz",
+      "hearingProtection": "Gehörschutz",
+      "eyeProtection": "Augenschutz",
+      "bodyProtection": "Körperschutz"
+    },
+    "about": {
+      "title": "Über Solution EPI",
+      "description1": "Seit über 15 Jahren ist Solution EPI führend in der Bereitstellung von persönlicher Schutzausrüstung in Kamerun. Unsere Mission ist es, die Sicherheit der Arbeiter in allen Tätigkeitsbereichen zu gewährleisten.",
+      "description2": "Wir bieten eine vollständige Palette zertifizierter Ausrüstung, die internationalen Standards entspricht und an die spezifischen Bedürfnisse jeder Branche und Arbeitsumgebung angepasst ist.",
+      "certifiedQuality": "Zertifizierte Qualität",
+      "productsComplyWithStandards": "Produkte entsprechen den Standards",
+      "expertise": "Expertise",
+      "personalizedAdvice": "Personalisierte Beratung",
+      "learnMore": "Mehr erfahren",
+      "yearsOfExperience": "{years}+ Jahre Erfahrung",
+      "dedicatedTeam": "Ein Team von Fachleuten, das sich Ihrer Sicherheit widmet"
+    },
+    "productCategories": {
+      "title": "Unsere PSA-Kategorien",
+      "description": "Persönliche Schutzausrüstung, angepasst an alle Arten von Berufsrisiken.",
+      "headProtection": {
+        "name": "Kopfschutz",
+        "products": [
+          "Schutzhelme",
+          "Lärmschutzhelme",
+          "Bauhelme"
+        ]
+      },
+      "hearingProtection": {
+        "name": "Gehörschutz",
+        "products": [
+          "Ohrstöpsel",
+          "Lärmschutz-Kopfhörer",
+          "Elektronischer Gehörschutz"
+        ]
+      },
+      "eyeProtection": {
+        "name": "Augenschutz",
+        "products": [
+          "Schutzbrillen",
+          "Schutzvisiere",
+          "Chemikalienschutzbrillen"
+        ]
+      },
+      "protectiveClothing": {
+        "name": "Schutzkleidung",
+        "products": [
+          "Overalls",
+          "Warnschutzkleidung",
+          "Flammhemmende Kleidung"
+        ]
+      },
+      "footProtection": {
+        "name": "Fußschutz",
+        "products": [
+          "Sicherheitsschuhe",
+          "Stiefel",
+          "Mittelfußschutz"
+        ]
+      },
+      "handProtection": {
+        "name": "Handschutz",
+        "products": [
+          "Schnittschutzhandschuhe",
+          "Chemikalienschutzhandschuhe",
+          "Isolierhandschuhe"
+        ]
+      },
+      "viewProducts": "Produkte ansehen",
+      "viewAllProducts": "Alle Produkte ansehen"
+    },
+    "services": {
+      "title": "Unsere Dienstleistungen",
+      "description": "Neben der Bereitstellung von Ausrüstung bieten wir eine umfassende Palette von Dienstleistungen an, um die Sicherheit Ihrer Mitarbeiter zu gewährleisten.",
+      "safetyConsulting": {
+        "title": "Sicherheitsberatung",
+        "description": "Risikobewertung und Ausrüstungsempfehlungen, zugeschnitten auf Ihre spezifische Arbeitsumgebung."
+      },
+      "ppeTraining": {
+        "title": "PSA-Schulung",
+        "description": "Schulungen zur korrekten Verwendung von persönlicher Schutzausrüstung für Ihre Mitarbeiter."
+      },
+      "complianceAudit": {
+        "title": "Konformitätsprüfung",
+        "description": "Überprüfung der Konformität Ihrer Ausrüstung mit den geltenden Normen und Vorschriften."
+      },
+      "preventiveMaintenance": {
+        "title": "Vorbeugende Wartung",
+        "description": "Regelmäßige Wartungsdienste und Überprüfung des Zustands Ihrer Schutzausrüstung."
+      },
+      "learnMore": "Mehr erfahren"
+    },
+    "standards": {
+      "title": "Normen und Vorschriften",
+      "description": "Arbeitssicherheit wird durch strenge Normen geregelt. Bei Solution EPI entsprechen alle unsere Produkte den geltenden internationalen und lokalen Normen.",
+      "legalObligation": "Gesetzliche Verpflichtung:",
+      "employerMustProvidePPE": "Der Arbeitgeber muss geeignete PSA kostenlos zur Verfügung stellen.",
+      "allProductsMeetStandards": "Alle unsere Produkte erfüllen die anspruchsvollsten internationalen Standards"
+    },
+    "contact": {
+      "title": "Kontaktieren Sie uns",
+      "description": "Benötigen Sie Schutzausrüstung oder Beratung? Unser Expertenteam steht Ihnen zur Verfügung.",
+      "getInTouch": "Kontakt aufnehmen",
+      "teamAvailable": "Unser Team steht Ihnen für alle Fragen zur Verfügung",
+      "coordinates": "Kontaktdaten",
+      "address": "Adresse",
+      "addressValue": "Boulangerie Saker, Deido\nDouala, Kamerun",
+      "phone": "Telefon",
+      "email": "E-Mail",
+      "requestQuote": "Angebot anfordern"
+    }
   }
 }
