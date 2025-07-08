@@ -17,48 +17,107 @@
     "hero": {
       "title": "Solution EPI",
       "description": "Ihr Partner für Arbeitssicherheit. Zertifizierte persönliche Schutzausrüstung nach höchsten Standards.",
-      "cta": "Unsere Produkte entdecken",
-      "contact": "Kontaktieren Sie uns",
-      "loginButton": "Loslegen",
-      "dashboardButton": "Zum Dashboard",
-      "learnMoreButton": "Mehr erfahren"
+      "discoverProducts": "Unsere Produkte entdecken",
+      "contactUs": "Kontaktieren Sie uns",
+      "headProtection": "Kopfschutz",
+      "hearingProtection": "Gehörschutz",
+      "eyeProtection": "Augenschutz",
+      "bodyProtection": "Körperschutz"
     },
-    "features": {
-      "title": "Leistungsstarke Funktionen",
-      "subtitle": "Alles, was Sie benötigen, um schöne, datengesteuerte Admin-Oberflächen zu erstellen.",
-      "modern": {
-        "title": "Moderne Benutzeroberfläche",
-        "description": "Entwickelt mit Next.js, Tailwind CSS und shadcn/ui für eine elegante, reaktionsfähige Oberfläche."
-      },
-      "customizable": {
-        "title": "Vollständig anpassbar",
-        "description": "Erweitern und modifizieren Sie Komponenten einfach, um die spezifischen Anforderungen Ihres Projekts zu erfüllen."
-      },
-      "ai": {
-        "title": "KI-gestützte Tools",
-        "description": "Integrierte KI-Funktionen, die bei der Automatisierung von Aufgaben helfen und die Produktivität steigern."
-      },
-      "developer": {
-        "title": "Entwicklerfreundlich",
-        "description": "Gut organisierter Code mit TypeScript für eine verbesserte Entwicklererfahrung."
-      }
+    "about": {
+      "title": "Über Solution EPI",
+      "description1": "Seit über 15 Jahren ist Solution EPI führend in der Bereitstellung von persönlicher Schutzausrüstung in Kamerun. Unsere Mission ist es, die Sicherheit der Arbeiter in allen Tätigkeitsbereichen zu gewährleisten.",
+      "description2": "Wir bieten eine vollständige Palette zertifizierter Ausrüstung, die internationalen Standards entspricht und an die spezifischen Bedürfnisse jeder Branche und Arbeitsumgebung angepasst ist.",
+      "certifiedQuality": "Zertifizierte Qualität",
+      "productsComplyWithStandards": "Produkte entsprechen den Standards",
+      "expertise": "Expertise",
+      "personalizedAdvice": "Personalisierte Beratung",
+      "learnMore": "Mehr erfahren",
+      "yearsOfExperience": "{years}+ Jahre Erfahrung",
+      "dedicatedTeam": "Ein Team von Fachleuten, das sich Ihrer Sicherheit widmet"
     },
-    "gettingStarted": {
-      "title": "Erste Schritte",
-      "subtitle": "Folgen Sie diesen einfachen Schritten, um mit Solution EPI zu beginnen.",
-      "step1": {
-        "title": "API einrichten",
-        "description": "Konfigurieren Sie Ihre Django REST Framework-API-Endpunkte."
+    "productCategories": {
+      "title": "Unsere PSA-Kategorien",
+      "description": "Persönliche Schutzausrüstung, angepasst an alle Arten von Berufsrisiken.",
+      "headProtection": {
+        "name": "Kopfschutz",
+        "products": ["Schutzhelme", "Lärmschutzhelme", "Bauhelme"]
       },
-      "step2": {
-        "title": "UI anpassen",
-        "description": "Passen Sie das Dashboard an Ihre Anforderungen und Ihre Marke an."
+      "hearingProtection": {
+        "name": "Gehörschutz",
+        "products": [
+          "Ohrstöpsel",
+          "Lärmschutz-Kopfhörer",
+          "Elektronischer Gehörschutz"
+        ]
       },
-      "step3": {
-        "title": "Bereitstellen",
-        "description": "Stellen Sie Ihre Anwendung auf Ihrer bevorzugten Hosting-Plattform bereit."
+      "eyeProtection": {
+        "name": "Augenschutz",
+        "products": [
+          "Schutzbrillen",
+          "Schutzvisiere",
+          "Chemikalienschutzbrillen"
+        ]
       },
-      "docsButton": "Dokumentation lesen"
+      "protectiveClothing": {
+        "name": "Schutzkleidung",
+        "products": ["Overalls", "Warnschutzkleidung", "Flammhemmende Kleidung"]
+      },
+      "footProtection": {
+        "name": "Fußschutz",
+        "products": ["Sicherheitsschuhe", "Stiefel", "Mittelfußschutz"]
+      },
+      "handProtection": {
+        "name": "Handschutz",
+        "products": [
+          "Schnittschutzhandschuhe",
+          "Chemikalienschutzhandschuhe",
+          "Isolierhandschuhe"
+        ]
+      },
+      "viewProducts": "Produkte ansehen",
+      "viewAllProducts": "Alle Produkte ansehen"
+    },
+    "services": {
+      "title": "Unsere Dienstleistungen",
+      "description": "Neben der Bereitstellung von Ausrüstung bieten wir eine umfassende Palette von Dienstleistungen an, um die Sicherheit Ihrer Mitarbeiter zu gewährleisten.",
+      "safetyConsulting": {
+        "title": "Sicherheitsberatung",
+        "description": "Risikobewertung und Ausrüstungsempfehlungen, zugeschnitten auf Ihre spezifische Arbeitsumgebung."
+      },
+      "ppeTraining": {
+        "title": "PSA-Schulung",
+        "description": "Schulungen zur korrekten Verwendung von persönlicher Schutzausrüstung für Ihre Mitarbeiter."
+      },
+      "complianceAudit": {
+        "title": "Konformitätsprüfung",
+        "description": "Überprüfung der Konformität Ihrer Ausrüstung mit den geltenden Normen und Vorschriften."
+      },
+      "preventiveMaintenance": {
+        "title": "Vorbeugende Wartung",
+        "description": "Regelmäßige Wartungsdienste und Überprüfung des Zustands Ihrer Schutzausrüstung."
+      },
+      "learnMore": "Mehr erfahren"
+    },
+    "standards": {
+      "title": "Normen und Vorschriften",
+      "description": "Arbeitssicherheit wird durch strenge Normen geregelt. Bei Solution EPI entsprechen alle unsere Produkte den geltenden internationalen und lokalen Normen.",
+      "legalObligation": "Gesetzliche Verpflichtung:",
+      "employerMustProvidePPE": "Der Arbeitgeber muss geeignete PSA kostenlos zur Verfügung stellen.",
+      "allProductsMeetStandards": "Alle unsere Produkte erfüllen die anspruchsvollsten internationalen Standards"
+    },
+    "contact": {
+      "title": "Kontaktieren Sie uns",
+      "description": "Benötigen Sie Schutzausrüstung oder Beratung? Unser Expertenteam steht Ihnen zur Verfügung.",
+      "contactUs": "Kontaktieren Sie uns",
+      "getInTouch": "Kontakt aufnehmen",
+      "teamAvailable": "Unser Team steht Ihnen für alle Fragen zur Verfügung",
+      "coordinates": "Kontaktdaten",
+      "address": "Adresse",
+      "addressValue": "Boulangerie Saker, Deido\nDouala, Kamerun",
+      "phone": "Telefon",
+      "email": "E-Mail",
+      "requestQuote": "Angebot anfordern"
     }
   },
   "Header": {
@@ -421,122 +480,56 @@
     "verifying": "Überprüfen...",
     "verify": "Überprüfen"
   },
-  "HomePage": {
-    "hero": {
-      "title": "Solution EPI",
-      "description": "Ihr Partner für Arbeitssicherheit. Zertifizierte persönliche Schutzausrüstung nach höchsten Standards.",
-      "discoverProducts": "Unsere Produkte entdecken",
-      "contactUs": "Kontaktieren Sie uns",
-      "headProtection": "Kopfschutz",
-      "hearingProtection": "Gehörschutz",
-      "eyeProtection": "Augenschutz",
-      "bodyProtection": "Körperschutz"
-    },
-    "about": {
-      "title": "Über Solution EPI",
-      "description1": "Seit über 15 Jahren ist Solution EPI führend in der Bereitstellung von persönlicher Schutzausrüstung in Kamerun. Unsere Mission ist es, die Sicherheit der Arbeiter in allen Tätigkeitsbereichen zu gewährleisten.",
-      "description2": "Wir bieten eine vollständige Palette zertifizierter Ausrüstung, die internationalen Standards entspricht und an die spezifischen Bedürfnisse jeder Branche und Arbeitsumgebung angepasst ist.",
-      "certifiedQuality": "Zertifizierte Qualität",
-      "productsComplyWithStandards": "Produkte entsprechen den Standards",
-      "expertise": "Expertise",
-      "personalizedAdvice": "Personalisierte Beratung",
-      "learnMore": "Mehr erfahren",
-      "yearsOfExperience": "{years}+ Jahre Erfahrung",
-      "dedicatedTeam": "Ein Team von Fachleuten, das sich Ihrer Sicherheit widmet"
-    },
-    "productCategories": {
-      "title": "Unsere PSA-Kategorien",
-      "description": "Persönliche Schutzausrüstung, angepasst an alle Arten von Berufsrisiken.",
-      "headProtection": {
-        "name": "Kopfschutz",
-        "products": [
-          "Schutzhelme",
-          "Lärmschutzhelme",
-          "Bauhelme"
-        ]
-      },
-      "hearingProtection": {
-        "name": "Gehörschutz",
-        "products": [
-          "Ohrstöpsel",
-          "Lärmschutz-Kopfhörer",
-          "Elektronischer Gehörschutz"
-        ]
-      },
-      "eyeProtection": {
-        "name": "Augenschutz",
-        "products": [
-          "Schutzbrillen",
-          "Schutzvisiere",
-          "Chemikalienschutzbrillen"
-        ]
-      },
-      "protectiveClothing": {
-        "name": "Schutzkleidung",
-        "products": [
-          "Overalls",
-          "Warnschutzkleidung",
-          "Flammhemmende Kleidung"
-        ]
-      },
-      "footProtection": {
-        "name": "Fußschutz",
-        "products": [
-          "Sicherheitsschuhe",
-          "Stiefel",
-          "Mittelfußschutz"
-        ]
-      },
-      "handProtection": {
-        "name": "Handschutz",
-        "products": [
-          "Schnittschutzhandschuhe",
-          "Chemikalienschutzhandschuhe",
-          "Isolierhandschuhe"
-        ]
-      },
-      "viewProducts": "Produkte ansehen",
-      "viewAllProducts": "Alle Produkte ansehen"
-    },
-    "services": {
-      "title": "Unsere Dienstleistungen",
-      "description": "Neben der Bereitstellung von Ausrüstung bieten wir eine umfassende Palette von Dienstleistungen an, um die Sicherheit Ihrer Mitarbeiter zu gewährleisten.",
-      "safetyConsulting": {
-        "title": "Sicherheitsberatung",
-        "description": "Risikobewertung und Ausrüstungsempfehlungen, zugeschnitten auf Ihre spezifische Arbeitsumgebung."
-      },
-      "ppeTraining": {
-        "title": "PSA-Schulung",
-        "description": "Schulungen zur korrekten Verwendung von persönlicher Schutzausrüstung für Ihre Mitarbeiter."
-      },
-      "complianceAudit": {
-        "title": "Konformitätsprüfung",
-        "description": "Überprüfung der Konformität Ihrer Ausrüstung mit den geltenden Normen und Vorschriften."
-      },
-      "preventiveMaintenance": {
-        "title": "Vorbeugende Wartung",
-        "description": "Regelmäßige Wartungsdienste und Überprüfung des Zustands Ihrer Schutzausrüstung."
-      },
-      "learnMore": "Mehr erfahren"
-    },
-    "standards": {
-      "title": "Normen und Vorschriften",
-      "description": "Arbeitssicherheit wird durch strenge Normen geregelt. Bei Solution EPI entsprechen alle unsere Produkte den geltenden internationalen und lokalen Normen.",
-      "legalObligation": "Gesetzliche Verpflichtung:",
-      "employerMustProvidePPE": "Der Arbeitgeber muss geeignete PSA kostenlos zur Verfügung stellen.",
-      "allProductsMeetStandards": "Alle unsere Produkte erfüllen die anspruchsvollsten internationalen Standards"
-    },
-    "contact": {
-      "title": "Kontaktieren Sie uns",
-      "description": "Benötigen Sie Schutzausrüstung oder Beratung? Unser Expertenteam steht Ihnen zur Verfügung.",
-      "getInTouch": "Kontakt aufnehmen",
-      "teamAvailable": "Unser Team steht Ihnen für alle Fragen zur Verfügung",
-      "coordinates": "Kontaktdaten",
-      "address": "Adresse",
-      "addressValue": "Boulangerie Saker, Deido\nDouala, Kamerun",
-      "phone": "Telefon",
-      "email": "E-Mail",
-      "requestQuote": "Angebot anfordern"
-    }
+  "ProductsPage": {
+    "productUpdated": "Produkt aktualisiert",
+    "productUpdatedDescription": "{productName} wurde in Ihrem Warenkorb aktualisiert.",
+    "productAdded": "Produkt hinzugefügt",
+    "productAddedDescription": "{productName} wurde Ihrem Warenkorb hinzugefügt.",
+    "productRemoved": "Produkt entfernt",
+    "productRemovedDescription": "Das Produkt wurde aus Ihrem Warenkorb entfernt.",
+    "cartCleared": "Warenkorb geleert",
+    "cartClearedDescription": "Alle Artikel wurden aus Ihrem Warenkorb entfernt.",
+    "yourCart": "Ihr Warenkorb",
+    "cartEmpty": "Ihr Warenkorb ist leer",
+    "addProductsToStartShopping": "Fügen Sie Produkte hinzu, um mit dem Einkaufen zu beginnen",
+    "viewOurProducts": "Unsere Produkte ansehen",
+    "image": "Bild",
+    "color": "Farbe",
+    "size": "Größe",
+    "total": "Gesamt",
+    "placeOrder": "Bestellung aufgeben",
+    "continueShopping": "Weiter einkaufen",
+    "headProtection": "Kopfschutz",
+    "eyeProtection": "Augenschutz",
+    "hearingProtection": "Gehörschutz",
+    "respiratoryProtection": "Atemschutz",
+    "protectiveClothing": "Schutzkleidung",
+    "handProtection": "Handschutz",
+    "footProtection": "Fußschutz",
+    "fallProtection": "Absturzsicherung",
+    "allProducts": "Alle Produkte",
+    "moreCategories": "Weitere Kategorien",
+    "searchProduct": "Produkt suchen...",
+    "sortBy": "Sortieren nach",
+    "featuredProducts": "Vorgestellte Produkte",
+    "priceAscending": "Preis (aufsteigend)",
+    "priceDescending": "Preis (absteigend)",
+    "nameAscending": "Name (A-Z)",
+    "topRated": "Am besten bewertet",
+    "filters": "Filter",
+    "categories": "Kategorien",
+    "allCategories": "Alle Kategorien",
+    "availability": "Verfügbarkeit",
+    "inStockOnly": "Nur auf Lager",
+    "newOnly": "Nur Neuheiten",
+    "productsFound": "{count, plural, one {# Produkt} other {# Produkte}} gefunden",
+    "noProductsFound": "Keine Produkte gefunden",
+    "tryModifyingFilters": "Versuchen Sie, Ihre Filter oder Suche zu ändern.",
+    "new": "Neu",
+    "outOfStock": "Nicht auf Lager",
+    "addToWishlist": "Zur Wunschliste hinzufügen",
+    "quickView": "Schnellansicht",
+    "inStock": "Auf Lager",
+    "addToCart": "In den Warenkorb"
   }
 }

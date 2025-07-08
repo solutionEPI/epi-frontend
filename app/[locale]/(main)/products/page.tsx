@@ -308,8 +308,8 @@ export default function ProductsPage() {
     }
 
     toast({
-      title: "Produit ajouté au panier",
-      description: `${product.name} a été ajouté à votre panier.`,
+      title: t("productAdded"),
+      description: t("productAddedDescription", { productName: product.name }),
     });
   };
 
@@ -320,8 +320,8 @@ export default function ProductsPage() {
     setCart(newCart);
 
     toast({
-      title: "Produit retiré du panier",
-      description: "Le produit a été retiré de votre panier.",
+      title: t("productRemoved"),
+      description: t("productRemovedDescription"),
     });
   };
 
@@ -376,19 +376,7 @@ export default function ProductsPage() {
 
   return (
     <div className="min-h-screen bg-background pt-24 pb-16">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-primary/10 to-secondary/10 py-12">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold mb-4">
-            Équipements de Protection Individuelle
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl">
-            Découvrez notre gamme complète d'équipements de protection
-            individuelle conformes aux normes internationales pour garantir la
-            sécurité de vos équipes.
-          </p>
-        </div>
-      </div>
+      
 
       <div className="container mx-auto px-4 py-8">
         {/* Search and filter bar */}
@@ -396,7 +384,7 @@ export default function ProductsPage() {
           <div className="relative flex-grow">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
             <Input
-              placeholder="Rechercher un produit..."
+              placeholder={t("searchProduct")}
               className="pl-10"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -406,14 +394,14 @@ export default function ProductsPage() {
           <div className="flex gap-2">
             <Select value={sortOption} onValueChange={setSortOption}>
               <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Trier par" />
+                <SelectValue placeholder={t("sortBy")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="featured">Produits en vedette</SelectItem>
-                <SelectItem value="price-asc">Prix croissant</SelectItem>
-                <SelectItem value="price-desc">Prix décroissant</SelectItem>
-                <SelectItem value="name-asc">Nom (A-Z)</SelectItem>
-                <SelectItem value="rating">Mieux notés</SelectItem>
+                <SelectItem value="featured">{t("featuredProducts")}</SelectItem>
+                <SelectItem value="price-asc">{t("priceAscending")}</SelectItem>
+                <SelectItem value="price-desc">{t("priceDescending")}</SelectItem>
+                <SelectItem value="name-asc">{t("nameAscending")}</SelectItem>
+                <SelectItem value="rating">{t("topRated")}</SelectItem>
               </SelectContent>
             </Select>
 
@@ -422,7 +410,7 @@ export default function ProductsPage() {
               onClick={() => setShowFilters(!showFilters)}
               className="flex items-center gap-1">
               <Filter className="h-4 w-4" />
-              Filtres
+              {t("filters")}
               <ChevronDown
                 className={`h-4 w-4 transition-transform ${
                   showFilters ? "rotate-180" : ""
@@ -453,7 +441,7 @@ export default function ProductsPage() {
             className="bg-card border rounded-lg p-4 mb-8 overflow-hidden">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
-                <h3 className="font-medium mb-3">Catégories</h3>
+                <h3 className="font-medium mb-3">{t("categories")}</h3>
                 <div className="space-y-2">
                   <div className="flex items-center">
                     <input
@@ -464,7 +452,7 @@ export default function ProductsPage() {
                       onChange={() => setSelectedCategory(null)}
                       className="mr-2"
                     />
-                    <label htmlFor="cat-all">Toutes les catégories</label>
+                    <label htmlFor="cat-all">{t("allCategories")}</label>
                   </div>
 
                   {categories.map((category) => (
@@ -484,7 +472,7 @@ export default function ProductsPage() {
               </div>
 
               <div>
-                <h3 className="font-medium mb-3">Disponibilité</h3>
+                <h3 className="font-medium mb-3">{t("availability")}</h3>
                 <div className="space-y-2">
                   <div className="flex items-center">
                     <input
@@ -494,7 +482,7 @@ export default function ProductsPage() {
                       onChange={() => setInStockOnly(!inStockOnly)}
                       className="mr-2"
                     />
-                    <label htmlFor="in-stock">En stock uniquement</label>
+                    <label htmlFor="in-stock">{t("inStockOnly")}</label>
                   </div>
                   <div className="flex items-center">
                     <input
@@ -504,7 +492,7 @@ export default function ProductsPage() {
                       onChange={() => setNewOnly(!newOnly)}
                       className="mr-2"
                     />
-                    <label htmlFor="new-only">Nouveautés uniquement</label>
+                    <label htmlFor="new-only">{t("newOnly")}</label>
                   </div>
                 </div>
               </div>
@@ -519,7 +507,7 @@ export default function ProductsPage() {
                     setInStockOnly(false);
                     setNewOnly(false);
                   }}>
-                  Réinitialiser les filtres
+                  {t("resetFilters")}
                 </Button>
               </div>
             </div>
@@ -534,18 +522,18 @@ export default function ProductsPage() {
             exit={{ height: 0, opacity: 0 }}
             className="bg-card border rounded-lg p-4 mb-8 overflow-hidden">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold">Votre panier</h2>
+              <h2 className="text-xl font-bold">{t("yourCart")}</h2>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsCartOpen(false)}>
-                Fermer
+                {t("close")}
               </Button>
             </div>
 
             {cart.length === 0 ? (
               <div className="text-center py-8 text-muted-foreground">
-                Votre panier est vide
+                {t("cartEmpty")}
               </div>
             ) : (
               <>
@@ -556,18 +544,16 @@ export default function ProductsPage() {
                       className="flex items-center justify-between border-b pb-4">
                       <div className="flex items-center gap-3">
                         <div className="relative w-16 h-16 rounded overflow-hidden">
-                          <Image
-                            src={item.product.image}
-                            alt={item.product.name}
-                            fill
-                            className="object-cover"
-                          />
+                          {/* Product image would go here */}
+                          <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+                            {t("image")}
+                          </div>
                         </div>
                         <div>
                           <h4 className="font-medium">{item.product.name}</h4>
                           <div className="text-sm text-muted-foreground">
-                            {item.color && <span>Couleur: {item.color} </span>}
-                            {item.size && <span>Taille: {item.size}</span>}
+                            {item.color && <span>{t("color")}: {item.color} </span>}
+                            {item.size && <span>{t("size")}: {item.size}</span>}
                           </div>
                           <div className="text-sm font-medium">
                             {item.product.price.toFixed(2)} €
@@ -625,20 +611,22 @@ export default function ProductsPage() {
 
                 <div className="border-t mt-4 pt-4">
                   <div className="flex justify-between mb-4">
-                    <span className="font-medium">Total</span>
-                    <span className="font-bold">{cartTotal.toFixed(2)} €</span>
+                    <span className="font-medium">{t("total")}</span>
+                    <span className="font-bold">
+                      {cartTotal.toFixed(2)} €
+                    </span>
                   </div>
 
                   <div className="flex gap-2">
                     <Button
                       className="w-full"
                       onClick={() =>
-                        alert("Redirection vers la page de paiement...")
+                        alert(t("placeOrder"))
                       }>
-                      Passer la commande
+                      {t("placeOrder")}
                     </Button>
                     <Button variant="outline" onClick={() => setCart([])}>
-                      Vider le panier
+                      {t("cartCleared")}
                     </Button>
                   </div>
                 </div>
@@ -650,9 +638,7 @@ export default function ProductsPage() {
         {/* Products count */}
         <div className="mb-6">
           <p className="text-muted-foreground">
-            {filteredProducts.length} produit
-            {filteredProducts.length !== 1 ? "s" : ""} trouvé
-            {filteredProducts.length !== 1 ? "s" : ""}
+            {t("productsFound", { count: filteredProducts.length })}
           </p>
         </div>
 
@@ -660,9 +646,9 @@ export default function ProductsPage() {
         {filteredProducts.length === 0 ? (
           <div className="text-center py-16">
             <AlertCircle className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
-            <h3 className="text-xl font-medium mb-2">Aucun produit trouvé</h3>
+            <h3 className="text-xl font-medium mb-2">{t("noProductsFound")}</h3>
             <p className="text-muted-foreground">
-              Essayez de modifier vos filtres ou votre recherche.
+              {t("tryModifyingFilters")}
             </p>
           </div>
         ) : (
@@ -686,11 +672,11 @@ export default function ProductsPage() {
                     <div className="absolute top-2 left-2 flex flex-col gap-2">
                       {product.isNew && (
                         <Badge className="bg-blue-500 hover:bg-blue-600">
-                          Nouveau
+                          {t("new")}
                         </Badge>
                       )}
                       {!product.inStock && (
-                        <Badge variant="destructive">Rupture de stock</Badge>
+                        <Badge variant="destructive">{t("outOfStock")}</Badge>
                       )}
                     </div>
 
@@ -707,8 +693,8 @@ export default function ProductsPage() {
                             </Button>
                           </TooltipTrigger>
                           <TooltipContent>
-                            <p>Ajouter aux favoris</p>
-                          </TooltipContent>
+                        <p>{t("addToWishlist")}</p>
+                      </TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
 
@@ -723,8 +709,8 @@ export default function ProductsPage() {
                             </Button>
                           </TooltipTrigger>
                           <TooltipContent>
-                            <p>Aperçu rapide</p>
-                          </TooltipContent>
+                        <p>{t("quickView")}</p>
+                      </TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
                     </div>
@@ -761,11 +747,11 @@ export default function ProductsPage() {
                           {product.inStock ? (
                             <span className="text-green-600 flex items-center">
                               <CheckCircle2 className="h-3 w-3 mr-1" />
-                              En stock
+                              {t("inStock")}
                             </span>
                           ) : (
                             <span className="text-red-500">
-                              Rupture de stock
+                              {t("outOfStock")}
                             </span>
                           )}
                         </div>
@@ -776,7 +762,7 @@ export default function ProductsPage() {
                         disabled={!product.inStock}
                         onClick={() => addToCart(product)}>
                         <ShoppingCart className="mr-2 h-4 w-4" />
-                        Ajouter au panier
+                        {t("addToCart")}
                       </Button>
                     </div>
                   </CardContent>

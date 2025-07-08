@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
+import { useTranslations } from "next-intl";
 
 // Types
 type Product = {
@@ -45,6 +46,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 // Cart Provider
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const { toast } = useToast();
+  const t = useTranslations("ProductsPage");
   const [cart, setCart] = useState<CartItem[]>([]);
   const [initialized, setInitialized] = useState(false);
 
@@ -90,16 +92,16 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         updatedCart[existingIndex].quantity += quantity;
 
         toast({
-          title: "Produit mis à jour",
-          description: `${product.name} a été mis à jour dans votre panier.`,
+          title: t("productUpdated"),
+          description: t("productUpdatedDescription", { productName: product.name }),
         });
 
         return updatedCart;
       } else {
         // Add new item
         toast({
-          title: "Produit ajouté",
-          description: `${product.name} a été ajouté à votre panier.`,
+          title: t("productAdded"),
+          description: t("productAddedDescription", { productName: product.name }),
         });
 
         return [...prevCart, { product, quantity, color, size }];
@@ -114,8 +116,8 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       newCart.splice(index, 1);
 
       toast({
-        title: "Produit retiré",
-        description: `${removedItem.product.name} a été retiré de votre panier.`,
+        title: t("productRemoved"),
+        description: t("productRemovedDescription", { productName: removedItem.product.name }),
       });
 
       return newCart;
@@ -135,8 +137,8 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const clearCart = () => {
     setCart([]);
     toast({
-      title: "Panier vidé",
-      description: "Tous les articles ont été retirés de votre panier.",
+      title: t("cartCleared"),
+      description: t("cartClearedDescription"),
     });
   };
 
@@ -177,6 +179,7 @@ const MiniCart = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { cart, removeFromCart, updateQuantity, cartTotal, cartCount } =
     useCart();
+  const t = useTranslations("ProductsPage");
 
   return (
     <div className="relative">
@@ -209,7 +212,7 @@ const MiniCart = () => {
               className="fixed right-0 top-0 h-full w-full sm:w-[400px] bg-background z-50 shadow-xl">
               <div className="flex flex-col h-full">
                 <div className="p-4 border-b flex justify-between items-center">
-                  <h2 className="font-bold text-xl">Votre panier</h2>
+                  <h2 className="font-bold text-xl">{t("yourCart")}</h2>
                   <Button
                     variant="ghost"
                     size="icon"
@@ -235,13 +238,13 @@ const MiniCart = () => {
                     <div className="h-full flex flex-col items-center justify-center text-center">
                       <ShoppingCart className="h-16 w-16 text-muted-foreground mb-4" />
                       <p className="text-xl font-medium mb-2">
-                        Votre panier est vide
+                        {t("cartEmpty")}
                       </p>
                       <p className="text-muted-foreground mb-6">
-                        Ajoutez des produits pour commencer vos achats
+                        {t("addProductsToStartShopping")}
                       </p>
                       <Button onClick={() => setIsOpen(false)} asChild>
-                        <Link href="/products">Voir nos produits</Link>
+                        <Link href="/products">{t("viewOurProducts")}</Link>
                       </Button>
                     </div>
                   ) : (
@@ -253,7 +256,7 @@ const MiniCart = () => {
                           <div className="w-20 h-20 bg-muted rounded relative overflow-hidden">
                             {/* Product image would go here */}
                             <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
-                              Image
+                              {t("image")}
                             </div>
                           </div>
                           <div className="flex-grow">
@@ -283,9 +286,9 @@ const MiniCart = () => {
                             </div>
                             {(item.color || item.size) && (
                               <div className="text-sm text-muted-foreground">
-                                {item.color && `Couleur: ${item.color}`}
+                                {item.color && `${t("color")}: ${item.color}`}
                                 {item.color && item.size && " | "}
-                                {item.size && `Taille: ${item.size}`}
+                                {item.size && `${t("size")}: ${item.size}`}
                               </div>
                             )}
                             <div className="flex justify-between items-center mt-2">
@@ -353,15 +356,15 @@ const MiniCart = () => {
                 {cart.length > 0 && (
                   <div className="border-t p-4">
                     <div className="flex justify-between mb-4">
-                      <span className="font-medium">Total</span>
+                      <span className="font-medium">{t("total")}</span>
                       <span className="font-bold">
                         {cartTotal.toFixed(2)} €
                       </span>
                     </div>
                     <div className="space-y-2">
-                      <Button className="w-full">Passer la commande</Button>
+                      <Button className="w-full" onClick={() => alert(t("placeOrder"))}>{t("placeOrder")}</Button>
                       <Button variant="outline" className="w-full" asChild>
-                        <Link href="/products">Continuer les achats</Link>
+                        <Link href="/products">{t("continueShopping")}</Link>
                       </Button>
                     </div>
                   </div>
@@ -378,16 +381,17 @@ const MiniCart = () => {
 // Products Navigation Component
 const ProductsNavigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const t = useTranslations("ProductsPage");
 
   const categories = [
-    "Protection de la tête",
-    "Protection oculaire",
-    "Protection auditive",
-    "Protection respiratoire",
-    "Vêtements de protection",
-    "Protection des mains",
-    "Protection des pieds",
-    "Protection antichute",
+    t("headProtection"),
+    t("eyeProtection"),
+    t("hearingProtection"),
+    t("respiratoryProtection"),
+    t("protectiveClothing"),
+    t("handProtection"),
+    t("footProtection"),
+    t("fallProtection"),
   ];
 
   return (
@@ -407,7 +411,7 @@ const ProductsNavigation = () => {
             <Link
               href="/products"
               className="font-medium hover:text-primary transition-colors">
-              Tous les produits
+              {t("allProducts")}
             </Link>
 
             {categories.slice(0, 5).map((category) => (
@@ -422,7 +426,7 @@ const ProductsNavigation = () => {
             {/* Dropdown for more categories */}
             <div className="relative group">
               <button className="flex items-center text-sm group-hover:text-primary transition-colors">
-                Plus de catégories
+                {t("moreCategories")}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -476,7 +480,7 @@ const ProductsNavigation = () => {
                 href="/products"
                 className="block font-medium hover:text-primary transition-colors py-2"
                 onClick={() => setIsOpen(false)}>
-                Tous les produits
+                {t("allProducts")}
               </Link>
 
               {categories.map((category) => (

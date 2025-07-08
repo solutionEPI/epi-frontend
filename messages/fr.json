@@ -413,7 +413,120 @@
     "verifying": "Vérification...",
     "verify": "Vérifier"
   },
-  "HomePage": {
+  "ProductsPage": {
+    "productUpdated": "Produit mis à jour",
+    "productUpdatedDescription": "{productName} a été mis à jour dans votre panier.",
+    "productAdded": "Produit ajouté",
+    "productAddedDescription": "{productName} a été ajouté à votre panier.",
+    "productRemoved": "Produit retiré",
+    "productRemovedDescription": "Le produit a été retiré de votre panier.",
+    "cartCleared": "Panier vidé",
+    "cartClearedDescription": "Tous les articles ont été retirés de votre panier.",
+    "yourCart": "Votre panier",
+    "cartEmpty": "Votre panier est vide",
+    "addProductsToStartShopping": "Ajoutez des produits pour commencer vos achats",
+    "viewOurProducts": "Voir nos produits",
+    "image": "Image",
+    "color": "Couleur",
+    "size": "Taille",
+    "total": "Total",
+    "placeOrder": "Passer la commande",
+    "continueShopping": "Continuer les achats",
+    "headProtection": "Protection de la tête",
+    "eyeProtection": "Protection oculaire",
+    "hearingProtection": "Protection auditive",
+    "respiratoryProtection": "Protection respiratoire",
+    "protectiveClothing": "Vêtements de protection",
+    "handProtection": "Protection des mains",
+    "footProtection": "Protection des pieds",
+    "fallProtection": "Protection antichute",
+    "allProducts": "Tous les produits",
+    "moreCategories": "Plus de catégories",
+    "searchProduct": "Rechercher un produit...",
+    "sortBy": "Trier par",
+    "featuredProducts": "Produits en vedette",
+    "priceAscending": "Prix croissant",
+    "priceDescending": "Prix décroissant",
+    "nameAscending": "Nom (A-Z)",
+    "topRated": "Mieux notés",
+    "filters": "Filtres",
+    "categories": "Catégories",
+    "allCategories": "Toutes les catégories",
+    "availability": "Disponibilité",
+    "inStockOnly": "En stock uniquement",
+    "newOnly": "Nouveautés uniquement",
+    "resetFilters": "Réinitialiser les filtres",
+    "productsFound": "{count, plural, one {# produit} other {# produits}} trouvé",
+    "noProductsFound": "Aucun produit trouvé",
+    "tryModifyingFilters": "Essayez de modifier vos filtres ou votre recherche.",
+    "new": "Nouveau",
+    "outOfStock": "Rupture de stock",
+    "addToWishlist": "Ajouter aux favoris",
+    "quickView": "Aperçu rapide",
+    "inStock": "En stock",
+    "addToCart": "Ajouter au panier"
+  },
+  "ProductsData": {
+    "product1": {
+      "name": "Casque de sécurité Premium",
+      "category": "Protection de la tête",
+      "subCategory": "Casques",
+      "description": "Casque de sécurité robuste avec coque en ABS, réglable et ventilé pour un confort optimal.",
+      "color1": "Jaune",
+      "color2": "Blanc",
+      "color3": "Rouge",
+      "color4": "Bleu"
+    },
+    "product2": {
+      "name": "Lunettes de protection anti-UV",
+      "category": "Protection oculaire",
+      "subCategory": "Lunettes",
+      "description": "Lunettes de protection légères avec protection anti-UV et anti-rayures.",
+      "color1": "Transparent",
+      "color2": "Teinté"
+    },
+    "product3": {
+      "name": "Gants anti-coupure niveau 5",
+      "category": "Protection des mains",
+      "subCategory": "Gants",
+      "description": "Gants résistants aux coupures de niveau 5, avec revêtement en polyuréthane pour une excellente préhension."
+    },
+    "product4": {
+      "name": "Chaussures de sécurité S3",
+      "category": "Protection des pieds",
+      "subCategory": "Chaussures",
+      "description": "Chaussures de sécurité S3 avec embout en composite et semelle anti-perforation."
+    },
+    "product5": {
+      "name": "Veste haute visibilité classe 3",
+      "category": "Vêtements de protection",
+      "subCategory": "Vêtements haute visibilité",
+      "description": "Veste haute visibilité classe 3 avec bandes réfléchissantes, imperméable et respirante.",
+      "color1": "Jaune fluo",
+      "color2": "Orange fluo"
+    },
+    "product6": {
+      "name": "Masque respiratoire FFP3",
+      "category": "Protection respiratoire",
+      "subCategory": "Masques",
+      "description": "Masque respiratoire FFP3 avec valve d'expiration pour un confort optimal."
+    },
+    "product7": {
+      "name": "Harnais de sécurité complet",
+      "category": "Protection antichute",
+      "subCategory": "Harnais",
+      "description": "Harnais de sécurité complet avec points d'ancrage dorsal et sternal."
+    },
+    "product8": {
+      "name": "Casque antibruit 32dB",
+      "category": "Protection auditive",
+      "subCategory": "Casques antibruit",
+      "description": "Casque antibruit avec atténuation de 32dB, léger et confortable pour un port prolongé.",
+      "color1": "Noir/Rouge",
+      "color2": "Noir/Jaune"
+    }
+  },
+  "HomePageLegacy": {
     "hero": {
       "title": "Solution EPI",
       "description": "Votre partenaire pour la sécurité au travail. Des équipements de protection individuelle conformes aux normes les plus strictes.",
@@ -521,6 +634,7 @@
     "contact": {
       "title": "Contactez-nous",
       "description": "Besoin d'équipements de protection ou de conseils ? Notre équipe d'experts est à votre disposition.",
+      "contactUs": "Nous contacter",
       "getInTouch": "Prenez contact",
       "teamAvailable": "Notre équipe est disponible pour répondre à toutes vos questions",
       "coordinates": "Coordonnées",
