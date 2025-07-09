@@ -73,7 +73,7 @@ const SafetyPattern = ({ className }: { className?: string }) => (
 );
 
 export default function HomePage() {
-  const t = useTranslations("HomePage");
+  const t = useTranslations("HomePageLegacy");
   const { data: session } = useSession();
   const heroRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -304,11 +304,11 @@ export default function HomePage() {
 
   // Safety standards
   const safetyStandards = [
-    "ISO 45001 - Systèmes de management de la santé et de la sécurité au travail",
-    "EN 166 - Protection individuelle de l'œil",
-    "EN 397 - Casques de protection pour l'industrie",
-    "EN 388 - Gants de protection contre les risques mécaniques",
-    "EN 352 - Protecteurs individuels contre le bruit",
+    t("standards.items.0"),
+    t("standards.items.1"),
+    t("standards.items.2"),
+    t("standards.items.3"),
+    t("standards.items.4"),
   ];
 
   return (

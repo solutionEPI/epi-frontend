@@ -227,12 +227,19 @@
     "loadingOptions": "Loading options...",
     "emptyCellValue": "-",
     "errorLoadingData": "Error loading data",
-    "errorLoadingConfig": "Error loading configuration"
+    "errorLoadingConfig": "Error loading configuration",
+    "generatedItemsTitle": "Generated Items",
+    "saveAll": "Save All",
+    "bulkSaveResultTitle": "Bulk Save Result",
+    "bulkSaveResultDescription": "Successfully saved {count} out of {total} items."
   },
   "ModelForm": {
     "saveSuccessTitle": "Item Saved",
     "saveSuccessDescription": "The item has been successfully saved.",
-    "saveErrorTitle": "Error Saving Item"
+    "saveErrorTitle": "Error Saving Item",
+    "bulkSaveResultTitle": "Bulk Save Result",
+    "bulkSaveResultDescription": "Successfully saved {count} out of {total} items.",
+    "defaultTab": "Default"
   },
   "SettingsPage": {
     "title": "Settings",
@@ -262,6 +269,7 @@
     "disable2FA": "Disable 2FA",
     "disabling": "Disabling...",
     "scanQrCode": "Scan the QR code below with your authenticator app.",
+    "qrCodeAlt": "QR Code for 2FA",
     "secretKey": "Or enter this secret key manually",
     "verificationCode": "Verification Code",
     "otpPlaceholder": "6-digit code",
@@ -287,79 +295,88 @@
     "seconds": "{count, plural, one {# second ago} other {# seconds ago}}"
   },
   "AiToolsPage": {
-    "title": "AI Power Tools",
-    "resultTitle": "Generated Result",
-    "copy": "Copy",
-    "regenerate": "Regenerate",
-    "generating": "Generating",
-    "copySuccess": "Copied!",
-    "copyDescription": "Copied to clipboard.",
+    "title": "AI Tools",
+    "resultTitle": "Result",
     "summarizer": {
       "title": "Text Summarizer",
-      "description": "Condense long text into key points.",
-      "textLabel": "Text to Summarize",
-      "textPlaceholder": "Enter the text you want to summarize here...",
+      "description": "Get a concise summary of a long text.",
+      "textLabel": "Text to summarize",
+      "textPlaceholder": "Paste your text here...",
       "button": "Summarize",
-      "buttonLoading": "Summarizing..."
+      "buttonLoading": "Summarizing...",
+      "prompt": "Summarize this text concisely:\\n{text}"
     },
     "translator": {
-      "title": "Language Translator",
-      "description": "Translate text between languages.",
-      "textLabel": "Text to Translate",
-      "textPlaceholder": "Enter the text to translate here...",
+      "title": "Translator",
+      "description": "Translate text from one language to another.",
+      "textLabel": "Text to translate",
+      "textPlaceholder": "Enter text...",
       "languageLabel": "Target Language",
-      "languagePlaceholder": "e.g., French, Spanish, German",
+      "languagePlaceholder": "e.g., Spanish",
       "button": "Translate",
-      "buttonLoading": "Translating..."
+      "buttonLoading": "Translating...",
+      "prompt": "Translate to {targetLang}:\\n{text}"
     },
     "emailDrafter": {
       "title": "Email Drafter",
-      "description": "Quickly draft professional emails.",
+      "description": "Draft a professional email on any topic.",
       "topicLabel": "Email Topic",
-      "topicPlaceholder": "e.g., project update, meeting request",
-      "button": "Generate",
-      "buttonLoading": "Generating..."
+      "topicPlaceholder": "e.g., Project update meeting",
+      "button": "Generate Email",
+      "buttonLoading": "Generating...",
+      "prompt": "Write a professional email about: {topic}"
     },
     "supportReply": {
       "title": "Support Reply Generator",
-      "description": "Craft polite responses to customers.",
+      "description": "Create helpful replies to customer questions.",
       "questionLabel": "Customer's Question",
-      "questionPlaceholder": "e.g., I can't log into my account",
-      "button": "Generate",
-      "buttonLoading": "Generating..."
+      "questionPlaceholder": "Paste the customer's message here...",
+      "button": "Generate Reply",
+      "buttonLoading": "Generating...",
+      "prompt": "Write a helpful and empathetic customer support reply to: {question}"
     },
     "socialPost": {
       "title": "Social Post Ideas",
-      "description": "Generate engaging social media posts.",
-      "topicLabel": "Topic or Event",
-      "topicPlaceholder": "e.g., product launch, company anniversary",
-      "button": "Generate",
-      "buttonLoading": "Generating..."
+      "description": "Get creative ideas for your social media.",
+      "topicLabel": "Topic",
+      "topicPlaceholder": "e.g., New product launch",
+      "button": "Get Ideas",
+      "buttonLoading": "Getting ideas...",
+      "prompt": "Give me 5 creative social media post ideas about: {topic}"
     },
     "marketingIdeas": {
       "title": "Marketing Ideas",
-      "description": "Brainstorm promotional campaigns.",
-      "productLabel": "Product or Service",
-      "productPlaceholder": "e.g., a new coffee brand, a SaaS",
-      "button": "Generate",
-      "buttonLoading": "Generating..."
+      "description": "Brainstorm marketing campaigns for a product.",
+      "productLabel": "Product/Service",
+      "productPlaceholder": "e.g., Eco-friendly water bottle",
+      "button": "Brainstorm",
+      "buttonLoading": "Brainstorming...",
+      "prompt": "Provide creative marketing campaign ideas for: {product}"
     },
     "newsletterThemes": {
-      "title": "Newsletter Theme Suggester",
-      "description": "Find inspiration for your next newsletter.",
+      "title": "Newsletter Themes",
+      "description": "Suggest themes for your next newsletter.",
       "audienceLabel": "Target Audience",
-      "audiencePlaceholder": "e.g., developers, small business owners",
-      "button": "Suggest",
-      "buttonLoading": "Suggesting..."
+      "audiencePlaceholder": "e.g., Tech enthusiasts",
+      "button": "Suggest Themes",
+      "buttonLoading": "Suggesting...",
+      "prompt": "Suggest 5 engaging newsletter themes for an audience of: {audience}"
     },
     "passwordGenerator": {
-      "title": "Secure Password Generator",
-      "description": "Create strong, random passwords.",
+      "title": "Password Generator",
+      "description": "Create a strong, secure password.",
       "lengthLabel": "Password Length",
-      "numbersLabel": "Include Numbers",
-      "symbolsLabel": "Include Symbols",
+      "numbersLabel": "Include numbers",
+      "symbolsLabel": "Include symbols",
       "button": "Generate Password",
-      "buttonLoading": "Generating..."
+      "buttonLoading": "Generating...",
+      "copySuccess": "Password Copied!",
+      "copyDescription": "The password has been copied to your clipboard.",
+      "prompt": "Generate a secure, random password with length {length}, {includeNumbers}, and {includeSymbols}. Output only the password.",
+      "promptNumbers": "including numbers",
+      "promptNoNumbers": "no numbers",
+      "promptSymbols": "including symbols",
+      "promptNoSymbols": "no symbols"
     }
   },
   "AuthErrorPage": {
@@ -390,7 +407,8 @@
     "signOutSuccessDescription": "You have been successfully signed out.",
     "failedToUpdatePreferences": "Failed to update preferences",
     "tools": "Tools",
-    "system": "System"
+    "system": "System",
+    "defaultSiteName": "Dashboard"
   },
   "Breadcrumb": {
     "more": "More"
@@ -518,6 +536,8 @@
     "importDescription": "Upload a CSV or JSON file to import data. Make sure the file structure matches the model schema.",
     "formatLabel": "File Format",
     "selectFormatPlaceholder": "Select a format",
+    "formatCsv": "CSV",
+    "formatJson": "JSON",
     "fileLabel": "File",
     "fileDescription": "Only .csv and .json files are accepted.",
     "cancel": "Cancel",
@@ -547,7 +567,8 @@
   },
   "Common": {
     "saving": "Saving...",
-    "save": "Save"
+    "save": "Save",
+    "generating": "Generating..."
   },
   "BlogPage": {
     "title": "Our Blog",
@@ -620,8 +641,8 @@
   },
   "AiGenerateButton": {
     "generateWithAI": "Generate with AI",
-    "successTitle": "Success",
-    "successDescription": "AI data has been populated in the form.",
+    "successTitle": "Generation Complete",
+    "successDescription": "Successfully generated {count} items.",
     "errorParsingTitle": "Error parsing AI response",
     "errorParsingDescription": "The AI response was not valid JSON. Please try again.",
     "noJsonError": "No valid JSON object found in the AI response.",
@@ -630,7 +651,9 @@
     "dialogDescription": "Describe the data you want to generate for this {modelName}. For example, 'a new user named John Doe who is a developer'.",
     "promptPlaceholder": "Enter your prompt here...",
     "generateButton": "Generate",
-    "generatingButton": "Generating..."
+    "generatingButton": "Generating...",
+    "generationCountLabel": "Number of items to generate",
+    "fullPrompt": "You are a data generation assistant for the Solution EPI platform.\\nYour task is to generate a complete JSON object based on a user's request and a provided model schema.\\nThe JSON object must be valid and should not be wrapped in markdown or any other text.\\n\\nUser Request: \\\"{prompt}\\\"\\n\\nModel: \\\"{modelName}\\\"\\n\\nInstructions:\\n1. Analyze the user request.\\n2. Look at the model schema below to understand the required fields, their types, and their languages.\\n3. **Crucially, you must provide plausible values for ALL fields in the schema, especially for all language variations (e.g., fields ending in _en, _fr, _de , etc... it can be less or more languages).** If the user's prompt is in one language, you must translate and adapt the content for the other languages.\\n4. The output must be ONLY the JSON object.\\n\\nModel Schema (for your reference):\\n{schema}"
   },
   "HomePageLegacy": {
     "hero": {
@@ -731,7 +754,14 @@
       "description": "Workplace safety is governed by strict standards. At Solution EPI, all our products comply with current international and local standards.",
       "legalObligation": "Legal obligation:",
       "employerMustProvidePPE": "The employer must provide appropriate PPE free of charge.",
-      "allProductsMeetStandards": "All our products meet the most demanding international standards"
+      "allProductsMeetStandards": "All our products meet the most demanding international standards",
+      "items": [
+        "ISO 45001 - Occupational health and safety management systems",
+        "EN 166 - Personal eye protection",
+        "EN 397 - Industrial safety helmets",
+        "EN 388 - Protective gloves against mechanical risks",
+        "EN 352 - Hearing protectors"
+      ]
     },
     "contact": {
       "title": "Contact Us",

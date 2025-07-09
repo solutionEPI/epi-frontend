@@ -27,7 +27,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/api";
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { useTranslations } from "next-intl";
-import { ThemeSwitcher } from "@/components/theme-switcher";
+
 import { useTheme } from "next-themes";
 import {
   DropdownMenu,
@@ -153,7 +153,8 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
     },
   });
 
-  const siteName = adminConfig?.frontend_options?.site_name || "Dashboard";
+  const siteName =
+    adminConfig?.frontend_options?.site_name || t("defaultSiteName");
   const logoUrl = adminConfig?.frontend_options?.logo_url;
 
   useEffect(() => {
@@ -373,7 +374,6 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
           <Link href="/" className="flex items-center">
             <span className="font-semibold text-lg">{siteName}</span>
           </Link>
-          <ThemeSwitcher />
         </header>
 
         <main className="flex-1 overflow-y-auto p-4 md:p-6">
@@ -484,7 +484,7 @@ function UserNav({
             isCollapsed ? "justify-center px-0" : "justify-start"
           )}>
           <Avatar className="h-8 w-8">
-            <AvatarImage src={user.avatar_url} />
+            <AvatarImage src={user.profile?.avatar} />
             <AvatarFallback>{getInitials(user.first_name)}</AvatarFallback>
           </Avatar>
           <AnimatePresence>
@@ -509,7 +509,7 @@ function UserNav({
         <DropdownMenuLabel className="font-normal">
           <div className="flex items-center gap-3">
             <Avatar className="h-10 w-10">
-              <AvatarImage src={user.avatar_url} />
+              <AvatarImage src={user.profile?.avatar} />
               <AvatarFallback>{getInitials(user.first_name)}</AvatarFallback>
             </Avatar>
             <div className="flex flex-col space-y-1">
@@ -524,7 +524,6 @@ function UserNav({
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <div className="p-2 flex items-center justify-around">
-          <ThemeSwitcher />
           <LanguageSwitcher />
         </div>
         <DropdownMenuSeparator />

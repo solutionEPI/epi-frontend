@@ -207,7 +207,10 @@
   "ModelForm": {
     "saveSuccessTitle": "Élément enregistré",
     "saveSuccessDescription": "L'élément a été enregistré avec succès.",
-    "saveErrorTitle": "Erreur lors de l'enregistrement de l'élément"
+    "saveErrorTitle": "Erreur lors de l'enregistrement de l'élément",
+    "bulkSaveResultTitle": "Résultat de la sauvegarde en masse",
+    "bulkSaveResultDescription": "{count} sur {total} articles enregistrés avec succès.",
+    "defaultTab": "Défaut"
   },
   "SettingsPage": {
     "title": "Paramètres",
@@ -237,6 +240,7 @@
     "disable2FA": "Désactiver la 2FA",
     "disabling": "Désactivation...",
     "scanQrCode": "Scannez le code QR ci-dessous avec votre application d'authentification.",
+    "qrCodeAlt": "Code QR pour 2FA",
     "secretKey": "Ou entrez cette clé secrète manuellement",
     "verificationCode": "Code de vérification",
     "otpPlaceholder": "code à 6 chiffres",
@@ -256,79 +260,101 @@
       "newPasswordLength": "Le nouveau mot de passe doit comporter au moins 8 caractères.",
       "passwordsDontMatch": "Les mots de passe ne correspondent pas.",
       "otpLength": "Votre mot de passe à usage unique doit comporter 6 caractères.",
-      "passwordRequiredFor2FA": "Votre mot de passe est requis pour désactiver la 2FA."
+      "passwordRequiredFor2FA": "Le mot de passe est requis pour désactiver la 2FA."
     },
     "seconds": "{count, plural, one {il y a # seconde} other {il y a # secondes}}"
   },
   "AiToolsPage": {
-    "title": "Outils d'IA",
-    "resultTitle": "Résultat généré",
+    "title": "Outils IA",
+    "resultTitle": "Résultat",
     "summarizer": {
       "title": "Résumeur de texte",
-      "description": "Condensez un long texte en points clés.",
+      "description": "Obtenez un résumé concis d'un long texte.",
       "textLabel": "Texte à résumer",
+      "textPlaceholder": "Collez votre texte ici...",
       "button": "Résumer",
-      "buttonLoading": "Résumé en cours..."
+      "buttonLoading": "Résumé en cours...",
+      "prompt": "Résumez ce texte de manière concise :\\n{text}"
     },
     "translator": {
-      "title": "Traducteur de langue",
-      "description": "Traduisez du texte entre les langues.",
+      "title": "Traducteur",
+      "description": "Traduisez du texte d'une langue à une autre.",
       "textLabel": "Texte à traduire",
+      "textPlaceholder": "Entrez le texte...",
       "languageLabel": "Langue cible",
-      "languagePlaceholder": "ex: français, espagnol, allemand",
+      "languagePlaceholder": "ex: Anglais",
       "button": "Traduire",
-      "buttonLoading": "Traduction en cours..."
+      "buttonLoading": "Traduction en cours...",
+      "prompt": "Traduire en {targetLang}:\\n{text}"
     },
     "emailDrafter": {
       "title": "Rédacteur d'e-mails",
-      "description": "Rédigez rapidement des e-mails professionnels.",
+      "description": "Rédigez un e-mail professionnel sur n'importe quel sujet.",
       "topicLabel": "Sujet de l'e-mail",
-      "topicPlaceholder": "ex: mise à jour du projet, demande de réunion",
-      "button": "Générer",
-      "buttonLoading": "Génération en cours..."
+      "topicPlaceholder": "ex: Réunion de mise à jour du projet",
+      "button": "Générer l'e-mail",
+      "buttonLoading": "Génération en cours...",
+      "prompt": "Rédigez un e-mail professionnel sur : {topic}"
     },
     "supportReply": {
       "title": "Générateur de réponses de support",
-      "description": "Rédigez des réponses polies aux clients.",
+      "description": "Créez des réponses utiles aux questions des clients.",
       "questionLabel": "Question du client",
-      "questionPlaceholder": "ex: je n'arrive pas à me connecter",
-      "button": "Générer",
-      "buttonLoading": "Génération en cours..."
+      "questionPlaceholder": "Collez le message du client ici...",
+      "button": "Générer une réponse",
+      "buttonLoading": "Génération en cours...",
+      "prompt": "Rédigez une réponse de support client utile et empathique à : {question}"
     },
     "socialPost": {
       "title": "Idées de publications sociales",
-      "description": "Générez des publications attrayantes.",
-      "topicLabel": "Sujet ou événement",
-      "topicPlaceholder": "ex: lancement de produit, anniversaire",
-      "button": "Générer",
-      "buttonLoading": "Génération en cours..."
+      "description": "Obtenez des idées créatives pour vos réseaux sociaux.",
+      "topicLabel": "Sujet",
+      "topicPlaceholder": "ex: Lancement d'un nouveau produit",
+      "button": "Obtenir des idées",
+      "buttonLoading": "Recherche d'idées...",
+      "prompt": "Donnez-moi 5 idées créatives de publications sur les réseaux sociaux à propos de : {topic}"
     },
     "marketingIdeas": {
-      "title": "Idées de marketing",
-      "description": "Brainstormez des campagnes promotionnelles.",
-      "productLabel": "Produit ou service",
-      "productPlaceholder": "ex: une nouvelle marque de café, un SaaS",
-      "button": "Générer",
-      "buttonLoading": "Génération en cours..."
+      "title": "Idées marketing",
+      "description": "Réfléchissez à des campagnes marketing pour un produit.",
+      "productLabel": "Produit/Service",
+      "productPlaceholder": "ex: Bouteille d'eau écologique",
+      "button": "Brainstormer",
+      "buttonLoading": "Brainstorming en cours...",
+      "prompt": "Proposez des idées de campagnes marketing créatives pour : {product}"
     },
     "newsletterThemes": {
-      "title": "Suggesteur de thèmes de newsletter",
-      "description": "Trouvez l'inspiration pour votre prochaine newsletter.",
+      "title": "Thèmes de newsletter",
+      "description": "Suggérez des thèmes pour votre prochaine newsletter.",
       "audienceLabel": "Public cible",
-      "audiencePlaceholder": "ex: développeurs, propriétaires de PME",
-      "button": "Suggérer",
-      "buttonLoading": "Suggestion en cours..."
+      "audiencePlaceholder": "ex: Amateurs de technologie",
+      "button": "Suggérer des thèmes",
+      "buttonLoading": "Suggestion en cours...",
+      "prompt": "Suggérez 5 thèmes de newsletter attrayants pour un public de : {audience}"
     },
     "passwordGenerator": {
-      "title": "Générateur de mot de passe sécurisé",
-      "description": "Créez des mots de passe forts et aléatoires.",
+      "title": "Générateur de mots de passe",
+      "description": "Créez un mot de passe fort et sécurisé.",
       "lengthLabel": "Longueur du mot de passe",
       "numbersLabel": "Inclure des chiffres",
       "symbolsLabel": "Inclure des symboles",
-      "button": "Générer le mot de passe",
+      "button": "Générer un mot de passe",
       "buttonLoading": "Génération en cours...",
-      "copySuccess": "Copié !",
-      "copyDescription": "Mot de passe copié dans le presse-papiers."
+      "copySuccess": "Mot de passe copié !",
+      "copyDescription": "Le mot de passe a été copié dans votre presse-papiers.",
+      "prompt": "Générez un mot de passe sécurisé et aléatoire d'une longueur de {length}, {includeNumbers} et {includeSymbols}. Affichez uniquement le mot de passe.",
+      "promptNumbers": "incluant des chiffres",
+      "promptNoNumbers": "sans chiffres",
+      "promptSymbols": "incluant des symboles",
+      "promptNoSymbols": "sans symboles"
+    },
+    "aiGenerateButton": {
+      "promptLabel": "Invite",
+      "promptPlaceholder": "Entrez votre invite ici...",
+      "generateButton": "Générer",
+      "generatingButton": "Génération...",
+      "generationCountLabel": "Nombre d'éléments à générer",
+      "fullPrompt": "Vous êtes un assistant de génération de données pour la plateforme Solution EPI.\\nVotre tâche est de générer un objet JSON complet basé sur la demande d'un utilisateur et un schéma de modèle fourni.\\nL'objet JSON doit être valide et ne doit pas être enveloppé dans du markdown ou tout autre texte.\\n\\nDemande de l'utilisateur : \\\"{prompt}\\\"\\n\\nModèle : \\\"{modelName}\\\"\\n\\nInstructions :\\n1. Analysez la demande de l'utilisateur.\\n2. Examinez le schéma du modèle ci-dessous pour comprendre les champs requis, leurs types et leurs langues.\\n3. **Crucialement, vous devez fournir des valeurs plausibles pour TOUS les champs du schéma, en particulier pour toutes les variations de langue (par exemple, les champs se terminant par _en, _fr, _de, etc... il peut y avoir plus ou moins de langues).** Si l'invite de l'utilisateur est dans une seule langue, vous devez traduire et adapter le contenu pour les autres langues.\\n4. La sortie doit être UNIQUEMENT l'objet JSON.\\n\\nSchéma du modèle (pour votre référence) :\\n{schema}"
     }
   },
   "AuthErrorPage": {
@@ -354,7 +380,8 @@
     "blog": "Blog",
     "models": "Modèles",
     "settings": "Paramètres",
-    "signOut": "Se déconnecter"
+    "signOut": "Se déconnecter",
+    "defaultSiteName": "Tableau de bord"
   },
   "Time": {
     "years": "{count, plural, one {il y a # an} other {il y a # ans}}",
@@ -369,6 +396,8 @@
     "importDescription": "Téléchargez un fichier CSV ou JSON pour importer des données. Assurez-vous que la structure du fichier correspond au schéma du modèle.",
     "formatLabel": "Format de fichier",
     "selectFormatPlaceholder": "Sélectionnez un format",
+    "formatCsv": "CSV",
+    "formatJson": "JSON",
     "fileLabel": "Fichier",
     "fileDescription": "Seuls les fichiers .csv et .json sont acceptés.",
     "cancel": "Annuler",
@@ -629,7 +658,14 @@
       "description": "La sécurité au travail est encadrée par des normes strictes. Chez Solution EPI, tous nos produits sont conformes aux normes internationales et locales en vigueur.",
       "legalObligation": "Obligation légale:",
       "employerMustProvidePPE": "L'employeur doit fournir gratuitement les EPI adaptés aux risques.",
-      "allProductsMeetStandards": "Tous nos produits respectent les standards internationaux les plus exigeants"
+      "allProductsMeetStandards": "Tous nos produits respectent les standards internationaux les plus exigeants",
+      "items": [
+        "ISO 45001 - Systèmes de management de la santé et de la sécurité au travail",
+        "EN 166 - Protection individuelle de l'œil",
+        "EN 397 - Casques de protection pour l'industrie",
+        "EN 388 - Gants de protection contre les risques mécaniques",
+        "EN 352 - Protecteurs individuels contre le bruit"
+      ]
     },
     "contact": {
       "title": "Contactez-nous",

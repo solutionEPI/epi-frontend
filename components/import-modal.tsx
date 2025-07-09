@@ -106,8 +106,8 @@ export function ImportModal({
                     <SelectValue placeholder={t("selectFormatPlaceholder")} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="csv">CSV</SelectItem>
-                    <SelectItem value="json">JSON</SelectItem>
+                    <SelectItem value="csv">{t("formatCsv")}</SelectItem>
+                    <SelectItem value="json">{t("formatJson")}</SelectItem>
                   </SelectContent>
                 </Select>
               )}

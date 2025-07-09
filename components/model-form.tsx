@@ -360,10 +360,6 @@ export function ModelForm({
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <div className="flex justify-end">
-          <AiGenerateButton modelConfig={modelConfig} form={form} />
-        </div>
-
         <div className="p-6 border rounded-lg space-y-6">
           {nonTranslationFields.map(([fieldName, fieldConfig]) => (
             <React.Fragment key={fieldName}>
@@ -373,11 +369,22 @@ export function ModelForm({
         </div>
 
         {translationFields.length > 0 && (
-          <Tabs defaultValue={languages[0] || "en"}>
+          <Tabs
+            defaultValue={
+              translationFields.some(([, config]) =>
+                config.name.endsWith("_default")
+              )
+                ? "default"
+                : languages[0] || "default"
+            }
+            className="w-full">
             <TabsList>
+              {translationFields.some(([, config]) =>
+                config.name.endsWith("_default")
+              ) && <TabsTrigger value="default">{t("defaultTab")}</TabsTrigger>}
               {languages.map((lang) => (
                 <TabsTrigger key={lang} value={lang!}>
-                  {lang!.toUpperCase()}
+                  {t(`languages.${lang}`)}
                 </TabsTrigger>
               ))}
             </TabsList>

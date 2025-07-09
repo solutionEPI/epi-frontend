@@ -104,7 +104,14 @@
       "description": "Arbeitssicherheit wird durch strenge Normen geregelt. Bei Solution EPI entsprechen alle unsere Produkte den geltenden internationalen und lokalen Normen.",
       "legalObligation": "Gesetzliche Verpflichtung:",
       "employerMustProvidePPE": "Der Arbeitgeber muss geeignete PSA kostenlos zur Verfügung stellen.",
-      "allProductsMeetStandards": "Alle unsere Produkte erfüllen die anspruchsvollsten internationalen Standards"
+      "allProductsMeetStandards": "Alle unsere Produkte erfüllen die anspruchsvollsten internationalen Standards",
+      "items": [
+        "ISO 45001 - Managementsysteme für Sicherheit und Gesundheit bei der Arbeit",
+        "EN 166 - Persönlicher Augenschutz",
+        "EN 397 - Industrieschutzhelme",
+        "EN 388 - Schutzhandschuhe gegen mechanische Risiken",
+        "EN 352 - Gehörschützer"
+      ]
     },
     "contact": {
       "title": "Kontaktieren Sie uns",
@@ -266,7 +273,10 @@
   "ModelForm": {
     "saveSuccessTitle": "Element gespeichert",
     "saveSuccessDescription": "Das Element wurde erfolgreich gespeichert.",
-    "saveErrorTitle": "Fehler beim Speichern des Elements"
+    "saveErrorTitle": "Fehler beim Speichern des Elements",
+    "bulkSaveResultTitle": "Ergebnis der Massenspeicherung",
+    "bulkSaveResultDescription": "{count} von {total} Elementen erfolgreich gespeichert.",
+    "defaultTab": "Standard"
   },
   "SettingsPage": {
     "title": "Einstellungen",
@@ -296,6 +306,7 @@
     "disable2FA": "2FA deaktivieren",
     "disabling": "Wird deaktiviert...",
     "scanQrCode": "Scannen Sie den QR-Code unten mit Ihrer Authenticator-App.",
+    "qrCodeAlt": "QR-Code für 2FA",
     "secretKey": "Oder geben Sie diesen geheimen Schlüssel manuell ein",
     "verificationCode": "Bestätigungscode",
     "otpPlaceholder": "6-stelliger Code",
@@ -321,80 +332,94 @@
   },
   "AiToolsPage": {
     "title": "KI-Werkzeuge",
-    "resultTitle": "Generiertes Ergebnis",
-    "copy": "Kopieren",
-    "regenerate": "Neu generieren",
-    "generating": "Wird generiert",
-    "copySuccess": "Kopiert!",
-    "copyDescription": "In die Zwischenablage kopiert.",
+    "resultTitle": "Ergebnis",
     "summarizer": {
       "title": "Text-Zusammenfasser",
-      "description": "Langen Text auf Kernpunkte reduzieren.",
+      "description": "Erhalten Sie eine prägnante Zusammenfassung eines langen Textes.",
       "textLabel": "Zusammenzufassender Text",
-      "textPlaceholder": "Geben Sie hier den Text ein, den Sie zusammenfassen möchten...",
+      "textPlaceholder": "Fügen Sie Ihren Text hier ein...",
       "button": "Zusammenfassen",
       "buttonLoading": "Wird zusammengefasst...",
-      "copySuccess": "Kopiert!",
-      "copyDescription": "Passwort in die Zwischenablage kopiert."
+      "prompt": "Fassen Sie diesen Text kurz und prägnant zusammen:\\n{text}"
     },
     "translator": {
-      "title": "Sprachübersetzer",
-      "description": "Text zwischen Sprachen übersetzen.",
+      "title": "Übersetzer",
+      "description": "Übersetzen Sie Text von einer Sprache in eine andere.",
       "textLabel": "Zu übersetzender Text",
-      "textPlaceholder": "Geben Sie hier den zu übersetzenden Text ein...",
+      "textPlaceholder": "Text eingeben...",
       "languageLabel": "Zielsprache",
-      "languagePlaceholder": "z.B. Französisch, Spanisch, Deutsch",
+      "languagePlaceholder": "z.B. Englisch",
       "button": "Übersetzen",
-      "buttonLoading": "Übersetze..."
+      "buttonLoading": "Übersetzung läuft...",
+      "prompt": "Übersetzen nach {targetLang}:\\n{text}"
     },
     "emailDrafter": {
       "title": "E-Mail-Verfasser",
-      "description": "Schnell professionelle E-Mails entwerfen.",
+      "description": "Verfassen Sie eine professionelle E-Mail zu einem beliebigen Thema.",
       "topicLabel": "E-Mail-Thema",
-      "topicPlaceholder": "z.B. Projekt-Update, Terminanfrage",
-      "button": "Generieren",
-      "buttonLoading": "Generiere..."
+      "topicPlaceholder": "z.B. Projekt-Update-Meeting",
+      "button": "E-Mail generieren",
+      "buttonLoading": "Wird generiert...",
+      "prompt": "Schreiben Sie eine professionelle E-Mail über: {topic}"
     },
     "supportReply": {
       "title": "Support-Antwort-Generator",
-      "description": "Höfliche Antworten an Kunden verfassen.",
+      "description": "Erstellen Sie hilfreiche Antworten auf Kundenfragen.",
       "questionLabel": "Kundenfrage",
-      "questionPlaceholder": "z.B. Ich kann mich nicht in mein Konto einloggen",
-      "button": "Generieren",
-      "buttonLoading": "Generiere..."
+      "questionPlaceholder": "Fügen Sie die Nachricht des Kunden hier ein...",
+      "button": "Antwort generieren",
+      "buttonLoading": "Wird generiert...",
+      "prompt": "Schreiben Sie eine hilfreiche und einfühlsame Kundensupport-Antwort auf: {question}"
     },
     "socialPost": {
       "title": "Social-Media-Post-Ideen",
-      "description": "Ansprechende Social-Media-Beiträge erstellen.",
-      "topicLabel": "Thema oder Ereignis",
-      "topicPlaceholder": "z.B. Produkteinführung, Firmenjubiläum",
-      "button": "Generieren",
-      "buttonLoading": "Generiere..."
+      "description": "Holen Sie sich kreative Ideen für Ihre sozialen Medien.",
+      "topicLabel": "Thema",
+      "topicPlaceholder": "z.B. Einführung eines neuen Produkts",
+      "button": "Ideen erhalten",
+      "buttonLoading": "Ideen werden gesucht...",
+      "prompt": "Geben Sie mir 5 kreative Social-Media-Post-Ideen zu: {topic}"
     },
     "marketingIdeas": {
       "title": "Marketing-Ideen",
-      "description": "Brainstorming für Werbekampagnen.",
-      "productLabel": "Produkt oder Dienstleistung",
-      "productPlaceholder": "z.B. eine neue Kaffeemarke, ein SaaS",
-      "button": "Generieren",
-      "buttonLoading": "Generiere..."
+      "description": "Brainstorming von Marketingkampagnen für ein Produkt.",
+      "productLabel": "Produkt/Dienstleistung",
+      "productPlaceholder": "z.B. Umweltfreundliche Wasserflasche",
+      "button": "Brainstorming",
+      "buttonLoading": "Brainstorming läuft...",
+      "prompt": "Liefern Sie kreative Marketingkampagnen-Ideen für: {product}"
     },
     "newsletterThemes": {
-      "title": "Newsletter-Themen-Vorschlag",
-      "description": "Inspiration für Ihren nächsten Newsletter finden.",
+      "title": "Newsletter-Themen",
+      "description": "Schlagen Sie Themen für Ihren nächsten Newsletter vor.",
       "audienceLabel": "Zielgruppe",
-      "audiencePlaceholder": "z.B. Entwickler, Kleinunternehmer",
-      "button": "Vorschlagen",
-      "buttonLoading": "Schlage vor..."
+      "audiencePlaceholder": "z.B. Technikbegeisterte",
+      "button": "Themen vorschlagen",
+      "buttonLoading": "Wird vorgeschlagen...",
+      "prompt": "Schlagen Sie 5 ansprechende Newsletter-Themen für ein Publikum von: {audience} vor"
     },
     "passwordGenerator": {
-      "title": "Sicherer Passwort-Generator",
-      "description": "Starke, zufällige Passwörter erstellen.",
+      "title": "Passwort-Generator",
+      "description": "Erstellen Sie ein starkes, sicheres Passwort.",
       "lengthLabel": "Passwortlänge",
       "numbersLabel": "Zahlen einschließen",
       "symbolsLabel": "Symbole einschließen",
       "button": "Passwort generieren",
-      "buttonLoading": "Generiere..."
+      "buttonLoading": "Wird generiert...",
+      "copySuccess": "Passwort kopiert!",
+      "copyDescription": "Das Passwort wurde in Ihre Zwischenablage kopiert.",
+      "prompt": "Generieren Sie ein sicheres, zufälliges Passwort mit der Länge {length}, {includeNumbers} und {includeSymbols}. Geben Sie nur das Passwort aus.",
+      "promptNumbers": "einschließlich Zahlen",
+      "promptNoNumbers": "keine Zahlen",
+      "promptSymbols": "einschließlich Symbolen",
+      "promptNoSymbols": "keine Symbole"
+    },
+    "aiGenerateButton": {
+      "promptPlaceholder": "Geben Sie hier Ihre Anweisung ein...",
+      "generateButton": "Generieren",
+      "generatingButton": "Wird generiert...",
+      "generationCountLabel": "Anzahl der zu generierenden Elemente",
+      "fullPrompt": "Sie sind ein Assistent zur Datengenerierung für die Solution EPI-Plattform.\\nIhre Aufgabe ist es, ein vollständiges JSON-Objekt basierend auf der Anfrage eines Benutzers und einem bereitgestellten Modellschema zu generieren.\\nDas JSON-Objekt muss gültig sein und darf nicht in Markdown oder einem anderen Text verpackt sein.\\n\\nBenutzeranfrage: \\\"{prompt}\\\"\\n\\nModell: \\\"{modelName}\\\"\\n\\nAnweisungen:\\n1. Analysieren Sie die Benutzeranfrage.\\n2. Sehen Sie sich das untenstehende Modellschema an, um die erforderlichen Felder, ihre Typen und ihre Sprachen zu verstehen.\\n3. **Entscheidend ist, dass Sie plausible Werte für ALLE Felder im Schema angeben, insbesondere für alle Sprachvarianten (z. B. Felder, die auf _en, _fr, _de usw. enden... es können mehr oder weniger Sprachen sein).** Wenn die Anweisung des Benutzers in einer Sprache verfasst ist, müssen Sie den Inhalt für die anderen Sprachen übersetzen und anpassen.\\n4. Die Ausgabe muss NUR das JSON-Objekt sein.\\n\\nModellschema (zu Ihrer Information):\\n{schema}"
     }
   },
   "AuthErrorPage": {
@@ -421,7 +446,8 @@
     "blog": "Blog",
     "models": "Modelle",
     "settings": "Einstellungen",
-    "signOut": "Abmelden"
+    "signOut": "Abmelden",
+    "defaultSiteName": "Dashboard"
   },
   "Time": {
     "years": "{count, plural, one {vor # Jahr} other {vor # Jahren}}",
@@ -436,6 +462,8 @@
     "importDescription": "Laden Sie eine CSV- oder JSON-Datei hoch, um Daten zu importieren. Stellen Sie sicher, dass die Dateistruktur dem Modellschema entspricht.",
     "formatLabel": "Dateiformat",
     "selectFormatPlaceholder": "Wählen Sie ein Format",
+    "formatCsv": "CSV",
+    "formatJson": "JSON",
     "fileLabel": "Datei",
     "fileDescription": "Nur .csv- und .json-Dateien werden akzeptiert.",
     "cancel": "Abbrechen",

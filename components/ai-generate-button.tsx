@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useCompletion } from "@ai-sdk/react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -12,6 +11,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -19,64 +20,27 @@ import { useTranslations } from "next-intl";
 
 interface AiGenerateButtonProps {
   modelConfig: any;
-  form: any; // react-hook-form useForm return type
+  onGenerate: (data: any) => void; // Callback to handle generated data
+  isGenerating: boolean;
+  setIsGenerating: (isGenerating: boolean) => void;
 }
 
-export function AiGenerateButton({ modelConfig, form }: AiGenerateButtonProps) {
+export function AiGenerateButton({
+  modelConfig,
+  onGenerate,
+  isGenerating,
+  setIsGenerating,
+}: AiGenerateButtonProps) {
   const t = useTranslations("AiGenerateButton");
   const [isOpen, setIsOpen] = useState(false);
   const [prompt, setPrompt] = useState("");
+  const [count, setCount] = useState(1);
   const { toast } = useToast();
 
-  const { complete, isLoading } = useCompletion({
-    api: "/api/ai/generate",
-    onFinish: (prompt, completion) => {
-      try {
-        // The AI might wrap the JSON in markdown or other text.
-        // We'll extract the JSON part of the response.
-        const match = completion.match(/{[\s\S]*}/);
-        if (!match) {
-          throw new Error(t("noJsonError"));
-        }
-        const jsonString = match[0];
-        const jsonResponse = JSON.parse(jsonString);
+  const handleGenerate = async () => {
+    setIsGenerating(true);
+    setIsOpen(false);
 
-        Object.keys(jsonResponse).forEach((key) => {
-          if (modelConfig.fields[key]) {
-            form.setValue(key, jsonResponse[key], { shouldValidate: true });
-          }
-        });
-        toast({
-          title: t("successTitle"),
-          description: t("successDescription"),
-        });
-        setIsOpen(false);
-      } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : t("errorParsingDescription");
-        toast({
-          variant: "destructive",
-          title: t("errorParsingTitle"),
-          description: errorMessage,
-        });
-        console.error(
-          "AI response parsing error:",
-          error,
-          "Raw completion from AI:",
-          completion
-        );
-      }
-    },
-    onError: (err) => {
-      toast({
-        variant: "destructive",
-        title: t("generationErrorTitle"),
-        description: err.message,
-      });
-    },
-  });
-
-  const handleGenerate = () => {
     const schema = Object.entries(modelConfig.fields)
       .filter(([, fieldConfig]: [string, any]) => fieldConfig.editable)
       .reduce((acc, [fieldName, fieldConfig]: [string, any]) => {
@@ -92,33 +56,81 @@ export function AiGenerateButton({ modelConfig, form }: AiGenerateButtonProps) {
         return acc;
       }, {} as Record<string, any>);
 
-    const fullPrompt = `
-      You are a data generation assistant for the Solution EPI platform.
-      Your task is to generate a complete JSON object based on a user's request and a provided model schema.
-      The JSON object must be valid and should not be wrapped in markdown or any other text.
+    const fullPrompt = t("fullPrompt", {
+      prompt,
+      modelName: modelConfig.verbose_name,
+      schema: JSON.stringify(schema, null, 2),
+    });
 
-      User Request: "${prompt}"
+    try {
+      const response = await fetch("/api/ai/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: fullPrompt, count }),
+      });
 
-      Model: "${modelConfig.verbose_name}"
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error.message || "An unknown error occurred");
+      }
 
-      Instructions:
-      1. Analyze the user request.
-      2. Look at the model schema below to understand the required fields, their types, and their languages.
-      3. **Crucially, you must provide plausible values for ALL fields in the schema, especially for all language variations (e.g., fields ending in _en, _fr, _de , etc... it can be less or more languages).** If the user's prompt is in one language, you must translate and adapt the content for the other languages.
-      4. The output must be ONLY the JSON object.
+      if (!response.body) {
+        throw new Error("The response body is empty.");
+      }
 
-      Model Schema (for your reference):
-      ${JSON.stringify(schema, null, 2)}
-    `;
-    complete(fullPrompt);
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) {
+          if (buffer.trim()) {
+            onGenerate(JSON.parse(buffer));
+          }
+          break;
+        }
+
+        buffer += decoder.decode(value, { stream: true });
+        const parts = buffer.split("\n---\n");
+
+        for (let i = 0; i < parts.length - 1; i++) {
+          const part = parts[i];
+          if (part.trim()) {
+            try {
+              onGenerate(JSON.parse(part));
+            } catch (e) {
+              console.error("Failed to parse JSON chunk:", part, e);
+            }
+          }
+        }
+        buffer = parts[parts.length - 1];
+      }
+
+      toast({
+        title: t("successTitle"),
+        description: t("successDescription", { count }),
+      });
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : t("errorParsingDescription");
+      toast({
+        variant: "destructive",
+        title: t("generationErrorTitle"),
+        description: errorMessage,
+      });
+      console.error("AI generation error:", error);
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">
+        <Button variant="outline" disabled={isGenerating}>
           <Sparkles className="h-4 w-4 mr-2" />
-          {t("generateWithAI")}
+          {isGenerating ? t("generatingButton") : t("generateWithAI")}
         </Button>
       </DialogTrigger>
       <DialogContent>
@@ -128,18 +140,35 @@ export function AiGenerateButton({ modelConfig, form }: AiGenerateButtonProps) {
             {t("dialogDescription", { modelName: modelConfig.verbose_name })}
           </DialogDescription>
         </DialogHeader>
-        <Textarea
-          placeholder={t("promptPlaceholder")}
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-          rows={4}
-        />
+        <div className="space-y-4">
+          <Textarea
+            placeholder={t("promptPlaceholder")}
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+            rows={4}
+          />
+          <div className="space-y-2">
+            <Label htmlFor="generation-count">
+              {t("generationCountLabel")}
+            </Label>
+            <Input
+              id="generation-count"
+              type="number"
+              value={count}
+              onChange={(e) =>
+                setCount(Math.max(1, parseInt(e.target.value, 10) || 1))
+              }
+              min="1"
+              max="100"
+            />
+          </div>
+        </div>
         <DialogFooter>
           <Button
             onClick={handleGenerate}
-            disabled={isLoading || !prompt}
+            disabled={isGenerating || !prompt}
             className="w-full">
-            {isLoading ? t("generatingButton") : t("generateButton")}
+            {isGenerating ? t("generatingButton") : t("generateButton")}
           </Button>
         </DialogFooter>
       </DialogContent>

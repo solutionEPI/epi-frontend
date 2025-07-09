@@ -107,6 +107,10 @@ export interface UserProfile {
   email: string;
   first_name: string;
   last_name: string;
+  is_superuser?: boolean;
+  profile?: {
+    avatar?: string;
+  };
   preferences: {
     theme?: string;
     sidebar_collapsed?: boolean;
