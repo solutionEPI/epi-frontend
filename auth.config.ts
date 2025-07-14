@@ -32,6 +32,7 @@ export const authConfig = {
   pages: {
     signIn: "/login",
     error: "/auth/error",
+    newUser: "/register",
   },
   secret:
     process.env.NEXTAUTH_SECRET ||

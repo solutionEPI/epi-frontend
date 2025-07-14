@@ -202,7 +202,15 @@
     "createTitle": "Créer un nouveau {modelName}",
     "loadModelConfigFailed": "Échec du chargement de la configuration pour le modèle: {modelName}",
     "loadModelDataFailed": "Échec du chargement des données pour le modèle: {modelName}",
-    "loadingRelationOptions": "Chargement des options pour {fieldName}..."
+    "loadingRelationOptions": "Chargement des options pour {fieldName}...",
+    "loadingOptions": "Chargement des options...",
+    "emptyCellValue": "-",
+    "errorLoadingData": "Erreur lors du chargement des données",
+    "errorLoadingConfig": "Erreur lors du chargement de la configuration",
+    "generatedItemsTitle": "Éléments générés",
+    "saveAll": "Tout enregistrer",
+    "bulkSaveResultTitle": "Résultat de l'enregistrement en masse",
+    "bulkSaveResultDescription": "{count} sur {total} éléments enregistrés avec succès."
   },
   "ModelForm": {
     "saveSuccessTitle": "Élément enregistré",
@@ -680,5 +688,21 @@
       "email": "Email",
       "requestQuote": "Demander un devis"
     }
+  },
+  "AiGenerateButton": {
+    "generateWithAI": "Générer avec l'IA",
+    "successTitle": "Génération terminée",
+    "successDescription": "{count} éléments générés avec succès.",
+    "errorParsingTitle": "Erreur lors de l'analyse de la réponse de l'IA",
+    "errorParsingDescription": "La réponse de l'IA n'était pas un JSON valide. Veuillez réessayer.",
+    "noJsonError": "Aucun objet JSON valide trouvé dans la réponse de l'IA.",
+    "generationErrorTitle": "Erreur de génération de l'IA",
+    "dialogTitle": "Générer avec l'IA",
+    "dialogDescription": "Décrivez les données que vous souhaitez générer pour ce {modelName}. Par exemple, 'un nouvel utilisateur nommé Jean Dupont qui est développeur'.",
+    "promptPlaceholder": "Entrez votre invite ici...",
+    "generateButton": "Générer",
+    "generatingButton": "Génération en cours...",
+    "generationCountLabel": "Nombre d'éléments à générer",
+    "fullPrompt": "Vous êtes un assistant de génération de données pour la plateforme Solution EPI.\nVotre tâche est de générer un objet JSON complet basé sur la demande d'un utilisateur et un schéma de modèle fourni.\nL'objet JSON doit être valide et ne doit pas être enveloppé dans du markdown ou tout autre texte.\n\nDemande de l'utilisateur : \"{prompt}\"\n\nModèle : \"{modelName}\"\n\nInstructions :\n1. Analysez la demande de l'utilisateur.\n2. Examinez le schéma du modèle ci-dessous pour comprendre les champs requis, leurs types et leurs langues.\n3. **Crucialement, vous devez fournir des valeurs plausibles pour TOUS les champs du schéma, en particulier pour toutes les variations de langue (par exemple, les champs se terminant par _en, _fr, _de, etc... il peut y avoir plus ou moins de langues).** Si l'invite de l'utilisateur est dans une seule langue, vous devez traduire et adapter le contenu pour les autres langues.\n4. La sortie doit être UNIQUEMENT l'objet JSON.\n\nSchéma du modèle (pour votre référence) :\n{schema}\n\nImportant : Votre sortie finale doit être un seul objet JSON brut. N'incluez aucun texte explicatif, formatage markdown ou quoi que ce soit d'autre avant ou après l'objet JSON. La réponse doit commencer par '{' et se terminer par '}'."
   }
 }

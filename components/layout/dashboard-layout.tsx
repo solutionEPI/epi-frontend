@@ -191,7 +191,9 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
   };
 
   const isActive = (path: string) => {
-    return pathname === path || (path !== "/" && pathname.startsWith(path));
+    const locale = pathname.split("/")[1];
+    const pathWithLocale = `/${locale}${path}`;
+    return pathname === pathWithLocale || (path !== "/" && pathname.startsWith(pathWithLocale));
   };
 
   if (!session) return null;
@@ -264,7 +266,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                   {modelKeys.map((modelKey) => {
                     const model = adminConfig.models[modelKey];
                     if (!model) return null;
-                    const href = `/dashboard/models/${model.model_name}`;
+                    const href = `/models/${model.model_name}`;
                     return (
                       <SidebarLink
                         key={href}
@@ -400,16 +402,22 @@ function SidebarLink({
   label,
   isCollapsed,
   isActive,
+  useLocale = true,
 }: {
   href: string;
   icon: React.ReactNode;
   label: string;
   isCollapsed: boolean;
   isActive: boolean;
+  useLocale?: boolean;
 }) {
+  const pathname = usePathname();
+  const locale = pathname.split("/")[1];
+  const finalHref = useLocale ? `/${locale}${href}` : href;
+
   return (
     <Link
-      href={href}
+      href={finalHref}
       className={cn(
         "flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors",
         isActive

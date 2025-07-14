@@ -25,6 +25,17 @@ interface AiGenerateButtonProps {
   setIsGenerating: (isGenerating: boolean) => void;
 }
 
+const cleanJsonString = (str: string) => {
+  const trimmed = str.trim();
+  if (trimmed.startsWith("```json") && trimmed.endsWith("```")) {
+    return trimmed.substring(7, trimmed.length - 3);
+  }
+  if (trimmed.startsWith("```") && trimmed.endsWith("```")) {
+    return trimmed.substring(3, trimmed.length - 3);
+  }
+  return str;
+};
+
 export function AiGenerateButton({
   modelConfig,
   onGenerate,
@@ -62,6 +73,19 @@ export function AiGenerateButton({
       schema: JSON.stringify(schema, null, 2),
     });
 
+    const processAndGenerate = (item: any) => {
+      const newItem = { ...item };
+      for (const key in newItem) {
+        if (key.endsWith("_en")) {
+          const baseKey = key.slice(0, -3);
+          if (!(baseKey in newItem)) {
+            newItem[baseKey] = newItem[key];
+          }
+        }
+      }
+      onGenerate(newItem);
+    };
+
     try {
       const response = await fetch("/api/ai/generate", {
         method: "POST",
@@ -86,7 +110,8 @@ export function AiGenerateButton({
         const { done, value } = await reader.read();
         if (done) {
           if (buffer.trim()) {
-            onGenerate(JSON.parse(buffer));
+            const cleanedBuffer = cleanJsonString(buffer);
+            processAndGenerate(JSON.parse(cleanedBuffer));
           }
           break;
         }
@@ -98,7 +123,10 @@ export function AiGenerateButton({
           const part = parts[i];
           if (part.trim()) {
             try {
-              onGenerate(JSON.parse(part));
+              const cleanedPart = cleanJsonString(part);
+              if (cleanedPart) {
+                processAndGenerate(JSON.parse(cleanedPart));
+              }
             } catch (e) {
               console.error("Failed to parse JSON chunk:", part, e);
             }
