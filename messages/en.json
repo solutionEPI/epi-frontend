@@ -655,6 +655,37 @@
     "generationCountLabel": "Number of items to generate",
     "fullPrompt": "You are a data generation assistant for the Solution EPI platform.\nYour task is to generate a complete JSON object based on a user's request and a provided model schema.\nThe JSON object must be valid and should not be wrapped in markdown or any other text.\n\nUser Request: \"{prompt}\"\n\nModel: \"{modelName}\"\n\nInstructions:\n1. Analyze the user request.\n2. Look at the model schema below to understand the required fields, their types, and their languages.\n3. **Crucially, you must provide plausible values for ALL fields in the schema, especially for all language variations (e.g., fields ending in _en, _fr, _de , etc... it can be less or more languages).** If the user's prompt is in one language, you must translate and adapt the content for the other languages.\n4. The output must be ONLY the JSON object.\n\nModel Schema (for your reference):\n{schema}\n\nImportant: Your final output must be a single, raw JSON object. Do not include any explanatory text, markdown formatting, or anything else before or after the JSON object. The response should start with '{{' and end with '}}'."
   },
+  "AiGenerateModal": {
+    "generateTitle": "Generate {modelName} with AI",
+    "generateDescription": "Enter a prompt to generate new {modelName} using AI. The AI will attempt to create structured data based on your input.",
+    "promptLabel": "Prompt",
+    "promptPlaceholder": "e.g., A new blog post about AI in healthcare",
+    "countLabel": "Number of items",
+    "generateButton": "Generate",
+    "generating": "Generating {current}/{total}...",
+    "validationErrorTitle": "Input Error",
+    "validationErrorMessage": "Please provide a prompt and a valid number of items to generate.",
+    "generationFailed": "AI generation failed: ",
+    "generationSuccessTitle": "Generation Complete",
+    "generationSuccessDescription": "Successfully generated {count} items.",
+    "generationErrorTitle": "AI Generation Error",
+    "generationErrorMessage": "An unexpected error occurred during AI generation.",
+    "generatedResults": "Generated Results",
+    "item": "Item",
+    "save": "Save",
+    "saving": "Saving...",
+    "saved": "Saved",
+    "error": "Error",
+    "parsingError": "Could not parse generated content into a valid object. Please check the AI response format.",
+    "saveSuccessTitle": "Item Saved",
+    "saveSuccessDescription": "The item has been successfully saved.",
+    "saveErrorTitle": "Save Failed",
+    "saveErrorMessage": "Failed to save the item.",
+    "noDataToSave": "No valid data to save for this item.",
+    "close": "Close",
+    "bulkSaveResultTitle": "Bulk Save Result",
+    "bulkSaveResultDescription": "Successfully saved {count} out of {total} items."
+  },
   "HomePageLegacy": {
     "hero": {
       "title": "Solution EPI",
@@ -715,7 +746,11 @@
       },
       "footProtection": {
         "name": "Foot Protection",
-        "products": ["Safety shoes", "Boots", "Metatarsal protection"]
+        "products": [
+          "Safety shoes",
+          "Boots",
+          "Metatarsal protection"
+        ]
       },
       "handProtection": {
         "name": "Hand Protection",

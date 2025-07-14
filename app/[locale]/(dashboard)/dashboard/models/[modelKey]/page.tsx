@@ -17,6 +17,7 @@ import {
   MoreHorizontal,
   Upload,
   Download,
+  Sparkles,
 } from "lucide-react";
 import { getModelUrl, formatDate } from "@/lib/utils";
 import { convertToCsv, downloadFile } from "@/lib/export";
@@ -48,6 +49,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { ImportModal } from "@/components/import-modal";
+import { AiGenerateModal } from "@/components/ai-generate-modal";
 
 const PAGE_SIZE = 15;
 
@@ -131,6 +133,7 @@ export default function ModelListPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemToDelete, setItemToDelete] = useState<ModelItem | null>(null);
   const [isImportModalOpen, setImportModalOpen] = useState(false);
+  const [isAiGenerateModalOpen, setAiGenerateModalOpen] = useState(false);
 
   const { data: adminConfig } = useQuery<AdminConfig>({
     queryKey: ["adminConfig"],
@@ -326,6 +329,10 @@ export default function ModelListPage() {
             {t("import")}
           </Button>
 
+          <Button onClick={() => setAiGenerateModalOpen(true)}>
+            <Sparkles className="h-4 w-4 mr-2" />
+            {t("aiGenerate")}</Button>
+
           <Button
             onClick={() => router.push(getModelUrl(modelKey, "create"))}
             disabled={deleteMutation.isPending}>
@@ -507,6 +514,17 @@ export default function ModelListPage() {
         modelKey={modelKey}
         modelName={modelConfig?.verbose_name_plural || modelKey}
       />
+
+      {model && modelConfig && (
+        <AiGenerateModal
+          isOpen={isAiGenerateModalOpen}
+          onClose={() => setAiGenerateModalOpen(false)}
+          modelKey={modelKey}
+          modelName={modelConfig.verbose_name_plural || modelKey}
+          apiUrl={model.api_url}
+          fields={modelConfig.fields}
+        />
+      )}
     </div>
   );
 }

@@ -10,15 +10,23 @@ import {
   Comment,
   BlogStats,
 } from "@/types/blog";
-import { Service, PaginatedResponse, Employee, AdminConfig, UserProfile } from "@/types/salon";
+import {
+  Service,
+  PaginatedResponse,
+  Employee,
+  AdminConfig,
+  UserProfile,
+} from "@/types/salon";
 
 function getRelativePath(fullOrRelativeUrl: string): string {
-  if (fullOrRelativeUrl.startsWith('http')) {
+  if (fullOrRelativeUrl.startsWith("http")) {
     // If it's a full URL, extract the pathname
     return new URL(fullOrRelativeUrl).pathname;
   }
   // If it's already a relative path, ensure it starts with a '/'
-  return fullOrRelativeUrl.startsWith('/') ? fullOrRelativeUrl : `/${fullOrRelativeUrl}`;
+  return fullOrRelativeUrl.startsWith("/")
+    ? fullOrRelativeUrl
+    : `/${fullOrRelativeUrl}`;
 }
 
 const REFRESH_ATTEMPT_LIMIT = 3;
@@ -87,8 +95,6 @@ const refreshManager = {
     return access;
   },
 };
-
-
 
 const getApiHeaders = async (locale?: string) => {
   const session = await getSession();
@@ -365,6 +371,7 @@ export const api = {
     return apiFetch<any>(basePath, {
       method: "POST",
       body: data instanceof FormData ? data : JSON.stringify(data),
+      headers: data instanceof FormData ? {} : { "Content-Type": "application/json" },
     });
   },
   updateModelItem: (
@@ -383,6 +390,14 @@ export const api = {
     return apiFetch<void>(`${basePath}${id}/`, { method: "DELETE" });
   },
 
+  bulkCreateModelItems: (modelUrl: string, data: Record<string, any>[]) => {
+    const basePath = getRelativePath(modelUrl);
+    return apiFetch<any>(`${basePath}bulk_action/`, {
+      method: "POST",
+      body: JSON.stringify({ action: "bulk_create", items: data }),
+    });
+  },
+
   // Import/Export
   exportModelData: (modelUrl: string, format: "csv" | "json") => {
     const basePath = getRelativePath(modelUrl);
@@ -397,7 +412,8 @@ export const api = {
   },
 
   // Auth and User Management
-  getUserProfile: (): Promise<UserProfile> => apiRequest("GET", "/api/auth/me/"),
+  getUserProfile: (): Promise<UserProfile> =>
+    apiRequest("GET", "/api/auth/me/"),
   updateUserProfile: (data: any) => apiRequest("PATCH", "/api/auth/me/", data),
   changePassword: (data: any) =>
     apiRequest("POST", "/api/auth/me/change-password/", JSON.stringify(data)),
@@ -409,12 +425,19 @@ export const api = {
       "/api/auth/password_reset/confirm/",
       JSON.stringify(data)
     ),
-  get2FASecret: (): Promise<{ qr_code?: string; qr_code_url?: string; secret_key: string; }> => apiRequest("GET", "/api/auth/2fa/enable/"),
+  get2FASecret: (): Promise<{
+    qr_code?: string;
+    qr_code_url?: string;
+    secret_key: string;
+  }> => apiRequest("GET", "/api/auth/2fa/enable/"),
   verify2FA: (otp: string) =>
     apiRequest("POST", "/api/auth/2fa/verify/", JSON.stringify({ otp })),
   disable2FA: (password: string) =>
     apiRequest("POST", "/api/auth/2fa/disable/", JSON.stringify({ password })),
-  importModelItems: (modelKey: string, data: FormData): Promise<{ count: number }> => {
+  importModelItems: (
+    modelKey: string,
+    data: FormData
+  ): Promise<{ count: number }> => {
     return apiFetch(`/api/admin/models/${modelKey}/import/`, {
       method: "POST",
       body: data,
