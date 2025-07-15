@@ -291,9 +291,11 @@ export function ModelForm({
                   accept={
                     componentType === "image_upload" ? "image/*" : undefined
                   }
-                  onRemove={() => form.setValue(fieldName, null)}
+                  onRemove={() => field.onChange(null)}
                   disabled={!fieldConfig.editable}
-                  {...form.register(fieldName)}
+                  onChange={(e) =>
+                    field.onChange(e.target.files ? e.target.files[0] : null)
+                  }
                 />
               );
               break;
