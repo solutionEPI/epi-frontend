@@ -74,7 +74,7 @@ const FormFileUpload = React.forwardRef<HTMLInputElement, FormFileUploadProps>(
     const renderPreview = () => {
       if (preview) {
         return (
-          <div className="mt-2 relative w-32 h-32">
+          <div className="mt-2 relative w-48 h-48">
             <img
               src={preview}
               alt={t("preview")}
@@ -122,9 +122,7 @@ const FormFileUpload = React.forwardRef<HTMLInputElement, FormFileUploadProps>(
 
     return (
       <div className="form-group">
-        <FormLabel htmlFor={props.id || name}>
-          {label}
-        </FormLabel>
+        <FormLabel htmlFor={props.id || name}>{label}</FormLabel>
         <div
           className={cn(
             "mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-dashed rounded-md",

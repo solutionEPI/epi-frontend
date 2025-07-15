@@ -33,6 +33,7 @@ import { api } from "@/lib/api";
 import { useMutation } from "@tanstack/react-query";
 
 import { useTranslations } from "next-intl";
+import { Label } from "@/components/ui/label";
 
 export interface Option {
   value: any;
@@ -56,6 +57,8 @@ export function FormMultiSelect({
   options,
   value,
   onChange,
+  label,
+  required,
   placeholder = "Select options...",
   creatableApiUrl,
   onNewItemsCreated,
@@ -126,102 +129,112 @@ export function FormMultiSelect({
   );
 
   return (
-    <div className="relative">
-      <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
-          <Button
-            variant="outline"
-            role="combobox"
-            aria-expanded={open}
-            className="w-full justify-between h-auto min-h-10"
-            disabled={disabled}>
-            <div className="flex flex-wrap gap-1">
-              {selectedOptions.length > 0 ? (
-                selectedOptions.map((option) => (
-                  <Badge key={option.value} variant="secondary">
-                    {option.label}
-                  </Badge>
-                ))
-              ) : (
-                <span className="text-muted-foreground font-normal">
-                  {t("selectOptions")}
-                </span>
-              )}
-            </div>
-            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-[--radix-popover-trigger-width] p-0">
-          <Command>
-            <CommandInput placeholder={t("searchOrCreate")} />
-            <CommandList>
-              <CommandEmpty>
-                <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-                  <DialogTrigger asChild>
-                    <Button variant="ghost" className="w-full justify-start">
-                      <PlusCircle className="mr-2 h-4 w-4" />
-                      {t("createNew")}
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent>
-                    <DialogHeader>
-                      <DialogTitle>{t("createNewItems")}</DialogTitle>
-                      <DialogDescription>
-                        {t("createMultipleItemsDescription")}
-                      </DialogDescription>
-                    </DialogHeader>
-                    <div className="py-4">
-                      <Textarea
-                        placeholder={t("exampleTags")}
-                        value={newItemsInput}
-                        onChange={(e) => setNewItemsInput(e.target.value)}
-                        rows={4}
-                      />
-                    </div>
-                    <DialogFooter>
-                      <Button
-                        variant="outline"
-                        onClick={() => setDialogOpen(false)}>
-                        {t("cancel")}
-                      </Button>
-                      <Button
-                        onClick={handleCreateNewItems}
-                        disabled={createMutation.isPending}>
-                        {createMutation.isPending ? t("creating") : t("create")}
-                      </Button>
-                    </DialogFooter>
-                  </DialogContent>
-                </Dialog>
-              </CommandEmpty>
-              <CommandGroup>
-                {options.map((option) => {
-                  const isSelected = selectedValues.has(option.value);
-                  return (
-                    <CommandItem
-                      key={option.value}
-                      disabled={disabled}
-                      onSelect={() => {
-                        if (isSelected) {
-                          onChange(value.filter((v) => v !== option.value));
-                        } else {
-                          onChange([...value, option.value]);
-                        }
-                      }}>
-                      <Check
-                        className={cn(
-                          "mr-2 h-4 w-4",
-                          isSelected ? "opacity-100" : "opacity-0"
-                        )}
-                      />
+    <div className="w-full space-y-2">
+      {label && (
+        <Label>
+          {label}
+          {required && <span className="text-destructive ml-1">*</span>}
+        </Label>
+      )}
+      <div className="relative">
+        <Popover open={open} onOpenChange={setOpen}>
+          <PopoverTrigger asChild>
+            <Button
+              variant="outline"
+              role="combobox"
+              aria-expanded={open}
+              className="w-full justify-between h-auto min-h-10"
+              disabled={disabled}>
+              <div className="flex flex-wrap gap-1">
+                {selectedOptions.length > 0 ? (
+                  selectedOptions.map((option) => (
+                    <Badge key={option.value} variant="secondary">
                       {option.label}
-                    </CommandItem>
-                  );
-                })}
-              </CommandGroup>
-            </CommandList>
-          </Command>
-        </PopoverContent>
-      </Popover>
+                    </Badge>
+                  ))
+                ) : (
+                  <span className="text-muted-foreground font-normal">
+                    {t("selectOptions")}
+                  </span>
+                )}
+              </div>
+              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-[--radix-popover-trigger-width] p-0">
+            <Command>
+              <CommandInput placeholder={t("searchOrCreate")} />
+              <CommandList>
+                <CommandEmpty>
+                  <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+                    <DialogTrigger asChild>
+                      <Button variant="ghost" className="w-full justify-start">
+                        <PlusCircle className="mr-2 h-4 w-4" />
+                        {t("createNew")}
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle>{t("createNewItems")}</DialogTitle>
+                        <DialogDescription>
+                          {t("createMultipleItemsDescription")}
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="py-4">
+                        <Textarea
+                          placeholder={t("exampleTags")}
+                          value={newItemsInput}
+                          onChange={(e) => setNewItemsInput(e.target.value)}
+                          rows={4}
+                        />
+                      </div>
+                      <DialogFooter>
+                        <Button
+                          variant="outline"
+                          onClick={() => setDialogOpen(false)}>
+                          {t("cancel")}
+                        </Button>
+                        <Button
+                          onClick={handleCreateNewItems}
+                          disabled={createMutation.isPending}>
+                          {createMutation.isPending
+                            ? t("creating")
+                            : t("create")}
+                        </Button>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
+                </CommandEmpty>
+                <CommandGroup>
+                  {options.map((option) => {
+                    const isSelected = selectedValues.has(option.value);
+                    return (
+                      <CommandItem
+                        key={option.value}
+                        disabled={disabled}
+                        onSelect={() => {
+                          if (isSelected) {
+                            onChange(value.filter((v) => v !== option.value));
+                          } else {
+                            onChange([...value, option.value]);
+                          }
+                        }}>
+                        <Check
+                          className={cn(
+                            "mr-2 h-4 w-4",
+                            isSelected ? "opacity-100" : "opacity-0"
+                          )}
+                        />
+                        {option.label}
+                      </CommandItem>
+                    );
+                  })}
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </PopoverContent>
+        </Popover>
+      </div>
     </div>
   );
 }
