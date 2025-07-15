@@ -347,6 +347,24 @@ export const api = {
     }
     return apiFetch<any>(`${url.pathname}${url.search}`);
   },
+  getModelItems: (
+    modelUrl: string,
+    params?: { pageSize?: number; fields?: string }
+  ) => {
+    const basePath = getRelativePath(modelUrl);
+    const url = new URL(`${dashboardConfig.api.baseUrl}${basePath}`);
+    if (params) {
+      if (params.pageSize)
+        url.searchParams.append("page_size", params.pageSize.toString());
+      if (params.fields) url.searchParams.append("fields", params.fields);
+    }
+    return apiFetch<{
+      count: number;
+      next: string | null;
+      previous: string | null;
+      data: any[];
+    }>(`${url.pathname}${url.search}`);
+  },
   getAllModelItems: async (modelUrl: string) => {
     const basePath = getRelativePath(modelUrl);
     let results: any[] = [];
@@ -371,7 +389,8 @@ export const api = {
     return apiFetch<any>(basePath, {
       method: "POST",
       body: data instanceof FormData ? data : JSON.stringify(data),
-      headers: data instanceof FormData ? {} : { "Content-Type": "application/json" },
+      headers:
+        data instanceof FormData ? {} : { "Content-Type": "application/json" },
     });
   },
   updateModelItem: (
@@ -391,10 +410,24 @@ export const api = {
   },
 
   bulkCreateModelItems: (modelUrl: string, data: Record<string, any>[]) => {
+    // For bulk creation of new items, we need to use individual create requests
+    // since the bulk_action endpoint requires existing IDs
     const basePath = getRelativePath(modelUrl);
-    return apiFetch<any>(`${basePath}bulk_action/`, {
-      method: "POST",
-      body: JSON.stringify({ action: "bulk_create", items: data }),
+
+    // Create a promise for each item
+    const createPromises = data.map((item) =>
+      apiFetch<any>(basePath, {
+        method: "POST",
+        body: JSON.stringify(item),
+      })
+    );
+
+    // Return a promise that resolves when all items are created
+    return Promise.all(createPromises).then((results) => {
+      return {
+        count: results.length,
+        results: results,
+      };
     });
   },
 

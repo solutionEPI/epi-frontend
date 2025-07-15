@@ -55,9 +55,12 @@ export function AiGenerateModal({
   const [isGenerating, setIsGenerating] = useState(false);
   const [currentGenerationIndex, setCurrentGenerationIndex] = useState(0);
 
+  // Defensively create a base URL to avoid issues with incoming apiUrl format
+  const baseApiUrl = apiUrl.replace(/bulk_action\/?$/, "");
+
   const createItemMutation = useMutation({
     mutationFn: ({ data }: { data: Record<string, any> }) =>
-      api.createModelItem(apiUrl, data),
+      api.createModelItem(baseApiUrl, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["modelItems", modelKey] });
       queryClient.invalidateQueries({ queryKey: ["adminConfig"] });
@@ -74,7 +77,7 @@ export function AiGenerateModal({
 
   const bulkCreateItemsMutation = useMutation({
     mutationFn: (data: Record<string, any>[]) =>
-      api.bulkCreateModelItems(`${apiUrl}bulk_action/`, data),
+      api.bulkCreateModelItems(`${baseApiUrl}`, data),
     onSuccess: (result: any) => {
       queryClient.invalidateQueries({ queryKey: ["modelItems", modelKey] });
       queryClient.invalidateQueries({ queryKey: ["adminConfig"] });
@@ -101,8 +104,13 @@ export function AiGenerateModal({
 
   const parseGeneratedContent = useCallback(
     (content: string): Record<string, any> | undefined => {
+      // Clean the content to remove markdown code blocks
+      const cleanedContent = content
+        .replace(/```json\s*([\s\S]*?)\s*```/, "$1")
+        .trim();
+
       try {
-        const json = JSON.parse(content);
+        const json = JSON.parse(cleanedContent);
 
         // Derive main keys from English translations
         for (const key in json) {
@@ -128,8 +136,8 @@ export function AiGenerateModal({
           (key) => fields[key].type === "string" && !fields[key].readOnly
         ) || "name"; // Assuming 'name' or first string field as default
 
-      if (defaultField && content.trim() !== "") {
-        return { [defaultField]: content.trim() };
+      if (defaultField && cleanedContent.trim() !== "") {
+        return { [defaultField]: cleanedContent.trim() };
       }
 
       return undefined;
@@ -157,7 +165,7 @@ export function AiGenerateModal({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ prompt, count }),
+        body: JSON.stringify({ prompt, count, fields }),
       });
 
       if (!response.ok || !response.body) {
@@ -169,7 +177,7 @@ export function AiGenerateModal({
       let accumulatedChunks = "";
       let itemCounter = 0;
 
-      while (true) {
+      while (itemCounter < count) {
         const { value, done } = await reader.read();
         if (done) break;
 
@@ -179,6 +187,7 @@ export function AiGenerateModal({
         accumulatedChunks = parts.pop() || ""; // Keep the last incomplete part
 
         for (const part of parts) {
+          if (itemCounter >= count) break;
           if (part.trim() !== "") {
             const parsedData = parseGeneratedContent(part);
             setGeneratedItems((prev) => [
@@ -196,8 +205,11 @@ export function AiGenerateModal({
         }
       }
 
+      // If we broke out of the loop, there might still be an active stream.
+      reader.cancel();
+
       // Process any remaining accumulated chunks after the stream ends
-      if (accumulatedChunks.trim() !== "") {
+      if (itemCounter < count && accumulatedChunks.trim() !== "") {
         const parsedData = parseGeneratedContent(accumulatedChunks);
         setGeneratedItems((prev) => [
           ...prev,
