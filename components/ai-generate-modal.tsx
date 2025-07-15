@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2, Save, XCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Switch } from "@/components/ui/switch";
 
 interface AiGenerateModalProps {
   isOpen: boolean;
@@ -27,6 +28,7 @@ interface AiGenerateModalProps {
   modelName: string;
   apiUrl: string;
   fields: Record<string, any>; // Model fields for parsing/saving
+  onGenerateSingle?: (data: Record<string, any>) => void;
 }
 
 interface GeneratedItem {
@@ -44,6 +46,7 @@ export function AiGenerateModal({
   modelName,
   apiUrl,
   fields,
+  onGenerateSingle,
 }: AiGenerateModalProps) {
   const t = useTranslations("AiGenerateModal");
   const { toast } = useToast();
@@ -54,6 +57,7 @@ export function AiGenerateModal({
   const [generatedItems, setGeneratedItems] = useState<GeneratedItem[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
   const [currentGenerationIndex, setCurrentGenerationIndex] = useState(0);
+  const [isBulkMode, setIsBulkMode] = useState(true);
 
   // Defensively create a base URL to avoid issues with incoming apiUrl format
   const baseApiUrl = apiUrl.replace(/bulk_action\/?$/, "");
@@ -208,6 +212,16 @@ export function AiGenerateModal({
       // If we broke out of the loop, there might still be an active stream.
       reader.cancel();
 
+      if (!isBulkMode && onGenerateSingle && generatedItems[0]?.parsedData) {
+        onGenerateSingle(generatedItems[0].parsedData);
+        toast({
+          title: t("generationSuccessTitle"),
+          description: t("formPopulatedSuccess"),
+        });
+        handleClose();
+        return;
+      }
+
       // Process any remaining accumulated chunks after the stream ends
       if (itemCounter < count && accumulatedChunks.trim() !== "") {
         const parsedData = parseGeneratedContent(accumulatedChunks);
@@ -221,6 +235,15 @@ export function AiGenerateModal({
             message: parsedData ? undefined : t("parsingError"),
           },
         ]);
+        if (!isBulkMode && onGenerateSingle && parsedData) {
+          onGenerateSingle(parsedData);
+          toast({
+            title: t("generationSuccessTitle"),
+            description: t("formPopulatedSuccess"),
+          });
+          handleClose();
+          return;
+        }
       }
 
       toast({
@@ -293,142 +316,149 @@ export function AiGenerateModal({
     setCount(1);
     setGeneratedItems([]);
     setIsGenerating(false);
-    setCurrentGenerationIndex(0);
+    setIsBulkMode(true);
     onClose();
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-[800px] max-h-[90vh] flex flex-col">
+      <DialogContent className="max-w-4xl">
         <DialogHeader>
-          <DialogTitle>{t("generateTitle", { modelName })}</DialogTitle>
-          <DialogDescription>{t("generateDescription")}</DialogDescription>
+          <DialogTitle>{t("title", { modelName: modelName })}</DialogTitle>
+          <DialogDescription>{t("description")}</DialogDescription>
         </DialogHeader>
 
-        <div className="grid gap-4 py-4 flex-grow overflow-y-auto">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="prompt" className="text-right">
-              {t("promptLabel")}
-            </Label>
-            <Textarea
-              id="prompt"
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-              placeholder={t("promptPlaceholder")}
-              className="col-span-3"
-              rows={3}
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="count" className="text-right">
-              {t("countLabel")}
-            </Label>
-            <Input
-              id="count"
-              type="number"
-              value={count}
-              onChange={(e) => setCount(Number(e.target.value))}
-              min={1}
-              max={10}
-              className="col-span-3"
-            />
-          </div>
-
-          <Button
-            onClick={handleGenerate}
-            disabled={isGenerating || createItemMutation.isPending}
-            className="w-full">
-            {isGenerating ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                {t("generating", {
-                  current: currentGenerationIndex,
-                  total: count,
-                })}
-              </>
-            ) : (
-              t("generateButton")
-            )}
-          </Button>
-
-          {generatedItems.length > 0 && (
-            <div className="mt-4 space-y-4 border p-4 rounded-md bg-muted/50">
-              <div className="flex justify-between items-center">
-                <h3 className="text-lg font-semibold">
-                  {t("generatedResults")}
-                </h3>
-                {generatedItems.length > 1 && (
-                  <Button
-                    variant="default"
-                    size="sm"
-                    onClick={handleSaveAll}
-                    disabled={
-                      bulkCreateItemsMutation.isPending ||
-                      generatedItems.every((item) => item.status !== "pending")
-                    }>
-                    <Save className="mr-2 h-4 w-4" />
-                    {bulkCreateItemsMutation.isPending
-                      ? t("saving")
-                      : t("saveAll", {
-                          count: generatedItems.filter(
-                            (i) => i.status === "pending"
-                          ).length,
-                        })}
-                  </Button>
-                )}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-4">
+          {/* Left side: Controls */}
+          <div className="space-y-4">
+            {onGenerateSingle && (
+              <div className="flex items-center space-x-2">
+                <Switch
+                  id="bulk-mode-switch"
+                  checked={isBulkMode}
+                  onCheckedChange={setIsBulkMode}
+                />
+                <Label htmlFor="bulk-mode-switch">{t("bulkCreate")}</Label>
               </div>
+            )}
+
+            <div>
+              <Label htmlFor="generation-prompt">{t("promptLabel")}</Label>
+              <Textarea
+                id="generation-prompt"
+                placeholder={t("promptPlaceholder")}
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
+                rows={5}
+                className="mt-1"
+              />
+            </div>
+
+            {isBulkMode && (
+              <div>
+                <Label htmlFor="generation-count">{t("countLabel")}</Label>
+                <Input
+                  id="generation-count"
+                  type="number"
+                  min="1"
+                  max="20"
+                  value={count}
+                  onChange={(e) => setCount(parseInt(e.target.value, 10))}
+                  className="mt-1"
+                />
+              </div>
+            )}
+
+            <Button
+              onClick={handleGenerate}
+              disabled={isGenerating || !prompt || (isBulkMode && count <= 0)}>
+              {isGenerating ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  {t("generatingButton", {
+                    current: currentGenerationIndex,
+                    total: count,
+                  })}
+                </>
+              ) : (
+                t("generateButton")
+              )}
+            </Button>
+          </div>
+
+          {/* Right side: Results */}
+          <div className="space-y-2">
+            <Label>{t("resultsLabel")}</Label>
+            <div className="h-[300px] overflow-y-auto p-2 border rounded-md space-y-2 bg-muted/50">
+              {generatedItems.length === 0 && !isGenerating && (
+                <div className="text-center text-muted-foreground py-10">
+                  {t("noResultsYet")}
+                </div>
+              )}
+              {isGenerating && generatedItems.length === 0 && (
+                <div className="text-center text-muted-foreground py-10">
+                  <Loader2 className="mx-auto h-8 w-8 animate-spin" />
+                  <p className="mt-2">{t("generationInProgress")}</p>
+                </div>
+              )}
               {generatedItems.map((item) => (
                 <div
                   key={item.id}
-                  className="p-3 border rounded-md bg-background flex flex-col gap-2">
+                  className="p-3 border rounded-lg bg-background shadow-sm">
                   <div className="flex justify-between items-start">
-                    <p className="text-sm font-medium">
-                      {t("item")} #{item.id + 1}
-                    </p>
-                    {item.status === "pending" && (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handleSaveItem(item)}
-                        disabled={createItemMutation.isPending}>
-                        <Save className="mr-2 h-4 w-4" />
-                        {createItemMutation.isPending ? t("saving") : t("save")}
-                      </Button>
-                    )}
-                    {item.status === "success" && (
-                      <Badge variant="success">{t("saved")}</Badge>
-                    )}
-                    {item.status === "error" && (
-                      <Badge
-                        variant="destructive"
-                        className="flex items-center gap-1">
-                        <XCircle className="h-3 w-3" />
-                        {t("error")}
-                      </Badge>
-                    )}
-                  </div>
-                  <pre className="whitespace-pre-wrap text-xs bg-muted p-2 rounded-sm max-h-40 overflow-y-auto">
-                    {item.content}
-                  </pre>
-                  {item.parsedData && (
-                    <div className="text-xs text-muted-foreground">
-                      <strong>{t("parsedData")}:</strong>{" "}
-                      {JSON.stringify(item.parsedData, null, 2)}
+                    <pre className="whitespace-pre-wrap font-sans text-sm break-words w-full pr-4">
+                      {item.content}
+                    </pre>
+                    <div className="flex flex-col items-end space-y-1">
+                      {item.status === "pending" && (
+                        <Button
+                          size="sm"
+                          onClick={() => handleSaveItem(item)}
+                          disabled={createItemMutation.isPending}>
+                          <Save className="h-4 w-4" />
+                        </Button>
+                      )}
+                      {item.status === "error" && (
+                        <Badge
+                          variant="destructive"
+                          className="flex items-center">
+                          <XCircle className="mr-1 h-3 w-3" />
+                          {t("errorStatus")}
+                        </Badge>
+                      )}
+                      {item.status === "success" && (
+                        <Badge variant="success">{t("savedStatus")}</Badge>
+                      )}
                     </div>
-                  )}
-                  {item.message && item.status === "error" && (
-                    <p className="text-xs text-destructive">{item.message}</p>
+                  </div>
+                  {item.message && (
+                    <p className="text-xs text-destructive mt-1">
+                      {item.message}
+                    </p>
                   )}
                 </div>
               ))}
             </div>
-          )}
+          </div>
         </div>
 
         <DialogFooter>
           <Button variant="outline" onClick={handleClose}>
-            {t("close")}
+            {t("closeButton")}
           </Button>
+          {isBulkMode && (
+            <Button
+              onClick={handleSaveAll}
+              disabled={
+                isGenerating ||
+                generatedItems.every((item) => item.status !== "pending") ||
+                bulkCreateItemsMutation.isPending
+              }>
+              {bulkCreateItemsMutation.isPending
+                ? t("savingAllButton")
+                : t("saveAllButton")}
+            </Button>
+          )}
         </DialogFooter>
       </DialogContent>
     </Dialog>

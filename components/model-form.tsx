@@ -103,6 +103,17 @@ export function ModelForm({
     defaultValues,
   });
 
+  const handleGenerateSingle = (data: Record<string, any>) => {
+    // Merge with existing form data to preserve fields not in the AI response
+    const currentValues = form.getValues();
+    const updatedValues = { ...currentValues, ...data };
+    form.reset(updatedValues);
+    toast({
+      title: "Content Populated",
+      description: "The form has been populated with AI-generated content.",
+    });
+  };
+
   const mutation = useMutation({
     mutationFn: (data: Record<string, any> | FormData) => {
       const api_url = `/api/admin/models/${modelKey}/`;
@@ -362,6 +373,17 @@ export function ModelForm({
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <div className="flex justify-end">
+          {modelConfig?.admin_config?.can_generate_with_ai && (
+            <AiGenerateButton
+              modelKey={modelKey}
+              modelName={modelConfig.verbose_name}
+              apiUrl={`/api/admin/models/${modelKey}/`}
+              fields={modelConfig.fields}
+              onGenerateSingle={handleGenerateSingle}
+            />
+          )}
+        </div>
         <div className="p-6 border rounded-lg space-y-6">
           {nonTranslationFields.map(([fieldName, fieldConfig]) => (
             <React.Fragment key={fieldName}>
