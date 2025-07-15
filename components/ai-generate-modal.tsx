@@ -1,4 +1,4 @@
-use client";
+"use client";
 
 import { useState, useCallback } from "react";
 import { useTranslations } from "next-intl";
@@ -18,6 +18,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2, Save, XCircle } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 interface AiGenerateModalProps {
   isOpen: boolean;
@@ -71,21 +72,57 @@ export function AiGenerateModal({
     },
   });
 
+  const bulkCreateItemsMutation = useMutation({
+    mutationFn: (data: Record<string, any>[]) =>
+      api.bulkCreateModelItems(`${apiUrl}bulk_action/`, data),
+    onSuccess: (result: any) => {
+      queryClient.invalidateQueries({ queryKey: ["modelItems", modelKey] });
+      queryClient.invalidateQueries({ queryKey: ["adminConfig"] });
+      toast({
+        title: t("bulkSaveResultTitle"),
+        description: t("bulkSaveResultDescription", {
+          count: result.count,
+          total: generatedItems.length,
+        }),
+      });
+      // Optionally, update status for all items to "success"
+      setGeneratedItems((prev) =>
+        prev.map((item) => ({ ...item, status: "success" }))
+      );
+    },
+    onError: (error: any) => {
+      toast({
+        variant: "destructive",
+        title: t("saveErrorTitle"),
+        description: error.message || t("saveErrorMessage"),
+      });
+    },
+  });
+
   const parseGeneratedContent = useCallback(
     (content: string): Record<string, any> | undefined => {
       try {
-        // Attempt to parse as JSON
         const json = JSON.parse(content);
-        // Basic validation: check if parsed JSON has keys matching model fields
+
+        // Derive main keys from English translations
+        for (const key in json) {
+          if (key.endsWith("_en")) {
+            const baseKey = key.slice(0, -3);
+            if (!(baseKey in json)) {
+              json[baseKey] = json[key];
+            }
+          }
+        }
+
         const hasValidKeys = Object.keys(json).some((key) => fields[key]);
         if (hasValidKeys) {
           return json;
         }
       } catch (e) {
-        // Not valid JSON, try to infer from text
+        // Not valid JSON, fall back to text processing
       }
 
-      // Fallback: simple text content, assign to a default field like 'name' or 'content'
+      // Fallback for non-JSON content
       const defaultField =
         Object.keys(fields).find(
           (key) => fields[key].type === "string" && !fields[key].readOnly
@@ -190,6 +227,23 @@ export function AiGenerateModal({
     }
   };
 
+  const handleSaveAll = async () => {
+    const itemsToSave = generatedItems
+      .filter((item) => item.status === "pending" && item.parsedData)
+      .map((item) => item.parsedData!);
+
+    if (itemsToSave.length === 0) {
+      toast({
+        variant: "destructive",
+        title: t("saveErrorTitle"),
+        description: t("noDataToSave"),
+      });
+      return;
+    }
+
+    await bulkCreateItemsMutation.mutateAsync(itemsToSave);
+  };
+
   const handleSaveItem = async (itemToSave: GeneratedItem) => {
     if (!itemToSave.parsedData) {
       toast({
@@ -271,8 +325,7 @@ export function AiGenerateModal({
           <Button
             onClick={handleGenerate}
             disabled={isGenerating || createItemMutation.isPending}
-            className="w-full"
-          >
+            className="w-full">
             {isGenerating ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -288,12 +341,34 @@ export function AiGenerateModal({
 
           {generatedItems.length > 0 && (
             <div className="mt-4 space-y-4 border p-4 rounded-md bg-muted/50">
-              <h3 className="text-lg font-semibold">{t("generatedResults")}</h3>
+              <div className="flex justify-between items-center">
+                <h3 className="text-lg font-semibold">
+                  {t("generatedResults")}
+                </h3>
+                {generatedItems.length > 1 && (
+                  <Button
+                    variant="default"
+                    size="sm"
+                    onClick={handleSaveAll}
+                    disabled={
+                      bulkCreateItemsMutation.isPending ||
+                      generatedItems.every((item) => item.status !== "pending")
+                    }>
+                    <Save className="mr-2 h-4 w-4" />
+                    {bulkCreateItemsMutation.isPending
+                      ? t("saving")
+                      : t("saveAll", {
+                          count: generatedItems.filter(
+                            (i) => i.status === "pending"
+                          ).length,
+                        })}
+                  </Button>
+                )}
+              </div>
               {generatedItems.map((item) => (
                 <div
                   key={item.id}
-                  className="p-3 border rounded-md bg-background flex flex-col gap-2"
-                >
+                  className="p-3 border rounded-md bg-background flex flex-col gap-2">
                   <div className="flex justify-between items-start">
                     <p className="text-sm font-medium">
                       {t("item")} #{item.id + 1}
@@ -303,19 +378,18 @@ export function AiGenerateModal({
                         variant="outline"
                         size="sm"
                         onClick={() => handleSaveItem(item)}
-                        disabled={createItemMutation.isPending}
-                      >
+                        disabled={createItemMutation.isPending}>
                         <Save className="mr-2 h-4 w-4" />
-                        {createItemMutation.isPending
-                          ? t("saving")
-                          : t("save")}
+                        {createItemMutation.isPending ? t("saving") : t("save")}
                       </Button>
                     )}
                     {item.status === "success" && (
                       <Badge variant="success">{t("saved")}</Badge>
                     )}
                     {item.status === "error" && (
-                      <Badge variant="destructive" className="flex items-center gap-1">
+                      <Badge
+                        variant="destructive"
+                        className="flex items-center gap-1">
                         <XCircle className="h-3 w-3" />
                         {t("error")}
                       </Badge>

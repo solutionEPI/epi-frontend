@@ -210,7 +210,12 @@
     "generatedItemsTitle": "Éléments générés",
     "saveAll": "Tout enregistrer",
     "bulkSaveResultTitle": "Résultat de l'enregistrement en masse",
-    "bulkSaveResultDescription": "{count} sur {total} éléments enregistrés avec succès."
+    "bulkSaveResultDescription": "{count} sur {total} éléments enregistrés avec succès.",
+    "languages": {
+      "en": "Anglais",
+      "fr": "Français",
+      "de": "Allemand"
+    }
   },
   "ModelForm": {
     "saveSuccessTitle": "Élément enregistré",
@@ -737,5 +742,4 @@
     "bulkSaveResultTitle": "Résultat de l'enregistrement en masse",
     "bulkSaveResultDescription": "{count} sur {total} éléments enregistrés avec succès."
   }
-}
 }

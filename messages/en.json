@@ -231,7 +231,12 @@
     "generatedItemsTitle": "Generated Items",
     "saveAll": "Save All",
     "bulkSaveResultTitle": "Bulk Save Result",
-    "bulkSaveResultDescription": "Successfully saved {count} out of {total} items."
+    "bulkSaveResultDescription": "Successfully saved {count} out of {total} items.",
+    "languages": {
+      "en": "English",
+      "fr": "French",
+      "de": "German"
+    }
   },
   "ModelForm": {
     "saveSuccessTitle": "Item Saved",
@@ -746,11 +751,7 @@
       },
       "footProtection": {
         "name": "Foot Protection",
-        "products": [
-          "Safety shoes",
-          "Boots",
-          "Metatarsal protection"
-        ]
+        "products": ["Safety shoes", "Boots", "Metatarsal protection"]
       },
       "handProtection": {
         "name": "Hand Protection",
