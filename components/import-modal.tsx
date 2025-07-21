@@ -30,6 +30,7 @@ interface ImportModalProps {
   onClose: () => void;
   modelKey: string;
   modelName: string;
+  onSuccess?: () => void;
 }
 
 interface IFormInput {
@@ -42,6 +43,7 @@ export function ImportModal({
   onClose,
   modelKey,
   modelName,
+  onSuccess,
 }: ImportModalProps) {
   const t = useTranslations("ImportExport");
   const { toast } = useToast();
@@ -55,8 +57,12 @@ export function ImportModal({
         title: t("importSuccessTitle"),
         description: t("importSuccessDescription", { count: result.count }),
       });
-      queryClient.invalidateQueries({ queryKey: ["modelItems", modelKey] });
-      queryClient.invalidateQueries({ queryKey: ["adminConfig"] });
+      if (onSuccess) {
+        onSuccess();
+      } else {
+        queryClient.invalidateQueries({ queryKey: ["modelItems", modelKey] });
+        queryClient.invalidateQueries({ queryKey: ["adminConfig"] });
+      }
       onClose();
       reset();
     },

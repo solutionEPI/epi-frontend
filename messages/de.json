@@ -577,6 +577,7 @@
   },
   "AiGenerateButton": {
     "generateWithAI": "Mit KI generieren",
+    "bulkGenerateWithAI": "Massen-Erstellung mit KI",
     "successTitle": "Generierung abgeschlossen",
     "successDescription": "Erfolgreich {count} Elemente generiert.",
     "errorParsingTitle": "Fehler beim Parsen der KI-Antwort",
@@ -619,7 +620,8 @@
     "saveErrorMessage": "Beim Speichern ist ein unerwarteter Fehler aufgetreten.",
     "bulkSaveResultTitle": "Massen-Speicherung abgeschlossen",
     "bulkSaveResultDescription": "{count} von {total} Elementen erfolgreich gespeichert.",
-    "noDataToSave": "Keine gültigen Daten zum Speichern vorhanden."
+    "noDataToSave": "Keine gültigen Daten zum Speichern vorhanden.",
+    "useItemButton": "Diesen Inhalt verwenden"
   },
   "HomePageLegacy": {
     "hero": {

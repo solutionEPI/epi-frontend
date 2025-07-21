@@ -19,7 +19,7 @@ import {
   Download,
   Sparkles,
 } from "lucide-react";
-import { getModelUrl, formatDate } from "@/lib/utils";
+import { getModelUrl, formatDate, processReceivedData } from "@/lib/utils";
 import { convertToCsv, downloadFile } from "@/lib/export";
 import { DynamicIcon } from "@/components/ui/dynamic-icon";
 import {
@@ -163,10 +163,12 @@ export default function ModelListPage() {
     queryKey: ["modelItems", modelKey, currentPage],
     queryFn: () =>
       api.getModelList(model!.api_url, {
-        page: currentPage.toString(),
-        page_size: PAGE_SIZE.toString(),
+        page: currentPage,
+        page_size: PAGE_SIZE,
       }),
     enabled: !!model,
+    placeholderData: (previousData) => previousData,
+    staleTime: 5000,
   });
 
   const deleteMutation = useMutation({
@@ -177,7 +179,9 @@ export default function ModelListPage() {
         title: t("deleteSuccessTitle"),
         description: t("deleteSuccessDescription", { id: deletedId }),
       });
-      queryClient.invalidateQueries({ queryKey: ["modelItems", modelKey] });
+      queryClient.invalidateQueries({
+        queryKey: ["modelItems", modelKey, currentPage],
+      });
       queryClient.invalidateQueries({ queryKey: ["adminConfig"] });
     },
     onError: (error: Error, deletedId) => {
@@ -246,7 +250,14 @@ export default function ModelListPage() {
 
   const isLoading = isLoadingConfig || isLoadingItems;
   const error = errorConfig || errorItems;
-  const modelItems = modelData?.results || [];
+
+  const modelItems =
+    modelData && modelConfig
+      ? (processReceivedData(
+          modelData.results,
+          modelConfig.fields
+        ) as ModelItem[])
+      : [];
   const totalItems = modelData?.count || 0;
   const totalPages = Math.ceil(totalItems / PAGE_SIZE);
 
@@ -420,7 +431,9 @@ export default function ModelListPage() {
                             </DropdownMenuItem>
                             <AlertDialogTrigger asChild>
                               <DropdownMenuItem
-                                onSelect={() => setItemToDelete(item)}
+                                onSelect={() =>
+                                  setItemToDelete(item as ModelItem)
+                                }
                                 className="text-destructive focus:text-destructive">
                                 <Trash2 className="h-3.5 w-3.5 mr-2" />
                                 {t("delete")}
@@ -509,6 +522,12 @@ export default function ModelListPage() {
         onClose={() => setImportModalOpen(false)}
         modelKey={modelKey}
         modelName={modelConfig?.verbose_name || modelKey}
+        onSuccess={() => {
+          queryClient.invalidateQueries({
+            queryKey: ["modelItems", modelKey, 1],
+          });
+          queryClient.invalidateQueries({ queryKey: ["adminConfig"] });
+        }}
       />
     </div>
   );

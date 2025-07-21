@@ -337,12 +337,17 @@ export const api = {
   getModelConfig: (configUrl: string) => {
     return apiFetch<any>(getRelativePath(configUrl));
   },
-  getModelList: (modelUrl: string, params?: Record<string, string>) => {
+  getModelList: (
+    modelUrl: string,
+    params?: { page?: number; page_size?: number; [key: string]: any }
+  ) => {
     const basePath = getRelativePath(modelUrl);
     const url = new URL(`${dashboardConfig.api.baseUrl}${basePath}`);
     if (params) {
       Object.entries(params).forEach(([key, value]) => {
-        url.searchParams.append(key, value);
+        if (value !== undefined && value !== null) {
+          url.searchParams.append(key, String(value));
+        }
       });
     }
     return apiFetch<any>(`${url.pathname}${url.search}`);
@@ -410,22 +415,23 @@ export const api = {
   },
 
   bulkCreateModelItems: (modelUrl: string, data: Record<string, any>[]) => {
-    // For bulk creation of new items, we need to use individual create requests
-    // since the bulk_action endpoint requires existing IDs
     const basePath = getRelativePath(modelUrl);
 
-    // Create a promise for each item
     const createPromises = data.map((item) =>
       apiFetch<any>(basePath, {
         method: "POST",
         body: JSON.stringify(item),
-      })
+        headers: { "Content-Type": "application/json" },
+      }).catch((error) => ({ error }))
     );
 
-    // Return a promise that resolves when all items are created
-    return Promise.all(createPromises).then((results) => {
+    return Promise.allSettled(createPromises).then((results) => {
+      const successfulCreations = results.filter(
+        (result) => result.status === "fulfilled" && !result.value.error
+      );
       return {
-        count: results.length,
+        count: successfulCreations.length,
+        total: data.length,
         results: results,
       };
     });

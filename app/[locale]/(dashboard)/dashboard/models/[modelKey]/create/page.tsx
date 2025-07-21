@@ -7,10 +7,7 @@ import { useTranslations } from "next-intl";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api";
 import { ModelForm } from "@/components/model-form";
-import { AiGenerateModal } from "@/components/ai-generate-modal";
-import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Sparkles } from "lucide-react";
 
 export default function CreateModelPage() {
   const t = useTranslations("ModelListPage");
@@ -18,8 +15,6 @@ export default function CreateModelPage() {
   const router = useRouter();
   const { status } = useSession();
   const modelKey = params.modelKey as string;
-
-  const [isAiGenerateModalOpen, setAiGenerateModalOpen] = useState(false);
 
   const {
     data: modelConfig,
@@ -65,24 +60,9 @@ export default function CreateModelPage() {
         <h1 className="text-2xl font-bold">
           {t("createTitle", { modelName: modelConfig.verbose_name })}
         </h1>
-        <Button onClick={() => setAiGenerateModalOpen(true)}>
-          <Sparkles className="h-4 w-4 mr-2" />
-          {t("aiGenerate")}
-        </Button>
       </div>
 
       <ModelForm modelKey={modelKey} modelConfig={modelConfig} />
-
-      {modelConfig && (
-        <AiGenerateModal
-          isOpen={isAiGenerateModalOpen}
-          onClose={() => setAiGenerateModalOpen(false)}
-          modelKey={modelKey}
-          modelName={modelConfig.verbose_name}
-          apiUrl={`/api/admin/models/${modelKey}/`}
-          fields={modelConfig.fields}
-        />
-      )}
     </div>
   );
 }

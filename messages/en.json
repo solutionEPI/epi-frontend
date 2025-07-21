@@ -139,6 +139,7 @@
     "description": "Welcome back! Here's a summary of your project.",
     "loadErrorTitle": "Dashboard Error",
     "loadErrorDescription": "There was a problem loading dashboard data. Some information may be missing. Using mock data as a fallback.",
+    "tryAgain": "Try Again",
     "userSignupsCardTitle": "User Sign-ups",
     "userSignupsCardDescription": "A chart showing user sign-ups over the past few months.",
     "contentOverviewCardTitle": "Content Overview",
@@ -647,6 +648,7 @@
   },
   "AiGenerateButton": {
     "generateWithAI": "Generate with AI",
+    "bulkGenerateWithAI": "Bulk Generate with AI",
     "successTitle": "Generation Complete",
     "successDescription": "Successfully generated {count} items.",
     "errorParsingTitle": "Error parsing AI response",
@@ -680,6 +682,10 @@
     "bulkCreate": "Bulk Create",
     "validationErrorTitle": "Invalid Input",
     "validationErrorMessage": "Please provide a prompt and a valid count.",
+    "validation": {
+      "promptLength": "Prompt must be at least 10 characters long.",
+      "maxCount": "You can generate a maximum of 50 items at a time."
+    },
     "generationFailed": "Stream generation failed: ",
     "parsingError": "Could not parse the generated content.",
     "generationSuccessTitle": "Generation Complete",
@@ -689,7 +695,8 @@
     "saveErrorMessage": "An unexpected error occurred while saving.",
     "bulkSaveResultTitle": "Bulk Save Complete",
     "bulkSaveResultDescription": "Saved {count} of {total} items successfully.",
-    "noDataToSave": "No valid data to save."
+    "noDataToSave": "No valid data to save.",
+    "useItemButton": "Use this content"
   },
   "HomePageLegacy": {
     "hero": {

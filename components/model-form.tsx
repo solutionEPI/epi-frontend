@@ -31,6 +31,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { formatBackendErrors, prepareDataForSubmission } from "@/lib/utils";
 
 interface FieldConfig {
   name: string;
@@ -103,6 +104,12 @@ export function ModelForm({
     defaultValues,
   });
 
+  const fieldCount = Object.keys(modelConfig.fields).length;
+  const hasImageField = Object.values(modelConfig.fields).some(
+    (field) => field.ui_component === "image_upload"
+  );
+  const isBulkModeAvailable = fieldCount < 10 && !hasImageField;
+
   const handleGenerateSingle = (data: Record<string, any>) => {
     // Merge with existing form data to preserve fields not in the AI response
     const currentValues = form.getValues();
@@ -135,63 +142,115 @@ export function ModelForm({
       toast({
         variant: "destructive",
         title: tForm("saveErrorTitle"),
-        description: error.message,
+        description: formatBackendErrors(error),
       });
     },
   });
 
   const onSubmit = (data: Record<string, any>) => {
-    const preparedData: Record<string, any> = {};
+    const processedData = prepareDataForSubmission(data, modelConfig.fields);
+
+    // Logging for missing required fields
+    for (const key in modelConfig.fields) {
+      const field = modelConfig.fields[key];
+      if (field.required && !processedData[key]) {
+        console.warn(
+          `[Data Submission] Missing required field '${key}' after preparation.`
+        );
+      }
+    }
+
+    const formData = new FormData();
     let hasFiles = false;
 
-    for (const key in data) {
-      if (Object.prototype.hasOwnProperty.call(data, key)) {
-        const value = data[key];
+    for (const key in processedData) {
+      if (Object.prototype.hasOwnProperty.call(processedData, key)) {
+        const value = processedData[key];
         const fieldConfig = modelConfig.fields[key];
 
+        // Skip fields that are not part of the model config
+        if (!fieldConfig) {
+          continue;
+        }
+
+        // Handle File uploads
+        if (value instanceof File || value instanceof FileList) {
+          if (value instanceof File) {
+            formData.append(key, value);
+            hasFiles = true;
+          } else if (value.length > 0) {
+            formData.append(key, value[0]);
+            hasFiles = true;
+          }
+          // If file input is empty, don't append anything
+          continue;
+        }
+
+        // Handle DateTime fields
         if (
-          fieldConfig &&
           (fieldConfig.ui_component === "datetime_picker" ||
             fieldConfig.ui_component === "date_picker") &&
           value
         ) {
           const date = new Date(value);
           if (!isNaN(date.getTime())) {
-            preparedData[key] = date.toISOString();
-          } else {
-            preparedData[key] = value;
+            formData.append(key, date.toISOString());
+          } else if (value) {
+            // Append original value if it's not a valid date but has a value
+            formData.append(key, value);
           }
-        } else if (value instanceof FileList && value.length > 0) {
-          preparedData[key] = value;
-          hasFiles = true;
-        } else {
-          preparedData[key] = value;
+          continue;
+        }
+
+        // Handle JSON fields
+        if (
+          fieldConfig.type === "JSONField" &&
+          typeof value === "object" &&
+          value !== null
+        ) {
+          formData.append(key, JSON.stringify(value));
+          continue;
+        }
+
+        // Handle Arrays (e.g., from multi-select)
+        if (Array.isArray(value)) {
+          value.forEach((item) => formData.append(key, String(item)));
+          continue;
+        }
+
+        // Handle boolean
+        if (typeof value === "boolean") {
+          formData.append(key, String(value));
+          continue;
+        }
+
+        // Handle all other types
+        if (value !== null && value !== undefined && value !== "") {
+          formData.append(key, String(value));
         }
       }
     }
 
-    if (hasFiles) {
-      const formData = new FormData();
-      for (const key in preparedData) {
-        const value = preparedData[key];
-        if (value instanceof FileList && value.length > 0) {
-          formData.append(key, value[0]);
-        } else if (Array.isArray(value)) {
-          value.forEach((item) => formData.append(key, String(item)));
-        } else if (value !== null && value !== undefined) {
-          formData.append(key, String(value));
-        }
-      }
-      mutation.mutate(formData);
-    } else {
-      // Remove FileList objects if no file was selected
-      const jsonPayload = { ...preparedData };
-      for (const key in jsonPayload) {
-        if (jsonPayload[key] instanceof FileList) {
-          delete jsonPayload[key];
+    // If there are no files, we can submit as JSON.
+    // This is often preferred by backends that can handle both.
+    if (!hasFiles) {
+      const jsonPayload: Record<string, any> = {};
+      // @ts-ignore
+      for (const [key, value] of formData.entries()) {
+        // Handle keys that might have multiple values (e.g. from multi-select)
+        if (jsonPayload[key]) {
+          if (Array.isArray(jsonPayload[key])) {
+            jsonPayload[key].push(value);
+          } else {
+            jsonPayload[key] = [jsonPayload[key], value];
+          }
+        } else {
+          jsonPayload[key] = value;
         }
       }
       mutation.mutate(jsonPayload);
+    } else {
+      mutation.mutate(formData);
     }
   };
 
@@ -338,6 +397,7 @@ export function ModelForm({
                   label={fieldConfig.verbose_name}
                   required={fieldConfig.required}
                   disabled={!fieldConfig.editable}
+                  maxLength={fieldConfig.max_length}
                   {...field}
                 />
               );
@@ -373,16 +433,27 @@ export function ModelForm({
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <div className="flex justify-end">
-          {modelConfig?.admin_config?.can_generate_with_ai && (
+        <div className="flex justify-end space-x-2">
+          <>
+            <AiGenerateButton
+              modelKey={modelKey}
+              modelName={modelConfig.verbose_name}
+              apiUrl={`/api/admin/models/${modelKey}/`}
+              fields={modelConfig.fields}
+              fieldCount={fieldCount}
+              hasImageField={hasImageField}
+              bulk
+            />
             <AiGenerateButton
               modelKey={modelKey}
               modelName={modelConfig.verbose_name}
               apiUrl={`/api/admin/models/${modelKey}/`}
               fields={modelConfig.fields}
               onGenerateSingle={handleGenerateSingle}
+              fieldCount={fieldCount}
+              hasImageField={hasImageField}
             />
-          )}
+          </>
         </div>
         <div className="p-6 border rounded-lg space-y-6">
           {nonTranslationFields.map(([fieldName, fieldConfig]) => (
