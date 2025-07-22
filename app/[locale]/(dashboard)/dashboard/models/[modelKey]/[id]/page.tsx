@@ -34,7 +34,7 @@ export default function EditModelPage() {
     error: errorData,
   } = useQuery({
     queryKey: ["modelItem", modelKey, itemId],
-    queryFn: () => api.getModelItem(`/api/admin/models/${modelKey}`, itemId),
+    queryFn: () => api.getModelItem(`/api/admin/models/${modelKey}/`, itemId),
     enabled: status === "authenticated",
   });
 
