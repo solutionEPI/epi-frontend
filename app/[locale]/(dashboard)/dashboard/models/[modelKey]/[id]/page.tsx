@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api";
 import { ModelForm } from "@/components/model-form";
 import { Skeleton } from "@/components/ui/skeleton";
-import { prepareDataForSubmission } from "@/lib/utils";
+import { prepareDataForDisplay } from "@/lib/utils";
 
 export default function EditModelPage() {
   const t = useTranslations("ModelListPage");
@@ -69,7 +69,7 @@ export default function EditModelPage() {
     return <div>{t("loadModelDataFailed", { modelName: modelKey })}</div>;
   }
 
-  const processedData = prepareDataForSubmission(
+  const processedData = prepareDataForDisplay(
     initialData,
     modelConfig.fields
   ) as Record<string, any>;

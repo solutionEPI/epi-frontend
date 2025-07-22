@@ -136,7 +136,7 @@ export function ModelForm({
       });
       queryClient.invalidateQueries({ queryKey: ["modelItems", modelKey] });
       queryClient.invalidateQueries({ queryKey: ["adminConfig"] }); // Invalidate dashboard counts
-      router.push(`/models/${modelKey}`);
+      router.push(`/dashboard/models/${modelKey}`);
     },
     onError: (error: Error) => {
       toast({
@@ -157,6 +157,21 @@ export function ModelForm({
         console.warn(
           `[Data Submission] Missing required field '${key}' after preparation.`
         );
+      }
+    }
+
+    // Validate base fields against English translations
+    for (const key in modelConfig.fields) {
+      if (modelConfig.fields[key].is_translation && key.endsWith("_en")) {
+        const baseKey = key.slice(0, -3);
+        if (processedData[baseKey] !== processedData[key]) {
+          toast({
+            variant: "destructive",
+            title: "Validation Error",
+            description: `Base field '${baseKey}' must match '${key}' (English version).`,
+          });
+          return; // Prevent submission
+        }
       }
     }
 
@@ -402,6 +417,24 @@ export function ModelForm({
                 />
               );
           }
+
+          if (
+            !fieldConfig.is_translation &&
+            Object.keys(modelConfig.fields).some((f) => f === `${fieldName}_en`)
+          ) {
+            // Make read-only and add description
+            field.disabled = true; // Assuming components support disabled
+            return (
+              <FormItem>
+                <FormControl>{component}</FormControl>
+                <FormDescription>
+                  This field will be auto-set from the English translation.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            );
+          }
+
           return (
             <FormItem>
               <FormControl>{component}</FormControl>
