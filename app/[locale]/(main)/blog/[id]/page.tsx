@@ -28,8 +28,12 @@ const getCorrectImageUrl = (url: string) => {
   return url;
 };
 
-export default async function BlogPostPage({ params }: { params: any }) {
-  const { locale, id } = await params;
+export default function BlogPostPage({
+  params,
+}: {
+  params: { locale: string; id: string };
+}) {
+  const { locale, id } = params;
   const t = useTranslations("BlogPage");
 
   const {

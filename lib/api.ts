@@ -496,8 +496,22 @@ export const api = {
       locale
     );
   },
-  getBlogPost: (locale: string, id: string): Promise<PostDetail> => {
-    return apiRequest("GET", `/api/blog/posts/${id}/`, null, locale);
+  getBlogPost: async (locale: string, id: string): Promise<PostDetail> => {
+    const response = await publicApiFetch<any>(`/api/blog/posts/${id}/`, {
+      headers: { "Accept-Language": locale },
+    });
+
+    // Handle wrapped or direct response formats
+    if (response && response.success && Array.isArray(response.data)) {
+      return response.data[0] as PostDetail;
+    }
+
+    if (response && response.data && !Array.isArray(response.data)) {
+      return response.data as PostDetail;
+    }
+
+    // If response is already the post object
+    return response as PostDetail;
   },
   getBlogCategories: (locale: string): Promise<PaginatedResponse<Category>> => {
     return apiRequest("GET", "/api/blog/categories/", null, locale);

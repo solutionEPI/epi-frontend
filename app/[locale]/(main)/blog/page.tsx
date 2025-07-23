@@ -10,8 +10,8 @@ import { Search } from "lucide-react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { CategoryList } from "@/components/blog/CategoryList";
 
-export default async function BlogPage({ params }: { params: any }) {
-  const { locale } = await params;
+export default function BlogPage({ params }: { params: { locale: string } }) {
+  const { locale } = params;
   const t = useTranslations("BlogPage");
   const router = useRouter();
   const pathname = usePathname();
