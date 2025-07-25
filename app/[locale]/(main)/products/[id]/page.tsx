@@ -308,7 +308,7 @@ export default function ProductDetailPage({
             {/* Category and name */}
             <div className="mb-4">
               <div className="text-sm text-muted-foreground mb-2">
-                {product.category} / {product.subCategory}
+                {product.category.name} / {product.subCategory}
               </div>
               <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
 
