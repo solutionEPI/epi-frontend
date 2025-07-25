@@ -613,6 +613,14 @@
   "ContactPage": {
     "title": "Contact Us",
     "subtitle": "Have a question or want to place a special order? We'd love to hear from you!",
+    "ourTeam": "Our Team",
+    "teamDescription": "Our safety experts team is available to advise you on the best equipment suited to your specific needs.",
+    "certifiedISO": "ISO 45001 Certified",
+    "faqTitle": "Frequently Asked Questions",
+    "faqSubtitle": "Find quick answers to the most common questions about our products and services.",
+    "ctaTitle": "Need a personalized solution?",
+    "ctaDescription": "Our team of experts is ready to develop a tailored solution to meet your company's specific needs.",
+    "requestAppointment": "Request an appointment",
     "address": {
       "title": "Our Location"
     },

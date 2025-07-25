@@ -213,66 +213,42 @@ export default function HomePage() {
     {
       name: t("productCategories.headProtection.name"),
       icon: <HardHat className="w-12 h-12 text-primary" />,
-      products: [
-        t("productCategories.headProtection.products.0"),
-        t("productCategories.headProtection.products.1"),
-        t("productCategories.headProtection.products.2"),
-      ],
+      products: t("productCategories.headProtection.products").slice(0, 3),
       image:
         "https://images.pexels.com/photos/8961277/pexels-photo-8961277.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
       name: t("productCategories.hearingProtection.name"),
       icon: <Headphones className="w-12 h-12 text-primary" />,
-      products: [
-        t("productCategories.hearingProtection.products.0"),
-        t("productCategories.hearingProtection.products.1"),
-        t("productCategories.hearingProtection.products.2"),
-      ],
+      products: t("productCategories.hearingProtection.products").slice(0, 3),
       image:
         "https://images.pexels.com/photos/1078058/pexels-photo-1078058.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
       name: t("productCategories.eyeProtection.name"),
       icon: <Glasses className="w-12 h-12 text-primary" />,
-      products: [
-        t("productCategories.eyeProtection.products.0"),
-        t("productCategories.eyeProtection.products.1"),
-        t("productCategories.eyeProtection.products.2"),
-      ],
+      products: t("productCategories.eyeProtection.products").slice(0, 3),
       image:
         "https://images.pexels.com/photos/4492346/pexels-photo-4492346.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
       name: t("productCategories.protectiveClothing.name"),
       icon: <Shirt className="w-12 h-12 text-primary" />,
-      products: [
-        t("productCategories.protectiveClothing.products.0"),
-        t("productCategories.protectiveClothing.products.1"),
-        t("productCategories.protectiveClothing.products.2"),
-      ],
+      products: t("productCategories.protectiveClothing.products").slice(0, 3),
       image:
         "https://images.pexels.com/photos/3912364/pexels-photo-3912364.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
       name: t("productCategories.footProtection.name"),
       icon: <Footprints className="w-12 h-12 text-primary" />,
-      products: [
-        t("productCategories.footProtection.products.0"),
-        t("productCategories.footProtection.products.1"),
-        t("productCategories.footProtection.products.2"),
-      ],
+      products: t("productCategories.footProtection.products").slice(0, 3),
       image:
         "https://images.pexels.com/photos/4492141/pexels-photo-4492141.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
       name: t("productCategories.handProtection.name"),
       icon: <HandMetal className="w-12 h-12 text-primary" />,
-      products: [
-        t("productCategories.handProtection.products.0"),
-        t("productCategories.handProtection.products.1"),
-        t("productCategories.handProtection.products.2"),
-      ],
+      products: t("productCategories.handProtection.products").slice(0, 3),
       image:
         "https://images.pexels.com/photos/4491470/pexels-photo-4491470.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
@@ -1021,7 +997,9 @@ export default function HomePage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}>
                     <Mail className="h-12 w-12 text-primary mx-auto mb-4" />
-                    <h3 className="font-bold text-xl mb-2">{t("contact.getInTouch")}</h3>
+                    <h3 className="font-bold text-xl mb-2">
+                      {t("contact.getInTouch")}
+                    </h3>
                     <p className="text-muted-foreground mb-4">
                       {t("contact.teamAvailable")}
                     </p>
@@ -1036,7 +1014,9 @@ export default function HomePage() {
             </div>
 
             <div>
-              <h3 className="text-2xl font-bold mb-8">{t("contact.coordinates")}</h3>
+              <h3 className="text-2xl font-bold mb-8">
+                {t("contact.coordinates")}
+              </h3>
 
               <div className="space-y-6">
                 <div className="contact-item flex items-start">

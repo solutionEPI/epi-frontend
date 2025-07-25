@@ -544,12 +544,10 @@ export default function ContactPage() {
             <div className="bg-card border rounded-xl p-6 shadow-sm">
               <div className="flex items-center mb-4">
                 <Users className="h-5 w-5 text-primary mr-2" />
-                <h3 className="font-semibold">Notre équipe</h3>
+                <h3 className="font-semibold">{t("ourTeam")}</h3>
               </div>
               <p className="text-muted-foreground mb-4">
-                Notre équipe d'experts en sécurité est disponible pour vous
-                conseiller sur les meilleurs équipements adaptés à vos besoins
-                spécifiques.
+                {t("teamDescription")}
               </p>
               <div className="flex items-center justify-between">
                 <div className="flex -space-x-4">
@@ -565,7 +563,7 @@ export default function ContactPage() {
                 </div>
                 <div className="flex items-center text-sm text-muted-foreground">
                   <ShieldCheck className="h-4 w-4 mr-1 text-primary" />
-                  <span>Certifiés ISO 45001</span>
+                  <span>{t("certifiedISO")}</span>
                 </div>
               </div>
             </div>
@@ -575,10 +573,9 @@ export default function ContactPage() {
         {/* FAQ Section */}
         <div ref={faqRef} className="mb-16 w-full">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold mb-4">Questions fréquentes</h2>
+            <h2 className="text-3xl font-bold mb-4">{t("faqTitle")}</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Trouvez rapidement des réponses aux questions les plus courantes
-              concernant nos produits et services.
+              {t("faqSubtitle")}
             </p>
           </div>
 
@@ -609,14 +606,13 @@ export default function ContactPage() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}>
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            Besoin d'une solution personnalisée?
+            {t("ctaTitle")}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-            Notre équipe d'experts est prête à élaborer une solution sur mesure
-            pour répondre aux besoins spécifiques de votre entreprise.
+            {t("ctaDescription")}
           </p>
           <Button size="lg" className="bg-primary hover:bg-primary/90">
-            Demander un rendez-vous
+            {t("requestAppointment")}
           </Button>
         </motion.div>
       </div>

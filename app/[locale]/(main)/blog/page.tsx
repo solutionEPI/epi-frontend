@@ -1,7 +1,7 @@
 "use client";
 
 import { api } from "@/lib/api";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useState, useEffect } from "react";
 import { PostListItem } from "@/types/blog";
 import { Input } from "@/components/ui/input";
@@ -10,8 +10,8 @@ import { Search } from "lucide-react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { CategoryList } from "@/components/blog/CategoryList";
 
-export default function BlogPage({ params }: { params: { locale: string } }) {
-  const { locale } = params;
+export default function BlogPage() {
+  const locale = useLocale();
   const t = useTranslations("BlogPage");
   const router = useRouter();
   const pathname = usePathname();

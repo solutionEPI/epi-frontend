@@ -523,6 +523,50 @@
     "verifying": "Überprüfen...",
     "verify": "Überprüfen"
   },
+  "ContactPage": {
+    "title": "Kontaktieren Sie uns",
+    "subtitle": "Haben Sie eine Frage oder möchten Sie eine spezielle Bestellung aufgeben? Wir würden gerne von Ihnen hören!",
+    "ourTeam": "Unser Team",
+    "teamDescription": "Unser Team von Sicherheitsexperten steht Ihnen zur Verfügung, um Sie über die beste Ausrüstung zu beraten, die für Ihre spezifischen Bedürfnisse geeignet ist.",
+    "certifiedISO": "ISO 45001 zertifiziert",
+    "faqTitle": "Häufig gestellte Fragen",
+    "faqSubtitle": "Finden Sie schnell Antworten auf die häufigsten Fragen zu unseren Produkten und Dienstleistungen.",
+    "ctaTitle": "Benötigen Sie eine personalisierte Lösung?",
+    "ctaDescription": "Unser Expertenteam ist bereit, eine maßgeschneiderte Lösung zu entwickeln, die den spezifischen Bedürfnissen Ihres Unternehmens entspricht.",
+    "requestAppointment": "Termin anfordern",
+    "address": {
+      "title": "Unser Standort"
+    },
+    "phone": {
+      "title": "Telefon"
+    },
+    "email": {
+      "title": "E-Mail"
+    },
+    "hours": {
+      "title": "Geschäftszeiten"
+    },
+    "form": {
+      "title": "Senden Sie uns eine Nachricht",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "firstNamePlaceholder": "Geben Sie Ihren Vornamen ein",
+      "lastNamePlaceholder": "Geben Sie Ihren Nachnamen ein",
+      "email": "E-Mail",
+      "emailPlaceholder": "Geben Sie Ihre E-Mail-Adresse ein",
+      "message": "Nachricht",
+      "messagePlaceholder": "Wie können wir Ihnen helfen?",
+      "submit": "Nachricht senden",
+      "sending": "Wird gesendet...",
+      "required": "Dieses Feld ist erforderlich",
+      "invalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+      "success": {
+        "title": "Nachricht gesendet!",
+        "message": "Vielen Dank für Ihre Kontaktaufnahme. Wir werden uns so schnell wie möglich bei Ihnen melden.",
+        "button": "Eine weitere Nachricht senden"
+      }
+    }
+  },
   "ProductsPage": {
     "productUpdated": "Produkt aktualisiert",
     "productUpdatedDescription": "{productName} wurde in Ihrem Warenkorb aktualisiert.",

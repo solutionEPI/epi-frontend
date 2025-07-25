@@ -484,17 +484,16 @@ export const api = {
   },
   getBlogPosts: (
     locale: string,
-    params?: { search?: string; categoryId?: string }
+    params?: { search?: string; categoryId?: string; page?: number }
   ): Promise<PaginatedResponse<PostListItem>> => {
     const searchParams = new URLSearchParams();
     if (params?.search) searchParams.set("search", params.search);
     if (params?.categoryId) searchParams.set("category", params.categoryId);
-    return apiRequest(
-      "GET",
-      `/api/blog/posts/?${searchParams.toString()}`,
-      null,
-      locale
-    );
+    if (params?.page) searchParams.set("page", params.page.toString());
+
+    return publicApiFetch(`/api/blog/posts/?${searchParams.toString()}`, {
+      headers: { "Accept-Language": locale },
+    });
   },
   getBlogPost: async (locale: string, id: string): Promise<PostDetail> => {
     const response = await publicApiFetch<any>(`/api/blog/posts/${id}/`, {
@@ -514,32 +513,30 @@ export const api = {
     return response as PostDetail;
   },
   getBlogCategories: (locale: string): Promise<PaginatedResponse<Category>> => {
-    return apiRequest("GET", "/api/blog/categories/", null, locale);
+    return publicApiFetch("/api/blog/categories/", {
+      headers: { "Accept-Language": locale },
+    });
   },
   getBlogStats: (locale: string) => {
-    return apiRequest("GET", "/api/blog/stats/", null, locale);
+    return publicApiFetch("/api/blog/stats/", {
+      headers: { "Accept-Language": locale },
+    });
   },
   getPostsByCategory: (
     locale: string,
     categoryId: string
   ): Promise<PaginatedResponse<PostListItem>> => {
-    return apiRequest(
-      "GET",
-      `/api/blog/categories/${categoryId}/posts/`,
-      null,
-      locale
-    );
+    return publicApiFetch(`/api/blog/categories/${categoryId}/posts/`, {
+      headers: { "Accept-Language": locale },
+    });
   },
   getPostComments: (
     locale: string,
     postId: string
   ): Promise<PaginatedResponse<Comment>> => {
-    return apiRequest(
-      "GET",
-      `/api/blog/posts/${postId}/comments/`,
-      null,
-      locale
-    );
+    return publicApiFetch(`/api/blog/posts/${postId}/comments/`, {
+      headers: { "Accept-Language": locale },
+    });
   },
   createPostComment: (
     postId: string,
@@ -548,9 +545,21 @@ export const api = {
       parent?: string | null;
       author_name?: string;
       author_email?: string;
-    }
+    },
+    locale?: string
   ) => {
-    return apiRequest("POST", `/api/blog/posts/${postId}/comments/`, data);
+    const headers: HeadersInit = {
+      "Content-Type": "application/json",
+    };
+    if (locale) {
+      headers["Accept-Language"] = locale;
+    }
+
+    return publicApiFetch(`/api/blog/posts/${postId}/comments/`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify(data),
+    });
   },
   getServices: (
     locale: string,
@@ -565,5 +574,78 @@ export const api = {
     return publicApiFetch(`/api/v1/salon/employees/`, {
       headers: { "Accept-Language": locale },
     });
+  },
+
+  getProducts: async (
+    params: {
+      search?: string;
+      category?: string;
+      inStock?: boolean;
+      newOnly?: boolean;
+      sort?: string;
+    },
+    locale?: string
+  ) => {
+    const url = new URL(`${dashboardConfig.api.baseUrl}/api/shop/products/`);
+
+    if (params.search) url.searchParams.append("search", params.search);
+    if (params.category) url.searchParams.append("category", params.category);
+    if (params.inStock)
+      url.searchParams.append("in_stock", params.inStock.toString());
+    if (params.newOnly)
+      url.searchParams.append("is_new", params.newOnly.toString());
+    if (params.sort) url.searchParams.append("ordering", params.sort);
+
+    const headers: HeadersInit = {
+      "Content-Type": "application/json",
+    };
+
+    if (locale) {
+      headers["Accept-Language"] = locale;
+    }
+
+    const response = await fetch(url.toString(), { headers });
+    if (!response.ok) {
+      throw new Error("Failed to fetch products");
+    }
+    return response.json();
+  },
+
+  getProductById: async (id: string, locale?: string) => {
+    const headers: HeadersInit = {
+      "Content-Type": "application/json",
+    };
+
+    if (locale) {
+      headers["Accept-Language"] = locale;
+    }
+
+    const response = await fetch(
+      `${dashboardConfig.api.baseUrl}/api/shop/products/${id}/`,
+      { headers }
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch product details");
+    }
+    return response.json();
+  },
+
+  getProductCategories: async (locale?: string) => {
+    const headers: HeadersInit = {
+      "Content-Type": "application/json",
+    };
+
+    if (locale) {
+      headers["Accept-Language"] = locale;
+    }
+
+    const response = await fetch(
+      `${dashboardConfig.api.baseUrl}/api/shop/categories/`,
+      { headers }
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch product categories");
+    }
+    return response.json();
   },
 };

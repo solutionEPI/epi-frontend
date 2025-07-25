@@ -1,14 +1,11 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
-import Link from "next/link";
-import { ShoppingCart, Heart, Menu } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-
-import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Badge } from "@/components/ui/badge";
 import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
+import Link from "next/link";
+import { api } from "@/lib/api";
 
 // Types
 type Product = {
@@ -93,7 +90,9 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
         toast({
           title: t("productUpdated"),
-          description: t("productUpdatedDescription", { productName: product.name }),
+          description: t("productUpdatedDescription", {
+            productName: product.name,
+          }),
         });
 
         return updatedCart;
@@ -101,7 +100,9 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         // Add new item
         toast({
           title: t("productAdded"),
-          description: t("productAddedDescription", { productName: product.name }),
+          description: t("productAddedDescription", {
+            productName: product.name,
+          }),
         });
 
         return [...prevCart, { product, quantity, color, size }];
@@ -117,7 +118,9 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
       toast({
         title: t("productRemoved"),
-        description: t("productRemovedDescription", { productName: removedItem.product.name }),
+        description: t("productRemovedDescription", {
+          productName: removedItem.product.name,
+        }),
       });
 
       return newCart;
@@ -145,7 +148,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   const cartTotal = cart.reduce(
-    (total, item) => total + item.product.price * item.quantity,
+    (total, item) => total + Number(item.product.price) * item.quantity,
     0
   );
 
@@ -174,341 +177,80 @@ export const useCart = () => {
   return context;
 };
 
-// Mini Cart Component
-const MiniCart = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const { cart, removeFromCart, updateQuantity, cartTotal, cartCount } =
-    useCart();
-  const t = useTranslations("ProductsPage");
-
-  return (
-    <div className="relative">
-      <Button
-        variant="ghost"
-        size="icon"
-        className="relative"
-        onClick={() => setIsOpen(!isOpen)}>
-        <ShoppingCart className="h-5 w-5" />
-        {cartCount > 0 && (
-          <Badge className="absolute -top-2 -right-2 px-1.5 py-0.5 min-w-[18px] text-xs">
-            {cartCount}
-          </Badge>
-        )}
-      </Button>
-
-      <AnimatePresence>
-        {isOpen && (
-          <>
-            <div
-              className="fixed inset-0 bg-black/20 z-40"
-              onClick={() => setIsOpen(false)}
-            />
-
-            <motion.div
-              initial={{ opacity: 0, x: 300, y: 0 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              exit={{ opacity: 0, x: 300, y: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed right-0 top-0 h-full w-full sm:w-[400px] bg-background z-50 shadow-xl">
-              <div className="flex flex-col h-full">
-                <div className="p-4 border-b flex justify-between items-center">
-                  <h2 className="font-bold text-xl">{t("yourCart")}</h2>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => setIsOpen(false)}>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round">
-                      <path d="M18 6L6 18"></path>
-                      <path d="M6 6l12 12"></path>
-                    </svg>
-                  </Button>
-                </div>
-
-                <div className="flex-grow overflow-y-auto p-4">
-                  {cart.length === 0 ? (
-                    <div className="h-full flex flex-col items-center justify-center text-center">
-                      <ShoppingCart className="h-16 w-16 text-muted-foreground mb-4" />
-                      <p className="text-xl font-medium mb-2">
-                        {t("cartEmpty")}
-                      </p>
-                      <p className="text-muted-foreground mb-6">
-                        {t("addProductsToStartShopping")}
-                      </p>
-                      <Button onClick={() => setIsOpen(false)} asChild>
-                        <Link href="/products">{t("viewOurProducts")}</Link>
-                      </Button>
-                    </div>
-                  ) : (
-                    <div className="space-y-4">
-                      {cart.map((item, index) => (
-                        <div
-                          key={`${item.product.id}-${item.color}-${item.size}`}
-                          className="flex gap-4 border-b pb-4">
-                          <div className="w-20 h-20 bg-muted rounded relative overflow-hidden">
-                            {/* Product image would go here */}
-                            <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
-                              {t("image")}
-                            </div>
-                          </div>
-                          <div className="flex-grow">
-                            <div className="flex justify-between">
-                              <h4 className="font-medium">
-                                {item.product.name}
-                              </h4>
-                              <Button
-                                variant="ghost"
-                                size="icon"
-                                className="h-6 w-6"
-                                onClick={() => removeFromCart(index)}>
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="16"
-                                  height="16"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  strokeWidth="2"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round">
-                                  <path d="M18 6L6 18"></path>
-                                  <path d="M6 6l12 12"></path>
-                                </svg>
-                              </Button>
-                            </div>
-                            {(item.color || item.size) && (
-                              <div className="text-sm text-muted-foreground">
-                                {item.color && `${t("color")}: ${item.color}`}
-                                {item.color && item.size && " | "}
-                                {item.size && `${t("size")}: ${item.size}`}
-                              </div>
-                            )}
-                            <div className="flex justify-between items-center mt-2">
-                              <div className="flex items-center border rounded">
-                                <Button
-                                  variant="ghost"
-                                  size="icon"
-                                  className="h-8 w-8 rounded-none"
-                                  onClick={() =>
-                                    updateQuantity(index, item.quantity - 1)
-                                  }
-                                  disabled={item.quantity <= 1}>
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round">
-                                    <path d="M5 12h14"></path>
-                                  </svg>
-                                </Button>
-                                <span className="w-8 text-center">
-                                  {item.quantity}
-                                </span>
-                                <Button
-                                  variant="ghost"
-                                  size="icon"
-                                  className="h-8 w-8 rounded-none"
-                                  onClick={() =>
-                                    updateQuantity(index, item.quantity + 1)
-                                  }>
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round">
-                                    <path d="M12 5v14"></path>
-                                    <path d="M5 12h14"></path>
-                                  </svg>
-                                </Button>
-                              </div>
-                              <div className="font-bold">
-                                {(item.product.price * item.quantity).toFixed(
-                                  2
-                                )}{" "}
-                                €
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                {cart.length > 0 && (
-                  <div className="border-t p-4">
-                    <div className="flex justify-between mb-4">
-                      <span className="font-medium">{t("total")}</span>
-                      <span className="font-bold">
-                        {cartTotal.toFixed(2)} €
-                      </span>
-                    </div>
-                    <div className="space-y-2">
-                      <Button className="w-full" onClick={() => alert(t("placeOrder"))}>{t("placeOrder")}</Button>
-                      <Button variant="outline" className="w-full" asChild>
-                        <Link href="/products">{t("continueShopping")}</Link>
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-};
-
-// Products Navigation Component
-const ProductsNavigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const t = useTranslations("ProductsPage");
-
-  const categories = [
-    t("headProtection"),
-    t("eyeProtection"),
-    t("hearingProtection"),
-    t("respiratoryProtection"),
-    t("protectiveClothing"),
-    t("handProtection"),
-    t("footProtection"),
-    t("fallProtection"),
-  ];
-
-  return (
-    <div className="border-b">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between py-4">
-          <div className="lg:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}>
-              <Menu className="h-5 w-5" />
-            </Button>
-          </div>
-
-          <div className="hidden lg:flex items-center space-x-6">
-            <Link
-              href="/products"
-              className="font-medium hover:text-primary transition-colors">
-              {t("allProducts")}
-            </Link>
-
-            {categories.slice(0, 5).map((category) => (
-              <Link
-                key={category}
-                href={`/products?category=${encodeURIComponent(category)}`}
-                className="text-sm hover:text-primary transition-colors">
-                {category}
-              </Link>
-            ))}
-
-            {/* Dropdown for more categories */}
-            <div className="relative group">
-              <button className="flex items-center text-sm group-hover:text-primary transition-colors">
-                {t("moreCategories")}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="ml-1">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </button>
-              <div className="absolute left-0 mt-2 w-60 bg-background rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                <div className="p-4 space-y-2">
-                  {categories.slice(5).map((category) => (
-                    <Link
-                      key={category}
-                      href={`/products?category=${encodeURIComponent(
-                        category
-                      )}`}
-                      className="block text-sm hover:text-primary transition-colors">
-                      {category}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <Button variant="ghost" size="icon">
-              <Heart className="h-5 w-5" />
-            </Button>
-            <MiniCart />
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile navigation */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="lg:hidden border-t overflow-hidden">
-            <div className="p-4 space-y-2">
-              <Link
-                href="/products"
-                className="block font-medium hover:text-primary transition-colors py-2"
-                onClick={() => setIsOpen(false)}>
-                {t("allProducts")}
-              </Link>
-
-              {categories.map((category) => (
-                <Link
-                  key={category}
-                  href={`/products?category=${encodeURIComponent(category)}`}
-                  className="block hover:text-primary transition-colors py-2"
-                  onClick={() => setIsOpen(false)}>
-                  {category}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-};
-
 export default function ProductsLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const t = useTranslations("ProductsPage");
+  const locale = useLocale();
+  const [categories, setCategories] = useState<
+    Array<{ name: string; label: string }>
+  >([]);
+
+  // Fetch product categories
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const data = await api.getProductCategories(locale);
+        const categoriesData = data.results || data.categories || [];
+        // Map categories to expected format
+        const formattedCategories = categoriesData.map((cat: any) => ({
+          name:
+            typeof cat === "string" ? cat : cat.name || cat.title || "Category",
+          label:
+            typeof cat === "string"
+              ? cat
+              : cat.name_en ||
+                cat.title_en ||
+                cat.name ||
+                cat.title ||
+                "Category",
+        }));
+        setCategories(formattedCategories);
+      } catch (error) {
+        console.error("Failed to fetch categories:", error);
+        // Fallback to default categories if API fails
+        setCategories([
+          { name: "Protection de la tête", label: "Head Protection" },
+          { name: "Protection oculaire", label: "Eye Protection" },
+          { name: "Protection auditive", label: "Hearing Protection" },
+          { name: "Protection respiratoire", label: "Respiratory Protection" },
+          { name: "Protection des mains", label: "Hand Protection" },
+          { name: "Protection des pieds", label: "Foot Protection" },
+        ]);
+      }
+    };
+    fetchCategories();
+  }, [locale]);
+
   return (
     <CartProvider>
-      <ProductsNavigation />
-      <div className="min-h-[60vh]">{children}</div>
+      <div className="pt-20">
+        {/* Category navigation bar */}
+        <div className="bg-background border-b">
+          <div className="container mx-auto px-4 py-2 overflow-x-auto">
+            <div className="flex space-x-4 whitespace-nowrap">
+              <Link
+                href="/products"
+                className="text-sm py-2 hover:text-primary transition-colors font-medium">
+                All Products
+              </Link>
+
+              {categories.map((cat) => (
+                <Link
+                  key={cat.name}
+                  href={`/products?category=${encodeURIComponent(cat.name)}`}
+                  className="text-sm py-2 hover:text-primary transition-colors">
+                  {cat.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="min-h-[60vh]">{children}</div>
+      </div>
     </CartProvider>
   );
 }

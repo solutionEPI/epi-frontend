@@ -570,6 +570,50 @@
       "color2": "Noir/Jaune"
     }
   },
+  "ContactPage": {
+    "title": "Nous contacter",
+    "subtitle": "Vous avez une question ou souhaitez passer une commande spéciale ? Nous serions ravis de vous entendre !",
+    "ourTeam": "Notre équipe",
+    "teamDescription": "Notre équipe d'experts en sécurité est disponible pour vous conseiller sur les meilleurs équipements adaptés à vos besoins spécifiques.",
+    "certifiedISO": "Certifiés ISO 45001",
+    "faqTitle": "Questions fréquentes",
+    "faqSubtitle": "Trouvez rapidement des réponses aux questions les plus courantes concernant nos produits et services.",
+    "ctaTitle": "Besoin d'une solution personnalisée?",
+    "ctaDescription": "Notre équipe d'experts est prête à élaborer une solution sur mesure pour répondre aux besoins spécifiques de votre entreprise.",
+    "requestAppointment": "Demander un rendez-vous",
+    "address": {
+      "title": "Notre emplacement"
+    },
+    "phone": {
+      "title": "Téléphone"
+    },
+    "email": {
+      "title": "Email"
+    },
+    "hours": {
+      "title": "Heures d'ouverture"
+    },
+    "form": {
+      "title": "Envoyez-nous un message",
+      "firstName": "Prénom",
+      "lastName": "Nom de famille",
+      "firstNamePlaceholder": "Entrez votre prénom",
+      "lastNamePlaceholder": "Entrez votre nom de famille",
+      "email": "Email",
+      "emailPlaceholder": "Entrez votre adresse email",
+      "message": "Message",
+      "messagePlaceholder": "Comment pouvons-nous vous aider ?",
+      "submit": "Envoyer le message",
+      "sending": "Envoi en cours...",
+      "required": "Ce champ est requis",
+      "invalidEmail": "Veuillez entrer une adresse email valide",
+      "success": {
+        "title": "Message envoyé !",
+        "message": "Merci de nous avoir contactés. Nous vous répondrons dans les plus brefs délais.",
+        "button": "Envoyer un autre message"
+      }
+    }
+  },
   "HomePageLegacy": {
     "hero": {
       "title": "Solution EPI",

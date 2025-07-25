@@ -108,7 +108,7 @@ export const ProductCart = ({
       >
         <div className="relative h-64 overflow-hidden bg-muted">
           <Image
-            src={product.image}
+            src={product.image || "/placeholder-product.jpg"}
             alt={product.name}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
@@ -218,7 +218,7 @@ export const ProductCart = ({
 
             <div className="mt-auto">
               <div className="flex items-center justify-between mb-3">
-                <span className="font-bold text-lg">{product.price.toFixed(2)} €</span>
+                <span className="font-bold text-lg">{Number(product.price).toFixed(2)} €</span>
                 <div className="text-xs flex items-center">
                   {product.inStock ? (
                     <span className="text-green-600 flex items-center">

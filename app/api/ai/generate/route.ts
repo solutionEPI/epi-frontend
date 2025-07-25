@@ -128,10 +128,12 @@ function formatExistingData(existingData: any): string {
     result += "\nMultilingual values:\n";
 
     for (const [lang, fields] of Object.entries(existingData.langValues)) {
-      if (Object.keys(fields).length > 0) {
+      if (Object.keys(fields as Record<string, any>).length > 0) {
         result += `\nLanguage: ${lang.toUpperCase()}\n`;
 
-        for (const [field, values] of Object.entries(fields)) {
+        for (const [field, values] of Object.entries(
+          fields as Record<string, any>
+        )) {
           if ((values as any[]).length > 0) {
             // Get base field name without language suffix
             const baseFieldName = field.replace(new RegExp(`_${lang}$`), "");

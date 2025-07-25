@@ -85,7 +85,7 @@ export function CommentSection({ postId, locale }: CommentSectionProps) {
       parent: string | null;
       author_name?: string;
       author_email?: string;
-    }) => api.createPostComment(postId, newComment),
+    }) => api.createPostComment(postId, newComment, locale),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["comments", postId] });
       setCommentText("");
