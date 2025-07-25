@@ -29,5 +29,5 @@
     ".next/types/**/*.ts",
     "types/**/*.ts"
   ],
-  "exclude": ["node_modules", "app/[locale]/(main)/blog/[id]/page.tsx"]
+  "exclude": ["node_modules"]
 }

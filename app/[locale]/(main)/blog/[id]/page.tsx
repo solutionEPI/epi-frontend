@@ -115,13 +115,17 @@ export default async function BlogPostPage({
               h2: ({ node, ...props }) => (
                 <h2 {...props} className="mt-6 mb-3 border-b pb-1" />
               ),
-              img: ({ node, ...props }) => (
-                <img
-                  {...props}
-                  className="rounded-md shadow-md my-6 mx-auto"
-                  alt={props.alt || "Blog image"}
-                />
-              ),
+              img: ({ node, ...props }) =>
+                props.src && typeof props.src === "string" ? (
+                  <Image
+                    {...props}
+                    src={getCorrectImageUrl(props.src)}
+                    className="rounded-md shadow-md my-6 mx-auto"
+                    alt={props.alt || "Blog image"}
+                    width={800}
+                    height={450}
+                  />
+                ) : null,
               ul: ({ node, ...props }) => (
                 <ul {...props} className="my-6 list-disc pl-6" />
               ),

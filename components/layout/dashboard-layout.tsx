@@ -48,6 +48,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { DefaultLogo } from "@/components/ui/default-logo";
+import Image from "next/image";
 
 // Sidebar animation variants
 const sidebarVariants: Variants = {
@@ -167,7 +168,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
     if (theme) {
       preferencesMutation.mutate({ theme: theme });
     }
-  }, [theme]);
+  }, [theme, preferencesMutation]);
 
   useEffect(() => {
     const collapsed = isMobile ?? userProfile?.preferences?.sidebar_collapsed;
@@ -193,7 +194,10 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const isActive = (path: string) => {
     const locale = pathname.split("/")[1];
     const pathWithLocale = `/${locale}${path}`;
-    return pathname === pathWithLocale || (path !== "/" && pathname.startsWith(pathWithLocale));
+    return (
+      pathname === pathWithLocale ||
+      (path !== "/" && pathname.startsWith(pathWithLocale))
+    );
   };
 
   if (!session) return null;
@@ -202,7 +206,13 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
     <div className="h-16 flex items-center px-4 border-b border-sidebar-border w-full justify-between">
       <Link href="/" className="flex items-center overflow-hidden">
         {logoUrl ? (
-          <img src={logoUrl} alt={siteName} className="h-8 w-8 flex-shrink-0" />
+          <Image
+            src={logoUrl}
+            alt={siteName}
+            width={32}
+            height={32}
+            className="h-8 w-8 flex-shrink-0"
+          />
         ) : (
           <DefaultLogo className="h-8 w-8 text-sidebar-foreground flex-shrink-0" />
         )}

@@ -36,7 +36,7 @@ import {
 } from "@/components/ui/accordion";
 import { useToast } from "@/hooks/use-toast";
 import { api } from "@/lib/api";
-import { useCart } from "../layout";
+import { useCart } from "@/components/cart-provider";
 
 // Product type definition
 type ProductCategory = {
@@ -69,7 +69,7 @@ type Product = {
 export default function ProductDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: any;
 }) {
   const { toast } = useToast();
   const locale = useLocale();

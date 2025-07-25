@@ -52,7 +52,7 @@ export function CategoryList({
       }
     };
     fetchCategories();
-  }, [locale]);
+  }, [locale, t]);
 
   if (isLoading) {
     return <div>{t("loadingCategories")}</div>;

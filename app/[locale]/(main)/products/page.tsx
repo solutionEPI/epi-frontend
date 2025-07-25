@@ -41,7 +41,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { api } from "@/lib/api";
-import { useCart } from "./layout";
+import { useCart } from "@/components/cart-provider";
 import { AnimatePresence } from "framer-motion";
 
 // Product type definition

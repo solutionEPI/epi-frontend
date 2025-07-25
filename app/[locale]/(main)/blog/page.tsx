@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { CategoryList } from "@/components/blog/CategoryList";
+import Image from "next/image";
 
 export default function BlogPage() {
   const locale = useLocale();
@@ -135,10 +136,12 @@ export default function BlogPage() {
                   key={post.id}
                   className="border rounded-lg overflow-hidden">
                   {post.featured_image && (
-                    <img
+                    <Image
                       src={post.featured_image}
                       alt={post.title}
                       className="w-full h-48 object-cover"
+                      width={500}
+                      height={300}
                     />
                   )}
                   <div className="p-6">

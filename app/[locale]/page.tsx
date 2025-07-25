@@ -206,49 +206,67 @@ export default function HomePage() {
     }
 
     return () => clearInterval(iconInterval);
-  }, []);
+  }, [icons.length]);
 
   // EPI Categories
   const epiCategories = [
     {
       name: t("productCategories.headProtection.name"),
       icon: <HardHat className="w-12 h-12 text-primary" />,
-      products: t("productCategories.headProtection.products").slice(0, 3),
+      products: t("productCategories.headProtection.products")
+        .split(",")
+        .map((item) => item.trim())
+        .slice(0, 3),
       image:
         "https://images.pexels.com/photos/8961277/pexels-photo-8961277.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
       name: t("productCategories.hearingProtection.name"),
       icon: <Headphones className="w-12 h-12 text-primary" />,
-      products: t("productCategories.hearingProtection.products").slice(0, 3),
+      products: t("productCategories.hearingProtection.products")
+        .split(",")
+        .map((item) => item.trim())
+        .slice(0, 3),
       image:
         "https://images.pexels.com/photos/1078058/pexels-photo-1078058.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
       name: t("productCategories.eyeProtection.name"),
       icon: <Glasses className="w-12 h-12 text-primary" />,
-      products: t("productCategories.eyeProtection.products").slice(0, 3),
+      products: t("productCategories.eyeProtection.products")
+        .split(",")
+        .map((item) => item.trim())
+        .slice(0, 3),
       image:
         "https://images.pexels.com/photos/4492346/pexels-photo-4492346.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
       name: t("productCategories.protectiveClothing.name"),
       icon: <Shirt className="w-12 h-12 text-primary" />,
-      products: t("productCategories.protectiveClothing.products").slice(0, 3),
+      products: t("productCategories.protectiveClothing.products")
+        .split(",")
+        .map((item) => item.trim())
+        .slice(0, 3),
       image:
         "https://images.pexels.com/photos/3912364/pexels-photo-3912364.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
       name: t("productCategories.footProtection.name"),
       icon: <Footprints className="w-12 h-12 text-primary" />,
-      products: t("productCategories.footProtection.products").slice(0, 3),
+      products: t("productCategories.footProtection.products")
+        .split(",")
+        .map((item) => item.trim())
+        .slice(0, 3),
       image:
         "https://images.pexels.com/photos/4492141/pexels-photo-4492141.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
     {
       name: t("productCategories.handProtection.name"),
       icon: <HandMetal className="w-12 h-12 text-primary" />,
-      products: t("productCategories.handProtection.products").slice(0, 3),
+      products: t("productCategories.handProtection.products")
+        .split(",")
+        .map((item) => item.trim())
+        .slice(0, 3),
       image:
         "https://images.pexels.com/photos/4491470/pexels-photo-4491470.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     },
@@ -763,18 +781,19 @@ export default function HomePage() {
                     </h3>
                   </div>
                   <ul className="mb-6 space-y-2">
-                    {category.products.map((product, j) => (
-                      <motion.li
-                        key={j}
-                        className="flex items-center text-foreground"
-                        initial={{ opacity: 0, x: -5 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.3, delay: 0.5 + 0.1 * j }}>
-                        <span className="h-1.5 w-1.5 rounded-full bg-primary mr-2"></span>
-                        <span>{product}</span>
-                      </motion.li>
-                    ))}
+                    {Array.isArray(category.products) &&
+                      category.products.map((product, j) => (
+                        <motion.li
+                          key={j}
+                          className="flex items-center text-foreground"
+                          initial={{ opacity: 0, x: -5 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.3, delay: 0.5 + 0.1 * j }}>
+                          <span className="h-1.5 w-1.5 rounded-full bg-primary mr-2"></span>
+                          <span>{product}</span>
+                        </motion.li>
+                      ))}
                   </ul>
                   <Button
                     variant="outline"
