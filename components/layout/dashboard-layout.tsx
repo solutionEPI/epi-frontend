@@ -130,13 +130,18 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
     queryKey: ["adminConfig"],
     queryFn: api.getAdminConfig,
     enabled: !!session,
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5, // Keep data fresh for 5 minutes
+    refetchOnWindowFocus: false, // Do not refetch when window regains focus
+    refetchOnMount: false, // Do not refetch on component mount
   });
 
   const { data: userProfile } = useQuery<UserProfile>({
     queryKey: ["userProfile"],
     queryFn: api.getUserProfile,
     enabled: !!session,
+    staleTime: 1000 * 60 * 5, // Keep data fresh for 5 minutes
+    refetchOnWindowFocus: false, // Do not refetch when window regains focus
+    refetchOnMount: false, // Do not refetch on component mount
   });
 
   const preferencesMutation = useMutation({
@@ -158,28 +163,25 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
     adminConfig?.frontend_options?.site_name || t("defaultSiteName");
   const logoUrl = adminConfig?.frontend_options?.logo_url;
 
+  // Sync theme once the user profile is loaded
   useEffect(() => {
-    // Sync theme from user profile
     if (
       userProfile?.preferences?.theme &&
       theme !== userProfile.preferences.theme
     ) {
       setTheme(userProfile.preferences.theme);
     }
+  }, [userProfile, theme, setTheme]);
 
-    // Sync sidebar state
+  // Sync sidebar collapsed state without creating a dependency loop
+  useEffect(() => {
     const collapsed = isMobile ?? userProfile?.preferences?.sidebar_collapsed;
     if (collapsed !== undefined && collapsed !== isSidebarCollapsed) {
       setSidebarCollapsed(collapsed);
     }
-  }, [userProfile, isMobile, theme, setTheme, isSidebarCollapsed]);
+  }, [userProfile, isMobile]);
 
-  useEffect(() => {
-    // Only trigger mutation if the theme is loaded and has been changed by the user
-    if (theme && userProfile && theme !== userProfile.preferences?.theme) {
-      preferencesMutation.mutate({ theme: theme });
-    }
-  }, [theme, userProfile, preferencesMutation]);
+  // Removed automatic theme sync mutation to prevent rapid PATCH loops
 
   const toggleSidebar = useCallback(() => {
     const newCollapsedState = !isSidebarCollapsed;

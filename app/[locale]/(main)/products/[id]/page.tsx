@@ -155,7 +155,19 @@ export default function ProductDetailPage({
     }
 
     // Add to cart
-    addToCart(product, quantity, selectedColor, selectedSize);
+    addToCart(
+      {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.images?.[0] || product.image,
+        category: product.category.name,
+        sku: `${product.id}-${selectedColor || "default"}-${
+          selectedSize || "default"
+        }`,
+      },
+      quantity
+    );
   };
 
   // Render star rating
@@ -626,7 +638,13 @@ export default function ProductDetailPage({
                         onClick={(e) => {
                           e.preventDefault();
                           // Add to cart
-                          addToCart(relatedProduct);
+                          addToCart({
+                            id: relatedProduct.id,
+                            name: relatedProduct.name,
+                            price: relatedProduct.price,
+                            image: relatedProduct.image,
+                            category: relatedProduct.category.name,
+                          });
                         }}>
                         <ShoppingCart className="h-4 w-4" />
                       </Button>

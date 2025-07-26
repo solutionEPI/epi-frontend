@@ -126,6 +126,14 @@
       "phone": "Telefon",
       "email": "E-Mail",
       "requestQuote": "Angebot anfordern"
+    },
+    "products": {
+      "outOfStock": "Nicht auf Lager",
+      "addToCart": "In den Warenkorb",
+      "viewDetails": "Details anzeigen"
+    },
+    "blog": {
+      "noPostsFound": "Keine Blog-Beiträge gefunden."
     }
   },
   "Header": {
@@ -142,7 +150,8 @@
     "signOutSuccessTitle": "Abgemeldet",
     "signOutSuccessDescription": "Sie wurden erfolgreich abgemeldet.",
     "products": "Produkte",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "user": "Benutzer"
   },
   "Footer": {
     "siteName": "Solution EPI",
@@ -782,5 +791,30 @@
       "email": "E-Mail",
       "requestQuote": "Angebot anfordern"
     }
+  },
+  "ThemeSwitcher": {
+    "toggleTheme": "Thema wechseln",
+    "selectTheme": "Wählen Sie ein Thema",
+    "system": "System",
+    "systemDescription": "Systemeinstellungen folgen",
+    "light": "Hell",
+    "lightDescription": "Heller Modus",
+    "dark": "Dunkel",
+    "darkDescription": "Dunkler Modus",
+    "professional": "Professionell",
+    "professionalDescription": "Professionelles Business-Thema"
+  },
+  "Cart": {
+    "shoppingCart": "Warenkorb",
+    "emptyCart": "Ihr Warenkorb ist leer",
+    "cartEmpty": "Keine Artikel im Warenkorb",
+    "itemsInCart": "{count, plural, =1 {1 Artikel} other {# Artikel}} im Warenkorb",
+    "total": "Gesamt",
+    "clearCart": "Warenkorb leeren",
+    "checkout": "Zur Kasse",
+    "viewCart": "Warenkorb ansehen",
+    "addToCart": "In den Warenkorb",
+    "removeFromCart": "Entfernen",
+    "updateQuantity": "Menge aktualisieren"
   }
 }

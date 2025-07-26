@@ -48,6 +48,23 @@ function getRelativePath(fullOrRelativeUrl: string): string {
 const REFRESH_ATTEMPT_LIMIT = 3;
 const REFRESH_ATTEMPT_WINDOW_MS = 30000;
 
+let isRefreshing = false;
+let failedQueue: {
+  resolve: (value: string | PromiseLike<string>) => void;
+  reject: (reason?: any) => void;
+}[] = [];
+
+const processQueue = (error: any, token: string | null = null) => {
+  failedQueue.forEach((prom) => {
+    if (error) {
+      prom.reject(error);
+    } else {
+      prom.resolve(token as string);
+    }
+  });
+  failedQueue = [];
+};
+
 const refreshManager = {
   refreshPromise: null as Promise<string> | null,
   failureCount: 0,
@@ -68,8 +85,7 @@ const refreshManager = {
       this.refreshPromise = this.performRefreshToken()
         .then((newAccessToken) => {
           this.failureCount = 0;
-          // Invalidate session cache after a successful token refresh
-          sessionCache = null;
+          sessionCache = null; // Invalidate session cache after a successful token refresh
           return newAccessToken;
         })
         .catch((err) => {
@@ -85,7 +101,6 @@ const refreshManager = {
   },
 
   async performRefreshToken(): Promise<string> {
-    // Use the cached getSession to prevent multiple concurrent calls
     const session = await getCachedSession();
     if (!session?.refreshToken) {
       throw new Error("No refresh token available.");
@@ -106,17 +121,12 @@ const refreshManager = {
     if (!access) {
       throw new Error("No new access token in refresh response");
     }
-
-    // Note: getSession() does not automatically update the session.
-    // The new token will be used for subsequent requests in this flow,
-    // but the session in React components might not be updated until the next session poll.
-    // This is generally fine as we are managing the token flow here.
     return access;
   },
 };
 
 const getApiHeaders = async (locale?: string) => {
-  const session = await getSession();
+  const session = await getCachedSession();
   const headers: HeadersInit = {
     "Content-Type": "application/json",
   };
@@ -164,13 +174,10 @@ async function apiFetch<T>(
   options: RequestInit = {},
   isRetry = false
 ): Promise<T> {
-  // Use the cached getSession
   let session = await getCachedSession();
   let token = session?.accessToken;
 
   if (isRetry && !token) {
-    // If it's a retry, we must have a token from the refresh flow.
-    // If not, something is wrong, so we bail.
     throw new Error("Authentication failed after token refresh.");
   }
 
@@ -188,24 +195,45 @@ async function apiFetch<T>(
 
   const finalOptions: RequestInit = { ...options, headers };
 
-  const response = await fetch(url, finalOptions);
+  let response = await fetch(url, finalOptions);
 
-  if (response.status === 401 && !isRetry) {
-    try {
-      const newAccessToken = await refreshManager.handleRefresh();
-      // Manually update the token for the retry
-      headers.set("Authorization", `Bearer ${newAccessToken}`);
-      return await apiFetch<T>(endpoint, { ...options, headers }, true);
-    } catch (refreshError) {
-      // If refresh fails (including too many retries), sign out
-      await signOut({ redirect: false });
-      window.location.href = "/login";
-      toast({
-        variant: "destructive",
-        title: "Session Expired",
-        description: "Your session has expired. Please log in again.",
-      });
-      throw new Error("Session expired. Please log in again.");
+  if (response.status === 401) {
+    if (isRefreshing) {
+      return new Promise((resolve, reject) => {
+        failedQueue.push({ resolve, reject });
+      })
+        .then((newToken) => {
+          headers.set("Authorization", `Bearer ${newToken}`);
+          return apiFetch<T>(endpoint, { ...options, headers }, true);
+        })
+        .catch((err) => {
+          return Promise.reject(err);
+        });
+    }
+
+    if (!isRetry) {
+      isRefreshing = true;
+      try {
+        const newAccessToken = await refreshManager.handleRefresh();
+        processQueue(null, newAccessToken);
+        headers.set("Authorization", `Bearer ${newAccessToken}`);
+        response = await fetch(url, { ...options, headers }); // Re-fetch with new token
+      } catch (refreshError) {
+        processQueue(refreshError);
+        await signOut({ redirect: false });
+        window.location.href = "/login";
+        toast({
+          variant: "destructive",
+          title: "Session Expired",
+          description: "Your session has expired. Please log in again.",
+        });
+        throw new Error("Session expired. Please log in again.");
+      } finally {
+        isRefreshing = false;
+      }
+    } else {
+      // If it's a retry and still 401, something is wrong with the new token or refresh logic
+      throw new Error("Authentication failed after token refresh.");
     }
   }
 
@@ -223,7 +251,6 @@ async function apiFetch<T>(
   if (response.headers.get("Content-Type")?.includes("application/json")) {
     return (await response.json()) as T;
   }
-  // For DELETE requests or other non-JSON responses
   return null as T;
 }
 
@@ -232,7 +259,6 @@ async function apiFileFetch(
   options: RequestInit = {},
   isRetry = false
 ): Promise<Response> {
-  // Use the cached getSession
   let session = await getCachedSession();
   let token = session?.accessToken;
 
@@ -249,22 +275,44 @@ async function apiFileFetch(
 
   const finalOptions: RequestInit = { ...options, headers };
 
-  const response = await fetch(url, finalOptions);
+  let response = await fetch(url, finalOptions);
 
-  if (response.status === 401 && !isRetry) {
-    try {
-      const newAccessToken = await refreshManager.handleRefresh();
-      headers.set("Authorization", `Bearer ${newAccessToken}`);
-      return await apiFileFetch(endpoint, { ...options, headers }, true);
-    } catch (refreshError) {
-      await signOut({ redirect: false });
-      window.location.href = "/login";
-      toast({
-        variant: "destructive",
-        title: "Session Expired",
-        description: "Your session has expired. Please log in again.",
-      });
-      throw new Error("Session expired. Please log in again.");
+  if (response.status === 401) {
+    if (isRefreshing) {
+      return new Promise((resolve, reject) => {
+        failedQueue.push({ resolve, reject });
+      })
+        .then((newToken) => {
+          headers.set("Authorization", `Bearer ${newToken}`);
+          return apiFileFetch(endpoint, { ...options, headers }, true);
+        })
+        .catch((err) => {
+          return Promise.reject(err);
+        });
+    }
+
+    if (!isRetry) {
+      isRefreshing = true;
+      try {
+        const newAccessToken = await refreshManager.handleRefresh();
+        processQueue(null, newAccessToken);
+        headers.set("Authorization", `Bearer ${newAccessToken}`);
+        response = await fetch(url, { ...options, headers }); // Re-fetch with new token
+      } catch (refreshError) {
+        processQueue(refreshError);
+        await signOut({ redirect: false });
+        window.location.href = "/login";
+        toast({
+          variant: "destructive",
+          title: "Session Expired",
+          description: "Your session has expired. Please log in again.",
+        });
+        throw new Error("Session expired. Please log in again.");
+      } finally {
+        isRefreshing = false;
+      }
+    } else {
+      throw new Error("Authentication failed after token refresh.");
     }
   }
 

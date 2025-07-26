@@ -23,7 +23,7 @@ export interface CartState {
 }
 
 export interface CartContextType extends CartState {
-  addItem: (item: Omit<CartItem, 'quantity'>, quantity?: number) => void;
+  addToCart: (item: Omit<CartItem, 'quantity'>, quantity?: number) => void;
   removeItem: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
@@ -34,7 +34,7 @@ export interface CartContextType extends CartState {
 
 // Actions
 type CartAction =
-  | { type: 'ADD_ITEM'; payload: { item: Omit<CartItem, 'quantity'>; quantity: number } }
+  | { type: 'ADD_TO_CART'; payload: { item: Omit<CartItem, 'quantity'>; quantity: number } }
   | { type: 'REMOVE_ITEM'; payload: { id: string } }
   | { type: 'UPDATE_QUANTITY'; payload: { id: string; quantity: number } }
   | { type: 'CLEAR_CART' }
@@ -79,7 +79,7 @@ const loadFromLocalStorage = (): CartItem[] => {
 // Reducer
 const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
-    case 'ADD_ITEM': {
+    case 'ADD_TO_CART': {
       const { item, quantity } = action.payload;
       const existingItemIndex = state.items.findIndex(cartItem => cartItem.id === item.id);
       
@@ -215,8 +215,8 @@ export function CartProvider({ children }: CartProviderProps) {
     }
   }, []);
 
-  const addItem = (item: Omit<CartItem, 'quantity'>, quantity: number = 1) => {
-    dispatch({ type: 'ADD_ITEM', payload: { item, quantity } });
+  const addToCart = (item: Omit<CartItem, 'quantity'>, quantity: number = 1) => {
+    dispatch({ type: 'ADD_TO_CART', payload: { item, quantity } });
     
     // Show toast notification
     toast({
@@ -258,7 +258,7 @@ export function CartProvider({ children }: CartProviderProps) {
 
   const value: CartContextType = {
     ...state,
-    addItem,
+    addToCart,
     removeItem,
     updateQuantity,
     clearCart,

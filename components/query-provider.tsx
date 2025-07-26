@@ -14,6 +14,8 @@ export function QueryProvider({ children }: { children: React.ReactNode }) {
             // to avoid refetching immediately on the client
             staleTime: 60 * 1000 * 5, // 5 minutes
             refetchOnWindowFocus: false, // Optional: disable refetching on window focus
+            retry: false,
+            retryOnMount: false,
           },
         },
       })
