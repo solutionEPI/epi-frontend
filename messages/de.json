@@ -76,7 +76,8 @@
         ]
       },
       "viewProducts": "Produkte ansehen",
-      "viewAllProducts": "Alle Produkte ansehen"
+      "viewAllProducts": "Alle Produkte ansehen",
+      "badge": "Ausgewählte Produkte"
     },
     "services": {
       "title": "Unsere Dienstleistungen",
@@ -354,7 +355,7 @@
       "textPlaceholder": "Fügen Sie Ihren Text hier ein...",
       "button": "Zusammenfassen",
       "buttonLoading": "Wird zusammengefasst...",
-      "prompt": "Fassen Sie diesen Text kurz und prägnant zusammen:\\n{text}"
+      "prompt": "Fassen Sie diesen Text kurz und prägnant zusammen:\n{text}"
     },
     "translator": {
       "title": "Übersetzer",
@@ -365,7 +366,7 @@
       "languagePlaceholder": "z.B. Englisch",
       "button": "Übersetzen",
       "buttonLoading": "Übersetzung läuft...",
-      "prompt": "Übersetzen nach {targetLang}:\\n{text}"
+      "prompt": "Übersetzen nach {targetLang}:\n{text}"
     },
     "emailDrafter": {
       "title": "E-Mail-Verfasser",
@@ -433,7 +434,7 @@
       "generateButton": "Generieren",
       "generatingButton": "Wird generiert...",
       "generationCountLabel": "Anzahl der zu generierenden Elemente",
-      "fullPrompt": "Sie sind ein Assistent zur Datengenerierung für die Solution EPI-Plattform.\\nIhre Aufgabe ist es, ein vollständiges JSON-Objekt basierend auf der Anfrage eines Benutzers und einem bereitgestellten Modellschema zu generieren.\\nDas JSON-Objekt muss gültig sein und darf nicht in Markdown oder einem anderen Text verpackt sein.\\n\\nBenutzeranfrage: \"{prompt}\"\\n\\nModell: \"{modelName}\"\\n\\nAnweisungen:\\n1. Analysieren Sie die Benutzeranfrage.\\n2. Sehen Sie sich das untenstehende Modellschema an, um die erforderlichen Felder, ihre Typen und ihre Sprachen zu verstehen.\\n3. **Entscheidend ist, dass Sie für ALLE Felder im Schema plausible Werte angeben, insbesondere für alle Sprachvarianten (z. B. Felder, die auf _en, _fr, _de usw. enden; es können weniger oder mehr Sprachen sein).** Wenn die Eingabeaufforderung des Benutzers in einer Sprache verfasst ist, müssen Sie den Inhalt für die anderen Sprachen übersetzen und anpassen.\\n4. Die Ausgabe darf NUR das JSON-Objekt sein.\\n\\nModellschema (zu Ihrer Information):\\n{schema}"
+      "fullPrompt": "Sie sind ein Assistent zur Datengenerierung für die Solution EPI-Plattform.\nIhre Aufgabe ist es, ein vollständiges JSON-Objekt basierend auf der Anfrage eines Benutzers und einem bereitgestellten Modellschema zu generieren.\nDas JSON-Objekt muss gültig sein und darf nicht in Markdown oder einem anderen Text verpackt sein.\n\nBenutzeranfrage: \"{prompt}\"\n\nModell: \"{modelName}\"\n\nAnweisungen:\n1. Analysieren Sie die Benutzeranfrage.\n2. Sehen Sie sich das untenstehende Modellschema an, um die erforderlichen Felder, ihre Typen und ihre Sprachen zu verstehen.\n3. **Entscheidend ist, dass Sie für ALLE Felder im Schema plausible Werte angeben, insbesondere für alle Sprachvarianten (z. B. Felder, die auf _en, _fr, _de usw. enden; es können weniger oder mehr Sprachen sein).** Wenn die Eingabeaufforderung des Benutzers in einer Sprache verfasst ist, müssen Sie den Inhalt für die anderen Sprachen übersetzen und anpassen.\n4. Die Ausgabe darf NUR das JSON-Objekt sein.\n\nModellschema (zu Ihrer Information):\n{schema}"
     }
   },
   "AuthErrorPage": {
@@ -513,7 +514,8 @@
     "loadingComments": "Kommentare werden geladen...",
     "noComments": "Seien Sie der Erste, der einen Kommentar abgibt.",
     "reply": "Antworten",
-    "cancelReply": "Antwort abbrechen"
+    "cancelReply": "Antwort abbrechen",
+    "badge": "Neueste Nachrichten"
   },
   "OtpDialog": {
     "title": "Zwei-Faktor-Authentifizierung",
@@ -634,7 +636,7 @@
     "generateButton": "Generieren",
     "generatingButton": "Wird generiert...",
     "generationCountLabel": "Anzahl der zu generierenden Elemente",
-    "fullPrompt": "Sie sind ein Assistent zur Datengenerierung für die Solution EPI-Plattform.\\nIhre Aufgabe ist es, ein vollständiges JSON-Objekt basierend auf der Anfrage eines Benutzers und einem bereitgestellten Modellschema zu generieren.\\nDas JSON-Objekt muss gültig sein und darf nicht in Markdown oder einem anderen Text verpackt sein.\\n\\nBenutzeranfrage: \"{prompt}\"\\n\\nModell: \"{modelName}\"\\n\\nAnweisungen:\\n1. Analysieren Sie die Benutzeranfrage.\\n2. Sehen Sie sich das untenstehende Modellschema an, um die erforderlichen Felder, ihre Typen und ihre Sprachen zu verstehen.\\n3. **Entscheidend ist, dass Sie für ALLE Felder im Schema plausible Werte angeben, insbesondere für alle Sprachvarianten (z. B. Felder, die auf _en, _fr, _de usw. enden; es können weniger oder mehr Sprachen sein).** Wenn die Eingabeaufforderung des Benutzers in einer Sprache verfasst ist, müssen Sie den Inhalt für die anderen Sprachen übersetzen und anpassen.\\n4. Die Ausgabe darf NUR das JSON-Objekt sein.\\n\\nModellschema (zu Ihrer Information):\\n{schema}"
+    "fullPrompt": "Sie sind ein Assistent zur Datengenerierung für die Solution EPI-Plattform.\nIhre Aufgabe ist es, ein vollständiges JSON-Objekt basierend auf der Anfrage eines Benutzers und einem bereitgestellten Modellschema zu generieren.\nDas JSON-Objekt muss gültig sein und darf nicht in Markdown oder einem anderen Text verpackt sein.\n\nBenutzeranfrage: \"{prompt}\"\n\nModell: \"{modelName}\"\n\nAnweisungen:\n1. Analysieren Sie die Benutzeranfrage.\n2. Sehen Sie sich das untenstehende Modellschema an, um die erforderlichen Felder, ihre Typen und ihre Sprachen zu verstehen.\n3. **Entscheidend ist, dass Sie für ALLE Felder im Schema plausible Werte angeben, insbesondere für alle Sprachvarianten (z. B. Felder, die auf _en, _fr, _de usw. enden; es können weniger oder mehr Sprachen sein).** Wenn die Eingabeaufforderung des Benutzers in einer Sprache verfasst ist, müssen Sie den Inhalt für die anderen Sprachen übersetzen und anpassen.\n4. Die Ausgabe darf NUR das JSON-Objekt sein.\n\nModellschema (zu Ihrer Information):\n{schema}"
   },
   "AiGenerateModal": {
     "title": "Mit KI generieren: {modelName}",

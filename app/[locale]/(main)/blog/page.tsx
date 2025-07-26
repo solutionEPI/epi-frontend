@@ -2,7 +2,7 @@
 
 import { api } from "@/lib/api";
 import { useTranslations, useLocale } from "next-intl";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { PostListItem } from "@/types/blog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,8 @@ import { Search } from "lucide-react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { CategoryList } from "@/components/blog/CategoryList";
 import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
+import { useDebounce } from "@/hooks/use-debounce";
 
 export default function BlogPage() {
   const locale = useLocale();
@@ -18,63 +20,54 @@ export default function BlogPage() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const [posts, setPosts] = useState<PostListItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState(
     searchParams.get("search") || ""
   );
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
   const selectedCategoryId = searchParams.get("categoryId");
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      setIsLoading(true);
-      setError(null);
-
-      try {
-        const currentSearch = searchParams.get("search") || "";
-        const currentCategoryId = searchParams.get("categoryId");
-
-        let postsData;
-        if (currentCategoryId) {
-          postsData = await api.getPostsByCategory(locale, currentCategoryId);
-        } else {
-          postsData = await api.getBlogPosts(locale, { search: currentSearch });
-        }
-
-        // Handle the new API response wrapper
-        if (
-          postsData &&
-          (postsData as any).success &&
-          Array.isArray((postsData as any).data)
-        ) {
-          setPosts((postsData as any).data);
-        } else if (postsData && Array.isArray((postsData as any).results)) {
-          // Fallback for old paginated format
-          setPosts((postsData as any).results);
-        } else if (Array.isArray(postsData)) {
-          // Fallback for direct array response
-          setPosts(postsData);
-        } else {
-          setPosts([]);
-          console.error(
-            "Invalid response format from blog posts API:",
-            postsData
-          );
-        }
-      } catch (err) {
-        console.error("Error fetching posts:", err);
-        setError("Failed to load blog posts");
-        setPosts([]);
-      } finally {
-        setIsLoading(false);
+  const {
+    data: postsData,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["blogPosts", locale, debouncedSearchTerm, selectedCategoryId],
+    queryFn: () => {
+      if (selectedCategoryId) {
+        return api.getPostsByCategory(locale, selectedCategoryId);
       }
-    };
+      return api.getBlogPosts(locale, { search: debouncedSearchTerm });
+    },
+    placeholderData: (prevData) => prevData,
+  });
 
-    fetchPosts();
-  }, [searchParams, locale]);
+  const posts = useMemo(() => {
+    if (!postsData) return [];
+    if ("success" in postsData && Array.isArray((postsData as any).data)) {
+      return (postsData as any).data;
+    }
+    if ("results" in postsData && Array.isArray((postsData as any).results)) {
+      return (postsData as any).results;
+    }
+    if (Array.isArray(postsData)) {
+      return postsData;
+    }
+    return [];
+  }, [postsData]);
 
-  const handleSearch = (e: React.FormEvent) => {
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams);
+    if (debouncedSearchTerm) {
+      params.set("search", debouncedSearchTerm);
+    } else {
+      params.delete("search");
+    }
+    if (params.toString() !== searchParams.toString()) {
+      router.push(`${pathname}?${params.toString()}`);
+    }
+  }, [debouncedSearchTerm, pathname, router, searchParams]);
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const params = new URLSearchParams(searchParams);
     if (searchTerm) {
@@ -82,20 +75,15 @@ export default function BlogPage() {
     } else {
       params.delete("search");
     }
-    // Category selection should be cleared when performing a new search
     params.delete("categoryId");
     router.push(`${pathname}?${params.toString()}`);
   };
 
   const handleSelectCategory = (categoryId: number | null) => {
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams();
     if (categoryId) {
       params.set("categoryId", String(categoryId));
-    } else {
-      params.delete("categoryId");
     }
-    // Search should be cleared when selecting a new category
-    params.delete("search");
     setSearchTerm("");
     router.push(`${pathname}?${params.toString()}`);
   };
@@ -106,7 +94,7 @@ export default function BlogPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
         <aside className="md:col-span-1">
-          <form onSubmit={handleSearch} className="flex gap-2 mb-8">
+          <form onSubmit={handleSearchSubmit} className="flex gap-2 mb-8">
             <Input
               type="search"
               placeholder={t("searchPlaceholder")}
@@ -128,10 +116,12 @@ export default function BlogPage() {
           {isLoading ? (
             <p>{t("loading")}</p>
           ) : error ? (
-            <p className="text-destructive">{error}</p>
-          ) : posts && posts.length > 0 ? (
+            <p className="text-destructive">
+              {t("errorLoadingPosts", { error: (error as Error).message })}
+            </p>
+          ) : posts.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-              {posts.map((post) => (
+              {posts.map((post: PostListItem) => (
                 <div
                   key={post.id}
                   className="border rounded-lg overflow-hidden">

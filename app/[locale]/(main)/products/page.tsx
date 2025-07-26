@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
 import { motion } from "framer-motion";
@@ -21,6 +21,7 @@ import {
   Minus,
   Menu,
 } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -43,6 +44,7 @@ import { useToast } from "@/hooks/use-toast";
 import { api } from "@/lib/api";
 import { useCart } from "@/components/cart-provider";
 import { AnimatePresence } from "framer-motion";
+import { useDebounce } from "@/hooks/use-debounce";
 
 // Product type definition
 type ProductCategory = {
@@ -435,57 +437,67 @@ export default function ProductsPage() {
   const { addToCart } = useCart();
 
   // State for products and filters
-  const [products, setProducts] = useState<Product[]>([]);
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [sortOption, setSortOption] = useState("featured");
   const [showFilters, setShowFilters] = useState(false);
   const [inStockOnly, setInStockOnly] = useState(false);
   const [newOnly, setNewOnly] = useState(false);
-  const [categories, setCategories] = useState<any[]>([]);
 
-  // Fetch products from API
+  const debouncedSearchQuery = useDebounce(searchQuery, 300);
+
+  const {
+    data: productsData,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: [
+      "products",
+      locale,
+      debouncedSearchQuery,
+      selectedCategory,
+      sortOption,
+      inStockOnly,
+      newOnly,
+    ],
+    queryFn: () =>
+      api.getProducts(
+        {
+          search: debouncedSearchQuery,
+          category: selectedCategory,
+          sort: sortOption,
+          inStock: inStockOnly,
+          newOnly,
+        },
+        locale
+      ),
+    placeholderData: (prevData) => prevData,
+  });
+
+  const { data: categoriesData } = useQuery({
+    queryKey: ["productCategories", locale],
+    queryFn: () => api.getProductCategories(locale),
+    staleTime: Infinity,
+  });
+
+  const products = useMemo(
+    () => productsData?.results || productsData?.products || [],
+    [productsData]
+  );
+  const categories = useMemo(
+    () => categoriesData?.results || categoriesData?.categories || [],
+    [categoriesData]
+  );
+
   useEffect(() => {
-    const fetchProducts = async () => {
-      setIsLoading(true);
-      try {
-        // Construct parameters based on filters
-        const params: any = {};
-        if (searchQuery) params.search = searchQuery;
-        if (selectedCategory) params.category = selectedCategory;
-        if (inStockOnly) params.inStock = true;
-        if (newOnly) params.newOnly = true;
-        params.sort = sortOption;
-
-        const data = await api.getProducts(params, locale);
-        setProducts(data.results || data.products || []);
-        setFilteredProducts(data.results || data.products || []);
-        setCategories(data.categories || []);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-        toast({
-          variant: "destructive",
-          title: t("errorFetchingProducts"),
-          description: t("pleaseTryAgainLater"),
-        });
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, [
-    searchQuery,
-    selectedCategory,
-    sortOption,
-    inStockOnly,
-    newOnly,
-    locale,
-    t,
-    toast,
-  ]);
+    if (error) {
+      toast({
+        variant: "destructive",
+        title: t("errorFetchingProducts"),
+        description: t("pleaseTryAgainLater"),
+      });
+    }
+  }, [error, t, toast]);
 
   // Render star rating
   const renderStarRating = (rating: number) => {
@@ -665,7 +677,7 @@ export default function ProductsPage() {
         {/* Products count */}
         <div className="mb-6">
           <p className="text-muted-foreground">
-            {t("productsFound", { count: filteredProducts.length })}
+            {t("productsFound", { count: products.length })}
           </p>
         </div>
 
@@ -677,7 +689,7 @@ export default function ProductsPage() {
         )}
 
         {/* Products grid */}
-        {!isLoading && filteredProducts.length === 0 ? (
+        {!isLoading && products.length === 0 ? (
           <div className="text-center py-16">
             <AlertCircle className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
             <h3 className="text-xl font-medium mb-2">{t("noProductsFound")}</h3>
@@ -685,7 +697,7 @@ export default function ProductsPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredProducts.map((product) => (
+            {products.map((product) => (
               <motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}

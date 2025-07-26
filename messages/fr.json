@@ -15,50 +15,121 @@
   },
   "HomePage": {
     "hero": {
+      "badgeText": "Principal fournisseur d'EPI au Cameroun depuis 2009",
       "title": "Solution EPI",
-      "description": "Votre partenaire pour la sécurité au travail. Des équipements de protection individuelle conformes aux normes les plus strictes.",
-      "cta": "Découvrir nos produits",
-      "contact": "Nous contacter",
-      "loginButton": "Commencer",
-      "dashboardButton": "Voir le tableau de bord",
-      "learnMoreButton": "En savoir plus"
+      "description": "Solutions de sécurité professionnelles pour les lieux de travail modernes. Protégez votre équipe avec des équipements certifiés et des conseils d'experts.",
+      "viewProductsButton": "Voir les produits",
+      "getQuoteButton": "Obtenir un devis"
+    },
+    "stats": {
+      "clientsProtected": "Clients protégés",
+      "safetySuccessRate": "Taux de réussite en matière de sécurité",
+      "equipmentDelivered": "Équipements livrés",
+      "yearsExperience": "Années d'expérience"
     },
     "features": {
-      "title": "Fonctionnalités puissantes",
-      "subtitle": "Tout ce dont vous avez besoin pour créer de superbes interfaces d'administration riches en données.",
-      "modern": {
-        "title": "Interface moderne",
-        "description": "Construit avec Next.js, Tailwind CSS et shadcn/ui pour une interface élégante et réactive."
+      "badge": "Pourquoi nous choisir",
+      "title": "L'excellence en matière de sécurité de confiance",
+      "subtitle": "Nous combinons l'expertise du secteur avec des solutions de sécurité de pointe pour protéger ce qui compte le plus.",
+      "certifiedProtection": {
+        "title": "Protection certifiée",
+        "description": "Tous les équipements sont conformes aux normes de sécurité internationales"
       },
-      "customizable": {
-        "title": "Entièrement personnalisable",
-        "description": "Étendez et modifiez facilement les composants pour répondre aux besoins spécifiques de votre projet."
+      "fastDelivery": {
+        "title": "Livraison rapide",
+        "description": "Livraison en 24-48 heures à travers le Cameroun"
       },
-      "ai": {
-        "title": "Outils alimentés par l'IA",
-        "description": "Fonctionnalités d'IA intégrées qui aident à automatiser les tâches et à augmenter la productivité."
+      "expertConsultation": {
+        "title": "Consultation d'experts",
+        "description": "Évaluation de la sécurité et formation professionnelle"
       },
-      "developer": {
-        "title": "Adapté aux développeurs",
-        "description": "Base de code bien organisée avec TypeScript pour une meilleure expérience de développement."
+      "qualityGuarantee": {
+        "title": "Garantie de qualité",
+        "description": "Garantie de satisfaction à 100% sur tous les produits"
       }
     },
-    "gettingStarted": {
-      "title": "Mise en route",
-      "subtitle": "Suivez ces étapes simples pour commencer à utiliser Solution EPI.",
-      "step1": {
-        "title": "Configurer l'API",
-        "description": "Configurez vos points de terminaison Django REST Framework."
+    "services": {
+      "badge": "Nos services",
+      "title": "Solutions de sécurité complètes",
+      "subtitle": "De la fourniture d'équipements à la formation et à la conformité, nous offrons des solutions de sécurité de bout en bout.",
+      "equipmentSupply": {
+        "title": "Fourniture d'équipements de sécurité",
+        "description": "Gamme complète d'EPI pour toutes les industries",
+        "feature1": "Protection de la tête",
+        "feature2": "Sécurité respiratoire",
+        "feature3": "Protection des mains et des pieds"
       },
-      "step2": {
-        "title": "Personnaliser l'interface",
-        "description": "Adaptez le tableau de bord à vos besoins et à votre marque."
+      "training": {
+        "title": "Formation et certification en sécurité",
+        "description": "Programmes de formation professionnelle pour votre équipe",
+        "feature1": "Instructeurs certifiés",
+        "feature2": "Programmes personnalisés",
+        "feature3": "Conformité industrielle"
       },
-      "step3": {
-        "title": "Déployer",
-        "description": "Déployez votre application sur votre plateforme d'hébergement préférée."
+      "auditing": {
+        "title": "Audit de sécurité",
+        "description": "Évaluations complètes de la sécurité sur le lieu de travail",
+        "feature1": "Évaluation des risques",
+        "feature2": "Examen de la conformité",
+        "feature3": "Plans d'action"
       },
-      "docsButton": "Lire la documentation"
+      "learnMoreButton": "En savoir plus"
+    },
+    "cta": {
+      "title": "Prêt à améliorer la sécurité de votre lieu de travail ?",
+      "description": "Rejoignez plus de 1 000 entreprises qui font confiance à Solution EPI pour leurs besoins en équipements de sécurité. Obtenez une consultation personnalisée dès aujourd'hui.",
+      "consultationButton": "Obtenir une consultation gratuite",
+      "catalogButton": "Parcourir le catalogue"
+    },
+    "testimonials": {
+      "badge": "Succès des clients",
+      "title": "Approuvé par les leaders de l'industrie",
+      "subtitle": "Découvrez comment nous avons aidé des entreprises à travers le Cameroun à améliorer leurs normes de sécurité.",
+      "client1": {
+        "name": "Jean-Paul Mbeki",
+        "company": "Industries Camerounaises SA",
+        "role": "Directeur de la sécurité",
+        "content": "Solution EPI a transformé notre culture de la sécurité. Réduction de 40% des incidents en 6 mois."
+      },
+      "client2": {
+        "name": "Marie Ngozi",
+        "company": "Construction Douala",
+        "role": "Chef de projet",
+        "content": "Service et équipement de qualité exceptionnels. Nos équipes sont maintenant correctement protégées."
+      },
+      "client3": {
+        "name": "Antoine Fosso",
+        "company": "Textile Bamenda",
+        "role": "Responsable de production",
+        "content": "Excellente qualité de formation et suivi personnalisé. Fortement recommandé."
+      }
+    },
+    "finalCta": {
+      "title": "Commencez votre parcours de sécurité dès aujourd'hui",
+      "description": "Contactez nos experts en sécurité pour une consultation gratuite et des recommandations d'équipements personnalisées.",
+      "phone": "+237 6XX XXX XXX",
+      "email": "contact@solution-epi.com",
+      "location": "Douala, Cameroun",
+      "contactSalesButton": "Contacter l'équipe des ventes",
+      "getStartedButton": "Commencer",
+      "viewDashboardButton": "Voir le tableau de bord"
+    },
+    "products": {
+      "title": "Produits en vedette",
+      "subtitle": "Découvrez nos équipements de sécurité les plus populaires",
+      "viewAllButton": "Voir tous les produits",
+      "badge": "Produits en vedette",
+      "outOfStock": "Rupture de stock",
+      "addToCart": "Ajouter au panier",
+      "viewDetails": "Voir les détails"
+    },
+    "blog": {
+      "title": "Dernières informations sur la sécurité",
+      "subtitle": "Restez à jour avec les dernières nouvelles et conseils en matière de sécurité",
+      "readMoreButton": "Lire la suite",
+      "viewAllButton": "Voir tous les articles",
+      "badge": "Dernières nouvelles",
+      "noPostsFound": "Aucun article de blog trouvé."
     }
   },
   "Header": {
@@ -75,7 +146,8 @@
     "signOutSuccessTitle": "Déconnecté",
     "signOutSuccessDescription": "Vous avez été déconnecté avec succès.",
     "products": "Produits",
-    "contact": "Contact"
+    "contact": "Contact",
+    "user": "Utilisateur"
   },
   "Footer": {
     "siteName": "Solution EPI",
@@ -89,6 +161,12 @@
       "legal": "Mentions légales",
       "language": "Langue",
       "followUs": "Suivez-nous"
+    },
+    "social": {
+      "github": "GitHub",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "instagram": "Instagram"
     },
     "solutions": {
       "admin": "Tableau de bord",
@@ -288,7 +366,7 @@
       "textPlaceholder": "Collez votre texte ici...",
       "button": "Résumer",
       "buttonLoading": "Résumé en cours...",
-      "prompt": "Résumez ce texte de manière concise :\\n{text}"
+      "prompt": "Résumez ce texte de manière concise :\n{text}"
     },
     "translator": {
       "title": "Traducteur",
@@ -299,7 +377,7 @@
       "languagePlaceholder": "ex: Anglais",
       "button": "Traduire",
       "buttonLoading": "Traduction en cours...",
-      "prompt": "Traduire en {targetLang}:\\n{text}"
+      "prompt": "Traduire en {targetLang}:\n{text}"
     },
     "emailDrafter": {
       "title": "Rédacteur d'e-mails",
@@ -366,9 +444,9 @@
       "promptLabel": "Invite",
       "promptPlaceholder": "Entrez votre invite ici...",
       "generateButton": "Générer",
-      "generatingButton": "Génération...",
+      "generatingButton": "Génération... ({current}/{total})",
       "generationCountLabel": "Nombre d'éléments à générer",
-      "fullPrompt": "Vous êtes un assistant de génération de données pour la plateforme Solution EPI.\\nVotre tâche est de générer un objet JSON complet basé sur la demande d'un utilisateur et un schéma de modèle fourni.\\nL'objet JSON doit être valide et ne doit pas être enveloppé dans du markdown ou tout autre texte.\\n\\nDemande de l'utilisateur : \\\"{prompt}\\\"\\n\\nModèle : \\\"{modelName}\\\"\\n\\nInstructions :\\n1. Analysez la demande de l'utilisateur.\\n2. Examinez le schéma du modèle ci-dessous pour comprendre les champs requis, leurs types et leurs langues.\\n3. **Crucialement, vous devez fournir des valeurs plausibles pour TOUS les champs du schéma, en particulier pour toutes les variations de langue (par exemple, les champs se terminant par _en, _fr, _de, etc... il peut y avoir plus ou moins de langues).** Si l'invite de l'utilisateur est dans une seule langue, vous devez traduire et adapter le contenu pour les autres langues.\\n4. La sortie doit être UNIQUEMENT l'objet JSON.\\n\\nSchéma du modèle (pour votre référence) :\\n{schema}"
+      "fullPrompt": "Vous êtes un assistant de génération de données pour la plateforme Solution EPI.\nVotre tâche est de générer un objet JSON complet basé sur la demande d'un utilisateur et un schéma de modèle fourni.\nL'objet JSON doit être valide et ne doit pas être enveloppé dans du markdown ou tout autre texte.\n\nDemande de l'utilisateur : \"{prompt}\"\n\nModèle : \"{modelName}\"\n\nInstructions :\n1. Analysez la demande de l'utilisateur.\n2. Examinez le schéma du modèle ci-dessous pour comprendre les champs requis, leurs types et leurs langues.\n3. **Crucial : vous devez fournir des valeurs plausibles pour TOUS les champs du schéma, en particulier pour toutes les variations de langue (par exemple, les champs se terminant par _en, _fr, _de, etc. Il peut y avoir plus ou moins de langues).** Si la demande de l'utilisateur est dans une seule langue, vous devez traduire et adapter le contenu pour les autres langues.\n4. La sortie doit être UNIQUEMENT l'objet JSON.\n\nSchéma du modèle (pour votre référence) :\n{schema}"
     }
   },
   "AuthErrorPage": {
@@ -447,7 +525,8 @@
     "loadingComments": "Chargement des commentaires...",
     "noComments": "Soyez le premier à commenter.",
     "reply": "Répondre",
-    "cancelReply": "Annuler la réponse"
+    "cancelReply": "Annuler la réponse",
+    "badge": "Dernières nouvelles"
   },
   "OtpDialog": {
     "title": "Vérification en deux étapes",
@@ -778,5 +857,30 @@
     "bulkSaveResultTitle": "Résultat de la sauvegarde en masse",
     "bulkSaveResultDescription": "{count} sur {total} articles enregistrés avec succès.",
     "defaultTab": "Défaut"
+  },
+  "ThemeSwitcher": {
+    "toggleTheme": "Changer de thème",
+    "selectTheme": "Sélectionner un thème",
+    "system": "Système",
+    "systemDescription": "Suivre les préférences du système",
+    "light": "Clair",
+    "lightDescription": "Mode clair",
+    "dark": "Sombre",
+    "darkDescription": "Mode sombre",
+    "professional": "Professionnel",
+    "professionalDescription": "Thème professionnel"
+  },
+  "Cart": {
+    "shoppingCart": "Panier d'achat",
+    "emptyCart": "Votre panier est vide",
+    "cartEmpty": "Aucun article dans le panier",
+    "itemsInCart": "{count, plural, =1 {1 article} other {# articles}} dans le panier",
+    "total": "Total",
+    "clearCart": "Vider le panier",
+    "checkout": "Passer à la caisse",
+    "viewCart": "Voir le panier",
+    "addToCart": "Ajouter au panier",
+    "removeFromCart": "Retirer",
+    "updateQuantity": "Mettre à jour la quantité"
   }
 }

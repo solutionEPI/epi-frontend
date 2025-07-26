@@ -18,6 +18,22 @@ import {
   UserProfile,
 } from "@/types/salon";
 
+// Global cache for session to avoid frequent refetches
+let sessionCache: any = null;
+let sessionCacheTime = 0;
+const SESSION_CACHE_DURATION = 1000 * 5; // Cache session for 5 seconds
+
+// Enhanced getSession with caching
+async function getCachedSession() {
+  const now = Date.now();
+  if (sessionCache && now - sessionCacheTime < SESSION_CACHE_DURATION) {
+    return sessionCache;
+  }
+  sessionCache = await getSession();
+  sessionCacheTime = now;
+  return sessionCache;
+}
+
 function getRelativePath(fullOrRelativeUrl: string): string {
   if (fullOrRelativeUrl.startsWith("http")) {
     // If it's a full URL, extract the pathname
@@ -52,6 +68,8 @@ const refreshManager = {
       this.refreshPromise = this.performRefreshToken()
         .then((newAccessToken) => {
           this.failureCount = 0;
+          // Invalidate session cache after a successful token refresh
+          sessionCache = null;
           return newAccessToken;
         })
         .catch((err) => {
@@ -67,7 +85,8 @@ const refreshManager = {
   },
 
   async performRefreshToken(): Promise<string> {
-    const session = await getSession();
+    // Use the cached getSession to prevent multiple concurrent calls
+    const session = await getCachedSession();
     if (!session?.refreshToken) {
       throw new Error("No refresh token available.");
     }
@@ -145,7 +164,8 @@ async function apiFetch<T>(
   options: RequestInit = {},
   isRetry = false
 ): Promise<T> {
-  let session = await getSession();
+  // Use the cached getSession
+  let session = await getCachedSession();
   let token = session?.accessToken;
 
   if (isRetry && !token) {
@@ -212,7 +232,8 @@ async function apiFileFetch(
   options: RequestInit = {},
   isRetry = false
 ): Promise<Response> {
-  let session = await getSession();
+  // Use the cached getSession
+  let session = await getCachedSession();
   let token = session?.accessToken;
 
   if (isRetry && !token) {

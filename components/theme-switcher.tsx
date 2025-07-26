@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Moon, Sun, Palette, HardHat, Monitor } from "lucide-react";
+import { Moon, Sun, HardHat, Monitor } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
@@ -17,8 +17,8 @@ import { cn } from "@/lib/utils";
 
 interface ThemeOption {
   value: string;
-  labelKey: keyof IntlMessages["ThemeSwitcher"];
-  descriptionKey: keyof IntlMessages["ThemeSwitcher"];
+  labelKey: string;
+  descriptionKey: string;
   icon: React.ReactNode;
   colors: string[];
 }
@@ -47,10 +47,10 @@ const themeOptions: ThemeOption[] = [
   },
   {
     value: "professional",
-    labelKey: "safety",
-    descriptionKey: "safetyDescription",
+    labelKey: "professional",
+    descriptionKey: "professionalDescription",
     icon: <HardHat className="h-4 w-4" />,
-    colors: ["#ffffff", "#f59e0b", "#fbbf24"],
+    colors: ["#ffffff", "#f59e0b", "#475569"],
   },
 ];
 
@@ -85,7 +85,7 @@ export function ThemeSwitcher() {
           <span className="sr-only">{t("toggleTheme")}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-52">
+      <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuLabel className="text-xs font-normal text-muted-foreground">
           {t("selectTheme")}
         </DropdownMenuLabel>
@@ -94,12 +94,12 @@ export function ThemeSwitcher() {
           <DropdownMenuItem
             key={option.value}
             className={cn(
-              "flex items-center gap-4 cursor-pointer py-2",
+              "flex items-center gap-4 cursor-pointer py-3",
               theme === option.value && "bg-accent/50"
             )}
             onClick={() => setTheme(option.value)}>
-            <div className="flex items-center gap-2 flex-1">
-              <div className="p-1 rounded-sm bg-background flex items-center justify-center">
+            <div className="flex items-center gap-3 flex-1">
+              <div className="p-2 rounded-md bg-background/50 flex items-center justify-center">
                 {option.icon}
               </div>
               <div>
@@ -113,7 +113,7 @@ export function ThemeSwitcher() {
               {option.colors.map((color, i) => (
                 <div
                   key={i}
-                  className="h-4 w-4 rounded-full border border-border"
+                  className="h-4 w-4 rounded-full border border-border/50"
                   style={{
                     backgroundColor: color,
                     marginLeft: i > 0 ? "-4px" : "0",

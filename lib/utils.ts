@@ -186,3 +186,12 @@ export function processReceivedData<T extends Record<string, any>>(
   }
   return data;
 }
+
+export function formatPrice(price: number, currency: string = "XAF"): string {
+  return new Intl.NumberFormat("fr-CM", {
+    style: "currency",
+    currency: currency,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(price);
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -159,29 +159,39 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const logoUrl = adminConfig?.frontend_options?.logo_url;
 
   useEffect(() => {
-    if (userProfile?.preferences?.theme) {
+    // Sync theme from user profile
+    if (
+      userProfile?.preferences?.theme &&
+      theme !== userProfile.preferences.theme
+    ) {
       setTheme(userProfile.preferences.theme);
     }
-  }, [userProfile?.preferences?.theme, setTheme]);
+
+    // Sync sidebar state
+    const collapsed = isMobile ?? userProfile?.preferences?.sidebar_collapsed;
+    if (collapsed !== undefined && collapsed !== isSidebarCollapsed) {
+      setSidebarCollapsed(collapsed);
+    }
+  }, [userProfile, isMobile, theme, setTheme, isSidebarCollapsed]);
 
   useEffect(() => {
-    if (theme) {
+    // Only trigger mutation if the theme is loaded and has been changed by the user
+    if (theme && userProfile && theme !== userProfile.preferences?.theme) {
       preferencesMutation.mutate({ theme: theme });
     }
-  }, [theme, preferencesMutation]);
+  }, [theme, userProfile, preferencesMutation]);
 
-  useEffect(() => {
-    const collapsed = isMobile ?? userProfile?.preferences?.sidebar_collapsed;
-    setSidebarCollapsed(!!collapsed);
-  }, [userProfile, isMobile]);
-
-  const toggleSidebar = () => {
+  const toggleSidebar = useCallback(() => {
     const newCollapsedState = !isSidebarCollapsed;
     setSidebarCollapsed(newCollapsedState);
-    if (!isMobile) {
+    if (
+      !isMobile &&
+      userProfile &&
+      newCollapsedState !== userProfile.preferences?.sidebar_collapsed
+    ) {
       preferencesMutation.mutate({ sidebar_collapsed: newCollapsedState });
     }
-  };
+  }, [isSidebarCollapsed, isMobile, userProfile, preferencesMutation]);
 
   const handleSignOut = async () => {
     await signOut({ callbackUrl: "/login" });

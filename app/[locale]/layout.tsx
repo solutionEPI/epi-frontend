@@ -1,11 +1,8 @@
 import { Roboto, Montserrat } from "next/font/google";
-import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import { Toaster } from "@/components/ui/toaster";
 import { dashboardConfig } from "@/lib/config";
-import { Providers } from "@/components/providers";
 import { DefaultFavicon } from "@/components/ui/default-favicon";
-import { MainLayoutWrapper } from "@/components/layout/main-layout-wrapper";
+import { LayoutProvider } from "@/components/layout-provider";
 import "../globals.css";
 
 const montserrat = Montserrat({
@@ -86,12 +83,9 @@ export default async function LocaleLayout({
       </head>
       <body
         className={`${roboto.variable} ${montserrat.variable} font-sans flex flex-col min-h-screen bg-background text-foreground`}>
-        <Providers>
-          <NextIntlClientProvider messages={messages}>
-            <MainLayoutWrapper>{children}</MainLayoutWrapper>
-            <Toaster />
-          </NextIntlClientProvider>
-        </Providers>
+        <LayoutProvider messages={messages} locale={locale}>
+          {children}
+        </LayoutProvider>
       </body>
     </html>
   );

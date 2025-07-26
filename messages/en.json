@@ -17,62 +17,116 @@
   },
   "HomePage": {
     "hero": {
+      "badgeText": "Cameroon's Leading PPE Provider Since 2009",
       "title": "Solution EPI",
-      "description": "Your partner for workplace safety. Certified personal protective equipment that meets the strictest standards.",
-      "cta": "Discover Our Products",
-      "contact": "Contact Us",
-      "loginButton": "Get Started",
-      "dashboardButton": "Go to Dashboard",
-      "learnMoreButton": "Learn More"
+      "description": "Professional Safety Solutions for Modern Workplaces. Protect your team with certified equipment and expert guidance.",
+      "viewProductsButton": "View Products",
+      "getQuoteButton": "Get Quote"
     },
-    "products": {
-      "title": "Our Signature Products"
-    },
-    "about": {
-      "title": "About Us",
-      "description": "Solution Epi is a premium artisanal bakery founded on traditional baking methods and quality ingredients. Located in the heart of Douala, we pride ourselves on creating authentic breads and pastries that bring joy to our community."
-    },
-    "cta": {
-      "title": "Ready to Experience Our Bakery?",
-      "description": "Visit our location in Douala or contact us to place a special order.",
-      "button": "Contact Us"
+    "stats": {
+      "clientsProtected": "Clients Protected",
+      "safetySuccessRate": "Safety Success Rate",
+      "equipmentDelivered": "Equipment Delivered",
+      "yearsExperience": "Years Experience"
     },
     "features": {
-      "title": "Powerful Features",
-      "subtitle": "Everything you need to build beautiful, data-driven admin interfaces.",
-      "modern": {
-        "title": "Modern UI",
-        "description": "Built with Next.js, Tailwind CSS, and shadcn/ui for a sleek, responsive interface."
+      "badge": "Why Choose Us",
+      "title": "Trusted Safety Excellence",
+      "subtitle": "We combine industry expertise with cutting-edge safety solutions to protect what matters most.",
+      "certifiedProtection": {
+        "title": "Certified Protection",
+        "description": "All equipment meets international safety standards"
       },
-      "customizable": {
-        "title": "Fully Customizable",
-        "description": "Easily extend and modify components to match your project's specific needs."
+      "fastDelivery": {
+        "title": "Fast Delivery",
+        "description": "24-48 hour delivery across Cameroon"
       },
-      "ai": {
-        "title": "AI-Powered Tools",
-        "description": "Integrated AI features that help automate tasks and increase productivity."
+      "expertConsultation": {
+        "title": "Expert Consultation",
+        "description": "Professional safety assessment and training"
       },
-      "developer": {
-        "title": "Developer-Friendly",
-        "description": "Well-organized codebase with TypeScript for improved developer experience."
+      "qualityGuarantee": {
+        "title": "Quality Guarantee",
+        "description": "100% satisfaction guarantee on all products"
       }
     },
-    "gettingStarted": {
-      "title": "Getting Started",
-      "subtitle": "Follow these simple steps to start using Solution EPI.",
-      "step1": {
-        "title": "Set Up API",
-        "description": "Configure your Django REST Framework API endpoints."
+    "services": {
+      "badge": "Our Services",
+      "title": "Comprehensive Safety Solutions",
+      "subtitle": "From equipment supply to training and compliance, we offer end-to-end safety solutions.",
+      "equipmentSupply": {
+        "title": "Safety Equipment Supply",
+        "description": "Complete range of PPE for all industries",
+        "feature1": "Head Protection",
+        "feature2": "Respiratory Safety",
+        "feature3": "Hand & Foot Protection"
       },
-      "step2": {
-        "title": "Customize UI",
-        "description": "Tailor the dashboard to match your requirements and brand."
+      "training": {
+        "title": "Safety Training & Certification",
+        "description": "Professional training programs for your team",
+        "feature1": "Certified Instructors",
+        "feature2": "Custom Programs",
+        "feature3": "Industry Compliance"
       },
-      "step3": {
-        "title": "Deploy",
-        "description": "Deploy your application to your favorite hosting platform."
+      "auditing": {
+        "title": "Safety Auditing",
+        "description": "Comprehensive workplace safety assessments",
+        "feature1": "Risk Assessment",
+        "feature2": "Compliance Review",
+        "feature3": "Action Plans"
       },
-      "docsButton": "Read the Documentation"
+      "learnMoreButton": "Learn More"
+    },
+    "cta": {
+      "title": "Ready to Enhance Your Workplace Safety?",
+      "description": "Join 1,000+ companies that trust Solution EPI for their safety equipment needs. Get a personalized consultation today.",
+      "consultationButton": "Get Free Consultation",
+      "catalogButton": "Browse Catalog"
+    },
+    "testimonials": {
+      "badge": "Client Success",
+      "title": "Trusted by Industry Leaders",
+      "subtitle": "See how we've helped companies across Cameroon improve their safety standards.",
+      "client1": {
+        "name": "Jean-Paul Mbeki",
+        "company": "Industries Camerounaises SA",
+        "role": "Safety Director",
+        "content": "Solution EPI transformed our safety culture. 40% reduction in incidents within 6 months."
+      },
+      "client2": {
+        "name": "Marie Ngozi",
+        "company": "Construction Douala",
+        "role": "Project Manager",
+        "content": "Outstanding service and quality equipment. Our teams are properly protected now."
+      },
+      "client3": {
+        "name": "Antoine Fosso",
+        "company": "Textile Bamenda",
+        "role": "Production Manager",
+        "content": "Excellent training quality and personalized follow-up. Highly recommended."
+      }
+    },
+    "finalCta": {
+      "title": "Start Your Safety Journey Today",
+      "description": "Contact our safety experts for a free consultation and personalized equipment recommendations.",
+      "phone": "+237 6XX XXX XXX",
+      "email": "contact@solution-epi.com",
+      "location": "Douala, Cameroon",
+      "contactSalesButton": "Contact Sales Team",
+      "getStartedButton": "Get Started",
+      "viewDashboardButton": "View Dashboard"
+    },
+    "products": {
+      "title": "Featured Products",
+      "subtitle": "Discover our most popular safety equipment",
+      "viewAllButton": "View All Products"
+    },
+    "blog": {
+      "title": "Latest Safety Insights",
+      "subtitle": "Stay updated with the latest safety news and tips",
+      "readMoreButton": "Read More",
+      "viewAllButton": "View All Articles",
+      "badge": "Latest News"
     }
   },
   "Header": {
@@ -569,8 +623,21 @@
     "lightDescription": "Light mode",
     "dark": "Dark",
     "darkDescription": "Dark mode",
-    "safety": "Safety",
-    "safetyDescription": "Safety equipment theme"
+    "professional": "Professional",
+    "professionalDescription": "Professional business theme"
+  },
+  "Cart": {
+    "shoppingCart": "Shopping Cart",
+    "emptyCart": "Your cart is empty",
+    "cartEmpty": "No items in cart",
+    "itemsInCart": "{count, plural, =1 {1 item} other {# items}} in cart",
+    "total": "Total",
+    "clearCart": "Clear Cart",
+    "checkout": "Checkout",
+    "viewCart": "View Cart",
+    "addToCart": "Add to Cart",
+    "removeFromCart": "Remove",
+    "updateQuantity": "Update Quantity"
   },
   "Common": {
     "saving": "Saving...",
