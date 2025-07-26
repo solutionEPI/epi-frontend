@@ -205,10 +205,11 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
 
   const isActive = (path: string) => {
     const locale = pathname.split("/")[1];
-    const pathWithLocale = `/${locale}${path}`;
+    const dashboardPath = path === "/" ? "" : path; // root maps to /dashboard
+    const pathWithLocale = `/${locale}/dashboard${dashboardPath}`;
     return (
       pathname === pathWithLocale ||
-      (path !== "/" && pathname.startsWith(pathWithLocale))
+      (dashboardPath !== "" && pathname.startsWith(pathWithLocale))
     );
   };
 
@@ -435,7 +436,8 @@ function SidebarLink({
 }) {
   const pathname = usePathname();
   const locale = pathname.split("/")[1];
-  const finalHref = useLocale ? `/${locale}${href}` : href;
+  const basePath = href === "/" ? "" : href;
+  const finalHref = useLocale ? `/${locale}/dashboard${basePath}` : href;
 
   return (
     <Link
