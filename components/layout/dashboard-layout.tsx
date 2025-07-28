@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -27,7 +27,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/api";
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { useTranslations } from "next-intl";
-import { ThemeSwitcher } from "@/components/theme-switcher";
+
 import { useTheme } from "next-themes";
 import {
   DropdownMenu,
@@ -48,6 +48,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { DefaultLogo } from "@/components/ui/default-logo";
+import Image from "next/image";
 
 // Sidebar animation variants
 const sidebarVariants: Variants = {
@@ -129,13 +130,18 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
     queryKey: ["adminConfig"],
     queryFn: api.getAdminConfig,
     enabled: !!session,
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5, // Keep data fresh for 5 minutes
+    refetchOnWindowFocus: false, // Do not refetch when window regains focus
+    refetchOnMount: false, // Do not refetch on component mount
   });
 
   const { data: userProfile } = useQuery<UserProfile>({
     queryKey: ["userProfile"],
     queryFn: api.getUserProfile,
     enabled: !!session,
+    staleTime: 1000 * 60 * 5, // Keep data fresh for 5 minutes
+    refetchOnWindowFocus: false, // Do not refetch when window regains focus
+    refetchOnMount: false, // Do not refetch on component mount
   });
 
   const preferencesMutation = useMutation({
@@ -147,39 +153,47 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
     onError: (error) => {
       toast({
         variant: "destructive",
-        title: "Failed to update preferences",
+        title: t("failedToUpdatePreferences"),
         description: error.message,
       });
     },
   });
 
-  const siteName = adminConfig?.frontend_options?.site_name || "Dashboard";
+  const siteName =
+    adminConfig?.frontend_options?.site_name || t("defaultSiteName");
   const logoUrl = adminConfig?.frontend_options?.logo_url;
 
+  // Sync theme once the user profile is loaded
   useEffect(() => {
-    if (userProfile?.preferences?.theme) {
+    if (
+      userProfile?.preferences?.theme &&
+      theme !== userProfile.preferences.theme
+    ) {
       setTheme(userProfile.preferences.theme);
     }
-  }, [userProfile?.preferences?.theme, setTheme]);
+  }, [userProfile, theme, setTheme]);
 
-  useEffect(() => {
-    if (theme) {
-      preferencesMutation.mutate({ theme: theme });
-    }
-  }, [theme]);
-
+  // Sync sidebar collapsed state without creating a dependency loop
   useEffect(() => {
     const collapsed = isMobile ?? userProfile?.preferences?.sidebar_collapsed;
-    setSidebarCollapsed(!!collapsed);
+    if (collapsed !== undefined && collapsed !== isSidebarCollapsed) {
+      setSidebarCollapsed(collapsed);
+    }
   }, [userProfile, isMobile]);
 
-  const toggleSidebar = () => {
+  // Removed automatic theme sync mutation to prevent rapid PATCH loops
+
+  const toggleSidebar = useCallback(() => {
     const newCollapsedState = !isSidebarCollapsed;
     setSidebarCollapsed(newCollapsedState);
-    if (!isMobile) {
+    if (
+      !isMobile &&
+      userProfile &&
+      newCollapsedState !== userProfile.preferences?.sidebar_collapsed
+    ) {
       preferencesMutation.mutate({ sidebar_collapsed: newCollapsedState });
     }
-  };
+  }, [isSidebarCollapsed, isMobile, userProfile, preferencesMutation]);
 
   const handleSignOut = async () => {
     await signOut({ callbackUrl: "/login" });
@@ -190,7 +204,13 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
   };
 
   const isActive = (path: string) => {
-    return pathname === path || (path !== "/" && pathname.startsWith(path));
+    const locale = pathname.split("/")[1];
+    const dashboardPath = path === "/" ? "" : path; // root maps to /dashboard
+    const pathWithLocale = `/${locale}/dashboard${dashboardPath}`;
+    return (
+      pathname === pathWithLocale ||
+      (dashboardPath !== "" && pathname.startsWith(pathWithLocale))
+    );
   };
 
   if (!session) return null;
@@ -199,7 +219,13 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
     <div className="h-16 flex items-center px-4 border-b border-sidebar-border w-full justify-between">
       <Link href="/" className="flex items-center overflow-hidden">
         {logoUrl ? (
-          <img src={logoUrl} alt={siteName} className="h-8 w-8 flex-shrink-0" />
+          <Image
+            src={logoUrl}
+            alt={siteName}
+            width={32}
+            height={32}
+            className="h-8 w-8 flex-shrink-0"
+          />
         ) : (
           <DefaultLogo className="h-8 w-8 text-sidebar-foreground flex-shrink-0" />
         )}
@@ -263,7 +289,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                   {modelKeys.map((modelKey) => {
                     const model = adminConfig.models[modelKey];
                     if (!model) return null;
-                    const href = `/dashboard/models/${model.model_name}`;
+                    const href = `/models/${model.model_name}`;
                     return (
                       <SidebarLink
                         key={href}
@@ -373,7 +399,6 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
           <Link href="/" className="flex items-center">
             <span className="font-semibold text-lg">{siteName}</span>
           </Link>
-          <ThemeSwitcher />
         </header>
 
         <main className="flex-1 overflow-y-auto p-4 md:p-6">
@@ -400,16 +425,23 @@ function SidebarLink({
   label,
   isCollapsed,
   isActive,
+  useLocale = true,
 }: {
   href: string;
   icon: React.ReactNode;
   label: string;
   isCollapsed: boolean;
   isActive: boolean;
+  useLocale?: boolean;
 }) {
+  const pathname = usePathname();
+  const locale = pathname.split("/")[1];
+  const basePath = href === "/" ? "" : href;
+  const finalHref = useLocale ? `/${locale}/dashboard${basePath}` : href;
+
   return (
     <Link
-      href={href}
+      href={finalHref}
       className={cn(
         "flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors",
         isActive
@@ -484,7 +516,7 @@ function UserNav({
             isCollapsed ? "justify-center px-0" : "justify-start"
           )}>
           <Avatar className="h-8 w-8">
-            <AvatarImage src={user.avatar_url} />
+            <AvatarImage src={user.profile?.avatar} />
             <AvatarFallback>{getInitials(user.first_name)}</AvatarFallback>
           </Avatar>
           <AnimatePresence>
@@ -509,7 +541,7 @@ function UserNav({
         <DropdownMenuLabel className="font-normal">
           <div className="flex items-center gap-3">
             <Avatar className="h-10 w-10">
-              <AvatarImage src={user.avatar_url} />
+              <AvatarImage src={user.profile?.avatar} />
               <AvatarFallback>{getInitials(user.first_name)}</AvatarFallback>
             </Avatar>
             <div className="flex flex-col space-y-1">
@@ -524,7 +556,6 @@ function UserNav({
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <div className="p-2 flex items-center justify-around">
-          <ThemeSwitcher />
           <LanguageSwitcher />
         </div>
         <DropdownMenuSeparator />

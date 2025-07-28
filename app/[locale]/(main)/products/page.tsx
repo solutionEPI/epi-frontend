@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,7 +19,9 @@ import {
   Eye,
   Plus,
   Minus,
+  Menu,
 } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -38,12 +41,22 @@ import {
 } from "@/components/ui/tooltip";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
+import { api } from "@/lib/api";
+import { useCart } from "@/components/cart-provider";
+import { AnimatePresence } from "framer-motion";
+import { useDebounce } from "@/hooks/use-debounce";
 
 // Product type definition
+type ProductCategory = {
+  id: number;
+  name: string;
+  slug: string;
+};
+
 type Product = {
   id: string;
   name: string;
-  category: string;
+  category: ProductCategory;
   subCategory: string;
   price: number;
   rating: number;
@@ -57,161 +70,373 @@ type Product = {
   sizes?: string[];
 };
 
-// Mock product data
-const PRODUCTS: Product[] = [
-  {
-    id: "p1",
-    name: "Casque de sécurité Premium",
-    category: "Protection de la tête",
-    subCategory: "Casques",
-    price: 24.99,
-    rating: 4.5,
-    image:
-      "https://images.unsplash.com/photo-1578091436046-7e8f4b3e5ede?auto=format&fit=crop&q=80",
-    inStock: true,
-    isNew: true,
-    isFeatured: true,
-    description:
-      "Casque de sécurité robuste avec coque en ABS, réglable et ventilé pour un confort optimal.",
-    certifications: ["EN 397", "ANSI Z89.1"],
-    colors: ["Jaune", "Blanc", "Rouge", "Bleu"],
-  },
-  {
-    id: "p2",
-    name: "Lunettes de protection anti-UV",
-    category: "Protection oculaire",
-    subCategory: "Lunettes",
-    price: 12.5,
-    rating: 4.2,
-    image:
-      "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&q=80",
-    inStock: true,
-    isNew: false,
-    isFeatured: false,
-    description:
-      "Lunettes de protection légères avec protection anti-UV et anti-rayures.",
-    certifications: ["EN 166", "ANSI Z87.1"],
-    colors: ["Transparent", "Teinté"],
-  },
-  {
-    id: "p3",
-    name: "Gants anti-coupure niveau 5",
-    category: "Protection des mains",
-    subCategory: "Gants",
-    price: 18.75,
-    rating: 4.8,
-    image:
-      "https://images.unsplash.com/photo-1583624729922-1db8a8a9ce56?auto=format&fit=crop&q=80",
-    inStock: true,
-    isNew: false,
-    isFeatured: true,
-    description:
-      "Gants résistants aux coupures de niveau 5, avec revêtement en polyuréthane pour une excellente préhension.",
-    certifications: ["EN 388", "ISO 13997"],
-    sizes: ["S", "M", "L", "XL"],
-  },
-  {
-    id: "p4",
-    name: "Chaussures de sécurité S3",
-    category: "Protection des pieds",
-    subCategory: "Chaussures",
-    price: 89.99,
-    rating: 4.6,
-    image:
-      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?auto=format&fit=crop&q=80",
-    inStock: true,
-    isNew: true,
-    isFeatured: true,
-    description:
-      "Chaussures de sécurité S3 avec embout en composite et semelle anti-perforation.",
-    certifications: ["EN ISO 20345", "S3 SRC"],
-    sizes: ["39", "40", "41", "42", "43", "44", "45", "46"],
-  },
-  {
-    id: "p5",
-    name: "Veste haute visibilité classe 3",
-    category: "Vêtements de protection",
-    subCategory: "Vêtements haute visibilité",
-    price: 45.5,
-    rating: 4.3,
-    image:
-      "https://images.unsplash.com/photo-1620188467120-5042ed1eb5da?auto=format&fit=crop&q=80",
-    inStock: false,
-    isNew: false,
-    isFeatured: false,
-    description:
-      "Veste haute visibilité classe 3 avec bandes réfléchissantes, imperméable et respirante.",
-    certifications: ["EN ISO 20471", "EN 343"],
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: ["Jaune fluo", "Orange fluo"],
-  },
-  {
-    id: "p6",
-    name: "Masque respiratoire FFP3",
-    category: "Protection respiratoire",
-    subCategory: "Masques",
-    price: 8.99,
-    rating: 4.7,
-    image:
-      "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&q=80",
-    inStock: true,
-    isNew: false,
-    isFeatured: true,
-    description:
-      "Masque respiratoire FFP3 avec valve d'expiration pour un confort optimal.",
-    certifications: ["EN 149", "FFP3 NR D"],
-  },
-  {
-    id: "p7",
-    name: "Harnais de sécurité complet",
-    category: "Protection antichute",
-    subCategory: "Harnais",
-    price: 129.99,
-    rating: 4.9,
-    image:
-      "https://images.unsplash.com/photo-1618090584176-7132b9911657?auto=format&fit=crop&q=80",
-    inStock: true,
-    isNew: true,
-    isFeatured: false,
-    description:
-      "Harnais de sécurité complet avec points d'ancrage dorsal et sternal.",
-    certifications: ["EN 361", "ANSI Z359.11"],
-    sizes: ["S/M", "L/XL"],
-  },
-  {
-    id: "p8",
-    name: "Casque antibruit 32dB",
-    category: "Protection auditive",
-    subCategory: "Casques antibruit",
-    price: 32.5,
-    rating: 4.4,
-    image:
-      "https://images.unsplash.com/photo-1590935217281-8f102120d683?auto=format&fit=crop&q=80",
-    inStock: true,
-    isNew: false,
-    isFeatured: false,
-    description:
-      "Casque antibruit avec atténuation de 32dB, léger et confortable pour un port prolongé.",
-    certifications: ["EN 352-1"],
-    colors: ["Noir/Rouge", "Noir/Jaune"],
-  },
-];
+// Mini Cart Component
+const MiniCart = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const { cart, removeFromCart, updateQuantity, cartTotal, cartCount } =
+    useCart();
+  const t = useTranslations("ProductsPage");
 
-// Cart item type
-type CartItem = {
-  product: Product;
-  quantity: number;
-  color?: string;
-  size?: string;
+  return (
+    <div className="relative">
+      <Button
+        variant="ghost"
+        size="icon"
+        className="relative"
+        onClick={() => setIsOpen(!isOpen)}>
+        <ShoppingCart className="h-5 w-5" />
+        {cartCount > 0 && (
+          <Badge className="absolute -top-2 -right-2 px-1.5 py-0.5 min-w-[18px] text-xs">
+            {cartCount}
+          </Badge>
+        )}
+      </Button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <div
+              className="fixed inset-0 bg-black/20 z-40"
+              onClick={() => setIsOpen(false)}
+            />
+
+            <motion.div
+              initial={{ opacity: 0, x: 300, y: 0 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              exit={{ opacity: 0, x: 300, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed right-0 top-0 h-full w-full sm:w-[400px] bg-background z-50 shadow-xl">
+              <div className="flex flex-col h-full">
+                <div className="p-4 border-b flex justify-between items-center">
+                  <h2 className="font-bold text-xl">{t("yourCart")}</h2>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setIsOpen(false)}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round">
+                      <path d="M18 6L6 18"></path>
+                      <path d="M6 6l12 12"></path>
+                    </svg>
+                  </Button>
+                </div>
+
+                <div className="flex-grow overflow-y-auto p-4">
+                  {cart.length === 0 ? (
+                    <div className="h-full flex flex-col items-center justify-center text-center">
+                      <ShoppingCart className="h-16 w-16 text-muted-foreground mb-4" />
+                      <p className="text-xl font-medium mb-2">
+                        {t("cartEmpty")}
+                      </p>
+                      <p className="text-muted-foreground mb-6">
+                        {t("addProductsToStartShopping")}
+                      </p>
+                      <Button onClick={() => setIsOpen(false)} asChild>
+                        <Link href="/products">{t("viewOurProducts")}</Link>
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      {cart.map((item, index) => (
+                        <div
+                          key={`${item.product.id}-${item.color}-${item.size}`}
+                          className="flex gap-4 border-b pb-4">
+                          <div className="w-20 h-20 bg-muted rounded relative overflow-hidden">
+                            {/* Product image would go here */}
+                            <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+                              {t("image")}
+                            </div>
+                          </div>
+                          <div className="flex-grow">
+                            <div className="flex justify-between">
+                              <h4 className="font-medium">
+                                {item.product.name}
+                              </h4>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-6 w-6"
+                                onClick={() => removeFromCart(index)}>
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round">
+                                  <path d="M18 6L6 18"></path>
+                                  <path d="M6 6l12 12"></path>
+                                </svg>
+                              </Button>
+                            </div>
+                            {(item.color || item.size) && (
+                              <div className="text-sm text-muted-foreground">
+                                {item.color && `${t("color")}: ${item.color}`}
+                                {item.color && item.size && " | "}
+                                {item.size && `${t("size")}: ${item.size}`}
+                              </div>
+                            )}
+                            <div className="flex justify-between items-center mt-2">
+                              <div className="flex items-center border rounded">
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  className="h-8 w-8 rounded-none"
+                                  onClick={() =>
+                                    updateQuantity(index, item.quantity - 1)
+                                  }
+                                  disabled={item.quantity <= 1}>
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round">
+                                    <path d="M5 12h14"></path>
+                                  </svg>
+                                </Button>
+                                <span className="w-8 text-center">
+                                  {item.quantity}
+                                </span>
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  className="h-8 w-8 rounded-none"
+                                  onClick={() =>
+                                    updateQuantity(index, item.quantity + 1)
+                                  }>
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round">
+                                    <path d="M12 5v14"></path>
+                                    <path d="M5 12h14"></path>
+                                  </svg>
+                                </Button>
+                              </div>
+                              <div className="font-bold">
+                                {(
+                                  Number(item.product.price) * item.quantity
+                                ).toFixed(2)}{" "}
+                                €
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {cart.length > 0 && (
+                  <div className="border-t p-4">
+                    <div className="flex justify-between mb-4">
+                      <span className="font-medium">{t("total")}</span>
+                      <span className="font-bold">
+                        {cartTotal.toFixed(2)} €
+                      </span>
+                    </div>
+                    <div className="space-y-2">
+                      <Button
+                        className="w-full"
+                        onClick={() => alert(t("placeOrder"))}>
+                        {t("placeOrder")}
+                      </Button>
+                      <Button variant="outline" className="w-full" asChild>
+                        <Link href="/products">{t("continueShopping")}</Link>
+                      </Button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+// Products Navigation Component
+const ProductsNavigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const t = useTranslations("ProductsPage");
+  const locale = useLocale();
+  const [categories, setCategories] = useState<
+    (string | { name?: string; title?: string })[]
+  >([]);
+
+  // Fetch categories
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const data = await api.getProductCategories(locale);
+        setCategories(data.results || data.categories || []);
+      } catch (error) {
+        console.error("Failed to fetch categories:", error);
+      }
+    };
+    fetchCategories();
+  }, [locale]);
+
+  return (
+    <div className="border-b">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between py-4">
+          <div className="lg:hidden">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsOpen(!isOpen)}>
+              <Menu className="h-5 w-5" />
+            </Button>
+          </div>
+
+          <div className="hidden lg:flex items-center space-x-6">
+            <Link
+              href="/products"
+              className="font-medium hover:text-primary transition-colors">
+              {t("allProducts")}
+            </Link>
+
+            {categories.slice(0, 5).map((category) => {
+              const categoryName =
+                typeof category === "string"
+                  ? category
+                  : category.name || category.title || "Category";
+              return (
+                <Link
+                  key={categoryName}
+                  href={`/products?category=${encodeURIComponent(
+                    categoryName
+                  )}`}
+                  className="text-sm hover:text-primary transition-colors">
+                  {categoryName}
+                </Link>
+              );
+            })}
+
+            {/* Dropdown for more categories */}
+            {categories.length > 5 && (
+              <div className="relative group">
+                <button className="flex items-center text-sm group-hover:text-primary transition-colors">
+                  {t("moreCategories")}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="ml-1">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div className="absolute left-0 mt-2 w-60 bg-background rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                  <div className="p-4 space-y-2">
+                    {categories.slice(5).map((category) => {
+                      const categoryName =
+                        typeof category === "string"
+                          ? category
+                          : category.name || category.title || "Category";
+                      return (
+                        <Link
+                          key={categoryName}
+                          href={`/products?category=${encodeURIComponent(
+                            categoryName
+                          )}`}
+                          className="block text-sm hover:text-primary transition-colors">
+                          {categoryName}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <Button variant="ghost" size="icon">
+              <Heart className="h-5 w-5" />
+            </Button>
+            <MiniCart />
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile navigation */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="lg:hidden border-t overflow-hidden">
+            <div className="p-4 space-y-2">
+              <Link
+                href="/products"
+                className="block font-medium hover:text-primary transition-colors py-2"
+                onClick={() => setIsOpen(false)}>
+                {t("allProducts")}
+              </Link>
+
+              {categories.map((category) => {
+                const categoryName =
+                  typeof category === "string"
+                    ? category
+                    : category.name || category.title || "Category";
+                return (
+                  <Link
+                    key={categoryName}
+                    href={`/products?category=${encodeURIComponent(
+                      categoryName
+                    )}`}
+                    className="block hover:text-primary transition-colors py-2"
+                    onClick={() => setIsOpen(false)}>
+                    {categoryName}
+                  </Link>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 };
 
 export default function ProductsPage() {
   const t = useTranslations("ProductsPage");
+  const locale = useLocale();
   const { toast } = useToast();
+  const { addToCart } = useCart();
 
   // State for products and filters
-  const [products, setProducts] = useState<Product[]>(PRODUCTS);
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>(PRODUCTS);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [sortOption, setSortOption] = useState("featured");
@@ -219,126 +444,60 @@ export default function ProductsPage() {
   const [inStockOnly, setInStockOnly] = useState(false);
   const [newOnly, setNewOnly] = useState(false);
 
-  // Cart state
-  const [cart, setCart] = useState<CartItem[]>([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const debouncedSearchQuery = useDebounce(searchQuery, 300);
 
-  // Get unique categories
-  const categories = [...new Set(PRODUCTS.map((product) => product.category))];
+  const {
+    data: productsData,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: [
+      "products",
+      locale,
+      debouncedSearchQuery,
+      selectedCategory,
+      sortOption,
+      inStockOnly,
+      newOnly,
+    ],
+    queryFn: () =>
+      api.getProducts(
+        {
+          search: debouncedSearchQuery,
+          category: selectedCategory,
+          sort: sortOption,
+          inStock: inStockOnly,
+          newOnly,
+        },
+        locale
+      ),
+    placeholderData: (prevData) => prevData,
+  });
 
-  // Apply filters
-  useEffect(() => {
-    let result = [...PRODUCTS];
+  const { data: categoriesData } = useQuery({
+    queryKey: ["productCategories", locale],
+    queryFn: () => api.getProductCategories(locale),
+    staleTime: Infinity,
+  });
 
-    // Search filter
-    if (searchQuery) {
-      result = result.filter(
-        (product) =>
-          product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          product.description
-            .toLowerCase()
-            .includes(searchQuery.toLowerCase()) ||
-          product.category.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
-
-    // Category filter
-    if (selectedCategory) {
-      result = result.filter(
-        (product) => product.category === selectedCategory
-      );
-    }
-
-    // In stock filter
-    if (inStockOnly) {
-      result = result.filter((product) => product.inStock);
-    }
-
-    // New only filter
-    if (newOnly) {
-      result = result.filter((product) => product.isNew);
-    }
-
-    // Sorting
-    switch (sortOption) {
-      case "price-asc":
-        result.sort((a, b) => a.price - b.price);
-        break;
-      case "price-desc":
-        result.sort((a, b) => b.price - a.price);
-        break;
-      case "name-asc":
-        result.sort((a, b) => a.name.localeCompare(b.name));
-        break;
-      case "rating":
-        result.sort((a, b) => b.rating - a.rating);
-        break;
-      case "featured":
-      default:
-        result.sort((a, b) => (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0));
-        break;
-    }
-
-    setFilteredProducts(result);
-  }, [searchQuery, selectedCategory, sortOption, inStockOnly, newOnly]);
-
-  // Add to cart function
-  const addToCart = (
-    product: Product,
-    quantity: number = 1,
-    color?: string,
-    size?: string
-  ) => {
-    // Check if product is already in cart
-    const existingItemIndex = cart.findIndex(
-      (item) =>
-        item.product.id === product.id &&
-        item.color === (color || undefined) &&
-        item.size === (size || undefined)
-    );
-
-    if (existingItemIndex !== -1) {
-      // Update quantity if product already in cart
-      const updatedCart = [...cart];
-      updatedCart[existingItemIndex].quantity += quantity;
-      setCart(updatedCart);
-    } else {
-      // Add new item to cart
-      setCart([...cart, { product, quantity, color, size }]);
-    }
-
-    toast({
-      title: "Produit ajouté au panier",
-      description: `${product.name} a été ajouté à votre panier.`,
-    });
-  };
-
-  // Remove from cart function
-  const removeFromCart = (index: number) => {
-    const newCart = [...cart];
-    newCart.splice(index, 1);
-    setCart(newCart);
-
-    toast({
-      title: "Produit retiré du panier",
-      description: "Le produit a été retiré de votre panier.",
-    });
-  };
-
-  // Update cart item quantity
-  const updateCartItemQuantity = (index: number, newQuantity: number) => {
-    if (newQuantity < 1) return;
-
-    const newCart = [...cart];
-    newCart[index].quantity = newQuantity;
-    setCart(newCart);
-  };
-
-  // Calculate cart total
-  const cartTotal = cart.reduce(
-    (total, item) => total + item.product.price * item.quantity,
-    0
+  const products = useMemo(
+    () => productsData?.results || productsData?.products || [],
+    [productsData]
   );
+  const categories = useMemo(
+    () => categoriesData?.results || categoriesData?.categories || [],
+    [categoriesData]
+  );
+
+  useEffect(() => {
+    if (error) {
+      toast({
+        variant: "destructive",
+        title: t("errorFetchingProducts"),
+        description: t("pleaseTryAgainLater"),
+      });
+    }
+  }, [error, t, toast]);
 
   // Render star rating
   const renderStarRating = (rating: number) => {
@@ -375,28 +534,14 @@ export default function ProductsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background pt-24 pb-16">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-primary/10 to-secondary/10 py-12">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold mb-4">
-            Équipements de Protection Individuelle
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl">
-            Découvrez notre gamme complète d'équipements de protection
-            individuelle conformes aux normes internationales pour garantir la
-            sécurité de vos équipes.
-          </p>
-        </div>
-      </div>
-
-      <div className="container mx-auto px-4 py-8">
+    <>
+      <div className="container mx-auto px-4 py-8 pt-32 pb-16">
         {/* Search and filter bar */}
         <div className="flex flex-col lg:flex-row gap-4 mb-8">
           <div className="relative flex-grow">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
             <Input
-              placeholder="Rechercher un produit..."
+              placeholder={t("searchProduct")}
               className="pl-10"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -406,14 +551,18 @@ export default function ProductsPage() {
           <div className="flex gap-2">
             <Select value={sortOption} onValueChange={setSortOption}>
               <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Trier par" />
+                <SelectValue placeholder={t("sortBy")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="featured">Produits en vedette</SelectItem>
-                <SelectItem value="price-asc">Prix croissant</SelectItem>
-                <SelectItem value="price-desc">Prix décroissant</SelectItem>
-                <SelectItem value="name-asc">Nom (A-Z)</SelectItem>
-                <SelectItem value="rating">Mieux notés</SelectItem>
+                <SelectItem value="featured">
+                  {t("featuredProducts")}
+                </SelectItem>
+                <SelectItem value="price-asc">{t("priceAscending")}</SelectItem>
+                <SelectItem value="price-desc">
+                  {t("priceDescending")}
+                </SelectItem>
+                <SelectItem value="name-asc">{t("nameAscending")}</SelectItem>
+                <SelectItem value="rating">{t("topRated")}</SelectItem>
               </SelectContent>
             </Select>
 
@@ -422,7 +571,7 @@ export default function ProductsPage() {
               onClick={() => setShowFilters(!showFilters)}
               className="flex items-center gap-1">
               <Filter className="h-4 w-4" />
-              Filtres
+              {t("filters")}
               <ChevronDown
                 className={`h-4 w-4 transition-transform ${
                   showFilters ? "rotate-180" : ""
@@ -430,17 +579,7 @@ export default function ProductsPage() {
               />
             </Button>
 
-            <Button
-              variant="outline"
-              className="relative"
-              onClick={() => setIsCartOpen(!isCartOpen)}>
-              <ShoppingCart className="h-5 w-5" />
-              {cart.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
-                  {cart.length}
-                </span>
-              )}
-            </Button>
+            <MiniCart />
           </div>
         </div>
 
@@ -453,7 +592,7 @@ export default function ProductsPage() {
             className="bg-card border rounded-lg p-4 mb-8 overflow-hidden">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
-                <h3 className="font-medium mb-3">Catégories</h3>
+                <h3 className="font-medium mb-3">{t("categories")}</h3>
                 <div className="space-y-2">
                   <div className="flex items-center">
                     <input
@@ -464,27 +603,36 @@ export default function ProductsPage() {
                       onChange={() => setSelectedCategory(null)}
                       className="mr-2"
                     />
-                    <label htmlFor="cat-all">Toutes les catégories</label>
+                    <label htmlFor="cat-all">{t("allCategories")}</label>
                   </div>
 
-                  {categories.map((category) => (
-                    <div key={category} className="flex items-center">
-                      <input
-                        type="radio"
-                        id={`cat-${category}`}
-                        name="category"
-                        checked={selectedCategory === category}
-                        onChange={() => setSelectedCategory(category)}
-                        className="mr-2"
-                      />
-                      <label htmlFor={`cat-${category}`}>{category}</label>
-                    </div>
-                  ))}
+                  {categories.map((category) => {
+                    const catName =
+                      typeof category === "string"
+                        ? category
+                        : category.name ||
+                          category.slug ||
+                          category.id ||
+                          "Category";
+                    return (
+                      <div key={catName} className="flex items-center">
+                        <input
+                          type="radio"
+                          id={`cat-${catName}`}
+                          name="category"
+                          checked={selectedCategory === catName}
+                          onChange={() => setSelectedCategory(catName)}
+                          className="mr-2"
+                        />
+                        <label htmlFor={`cat-${catName}`}>{catName}</label>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 
               <div>
-                <h3 className="font-medium mb-3">Disponibilité</h3>
+                <h3 className="font-medium mb-3">{t("availability")}</h3>
                 <div className="space-y-2">
                   <div className="flex items-center">
                     <input
@@ -494,7 +642,7 @@ export default function ProductsPage() {
                       onChange={() => setInStockOnly(!inStockOnly)}
                       className="mr-2"
                     />
-                    <label htmlFor="in-stock">En stock uniquement</label>
+                    <label htmlFor="in-stock">{t("inStockOnly")}</label>
                   </div>
                   <div className="flex items-center">
                     <input
@@ -504,7 +652,7 @@ export default function ProductsPage() {
                       onChange={() => setNewOnly(!newOnly)}
                       className="mr-2"
                     />
-                    <label htmlFor="new-only">Nouveautés uniquement</label>
+                    <label htmlFor="new-only">{t("newOnly")}</label>
                   </div>
                 </div>
               </div>
@@ -519,155 +667,37 @@ export default function ProductsPage() {
                     setInStockOnly(false);
                     setNewOnly(false);
                   }}>
-                  Réinitialiser les filtres
+                  {t("resetFilters")}
                 </Button>
               </div>
             </div>
           </motion.div>
         )}
 
-        {/* Shopping cart panel */}
-        {isCartOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="bg-card border rounded-lg p-4 mb-8 overflow-hidden">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold">Votre panier</h2>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsCartOpen(false)}>
-                Fermer
-              </Button>
-            </div>
-
-            {cart.length === 0 ? (
-              <div className="text-center py-8 text-muted-foreground">
-                Votre panier est vide
-              </div>
-            ) : (
-              <>
-                <div className="space-y-4 max-h-[400px] overflow-y-auto">
-                  {cart.map((item, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center justify-between border-b pb-4">
-                      <div className="flex items-center gap-3">
-                        <div className="relative w-16 h-16 rounded overflow-hidden">
-                          <Image
-                            src={item.product.image}
-                            alt={item.product.name}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                        <div>
-                          <h4 className="font-medium">{item.product.name}</h4>
-                          <div className="text-sm text-muted-foreground">
-                            {item.color && <span>Couleur: {item.color} </span>}
-                            {item.size && <span>Taille: {item.size}</span>}
-                          </div>
-                          <div className="text-sm font-medium">
-                            {item.product.price.toFixed(2)} €
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-3">
-                        <div className="flex items-center border rounded">
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="h-8 w-8 rounded-none"
-                            onClick={() =>
-                              updateCartItemQuantity(index, item.quantity - 1)
-                            }>
-                            <Minus className="h-3 w-3" />
-                          </Button>
-                          <span className="w-8 text-center">
-                            {item.quantity}
-                          </span>
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="h-8 w-8 rounded-none"
-                            onClick={() =>
-                              updateCartItemQuantity(index, item.quantity + 1)
-                            }>
-                            <Plus className="h-3 w-3" />
-                          </Button>
-                        </div>
-
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={() => removeFromCart(index)}>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round">
-                            <path d="M18 6L6 18"></path>
-                            <path d="M6 6l12 12"></path>
-                          </svg>
-                        </Button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="border-t mt-4 pt-4">
-                  <div className="flex justify-between mb-4">
-                    <span className="font-medium">Total</span>
-                    <span className="font-bold">{cartTotal.toFixed(2)} €</span>
-                  </div>
-
-                  <div className="flex gap-2">
-                    <Button
-                      className="w-full"
-                      onClick={() =>
-                        alert("Redirection vers la page de paiement...")
-                      }>
-                      Passer la commande
-                    </Button>
-                    <Button variant="outline" onClick={() => setCart([])}>
-                      Vider le panier
-                    </Button>
-                  </div>
-                </div>
-              </>
-            )}
-          </motion.div>
-        )}
-
         {/* Products count */}
         <div className="mb-6">
           <p className="text-muted-foreground">
-            {filteredProducts.length} produit
-            {filteredProducts.length !== 1 ? "s" : ""} trouvé
-            {filteredProducts.length !== 1 ? "s" : ""}
+            {t("productsFound", { count: products.length })}
           </p>
         </div>
 
+        {/* Loading state */}
+        {isLoading && (
+          <div className="flex justify-center items-center py-16">
+            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary"></div>
+          </div>
+        )}
+
         {/* Products grid */}
-        {filteredProducts.length === 0 ? (
+        {!isLoading && products.length === 0 ? (
           <div className="text-center py-16">
             <AlertCircle className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
-            <h3 className="text-xl font-medium mb-2">Aucun produit trouvé</h3>
-            <p className="text-muted-foreground">
-              Essayez de modifier vos filtres ou votre recherche.
-            </p>
+            <h3 className="text-xl font-medium mb-2">{t("noProductsFound")}</h3>
+            <p className="text-muted-foreground">{t("tryModifyingFilters")}</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredProducts.map((product) => (
+            {products.map((product) => (
               <motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -676,7 +706,7 @@ export default function ProductsPage() {
                 <Card className="h-full flex flex-col overflow-hidden group">
                   <div className="relative h-64 overflow-hidden bg-muted">
                     <Image
-                      src={product.image}
+                      src={product.image || "/placeholder-product.jpg"}
                       alt={product.name}
                       fill
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
@@ -686,11 +716,11 @@ export default function ProductsPage() {
                     <div className="absolute top-2 left-2 flex flex-col gap-2">
                       {product.isNew && (
                         <Badge className="bg-blue-500 hover:bg-blue-600">
-                          Nouveau
+                          {t("new")}
                         </Badge>
                       )}
                       {!product.inStock && (
-                        <Badge variant="destructive">Rupture de stock</Badge>
+                        <Badge variant="destructive">{t("outOfStock")}</Badge>
                       )}
                     </div>
 
@@ -707,7 +737,7 @@ export default function ProductsPage() {
                             </Button>
                           </TooltipTrigger>
                           <TooltipContent>
-                            <p>Ajouter aux favoris</p>
+                            <p>{t("addToWishlist")}</p>
                           </TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
@@ -718,12 +748,15 @@ export default function ProductsPage() {
                             <Button
                               size="icon"
                               variant="secondary"
-                              className="h-8 w-8 rounded-full">
-                              <Eye className="h-4 w-4" />
+                              className="h-8 w-8 rounded-full"
+                              asChild>
+                              <Link href={`/products/${product.id}`}>
+                                <Eye className="h-4 w-4" />
+                              </Link>
                             </Button>
                           </TooltipTrigger>
                           <TooltipContent>
-                            <p>Aperçu rapide</p>
+                            <p>{t("quickView")}</p>
                           </TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
@@ -733,7 +766,7 @@ export default function ProductsPage() {
                   <CardContent className="flex-grow flex flex-col p-4">
                     <div className="mb-1">
                       <span className="text-xs text-muted-foreground">
-                        {product.category}
+                        {product.category.name}
                       </span>
                     </div>
 
@@ -755,17 +788,17 @@ export default function ProductsPage() {
                     <div className="mt-auto">
                       <div className="flex items-center justify-between mb-3">
                         <span className="font-bold text-lg">
-                          {product.price.toFixed(2)} €
+                          {Number(product.price).toFixed(2)} €
                         </span>
                         <div className="text-xs flex items-center">
                           {product.inStock ? (
                             <span className="text-green-600 flex items-center">
                               <CheckCircle2 className="h-3 w-3 mr-1" />
-                              En stock
+                              {t("inStock")}
                             </span>
                           ) : (
                             <span className="text-red-500">
-                              Rupture de stock
+                              {t("outOfStock")}
                             </span>
                           )}
                         </div>
@@ -776,7 +809,7 @@ export default function ProductsPage() {
                         disabled={!product.inStock}
                         onClick={() => addToCart(product)}>
                         <ShoppingCart className="mr-2 h-4 w-4" />
-                        Ajouter au panier
+                        {t("addToCart")}
                       </Button>
                     </div>
                   </CardContent>
@@ -786,6 +819,6 @@ export default function ProductsPage() {
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 }

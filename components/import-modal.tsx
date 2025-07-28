@@ -30,6 +30,7 @@ interface ImportModalProps {
   onClose: () => void;
   modelKey: string;
   modelName: string;
+  onSuccess?: () => void;
 }
 
 interface IFormInput {
@@ -42,6 +43,7 @@ export function ImportModal({
   onClose,
   modelKey,
   modelName,
+  onSuccess,
 }: ImportModalProps) {
   const t = useTranslations("ImportExport");
   const { toast } = useToast();
@@ -55,8 +57,12 @@ export function ImportModal({
         title: t("importSuccessTitle"),
         description: t("importSuccessDescription", { count: result.count }),
       });
-      queryClient.invalidateQueries({ queryKey: ["modelItems", modelKey] });
-      queryClient.invalidateQueries({ queryKey: ["adminConfig"] });
+      if (onSuccess) {
+        onSuccess();
+      } else {
+        queryClient.invalidateQueries({ queryKey: ["modelItems", modelKey] });
+        queryClient.invalidateQueries({ queryKey: ["adminConfig"] });
+      }
       onClose();
       reset();
     },
@@ -74,7 +80,7 @@ export function ImportModal({
       toast({
         variant: "destructive",
         title: t("importErrorTitle"),
-        description: "Please select a file to import.",
+        description: t("importErrorSelectFile"),
       });
       return;
     }
@@ -106,8 +112,8 @@ export function ImportModal({
                     <SelectValue placeholder={t("selectFormatPlaceholder")} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="csv">CSV</SelectItem>
-                    <SelectItem value="json">JSON</SelectItem>
+                    <SelectItem value="csv">{t("formatCsv")}</SelectItem>
+                    <SelectItem value="json">{t("formatJson")}</SelectItem>
                   </SelectContent>
                 </Select>
               )}

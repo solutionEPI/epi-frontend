@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api";
 import { ModelForm } from "@/components/model-form";
 import { Skeleton } from "@/components/ui/skeleton";
+import { prepareDataForDisplay } from "@/lib/utils";
 
 export default function EditModelPage() {
   const t = useTranslations("ModelListPage");
@@ -33,7 +34,7 @@ export default function EditModelPage() {
     error: errorData,
   } = useQuery({
     queryKey: ["modelItem", modelKey, itemId],
-    queryFn: () => api.getModelItem(`/api/admin/models/${modelKey}`, itemId),
+    queryFn: () => api.getModelItem(`/api/admin/models/${modelKey}/`, itemId),
     enabled: status === "authenticated",
   });
 
@@ -61,12 +62,17 @@ export default function EditModelPage() {
   }
 
   if (error) {
-    return <div className="text-destructive">{error.message}</div>;
+    return <div className="text-destructive">{t("errorLoadingData")}</div>;
   }
 
   if (!modelConfig || !initialData) {
     return <div>{t("loadModelDataFailed", { modelName: modelKey })}</div>;
   }
+
+  const processedData = prepareDataForDisplay(
+    initialData,
+    modelConfig.fields
+  ) as Record<string, any>;
 
   return (
     <div>
@@ -79,7 +85,7 @@ export default function EditModelPage() {
       <ModelForm
         modelKey={modelKey}
         modelConfig={modelConfig}
-        initialData={initialData}
+        initialData={processedData}
         itemId={itemId}
       />
     </div>

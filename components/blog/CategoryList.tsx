@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import { api } from "@/lib/api";
 import { Category } from "@/types/blog";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
+import { useQuery } from "@tanstack/react-query";
 
 interface CategoryListProps {
   locale: string;
@@ -19,50 +20,50 @@ export function CategoryList({
   onSelectCategory,
 }: CategoryListProps) {
   const t = useTranslations("BlogPage");
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      setIsLoading(true);
-      setError(null);
-      try {
-        const response = await api.getBlogCategories(locale);
-        if (
-          response &&
-          (response as any).success &&
-          Array.isArray((response as any).data)
-        ) {
-          setCategories((response as any).data);
-        } else if (response && Array.isArray(response.results)) {
-          setCategories(response.results);
-        } else if (Array.isArray(response)) {
-          setCategories(response);
-        } else {
-          setCategories([]);
-          console.error("Invalid categories response format:", response);
-        }
-      } catch (err) {
-        console.error("Failed to fetch categories", err);
-        setError("Failed to load categories");
-        setCategories([]);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchCategories();
-  }, [locale]);
+  const {
+    data: categoriesData,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["blogCategories", locale],
+    queryFn: () => api.getBlogCategories(locale),
+    staleTime: 1000 * 60 * 5, // 5 minutes
+  });
+
+  const categories = useMemo(() => {
+    if (!categoriesData) return [];
+    if (
+      "success" in categoriesData &&
+      Array.isArray((categoriesData as any).data)
+    ) {
+      return (categoriesData as any).data;
+    }
+    if (
+      "results" in categoriesData &&
+      Array.isArray((categoriesData as any).results)
+    ) {
+      return (categoriesData as any).results;
+    }
+    if (Array.isArray(categoriesData)) {
+      return categoriesData;
+    }
+    return [];
+  }, [categoriesData]);
 
   if (isLoading) {
     return <div>{t("loadingCategories")}</div>;
   }
 
   if (error) {
-    return <div className="text-destructive text-sm">{error}</div>;
+    return (
+      <div className="text-destructive text-sm">
+        {t("failedToLoadCategories")}
+      </div>
+    );
   }
 
-  if (!categories || categories.length === 0) {
+  if (categories.length === 0) {
     return null;
   }
 
@@ -76,7 +77,7 @@ export function CategoryList({
           className="cursor-pointer">
           {t("allCategories")}
         </Badge>
-        {categories.map((category) => (
+        {categories.map((category: Category) => (
           <Badge
             key={category.id}
             onClick={() => onSelectCategory(category.id)}

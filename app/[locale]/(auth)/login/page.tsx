@@ -110,9 +110,9 @@ export default function LoginPage() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="form-container">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold">{dashboardConfig.name}</h1>
+            <h1 className="text-3xl font-bold">{t("dashboardName")}</h1>
             <p className="text-muted-foreground mt-2">
-              {dashboardConfig.description}
+              {t("dashboardDescription")}
             </p>
           </div>
           <h2 className="text-2xl font-bold text-center mb-6">{t("title")}</h2>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useParams, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -56,9 +56,12 @@ export default function CreateModelPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-6">
-        {t("createTitle", { modelName: modelConfig.verbose_name })}
-      </h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold">
+          {t("createTitle", { modelName: modelConfig.verbose_name })}
+        </h1>
+      </div>
+
       <ModelForm modelKey={modelKey} modelConfig={modelConfig} />
     </div>
   );

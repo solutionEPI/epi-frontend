@@ -218,13 +218,16 @@ function SecurePasswordGenerator() {
 
   const generatePassword = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    complete(
-      `Generate a secure, random password with length ${length}, ${
-        includeNumbers ? "including numbers" : "no numbers"
-      }, and ${
-        includeSymbols ? "including symbols" : "no symbols"
-      }. Output only the password.`
-    );
+    const prompt = t("prompt", {
+      length,
+      includeNumbers: includeNumbers
+        ? t("promptNumbers")
+        : t("promptNoNumbers"),
+      includeSymbols: includeSymbols
+        ? t("promptSymbols")
+        : t("promptNoSymbols"),
+    });
+    complete(prompt);
   };
 
   const copyToClipboard = () => {
@@ -295,7 +298,7 @@ function TextSummarizer() {
 
   const summarize = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    complete(`Summarize this text concisely:\n${text}`);
+    complete(t("prompt", { text }));
   };
 
   return (
@@ -339,7 +342,7 @@ function Translator() {
 
   const translate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    complete(`Translate to ${targetLang}:\n${text}`);
+    complete(t("prompt", { targetLang, text }));
   };
 
   return (
@@ -393,7 +396,7 @@ function EmailDraftGenerator() {
 
   const generate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    complete(`Write a professional email about: ${topic}`);
+    complete(t("prompt", { topic }));
   };
 
   return (
@@ -435,7 +438,7 @@ function MarketingIdeas() {
 
   const generate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    complete(`Provide creative marketing campaign ideas for: ${product}`);
+    complete(t("prompt", { product }));
   };
 
   return (
@@ -477,9 +480,7 @@ function NewsletterThemeSuggester() {
 
   const suggest = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    complete(
-      `Suggest 5 engaging newsletter themes for an audience of: ${audience}`
-    );
+    complete(t("prompt", { audience }));
   };
 
   return (
@@ -521,9 +522,7 @@ function SupportReplyGenerator() {
 
   const generate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    complete(
-      `Write a helpful and empathetic customer support reply to: ${question}`
-    );
+    complete(t("prompt", { question }));
   };
 
   return (
@@ -565,7 +564,7 @@ function SocialPostIdeas() {
 
   const generate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    complete(`Give me 5 creative social media post ideas about: ${topic}`);
+    complete(t("prompt", { topic }));
   };
 
   return (

@@ -33,10 +33,8 @@ export const authConfig = {
     signIn: "/login",
     error: "/auth/error",
   },
-  secret:
-    process.env.NEXTAUTH_SECRET ||
-    process.env.AUTH_SECRET ||
-    "SOLUTION_EPI_DEVELOPMENT_SECRET",
+  secret: process.env.AUTH_SECRET,
+  trustHost: true,
   session: {
     strategy: "jwt",
   },

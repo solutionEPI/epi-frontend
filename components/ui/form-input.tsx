@@ -12,10 +12,14 @@ export interface FormInputProps
   className?: string;
   error?: string;
   hideLabel?: boolean;
+  maxLength?: number;
 }
 
 export const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(
-  ({ className, label, required, error, hideLabel, ...props }, ref) => {
+  (
+    { className, label, required, error, hideLabel, maxLength, ...props },
+    ref
+  ) => {
     return (
       <div className="w-full space-y-2">
         {!hideLabel && (
@@ -27,6 +31,7 @@ export const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(
         <Input
           className={cn(error && "border-destructive", className)}
           ref={ref}
+          maxLength={maxLength}
           {...props}
         />
         {error && <p className="text-sm text-destructive">{error}</p>}

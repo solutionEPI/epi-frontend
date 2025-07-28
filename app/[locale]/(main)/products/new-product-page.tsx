@@ -69,7 +69,7 @@ type Product = {
 export default function ProductDetailPage({
   params,
 }: {
-  params: any;
+  params: { id: string };
 }) {
   const { toast } = useToast();
   const locale = useLocale();
@@ -155,19 +155,7 @@ export default function ProductDetailPage({
     }
 
     // Add to cart
-    addToCart(
-      {
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        image: product.images?.[0] || product.image,
-        category: product.category.name,
-        sku: `${product.id}-${selectedColor || "default"}-${
-          selectedSize || "default"
-        }`,
-      },
-      quantity
-    );
+    addToCart(product, quantity, selectedColor, selectedSize);
   };
 
   // Render star rating
@@ -638,13 +626,7 @@ export default function ProductDetailPage({
                         onClick={(e) => {
                           e.preventDefault();
                           // Add to cart
-                          addToCart({
-                            id: relatedProduct.id,
-                            name: relatedProduct.name,
-                            price: relatedProduct.price,
-                            image: relatedProduct.image,
-                            category: relatedProduct.category.name,
-                          });
+                          addToCart(relatedProduct);
                         }}>
                         <ShoppingCart className="h-4 w-4" />
                       </Button>

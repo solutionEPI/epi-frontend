@@ -7,6 +7,8 @@ import { Button } from "./button";
 import { Trash2, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+import { useTranslations } from "next-intl";
+
 interface KeyValue {
   id: number;
   key: string;
@@ -30,6 +32,7 @@ export function FormJsonEditor({
   helpText,
   disabled,
 }: FormJsonEditorProps) {
+  const t = useTranslations("FormJsonEditor");
   const [items, setItems] = useState<KeyValue[]>([]);
 
   useEffect(() => {
@@ -92,18 +95,18 @@ export function FormJsonEditor({
         {items.map((item) => (
           <div key={item.id} className="flex items-center gap-2">
             <FormInput
-              label="Key"
+              label={t("key")}
               hideLabel
-              placeholder="Key"
+              placeholder={t("key")}
               value={item.key}
               onChange={(e) => handleItemChange(item.id, "key", e.target.value)}
               className="flex-1"
               disabled={disabled}
             />
             <FormInput
-              label="Value"
+              label={t("value")}
               hideLabel
-              placeholder="Value"
+              placeholder={t("value")}
               value={item.value}
               onChange={(e) =>
                 handleItemChange(item.id, "value", e.target.value)
@@ -128,7 +131,7 @@ export function FormJsonEditor({
           type="button"
           disabled={disabled}>
           <Plus className="h-4 w-4 mr-2" />
-          Add Item
+          {t("addItem")}
         </Button>
       </div>
       {helpText && (
@@ -137,3 +140,4 @@ export function FormJsonEditor({
     </div>
   );
 }
+

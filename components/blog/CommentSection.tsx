@@ -85,7 +85,7 @@ export function CommentSection({ postId, locale }: CommentSectionProps) {
       parent: string | null;
       author_name?: string;
       author_email?: string;
-    }) => api.createPostComment(postId, newComment),
+    }) => api.createPostComment(postId, newComment, locale),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["comments", postId] });
       setCommentText("");
@@ -175,7 +175,7 @@ export function CommentSection({ postId, locale }: CommentSectionProps) {
         {error && (
           <div className="flex items-center gap-2 text-destructive">
             <AlertCircle className="h-4 w-4" />
-            <p>Failed to load comments</p>
+            <p>{t("failedToLoadComments")}</p>
           </div>
         )}
         {!isLoading &&

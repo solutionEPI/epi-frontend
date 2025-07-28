@@ -72,12 +72,7 @@ export default function SettingsPage() {
   });
 
   if (isLoading) return <SettingsSkeleton />;
-  if (error)
-    return (
-      <div className="text-destructive">
-        {t("loadError", { message: error.message })}
-      </div>
-    );
+  if (error) return <div className="text-destructive">{t("loadError")}</div>;
 
   return (
     <div className="space-y-8">
@@ -399,7 +394,12 @@ function TwoFactorAuthForm({ is2FAEnabled }: { is2FAEnabled: boolean }) {
           <div className="space-y-4">
             <p>{t("scanQrCode")}</p>
             <div className="p-4 border rounded-md inline-block">
-              <Image src={qrCodeUrl} alt="QR Code" width={200} height={200} />
+              <Image
+                src={qrCodeUrl}
+                alt={t("qrCodeAlt")}
+                width={200}
+                height={200}
+              />
             </div>
             <p className="text-sm text-muted-foreground">
               {t("secretKey")}:{" "}

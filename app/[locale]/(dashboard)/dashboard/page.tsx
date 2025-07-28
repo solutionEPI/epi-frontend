@@ -29,6 +29,8 @@ import {
 } from "recharts";
 import { DynamicIcon } from "@/components/ui/dynamic-icon";
 import { AlertCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface Stat {
   title: string;
@@ -56,6 +58,7 @@ export default function DashboardPage() {
   const { status } = useSession();
   const t = useTranslations("DashboardPage");
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   const mockData: DashboardData = useMemo(
     () => ({
@@ -145,7 +148,7 @@ export default function DashboardPage() {
     }
   }, [status, router]);
 
-  const data = dashboardData || mockData;
+  const data = dashboardData;
 
   if (isLoading || status === "loading") {
     return <DashboardSkeleton />;
@@ -161,11 +164,19 @@ export default function DashboardPage() {
           </h2>
         </div>
         <p className="text-destructive mb-4">{error.message}</p>
-        <p className="text-sm text-muted-foreground">
-          {t("loadErrorDescription")}
-        </p>
+        <Button
+          variant="outline"
+          onClick={() =>
+            queryClient.invalidateQueries({ queryKey: ["dashboardStats"] })
+          }>
+          {t("tryAgain")}
+        </Button>
       </div>
     );
+  }
+
+  if (!data) {
+    return null; // Or a more specific "no data" message
   }
 
   return (

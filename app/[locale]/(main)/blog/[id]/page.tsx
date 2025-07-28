@@ -1,15 +1,11 @@
-"use client";
-
 import { api } from "@/lib/api";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, User, Clock, Tag, Folder, ExternalLink } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
 import { CommentSection } from "@/components/blog/CommentSection";
 import { Category, Tag as TagType } from "@/types/blog";
-import { useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import { cn } from "@/lib/utils";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -28,38 +24,23 @@ const getCorrectImageUrl = (url: string) => {
   return url;
 };
 
-export default async function BlogPostPage({ params }: { params: any }) {
+export default async function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ locale: string; id: string }>;
+}) {
   const { locale, id } = await params;
-  const t = useTranslations("BlogPage");
+  const t = await getTranslations("BlogPage");
 
-  const {
-    data: post,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["post", id, locale],
-    queryFn: () => api.getBlogPost(locale, id),
-    retry: false,
-  });
-
-  useEffect(() => {
-    console.log("--- Blog Post Page Debug ---");
-    console.log("Locale:", locale, "ID:", id);
-    console.log("Is Loading:", isLoading);
-    console.log("Error object:", error);
-    console.log("Post data:", post);
-    console.log("----------------------------");
-  }, [locale, id, isLoading, error, post]);
-
-  if (isLoading) {
-    return (
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
-        {t("loading")}
-      </div>
-    );
+  let post;
+  try {
+    post = await api.getBlogPost(locale, id);
+  } catch (error) {
+    console.error("Error fetching blog post:", error);
+    notFound();
   }
 
-  if (error || !post) {
+  if (!post) {
     notFound();
   }
 
@@ -134,13 +115,17 @@ export default async function BlogPostPage({ params }: { params: any }) {
               h2: ({ node, ...props }) => (
                 <h2 {...props} className="mt-6 mb-3 border-b pb-1" />
               ),
-              img: ({ node, ...props }) => (
-                <img
-                  {...props}
-                  className="rounded-md shadow-md my-6 mx-auto"
-                  alt={props.alt || "Blog image"}
-                />
-              ),
+              img: ({ node, ...props }) =>
+                props.src && typeof props.src === "string" ? (
+                  <Image
+                    {...props}
+                    src={getCorrectImageUrl(props.src)}
+                    className="rounded-md shadow-md my-6 mx-auto"
+                    alt={props.alt || "Blog image"}
+                    width={800}
+                    height={450}
+                  />
+                ) : null,
               ul: ({ node, ...props }) => (
                 <ul {...props} className="my-6 list-disc pl-6" />
               ),

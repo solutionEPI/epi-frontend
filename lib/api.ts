@@ -10,19 +10,60 @@ import {
   Comment,
   BlogStats,
 } from "@/types/blog";
-import { Service, PaginatedResponse, Employee, AdminConfig, UserProfile } from "@/types/salon";
+import {
+  Service,
+  PaginatedResponse,
+  Employee,
+  AdminConfig,
+  UserProfile,
+} from "@/types/salon";
+
+// Global cache for session to avoid frequent refetches
+let sessionCache: any = null;
+let sessionCacheTime = 0;
+const SESSION_CACHE_DURATION = 1000 * 5; // Cache session for 5 seconds
+
+// Enhanced getSession with caching
+async function getCachedSession() {
+  const now = Date.now();
+  if (sessionCache && now - sessionCacheTime < SESSION_CACHE_DURATION) {
+    return sessionCache;
+  }
+  sessionCache = await getSession();
+  sessionCacheTime = now;
+  return sessionCache;
+}
 
 function getRelativePath(fullOrRelativeUrl: string): string {
-  if (fullOrRelativeUrl.startsWith('http')) {
+  if (fullOrRelativeUrl.startsWith("http")) {
     // If it's a full URL, extract the pathname
     return new URL(fullOrRelativeUrl).pathname;
   }
   // If it's already a relative path, ensure it starts with a '/'
-  return fullOrRelativeUrl.startsWith('/') ? fullOrRelativeUrl : `/${fullOrRelativeUrl}`;
+  return fullOrRelativeUrl.startsWith("/")
+    ? fullOrRelativeUrl
+    : `/${fullOrRelativeUrl}`;
 }
 
 const REFRESH_ATTEMPT_LIMIT = 3;
 const REFRESH_ATTEMPT_WINDOW_MS = 30000;
+
+let isRefreshing = false;
+let failedQueue: {
+  resolve: (value: string | PromiseLike<string>) => void;
+  reject: (reason?: any) => void;
+}[] = [];
+
+const processQueue = (error: any, token: string | null = null) => {
+  failedQueue.forEach((prom) => {
+    if (error) {
+      prom.reject(error);
+    } else {
+      prom.resolve(token as string);
+    }
+  });
+  failedQueue = [];
+};
 
 const refreshManager = {
   refreshPromise: null as Promise<string> | null,
@@ -44,6 +85,7 @@ const refreshManager = {
       this.refreshPromise = this.performRefreshToken()
         .then((newAccessToken) => {
           this.failureCount = 0;
+          sessionCache = null; // Invalidate session cache after a successful token refresh
           return newAccessToken;
         })
         .catch((err) => {
@@ -59,7 +101,7 @@ const refreshManager = {
   },
 
   async performRefreshToken(): Promise<string> {
-    const session = await getSession();
+    const session = await getCachedSession();
     if (!session?.refreshToken) {
       throw new Error("No refresh token available.");
     }
@@ -79,19 +121,12 @@ const refreshManager = {
     if (!access) {
       throw new Error("No new access token in refresh response");
     }
-
-    // Note: getSession() does not automatically update the session.
-    // The new token will be used for subsequent requests in this flow,
-    // but the session in React components might not be updated until the next session poll.
-    // This is generally fine as we are managing the token flow here.
     return access;
   },
 };
 
-
-
 const getApiHeaders = async (locale?: string) => {
-  const session = await getSession();
+  const session = await getCachedSession();
   const headers: HeadersInit = {
     "Content-Type": "application/json",
   };
@@ -139,12 +174,10 @@ async function apiFetch<T>(
   options: RequestInit = {},
   isRetry = false
 ): Promise<T> {
-  let session = await getSession();
+  let session = await getCachedSession();
   let token = session?.accessToken;
 
   if (isRetry && !token) {
-    // If it's a retry, we must have a token from the refresh flow.
-    // If not, something is wrong, so we bail.
     throw new Error("Authentication failed after token refresh.");
   }
 
@@ -162,24 +195,45 @@ async function apiFetch<T>(
 
   const finalOptions: RequestInit = { ...options, headers };
 
-  const response = await fetch(url, finalOptions);
+  let response = await fetch(url, finalOptions);
 
-  if (response.status === 401 && !isRetry) {
-    try {
-      const newAccessToken = await refreshManager.handleRefresh();
-      // Manually update the token for the retry
-      headers.set("Authorization", `Bearer ${newAccessToken}`);
-      return await apiFetch<T>(endpoint, { ...options, headers }, true);
-    } catch (refreshError) {
-      // If refresh fails (including too many retries), sign out
-      await signOut({ redirect: false });
-      window.location.href = "/login";
-      toast({
-        variant: "destructive",
-        title: "Session Expired",
-        description: "Your session has expired. Please log in again.",
-      });
-      throw new Error("Session expired. Please log in again.");
+  if (response.status === 401) {
+    if (isRefreshing) {
+      return new Promise((resolve, reject) => {
+        failedQueue.push({ resolve, reject });
+      })
+        .then((newToken) => {
+          headers.set("Authorization", `Bearer ${newToken}`);
+          return apiFetch<T>(endpoint, { ...options, headers }, true);
+        })
+        .catch((err) => {
+          return Promise.reject(err);
+        });
+    }
+
+    if (!isRetry) {
+      isRefreshing = true;
+      try {
+        const newAccessToken = await refreshManager.handleRefresh();
+        processQueue(null, newAccessToken);
+        headers.set("Authorization", `Bearer ${newAccessToken}`);
+        response = await fetch(url, { ...options, headers }); // Re-fetch with new token
+      } catch (refreshError) {
+        processQueue(refreshError);
+        await signOut({ redirect: false });
+        window.location.href = "/login";
+        toast({
+          variant: "destructive",
+          title: "Session Expired",
+          description: "Your session has expired. Please log in again.",
+        });
+        throw new Error("Session expired. Please log in again.");
+      } finally {
+        isRefreshing = false;
+      }
+    } else {
+      // If it's a retry and still 401, something is wrong with the new token or refresh logic
+      throw new Error("Authentication failed after token refresh.");
     }
   }
 
@@ -197,7 +251,6 @@ async function apiFetch<T>(
   if (response.headers.get("Content-Type")?.includes("application/json")) {
     return (await response.json()) as T;
   }
-  // For DELETE requests or other non-JSON responses
   return null as T;
 }
 
@@ -206,7 +259,7 @@ async function apiFileFetch(
   options: RequestInit = {},
   isRetry = false
 ): Promise<Response> {
-  let session = await getSession();
+  let session = await getCachedSession();
   let token = session?.accessToken;
 
   if (isRetry && !token) {
@@ -222,22 +275,44 @@ async function apiFileFetch(
 
   const finalOptions: RequestInit = { ...options, headers };
 
-  const response = await fetch(url, finalOptions);
+  let response = await fetch(url, finalOptions);
 
-  if (response.status === 401 && !isRetry) {
-    try {
-      const newAccessToken = await refreshManager.handleRefresh();
-      headers.set("Authorization", `Bearer ${newAccessToken}`);
-      return await apiFileFetch(endpoint, { ...options, headers }, true);
-    } catch (refreshError) {
-      await signOut({ redirect: false });
-      window.location.href = "/login";
-      toast({
-        variant: "destructive",
-        title: "Session Expired",
-        description: "Your session has expired. Please log in again.",
-      });
-      throw new Error("Session expired. Please log in again.");
+  if (response.status === 401) {
+    if (isRefreshing) {
+      return new Promise((resolve, reject) => {
+        failedQueue.push({ resolve, reject });
+      })
+        .then((newToken) => {
+          headers.set("Authorization", `Bearer ${newToken}`);
+          return apiFileFetch(endpoint, { ...options, headers }, true);
+        })
+        .catch((err) => {
+          return Promise.reject(err);
+        });
+    }
+
+    if (!isRetry) {
+      isRefreshing = true;
+      try {
+        const newAccessToken = await refreshManager.handleRefresh();
+        processQueue(null, newAccessToken);
+        headers.set("Authorization", `Bearer ${newAccessToken}`);
+        response = await fetch(url, { ...options, headers }); // Re-fetch with new token
+      } catch (refreshError) {
+        processQueue(refreshError);
+        await signOut({ redirect: false });
+        window.location.href = "/login";
+        toast({
+          variant: "destructive",
+          title: "Session Expired",
+          description: "Your session has expired. Please log in again.",
+        });
+        throw new Error("Session expired. Please log in again.");
+      } finally {
+        isRefreshing = false;
+      }
+    } else {
+      throw new Error("Authentication failed after token refresh.");
     }
   }
 
@@ -331,15 +406,38 @@ export const api = {
   getModelConfig: (configUrl: string) => {
     return apiFetch<any>(getRelativePath(configUrl));
   },
-  getModelList: (modelUrl: string, params?: Record<string, string>) => {
+  getModelList: (
+    modelUrl: string,
+    params?: { page?: number; page_size?: number; [key: string]: any }
+  ) => {
     const basePath = getRelativePath(modelUrl);
     const url = new URL(`${dashboardConfig.api.baseUrl}${basePath}`);
     if (params) {
       Object.entries(params).forEach(([key, value]) => {
-        url.searchParams.append(key, value);
+        if (value !== undefined && value !== null) {
+          url.searchParams.append(key, String(value));
+        }
       });
     }
     return apiFetch<any>(`${url.pathname}${url.search}`);
+  },
+  getModelItems: (
+    modelUrl: string,
+    params?: { pageSize?: number; fields?: string }
+  ) => {
+    const basePath = getRelativePath(modelUrl);
+    const url = new URL(`${dashboardConfig.api.baseUrl}${basePath}`);
+    if (params) {
+      if (params.pageSize)
+        url.searchParams.append("page_size", params.pageSize.toString());
+      if (params.fields) url.searchParams.append("fields", params.fields);
+    }
+    return apiFetch<{
+      count: number;
+      next: string | null;
+      previous: string | null;
+      data: any[];
+    }>(`${url.pathname}${url.search}`);
   },
   getAllModelItems: async (modelUrl: string) => {
     const basePath = getRelativePath(modelUrl);
@@ -365,6 +463,8 @@ export const api = {
     return apiFetch<any>(basePath, {
       method: "POST",
       body: data instanceof FormData ? data : JSON.stringify(data),
+      headers:
+        data instanceof FormData ? {} : { "Content-Type": "application/json" },
     });
   },
   updateModelItem: (
@@ -383,6 +483,29 @@ export const api = {
     return apiFetch<void>(`${basePath}${id}/`, { method: "DELETE" });
   },
 
+  bulkCreateModelItems: (modelUrl: string, data: Record<string, any>[]) => {
+    const basePath = getRelativePath(modelUrl);
+
+    const createPromises = data.map((item) =>
+      apiFetch<any>(basePath, {
+        method: "POST",
+        body: JSON.stringify(item),
+        headers: { "Content-Type": "application/json" },
+      }).catch((error) => ({ error }))
+    );
+
+    return Promise.allSettled(createPromises).then((results) => {
+      const successfulCreations = results.filter(
+        (result) => result.status === "fulfilled" && !result.value.error
+      );
+      return {
+        count: successfulCreations.length,
+        total: data.length,
+        results: results,
+      };
+    });
+  },
+
   // Import/Export
   exportModelData: (modelUrl: string, format: "csv" | "json") => {
     const basePath = getRelativePath(modelUrl);
@@ -397,7 +520,8 @@ export const api = {
   },
 
   // Auth and User Management
-  getUserProfile: (): Promise<UserProfile> => apiRequest("GET", "/api/auth/me/"),
+  getUserProfile: (): Promise<UserProfile> =>
+    apiRequest("GET", "/api/auth/me/"),
   updateUserProfile: (data: any) => apiRequest("PATCH", "/api/auth/me/", data),
   changePassword: (data: any) =>
     apiRequest("POST", "/api/auth/me/change-password/", JSON.stringify(data)),
@@ -409,12 +533,19 @@ export const api = {
       "/api/auth/password_reset/confirm/",
       JSON.stringify(data)
     ),
-  get2FASecret: (): Promise<{ qr_code?: string; qr_code_url?: string; secret_key: string; }> => apiRequest("GET", "/api/auth/2fa/enable/"),
+  get2FASecret: (): Promise<{
+    qr_code?: string;
+    qr_code_url?: string;
+    secret_key: string;
+  }> => apiRequest("GET", "/api/auth/2fa/enable/"),
   verify2FA: (otp: string) =>
     apiRequest("POST", "/api/auth/2fa/verify/", JSON.stringify({ otp })),
   disable2FA: (password: string) =>
     apiRequest("POST", "/api/auth/2fa/disable/", JSON.stringify({ password })),
-  importModelItems: (modelKey: string, data: FormData): Promise<{ count: number }> => {
+  importModelItems: (
+    modelKey: string,
+    data: FormData
+  ): Promise<{ count: number }> => {
     return apiFetch(`/api/admin/models/${modelKey}/import/`, {
       method: "POST",
       body: data,
@@ -422,48 +553,59 @@ export const api = {
   },
   getBlogPosts: (
     locale: string,
-    params?: { search?: string; categoryId?: string }
+    params?: { search?: string; categoryId?: string; page?: number }
   ): Promise<PaginatedResponse<PostListItem>> => {
     const searchParams = new URLSearchParams();
     if (params?.search) searchParams.set("search", params.search);
     if (params?.categoryId) searchParams.set("category", params.categoryId);
-    return apiRequest(
-      "GET",
-      `/api/blog/posts/?${searchParams.toString()}`,
-      null,
-      locale
-    );
+    if (params?.page) searchParams.set("page", params.page.toString());
+
+    return publicApiFetch(`/api/blog/posts/?${searchParams.toString()}`, {
+      headers: { "Accept-Language": locale },
+    });
   },
-  getBlogPost: (locale: string, id: string): Promise<PostDetail> => {
-    return apiRequest("GET", `/api/blog/posts/${id}/`, null, locale);
+  getBlogPost: async (locale: string, id: string): Promise<PostDetail> => {
+    const response = await publicApiFetch<any>(`/api/blog/posts/${id}/`, {
+      headers: { "Accept-Language": locale },
+    });
+
+    // Handle wrapped or direct response formats
+    if (response && response.success && Array.isArray(response.data)) {
+      return response.data[0] as PostDetail;
+    }
+
+    if (response && response.data && !Array.isArray(response.data)) {
+      return response.data as PostDetail;
+    }
+
+    // If response is already the post object
+    return response as PostDetail;
   },
   getBlogCategories: (locale: string): Promise<PaginatedResponse<Category>> => {
-    return apiRequest("GET", "/api/blog/categories/", null, locale);
+    return publicApiFetch("/api/blog/categories/", {
+      headers: { "Accept-Language": locale },
+    });
   },
   getBlogStats: (locale: string) => {
-    return apiRequest("GET", "/api/blog/stats/", null, locale);
+    return publicApiFetch("/api/blog/stats/", {
+      headers: { "Accept-Language": locale },
+    });
   },
   getPostsByCategory: (
     locale: string,
     categoryId: string
   ): Promise<PaginatedResponse<PostListItem>> => {
-    return apiRequest(
-      "GET",
-      `/api/blog/categories/${categoryId}/posts/`,
-      null,
-      locale
-    );
+    return publicApiFetch(`/api/blog/categories/${categoryId}/posts/`, {
+      headers: { "Accept-Language": locale },
+    });
   },
   getPostComments: (
     locale: string,
     postId: string
   ): Promise<PaginatedResponse<Comment>> => {
-    return apiRequest(
-      "GET",
-      `/api/blog/posts/${postId}/comments/`,
-      null,
-      locale
-    );
+    return publicApiFetch(`/api/blog/posts/${postId}/comments/`, {
+      headers: { "Accept-Language": locale },
+    });
   },
   createPostComment: (
     postId: string,
@@ -472,9 +614,21 @@ export const api = {
       parent?: string | null;
       author_name?: string;
       author_email?: string;
-    }
+    },
+    locale?: string
   ) => {
-    return apiRequest("POST", `/api/blog/posts/${postId}/comments/`, data);
+    const headers: HeadersInit = {
+      "Content-Type": "application/json",
+    };
+    if (locale) {
+      headers["Accept-Language"] = locale;
+    }
+
+    return publicApiFetch(`/api/blog/posts/${postId}/comments/`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify(data),
+    });
   },
   getServices: (
     locale: string,
@@ -489,5 +643,78 @@ export const api = {
     return publicApiFetch(`/api/v1/salon/employees/`, {
       headers: { "Accept-Language": locale },
     });
+  },
+
+  getProducts: async (
+    params: {
+      search?: string;
+      category?: string;
+      inStock?: boolean;
+      newOnly?: boolean;
+      sort?: string;
+    },
+    locale?: string
+  ) => {
+    const url = new URL(`${dashboardConfig.api.baseUrl}/api/shop/products/`);
+
+    if (params.search) url.searchParams.append("search", params.search);
+    if (params.category) url.searchParams.append("category", params.category);
+    if (params.inStock)
+      url.searchParams.append("in_stock", params.inStock.toString());
+    if (params.newOnly)
+      url.searchParams.append("is_new", params.newOnly.toString());
+    if (params.sort) url.searchParams.append("ordering", params.sort);
+
+    const headers: HeadersInit = {
+      "Content-Type": "application/json",
+    };
+
+    if (locale) {
+      headers["Accept-Language"] = locale;
+    }
+
+    const response = await fetch(url.toString(), { headers });
+    if (!response.ok) {
+      throw new Error("Failed to fetch products");
+    }
+    return response.json();
+  },
+
+  getProductById: async (id: string, locale?: string) => {
+    const headers: HeadersInit = {
+      "Content-Type": "application/json",
+    };
+
+    if (locale) {
+      headers["Accept-Language"] = locale;
+    }
+
+    const response = await fetch(
+      `${dashboardConfig.api.baseUrl}/api/shop/products/${id}/`,
+      { headers }
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch product details");
+    }
+    return response.json();
+  },
+
+  getProductCategories: async (locale?: string) => {
+    const headers: HeadersInit = {
+      "Content-Type": "application/json",
+    };
+
+    if (locale) {
+      headers["Accept-Language"] = locale;
+    }
+
+    const response = await fetch(
+      `${dashboardConfig.api.baseUrl}/api/shop/categories/`,
+      { headers }
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch product categories");
+    }
+    return response.json();
   },
 };

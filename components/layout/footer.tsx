@@ -35,28 +35,28 @@ export function Footer() {
     ],
     social: [
       {
-        name: "GitHub",
+        name: t("social.github"),
         href: "https://github.com",
         icon: (props: React.ComponentProps<typeof Github>) => (
           <Github {...props} />
         ),
       },
       {
-        name: "Twitter",
+        name: t("social.twitter"),
         href: "https://twitter.com",
         icon: (props: React.ComponentProps<typeof Twitter>) => (
           <Twitter {...props} />
         ),
       },
       {
-        name: "LinkedIn",
+        name: t("social.linkedin"),
         href: "https://linkedin.com",
         icon: (props: React.ComponentProps<typeof Linkedin>) => (
           <Linkedin {...props} />
         ),
       },
       {
-        name: "Instagram",
+        name: t("social.instagram"),
         href: "https://instagram.com",
         icon: (props: React.ComponentProps<typeof Instagram>) => (
           <Instagram {...props} />
