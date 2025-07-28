@@ -85,8 +85,7 @@ Here are some of the features and improvements planned for the near future:
 - **More AI Tools**: Expanding the AI utilities section with tools for content summarization, translation, and more.
 - **In-depth Customization**: Allowing users to define custom actions and views for their models directly from the frontend configuration.
 - **Comprehensive Testing**: Increasing test coverage for both frontend and backend components.
-- **Detailed Documentation**: Providing more in-depth guides on configuration and customization.
-
+- **Detailed Documentation**: Providing more in-depth guides on configuration and customization
 
 ## Deploy on Vercel
 
