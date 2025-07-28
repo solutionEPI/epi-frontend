@@ -87,9 +87,6 @@ Here are some of the features and improvements planned for the near future:
 - **Comprehensive Testing**: Increasing test coverage for both frontend and backend components.
 - **Detailed Documentation**: Providing more in-depth guides on configuration and customization.
 
-## 🤝 Contributing
-
-Contributions are welcome! If you have suggestions or want to contribute to the code, please feel free to open an issue or submit a pull request.
 
 ## Deploy on Vercel
 
