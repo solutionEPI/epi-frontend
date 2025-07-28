@@ -145,7 +145,7 @@ const MiniCart = () => {
                     </div>
                   ) : (
                     <div className="space-y-4">
-                      {cart.map((item, index) => (
+                      {cart.map((item: any, index: number) => (
                         <div
                           key={`${item.product.id}-${item.color}-${item.size}`}
                           className="flex gap-4 border-b pb-4">
@@ -405,7 +405,7 @@ const ProductsNavigation = () => {
                 {t("allProducts")}
               </Link>
 
-              {categories.map((category) => {
+              {categories.map((category: any) => {
                 const categoryName =
                   typeof category === "string"
                     ? category
@@ -464,7 +464,7 @@ export default function ProductsPage() {
       api.getProducts(
         {
           search: debouncedSearchQuery,
-          category: selectedCategory,
+          category: selectedCategory || undefined,
           sort: sortOption,
           inStock: inStockOnly,
           newOnly,
@@ -606,7 +606,7 @@ export default function ProductsPage() {
                     <label htmlFor="cat-all">{t("allCategories")}</label>
                   </div>
 
-                  {categories.map((category) => {
+                  {categories.map((category: any) => {
                     const catName =
                       typeof category === "string"
                         ? category
@@ -697,7 +697,7 @@ export default function ProductsPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {products.map((product) => (
+            {products.map((product: any) => (
               <motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}

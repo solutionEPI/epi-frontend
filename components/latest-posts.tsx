@@ -24,7 +24,12 @@ export function LatestPosts() {
       try {
         setIsLoading(true);
         const data = await api.getBlogPosts(locale, { page: 1 });
-        setPosts((data.results || data.posts || []).slice(0, 3));
+        // Flexible response handling
+        const list =
+          (data.results as PostListItem[] | undefined) ||
+          (data as any).data ||
+          [];
+        setPosts(list.slice(0, 3));
       } catch (error) {
         console.error("Failed to fetch latest posts:", error);
       } finally {
@@ -74,15 +79,16 @@ export function LatestPosts() {
             <div className="relative aspect-video">
               <Image
                 src={
-                  post.cover_image ||
+                  post.featured_image ||
                   "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=250&fit=crop"
                 }
                 alt={post.title}
                 fill
                 className="object-cover"
+                unoptimized
               />
               <Badge variant="secondary" className="absolute top-2 left-2">
-                {post.category_name}
+                {post.categories?.[0]?.name || "Blog"}
               </Badge>
             </div>
             <CardContent className="p-6 flex-1 flex flex-col">
@@ -95,7 +101,9 @@ export function LatestPosts() {
               <div className="flex items-center justify-between text-xs text-muted-foreground pt-4 mt-4 border-t">
                 <div className="flex items-center space-x-1">
                   <User className="w-3 h-3" />
-                  <span>{post.author_name}</span>
+                  <span>
+                    {post.author?.first_name || post.author?.username || ""}
+                  </span>
                 </div>
                 <div className="flex items-center space-x-1">
                   <Calendar className="w-3 h-3" />
