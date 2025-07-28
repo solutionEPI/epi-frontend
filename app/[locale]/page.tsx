@@ -35,8 +35,8 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { FeaturedProducts } from "@/components/featured-products";
 import { LatestPosts } from "@/components/latest-posts";
+import { BackgroundShapes } from "@/components/ui/background-shapes";
 
 export default function HomePage() {
   const t = useTranslations("HomePage");
@@ -135,25 +135,25 @@ export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center hero-pattern">
-        <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/70 to-background/90" />
+      <section className="relative min-h-screen flex items-center justify-center hero-pattern overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background" />
         <div className="container relative mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="space-y-6">
+              className="space-y-6 my-16">
               <Badge variant="secondary" className="px-4 py-2">
                 <Award className="w-4 h-4 mr-2" />
                 {t("hero.badgeText")}
               </Badge>
 
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
                 <span className="gradient-text">{t("hero.title")}</span>
               </h1>
 
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 {t("hero.description")}
               </p>
             </motion.div>
@@ -163,10 +163,7 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="px-8 py-6 text-lg hover-lift"
-                asChild>
+              <Button size="lg" className="px-8 py-6 text-lg" asChild>
                 <Link href="/products">
                   {t("hero.viewProductsButton")}
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -175,7 +172,7 @@ export default function HomePage() {
               <Button
                 variant="outline"
                 size="lg"
-                className="px-8 py-6 text-lg hover-lift"
+                className="px-8 py-6 text-lg"
                 asChild>
                 <Link href="/contact">
                   <PhoneCall className="mr-2 h-5 w-5" />
@@ -191,7 +188,9 @@ export default function HomePage() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
               {stats.map((stat, index) => (
-                <div key={index} className="professional-card p-6 text-center">
+                <div
+                  key={index}
+                  className="bg-card text-card-foreground border border-border/50 rounded-lg shadow-sm p-6 text-center">
                   <stat.icon className="w-8 h-8 mx-auto mb-3 text-primary" />
                   <div className="text-2xl font-bold">{stat.number}</div>
                   <div className="text-sm text-muted-foreground">
@@ -227,7 +226,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="professional-card p-6 text-center hover-lift">
+                className="bg-card text-card-foreground border border-border/50 rounded-lg shadow-sm p-6 text-center">
                 <feature.icon className="w-12 h-12 mx-auto mb-4 text-primary" />
                 <h3 className="font-semibold mb-2">{feature.title}</h3>
                 <p className="text-sm text-muted-foreground">
@@ -262,7 +261,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 viewport={{ once: true }}>
-                <Card className="h-full hover-lift">
+                <Card className="h-full">
                   <CardHeader>
                     <service.icon className="w-12 h-12 text-primary mb-4" />
                     <CardTitle>{service.title}</CardTitle>
@@ -289,37 +288,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured Products Section */}
-      <section className="py-24">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-16">
-            <Badge variant="outline" className="mb-4">
-              Featured Products
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              {t("products.title")}
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              {t("products.subtitle")}
-            </p>
-          </div>
-
-          <FeaturedProducts />
-
-          <div className="text-center mt-12">
-            <Button variant="outline" size="lg" asChild>
-              <Link href="/products">
-                {t("products.viewAllButton")}
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="py-24 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 md:px-6 text-center">
+      <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
+        <BackgroundShapes />
+        <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -377,7 +349,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}>
-                <Card className="h-full hover-lift">
+                <Card className="h-full">
                   <CardContent className="pt-6">
                     <div className="flex mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
@@ -415,7 +387,7 @@ export default function HomePage() {
       </section>
 
       {/* Blog Section */}
-      <section className="py-24 bg-muted/30">
+      <section className="py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-16">
             <Badge variant="outline" className="mb-4">
@@ -443,10 +415,10 @@ export default function HomePage() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-24">
+      <section className="py-24 bg-muted/30">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto">
-            <Card className="professional-card border-primary/20 bg-gradient-to-r from-primary/5 to-primary/10">
+            <Card className="border-primary/20 bg-gradient-to-r from-primary/5 to-primary/10">
               <CardContent className="p-12 text-center">
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
@@ -477,10 +449,7 @@ export default function HomePage() {
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button
-                      size="lg"
-                      className="px-8 py-6 text-lg hover-lift"
-                      asChild>
+                    <Button size="lg" className="px-8 py-6 text-lg" asChild>
                       <Link href="/contact">
                         <PhoneCall className="mr-2 h-5 w-5" />
                         {t("finalCta.contactSalesButton")}
@@ -489,7 +458,7 @@ export default function HomePage() {
                     <Button
                       variant="outline"
                       size="lg"
-                      className="px-8 py-6 text-lg hover-lift"
+                      className="px-8 py-6 text-lg"
                       asChild>
                       <Link href={session ? "/dashboard" : "/login"}>
                         <Globe className="mr-2 h-5 w-5" />
