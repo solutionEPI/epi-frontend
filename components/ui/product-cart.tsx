@@ -99,13 +99,11 @@ export const ProductCart = ({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: delay * 0.1 }}
-    >
-      <Card 
+      transition={{ duration: 0.3, delay: delay * 0.1 }}>
+      <Card
         className="h-full flex flex-col overflow-hidden group"
         onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
+        onMouseLeave={() => setIsHovered(false)}>
         <div className="relative h-64 overflow-hidden bg-muted">
           <Image
             src={product.image || "/placeholder-product.jpg"}
@@ -128,24 +126,22 @@ export const ProductCart = ({
           </div>
 
           {/* Quick actions */}
-          <div 
+          <div
             className={`absolute top-2 right-2 flex flex-col gap-2 transition-opacity duration-300 ${
               isHovered ? "opacity-100" : "opacity-0"
-            }`}
-          >
+            }`}>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button 
-                    size="icon" 
-                    variant="secondary" 
+                  <Button
+                    size="icon"
+                    variant="secondary"
                     className="h-8 w-8 rounded-full"
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
                       onAddToWishlist?.(product);
-                    }}
-                  >
+                    }}>
                     <Heart className="h-4 w-4" />
                   </Button>
                 </TooltipTrigger>
@@ -158,16 +154,15 @@ export const ProductCart = ({
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button 
-                    size="icon" 
-                    variant="secondary" 
+                  <Button
+                    size="icon"
+                    variant="secondary"
                     className="h-8 w-8 rounded-full"
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
                       onQuickView?.(product);
-                    }}
-                  >
+                    }}>
                     <Eye className="h-4 w-4" />
                   </Button>
                 </TooltipTrigger>
@@ -179,20 +174,18 @@ export const ProductCart = ({
           </div>
 
           {/* Add to cart overlay on hover */}
-          <div 
-            className={`absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity duration-300 ${
+          <div
+            className={`absolute inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center transition-opacity duration-300 ${
               isHovered ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <Button 
-              className="bg-white text-black hover:bg-white/90"
+            }`}>
+            <Button
+              className="bg-primary text-primary-foreground hover:bg-primary/90"
               disabled={!product.inStock}
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 onAddToCart?.(product);
-              }}
-            >
+              }}>
               <ShoppingCart className="mr-2 h-4 w-4" />
               {product.inStock ? t("addToCart") : t("unavailable")}
             </Button>
@@ -202,7 +195,9 @@ export const ProductCart = ({
         <Link href={`/products/${product.id}`}>
           <CardContent className="flex-grow flex flex-col p-4">
             <div className="mb-1">
-              <span className="text-xs text-muted-foreground">{product.category}</span>
+              <span className="text-xs text-muted-foreground">
+                {product.category}
+              </span>
             </div>
 
             <h3 className="font-medium mb-2 hover:text-primary transition-colors">
@@ -213,12 +208,16 @@ export const ProductCart = ({
               <div className="flex mr-2">
                 {renderStarRating(product.rating)}
               </div>
-              <span className="text-xs text-muted-foreground">({product.rating})</span>
+              <span className="text-xs text-muted-foreground">
+                ({product.rating})
+              </span>
             </div>
 
             <div className="mt-auto">
               <div className="flex items-center justify-between mb-3">
-                <span className="font-bold text-lg">{Number(product.price).toFixed(2)} €</span>
+                <span className="font-bold text-lg">
+                  {Number(product.price).toFixed(2)} €
+                </span>
                 <div className="text-xs flex items-center">
                   {product.inStock ? (
                     <span className="text-green-600 flex items-center">
@@ -239,4 +238,4 @@ export const ProductCart = ({
       </Card>
     </motion.div>
   );
-}; 
+};

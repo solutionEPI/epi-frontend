@@ -82,7 +82,8 @@ export default async function LocaleLayout({
         <DefaultFavicon />
       </head>
       <body
-        className={`${roboto.variable} ${montserrat.variable} font-sans flex flex-col min-h-screen bg-background text-foreground`}>
+        className={`${roboto.variable} ${montserrat.variable} font-sans flex flex-col min-h-screen bg-background text-foreground`}
+        suppressHydrationWarning>
         <LayoutProvider messages={messages} locale={locale}>
           {children}
         </LayoutProvider>

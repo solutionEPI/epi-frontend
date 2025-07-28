@@ -11,129 +11,125 @@
     "toastUnexpectedErrorTitle": "Ein unerwarteter Fehler ist aufgetreten",
     "toastUnexpectedErrorDescription": "Etwas ist schief gelaufen. Bitte versuchen Sie es später noch einmal.",
     "toastOtpInvalidTitle": "Ungültiges OTP",
-    "toastOtpInvalidDescription": "Das von Ihnen eingegebene Einmalpasswort ist falsch."
+    "toastOtpInvalidDescription": "Das von Ihnen eingegebene Einmalpasswort ist falsch.",
+    "dashboardName": "Solution EPI",
+    "dashboardDescription": "Ihr Partner für Arbeitssicherheit. Zertifizierte persönliche Schutzausrüstung nach höchsten Standards."
   },
   "HomePage": {
     "hero": {
+      "badgeText": "Kameruns führender PSA-Anbieter seit 2009",
       "title": "Solution EPI",
-      "description": "Ihr Partner für Arbeitssicherheit. Zertifizierte persönliche Schutzausrüstung nach höchsten Standards.",
-      "discoverProducts": "Unsere Produkte entdecken",
-      "contactUs": "Kontaktieren Sie uns",
-      "headProtection": "Kopfschutz",
-      "hearingProtection": "Gehörschutz",
-      "eyeProtection": "Augenschutz",
-      "bodyProtection": "Körperschutz"
+      "description": "Professionelle Sicherheitslösungen für moderne Arbeitsplätze. Schützen Sie Ihr Team mit zertifizierter Ausrüstung und fachkundiger Beratung.",
+      "viewProductsButton": "Produkte ansehen",
+      "getQuoteButton": "Angebot erhalten"
     },
-    "about": {
-      "title": "Über Solution EPI",
-      "description1": "Seit über 15 Jahren ist Solution EPI führend in der Bereitstellung von persönlicher Schutzausrüstung in Kamerun. Unsere Mission ist es, die Sicherheit der Arbeiter in allen Tätigkeitsbereichen zu gewährleisten.",
-      "description2": "Wir bieten eine vollständige Palette zertifizierter Ausrüstung, die internationalen Standards entspricht und an die spezifischen Bedürfnisse jeder Branche und Arbeitsumgebung angepasst ist.",
-      "certifiedQuality": "Zertifizierte Qualität",
-      "productsComplyWithStandards": "Produkte entsprechen den Standards",
-      "expertise": "Expertise",
-      "personalizedAdvice": "Personalisierte Beratung",
-      "learnMore": "Mehr erfahren",
-      "yearsOfExperience": "{years}+ Jahre Erfahrung",
-      "dedicatedTeam": "Ein Team von Fachleuten, das sich Ihrer Sicherheit widmet"
+    "stats": {
+      "clientsProtected": "Geschützte Kunden",
+      "safetySuccessRate": "Sicherheitserfolgsrate",
+      "equipmentDelivered": "Gelieferte Ausrüstung",
+      "yearsExperience": "Jahre Erfahrung"
     },
-    "productCategories": {
-      "title": "Unsere PSA-Kategorien",
-      "description": "Persönliche Schutzausrüstung, angepasst an alle Arten von Berufsrisiken.",
-      "headProtection": {
-        "name": "Kopfschutz",
-        "products": ["Schutzhelme", "Lärmschutzhelme", "Bauhelme"]
+    "features": {
+      "badge": "Warum uns wählen",
+      "title": "Vertrauensvolle Sicherheitsexzellenz",
+      "subtitle": "Wir kombinieren Branchenexpertise mit modernsten Sicherheitslösungen, um zu schützen, was am wichtigsten ist.",
+      "certifiedProtection": {
+        "title": "Zertifizierter Schutz",
+        "description": "Alle Geräte entsprechen internationalen Sicherheitsstandards"
       },
-      "hearingProtection": {
-        "name": "Gehörschutz",
-        "products": [
-          "Ohrstöpsel",
-          "Lärmschutz-Kopfhörer",
-          "Elektronischer Gehörschutz"
-        ]
+      "fastDelivery": {
+        "title": "Schnelle Lieferung",
+        "description": "24-48 Stunden Lieferung in ganz Kamerun"
       },
-      "eyeProtection": {
-        "name": "Augenschutz",
-        "products": [
-          "Schutzbrillen",
-          "Schutzvisiere",
-          "Chemikalienschutzbrillen"
-        ]
+      "expertConsultation": {
+        "title": "Expertenberatung",
+        "description": "Professionelle Sicherheitsbewertung und Schulung"
       },
-      "protectiveClothing": {
-        "name": "Schutzkleidung",
-        "products": ["Overalls", "Warnschutzkleidung", "Flammhemmende Kleidung"]
-      },
-      "footProtection": {
-        "name": "Fußschutz",
-        "products": ["Sicherheitsschuhe", "Stiefel", "Mittelfußschutz"]
-      },
-      "handProtection": {
-        "name": "Handschutz",
-        "products": [
-          "Schnittschutzhandschuhe",
-          "Chemikalienschutzhandschuhe",
-          "Isolierhandschuhe"
-        ]
-      },
-      "viewProducts": "Produkte ansehen",
-      "viewAllProducts": "Alle Produkte ansehen",
-      "badge": "Ausgewählte Produkte"
+      "qualityGuarantee": {
+        "title": "Qualitätsgarantie",
+        "description": "100% Zufriedenheitsgarantie auf alle Produkte"
+      }
     },
     "services": {
-      "title": "Unsere Dienstleistungen",
-      "description": "Neben der Bereitstellung von Ausrüstung bieten wir eine umfassende Palette von Dienstleistungen an, um die Sicherheit Ihrer Mitarbeiter zu gewährleisten.",
-      "safetyConsulting": {
-        "title": "Sicherheitsberatung",
-        "description": "Risikobewertung und Ausrüstungsempfehlungen, zugeschnitten auf Ihre spezifische Arbeitsumgebung."
+      "badge": "Unsere Dienstleistungen",
+      "title": "Umfassende Sicherheitslösungen",
+      "subtitle": "Von der Ausrüstungsversorgung bis hin zu Schulungen und Compliance bieten wir End-to-End-Sicherheitslösungen.",
+      "equipmentSupply": {
+        "title": "Sicherheitsausrüstung Versorgung",
+        "description": "Komplettes Sortiment an PSA für alle Branchen",
+        "feature1": "Kopfschutz",
+        "feature2": "Atemschutz",
+        "feature3": "Hand- & Fußschutz"
       },
-      "ppeTraining": {
-        "title": "PSA-Schulung",
-        "description": "Schulungen zur korrekten Verwendung von persönlicher Schutzausrüstung für Ihre Mitarbeiter."
+      "training": {
+        "title": "Sicherheitsschulung & Zertifizierung",
+        "description": "Professionelle Schulungsprogramme für Ihr Team",
+        "feature1": "Zertifizierte Ausbilder",
+        "feature2": "Maßgeschneiderte Programme",
+        "feature3": "Branchenkonformität"
       },
-      "complianceAudit": {
-        "title": "Konformitätsprüfung",
-        "description": "Überprüfung der Konformität Ihrer Ausrüstung mit den geltenden Normen und Vorschriften."
+      "auditing": {
+        "title": "Sicherheitsaudit",
+        "description": "Umfassende Arbeitsplatzsicherheitsbewertungen",
+        "feature1": "Risikobewertung",
+        "feature2": "Compliance-Überprüfung",
+        "feature3": "Aktionspläne"
       },
-      "preventiveMaintenance": {
-        "title": "Vorbeugende Wartung",
-        "description": "Regelmäßige Wartungsdienste und Überprüfung des Zustands Ihrer Schutzausrüstung."
-      },
-      "learnMore": "Mehr erfahren"
+      "learnMoreButton": "Mehr erfahren"
     },
-    "standards": {
-      "title": "Normen und Vorschriften",
-      "description": "Arbeitssicherheit wird durch strenge Normen geregelt. Bei Solution EPI entsprechen alle unsere Produkte den geltenden internationalen und lokalen Normen.",
-      "legalObligation": "Gesetzliche Verpflichtung:",
-      "employerMustProvidePPE": "Der Arbeitgeber muss geeignete PSA kostenlos zur Verfügung stellen.",
-      "allProductsMeetStandards": "Alle unsere Produkte erfüllen die anspruchsvollsten internationalen Standards",
-      "items": [
-        "ISO 45001 - Managementsysteme für Sicherheit und Gesundheit bei der Arbeit",
-        "EN 166 - Persönlicher Augenschutz",
-        "EN 397 - Industrieschutzhelme",
-        "EN 388 - Schutzhandschuhe gegen mechanische Risiken",
-        "EN 352 - Gehörschützer"
-      ]
+    "cta": {
+      "title": "Bereit, Ihre Arbeitsplatzsicherheit zu verbessern?",
+      "description": "Schließen Sie sich 1.000+ Unternehmen an, die Solution EPI für ihre Sicherheitsausrüstung vertrauen. Holen Sie sich noch heute eine persönliche Beratung.",
+      "consultationButton": "Kostenlose Beratung erhalten",
+      "catalogButton": "Katalog durchsuchen"
     },
-    "contact": {
-      "title": "Kontaktieren Sie uns",
-      "description": "Benötigen Sie Schutzausrüstung oder Beratung? Unser Expertenteam steht Ihnen zur Verfügung.",
-      "contactUs": "Kontaktieren Sie uns",
-      "getInTouch": "Kontakt aufnehmen",
-      "teamAvailable": "Unser Team steht Ihnen für alle Fragen zur Verfügung",
-      "coordinates": "Kontaktdaten",
-      "address": "Adresse",
-      "addressValue": "Boulangerie Saker, Deido\nDouala, Kamerun",
-      "phone": "Telefon",
-      "email": "E-Mail",
-      "requestQuote": "Angebot anfordern"
+    "testimonials": {
+      "badge": "Kundenerfolg",
+      "title": "Vertraut von Branchenführern",
+      "subtitle": "Sehen Sie, wie wir Unternehmen in ganz Kamerun dabei geholfen haben, ihre Sicherheitsstandards zu verbessern.",
+      "client1": {
+        "name": "Jean-Paul Mbeki",
+        "company": "Industries Camerounaises SA",
+        "role": "Sicherheitsdirektor",
+        "content": "Solution EPI hat unsere Sicherheitskultur transformiert. 40% Reduzierung der Vorfälle innerhalb von 6 Monaten."
+      },
+      "client2": {
+        "name": "Marie Ngozi",
+        "company": "Construction Douala",
+        "role": "Projektmanagerin",
+        "content": "Außergewöhnlicher Service und Qualitätsausrüstung. Unsere Teams sind jetzt ordnungsgemäß geschützt."
+      },
+      "client3": {
+        "name": "Antoine Fosso",
+        "company": "Textile Bamenda",
+        "role": "Produktionsleiter",
+        "content": "Ausgezeichnete Schulungsqualität und persönliche Nachbetreuung. Sehr empfehlenswert."
+      }
+    },
+    "finalCta": {
+      "title": "Beginnen Sie noch heute Ihre Sicherheitsreise",
+      "description": "Kontaktieren Sie unsere Sicherheitsexperten für eine kostenlose Beratung und personalisierte Ausrüstungsempfehlungen.",
+      "phone": "+237 6XX XXX XXX",
+      "email": "contact@solution-epi.com",
+      "location": "Douala, Kamerun",
+      "contactSalesButton": "Vertriebsteam kontaktieren",
+      "getStartedButton": "Loslegen",
+      "viewDashboardButton": "Dashboard anzeigen"
     },
     "products": {
-      "outOfStock": "Nicht auf Lager",
+      "title": "Unsere Ausrüstung",
+      "subtitle": "Durchsuchen Sie unser Sortiment an persönlicher Schutzausrüstung",
+      "viewAllButton": "Alle Ausrüstungen anzeigen",
+      "outOfStock": "Nicht vorrätig",
       "addToCart": "In den Warenkorb",
       "viewDetails": "Details anzeigen"
     },
     "blog": {
-      "noPostsFound": "Keine Blog-Beiträge gefunden."
+      "title": "Neueste Sicherheitseinblicke",
+      "subtitle": "Bleiben Sie auf dem Laufenden mit den neuesten Sicherheitsnachrichten und -tipps",
+      "readMoreButton": "Mehr lesen",
+      "viewAllButton": "Alle Artikel ansehen",
+      "badge": "Neueste Nachrichten"
     }
   },
   "Header": {
@@ -166,6 +162,12 @@
       "language": "Sprache",
       "followUs": "Folgen Sie uns"
     },
+    "social": {
+      "github": "GitHub",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "instagram": "Instagram"
+    },
     "solutions": {
       "admin": "Admin-Dashboard",
       "analytics": "Analytik",
@@ -194,6 +196,7 @@
     "description": "Willkommen zurück! Hier ist eine Zusammenfassung Ihres Projekts.",
     "loadErrorTitle": "Dashboard-Fehler",
     "loadErrorDescription": "Beim Laden der Dashboard-Daten ist ein Problem aufgetreten. Einige Informationen fehlen möglicherweise. Als Fallback werden Mock-Daten verwendet.",
+    "tryAgain": "Erneut versuchen",
     "userSignupsCardTitle": "Benutzeranmeldungen",
     "userSignupsCardDescription": "Ein Diagramm, das die Benutzeranmeldungen der letzten Monate zeigt.",
     "contentOverviewCardTitle": "Inhaltsübersicht",
@@ -344,6 +347,7 @@
     "twoFactorEnableSuccessDescription": "Die Zwei-Faktor-Authentifizierung wurde erfolgreich aktiviert.",
     "twoFactorDisableErrorTitle": "Fehler beim Deaktivieren von 2FA",
     "twoFactorDisableSuccessTitle": "2FA deaktiviert",
+    "loadError": "Einstellungen konnten nicht geladen werden",
     "validation": {
       "invalidEmail": "Ungültige E-Mail-Adresse.",
       "oldPasswordRequired": "Aktuelles Passwort ist erforderlich.",
@@ -437,13 +441,6 @@
       "promptNoNumbers": "keine Zahlen",
       "promptSymbols": "einschließlich Symbolen",
       "promptNoSymbols": "keine Symbole"
-    },
-    "aiGenerateButton": {
-      "promptPlaceholder": "Geben Sie hier Ihre Anweisung ein...",
-      "generateButton": "Generieren",
-      "generatingButton": "Wird generiert...",
-      "generationCountLabel": "Anzahl der zu generierenden Elemente",
-      "fullPrompt": "Sie sind ein Assistent zur Datengenerierung für die Solution EPI-Plattform.\nIhre Aufgabe ist es, ein vollständiges JSON-Objekt basierend auf der Anfrage eines Benutzers und einem bereitgestellten Modellschema zu generieren.\nDas JSON-Objekt muss gültig sein und darf nicht in Markdown oder einem anderen Text verpackt sein.\n\nBenutzeranfrage: \"{prompt}\"\n\nModell: \"{modelName}\"\n\nAnweisungen:\n1. Analysieren Sie die Benutzeranfrage.\n2. Sehen Sie sich das untenstehende Modellschema an, um die erforderlichen Felder, ihre Typen und ihre Sprachen zu verstehen.\n3. **Entscheidend ist, dass Sie für ALLE Felder im Schema plausible Werte angeben, insbesondere für alle Sprachvarianten (z. B. Felder, die auf _en, _fr, _de usw. enden; es können weniger oder mehr Sprachen sein).** Wenn die Eingabeaufforderung des Benutzers in einer Sprache verfasst ist, müssen Sie den Inhalt für die anderen Sprachen übersetzen und anpassen.\n4. Die Ausgabe darf NUR das JSON-Objekt sein.\n\nModellschema (zu Ihrer Information):\n{schema}"
     }
   },
   "AuthErrorPage": {
@@ -471,7 +468,124 @@
     "models": "Modelle",
     "settings": "Einstellungen",
     "signOut": "Abmelden",
+    "signOutSuccessTitle": "Abgemeldet",
+    "signOutSuccessDescription": "Sie wurden erfolgreich abgemeldet.",
+    "failedToUpdatePreferences": "Präferenzen konnten nicht aktualisiert werden",
+    "system": "System",
     "defaultSiteName": "Dashboard"
+  },
+  "Breadcrumb": {
+    "more": "Mehr"
+  },
+  "FormFileUpload": {
+    "preview": "Vorschau",
+    "uploadFile": "Datei hochladen",
+    "dragAndDrop": "oder per Drag & Drop"
+  },
+  "FormJsonEditor": {
+    "key": "Schlüssel",
+    "value": "Wert",
+    "addItem": "Element hinzufügen"
+  },
+  "FormMultiSelect": {
+    "selectOptions": "Optionen auswählen...",
+    "searchOrCreate": "Suchen oder erstellen...",
+    "createNew": "Neu erstellen",
+    "createNewItems": "Neue Elemente erstellen",
+    "createMultipleItemsDescription": "Sie können mehrere Elemente erstellen, indem Sie sie mit einem Komma (,) trennen.",
+    "exampleTags": "z.B. Neuer Tag 1, Weiterer Tag, Letzter Tag",
+    "cancel": "Abbrechen",
+    "creating": "Wird erstellt...",
+    "create": "Erstellen",
+    "errorCreating": "Fehler beim Erstellen von {itemName}",
+    "creationNotConfigured": "Erstellung ist für dieses Feld nicht konfiguriert.",
+    "success": "Erfolg",
+    "itemsCreated": "{count} neue Elemente erstellt."
+  },
+  "ProductCart": {
+    "new": "Neu",
+    "outOfStock": "Nicht auf Lager",
+    "addToWishlist": "Zur Wunschliste hinzufügen",
+    "quickView": "Schnellansicht",
+    "addToCart": "In den Warenkorb",
+    "unavailable": "Nicht verfügbar",
+    "inStock": "Auf Lager",
+    "rupture": "Ausverkauft"
+  },
+  "QuickViewModal": {
+    "quickView": "Schnellansicht",
+    "close": "Schließen",
+    "new": "Neu",
+    "outOfStock": "Nicht auf Lager",
+    "inStock": "Auf Lager",
+    "rupture": "Nicht auf Lager",
+    "color": "Farbe",
+    "size": "Größe",
+    "certifications": "Zertifizierungen",
+    "addToCart": "In den Warenkorb",
+    "viewDetails": "Details ansehen"
+  },
+  "ProductsPage": {
+    "productUpdated": "Produkt aktualisiert",
+    "productUpdatedDescription": "{productName} wurde in Ihrem Warenkorb aktualisiert.",
+    "productAdded": "Produkt hinzugefügt",
+    "productAddedDescription": "{productName} wurde Ihrem Warenkorb hinzugefügt.",
+    "productRemoved": "Produkt entfernt",
+    "productRemovedDescription": "{productName} wurde aus Ihrem Warenkorb entfernt.",
+    "cartCleared": "Warenkorb geleert",
+    "cartClearedDescription": "Alle Artikel wurden aus Ihrem Warenkorb entfernt.",
+    "yourCart": "Ihr Warenkorb",
+    "cartEmpty": "Ihr Warenkorb ist leer",
+    "addProductsToStartShopping": "Fügen Sie Produkte hinzu, um mit dem Einkaufen zu beginnen",
+    "viewOurProducts": "Unsere Produkte ansehen",
+    "image": "Bild",
+    "color": "Farbe",
+    "size": "Größe",
+    "total": "Gesamt",
+    "placeOrder": "Bestellung aufgeben",
+    "continueShopping": "Weiter einkaufen",
+    "headProtection": "Kopfschutz",
+    "eyeProtection": "Augenschutz",
+    "hearingProtection": "Gehörschutz",
+    "respiratoryProtection": "Atemschutz",
+    "protectiveClothing": "Schutzkleidung",
+    "handProtection": "Handschutz",
+    "footProtection": "Fußschutz",
+    "fallProtection": "Absturzsicherung",
+    "allProducts": "Alle Produkte",
+    "moreCategories": "Weitere Kategorien",
+    "searchProduct": "Produkt suchen...",
+    "sortBy": "Sortieren nach",
+    "featuredProducts": "Vorgestellte Produkte",
+    "priceAscending": "Preis (aufsteigend)",
+    "priceDescending": "Preis (absteigend)",
+    "nameAscending": "Name (A-Z)",
+    "topRated": "Am besten bewertet",
+    "filters": "Filter",
+    "categories": "Kategorien",
+    "allCategories": "Alle Kategorien",
+    "availability": "Verfügbarkeit",
+    "inStockOnly": "Nur auf Lager",
+    "newOnly": "Nur Neuheiten",
+    "resetFilters": "Filter zurücksetzen",
+    "productsFound": "{count, plural, one {# Produkt} other {# Produkte}} gefunden",
+    "noProductsFound": "Keine Produkte gefunden",
+    "tryModifyingFilters": "Versuchen Sie, Ihre Filter oder Suche zu ändern.",
+    "new": "Neu",
+    "outOfStock": "Nicht auf Lager",
+    "addToWishlist": "Zur Wunschliste hinzufügen",
+    "quickView": "Schnellansicht",
+    "inStock": "Auf Lager",
+    "addToCart": "In den Warenkorb"
+  },
+  "Metadata": {
+    "title": "Solution EPI",
+    "titleTemplate": "%s | Solution EPI",
+    "description": "Ihr Partner für Arbeitssicherheit. Zertifizierte persönliche Schutzausrüstung nach höchsten Standards.",
+    "keywords": "PSA, Sicherheit, persönliche Schutzausrüstung, Ausrüstung, Kamerun, Solution EPI",
+    "authorName": "Solution EPI",
+    "openGraphAlt": "Solution EPI - Persönliche Schutzausrüstung",
+    "twitterCreator": "@solutionepi"
   },
   "Time": {
     "years": "{count, plural, one {vor # Jahr} other {vor # Jahren}}",
@@ -495,7 +609,36 @@
     "importing": "Wird importiert...",
     "importSuccessTitle": "Import erfolgreich",
     "importSuccessDescription": "{count} Elemente wurden erfolgreich importiert.",
-    "importErrorTitle": "Import fehlgeschlagen"
+    "importErrorTitle": "Import fehlgeschlagen",
+    "importErrorSelectFile": "Bitte wählen Sie eine zu importierende Datei aus."
+  },
+  "Languages": {
+    "en": "Englisch",
+    "fr": "Französisch",
+    "de": "Deutsch"
+  },
+  "ThemeSwitcher": {
+    "toggleTheme": "Thema wechseln",
+    "selectTheme": "Ein Thema auswählen",
+    "system": "System",
+    "systemDescription": "Systemeinstellungen folgen",
+    "light": "Hell",
+    "lightDescription": "Heller Modus",
+    "dark": "Dunkel",
+    "darkDescription": "Dunkler Modus"
+  },
+  "Cart": {
+    "shoppingCart": "Warenkorb",
+    "emptyCart": "Ihr Warenkorb ist leer",
+    "cartEmpty": "Keine Artikel im Warenkorb",
+    "itemsInCart": "{count, plural, =1 {1 Artikel} other {# Artikel}} im Warenkorb",
+    "total": "Gesamt",
+    "clearCart": "Warenkorb leeren",
+    "checkout": "Zur Kasse",
+    "viewCart": "Warenkorb ansehen",
+    "addToCart": "In den Warenkorb",
+    "removeFromCart": "Entfernen",
+    "updateQuantity": "Menge aktualisieren"
   },
   "Common": {
     "saving": "Speichern...",
@@ -511,6 +654,7 @@
     "loadingCategories": "Kategorien werden geladen...",
     "categoriesTitle": "Kategorien",
     "allCategories": "Alle",
+    "failedToLoadCategories": "Kategorien konnten nicht geladen werden",
     "commentsTitle": "Kommentare",
     "commentPlaceholder": "Schreiben Sie einen Kommentar...",
     "replyPlaceholder": "Schreiben Sie eine Antwort...",
@@ -520,11 +664,11 @@
     "submittingComment": "Wird gesendet...",
     "commentSuccess": "Kommentar erfolgreich gepostet!",
     "commentError": "Fehler beim Posten des Kommentars.",
+    "failedToLoadComments": "Kommentare konnten nicht geladen werden",
     "loadingComments": "Kommentare werden geladen...",
     "noComments": "Seien Sie der Erste, der einen Kommentar abgibt.",
     "reply": "Antworten",
-    "cancelReply": "Antwort abbrechen",
-    "badge": "Neueste Nachrichten"
+    "cancelReply": "Antwort abbrechen"
   },
   "OtpDialog": {
     "title": "Zwei-Faktor-Authentifizierung",
@@ -578,58 +722,6 @@
       }
     }
   },
-  "ProductsPage": {
-    "productUpdated": "Produkt aktualisiert",
-    "productUpdatedDescription": "{productName} wurde in Ihrem Warenkorb aktualisiert.",
-    "productAdded": "Produkt hinzugefügt",
-    "productAddedDescription": "{productName} wurde Ihrem Warenkorb hinzugefügt.",
-    "productRemoved": "Produkt entfernt",
-    "productRemovedDescription": "Das Produkt wurde aus Ihrem Warenkorb entfernt.",
-    "cartCleared": "Warenkorb geleert",
-    "cartClearedDescription": "Alle Artikel wurden aus Ihrem Warenkorb entfernt.",
-    "yourCart": "Ihr Warenkorb",
-    "cartEmpty": "Ihr Warenkorb ist leer",
-    "addProductsToStartShopping": "Fügen Sie Produkte hinzu, um mit dem Einkaufen zu beginnen",
-    "viewOurProducts": "Unsere Produkte ansehen",
-    "image": "Bild",
-    "color": "Farbe",
-    "size": "Größe",
-    "total": "Gesamt",
-    "placeOrder": "Bestellung aufgeben",
-    "continueShopping": "Weiter einkaufen",
-    "headProtection": "Kopfschutz",
-    "eyeProtection": "Augenschutz",
-    "hearingProtection": "Gehörschutz",
-    "respiratoryProtection": "Atemschutz",
-    "protectiveClothing": "Schutzkleidung",
-    "handProtection": "Handschutz",
-    "footProtection": "Fußschutz",
-    "fallProtection": "Absturzsicherung",
-    "allProducts": "Alle Produkte",
-    "moreCategories": "Weitere Kategorien",
-    "searchProduct": "Produkt suchen...",
-    "sortBy": "Sortieren nach",
-    "featuredProducts": "Vorgestellte Produkte",
-    "priceAscending": "Preis (aufsteigend)",
-    "priceDescending": "Preis (absteigend)",
-    "nameAscending": "Name (A-Z)",
-    "topRated": "Am besten bewertet",
-    "filters": "Filter",
-    "categories": "Kategorien",
-    "allCategories": "Alle Kategorien",
-    "availability": "Verfügbarkeit",
-    "inStockOnly": "Nur auf Lager",
-    "newOnly": "Nur Neuheiten",
-    "productsFound": "{count, plural, one {# Produkt} other {# Produkte}} gefunden",
-    "noProductsFound": "Keine Produkte gefunden",
-    "tryModifyingFilters": "Versuchen Sie, Ihre Filter oder Suche zu ändern.",
-    "new": "Neu",
-    "outOfStock": "Nicht auf Lager",
-    "addToWishlist": "Zur Wunschliste hinzufügen",
-    "quickView": "Schnellansicht",
-    "inStock": "Auf Lager",
-    "addToCart": "In den Warenkorb"
-  },
   "AiGenerateButton": {
     "generateWithAI": "Mit KI generieren",
     "bulkGenerateWithAI": "Massen-Erstellung mit KI",
@@ -666,6 +758,10 @@
     "bulkCreate": "Massen-Erstellung",
     "validationErrorTitle": "Ungültige Eingabe",
     "validationErrorMessage": "Bitte geben Sie eine Eingabeaufforderung und eine gültige Anzahl an.",
+    "validation": {
+      "promptLength": "Die Eingabeaufforderung muss mindestens 10 Zeichen lang sein.",
+      "maxCount": "Sie können maximal 50 Elemente gleichzeitig generieren."
+    },
     "generationFailed": "Stream-Generierung fehlgeschlagen: ",
     "parsingError": "Der generierte Inhalt konnte nicht analysiert werden.",
     "generationSuccessTitle": "Generierung abgeschlossen",
@@ -677,6 +773,66 @@
     "bulkSaveResultDescription": "{count} von {total} Elementen erfolgreich gespeichert.",
     "noDataToSave": "Keine gültigen Daten zum Speichern vorhanden.",
     "useItemButton": "Diesen Inhalt verwenden"
+  },
+  "ProductsData": {
+    "product1": {
+      "name": "Premium Schutzhelm",
+      "category": "Kopfschutz",
+      "subCategory": "Helme",
+      "description": "Robuster Schutzhelm mit ABS-Schale, verstellbar und belüftet für optimalen Komfort.",
+      "color1": "Gelb",
+      "color2": "Weiß",
+      "color3": "Rot",
+      "color4": "Blau"
+    },
+    "product2": {
+      "name": "UV-Schutzbrille",
+      "category": "Augenschutz",
+      "subCategory": "Brillen",
+      "description": "Leichte Schutzbrille mit UV-Schutz und kratzfester Beschichtung.",
+      "color1": "Transparent",
+      "color2": "Getönt"
+    },
+    "product3": {
+      "name": "Schnittschutzhandschuhe Level 5",
+      "category": "Handschutz",
+      "subCategory": "Handschuhe",
+      "description": "Schnittfeste Handschuhe Level 5 mit Polyurethan-Beschichtung für ausgezeichneten Grip."
+    },
+    "product4": {
+      "name": "Sicherheitsschuhe S3",
+      "category": "Fußschutz",
+      "subCategory": "Schuhe",
+      "description": "S3 Sicherheitsschuhe mit Composite-Kappe und durchtrittsicherer Sohle."
+    },
+    "product5": {
+      "name": "Warnweste Klasse 3",
+      "category": "Schutzkleidung",
+      "subCategory": "Warnschutzkleidung",
+      "description": "Warnweste Klasse 3 mit Reflexstreifen, wasserdicht und atmungsaktiv.",
+      "color1": "Neongelb",
+      "color2": "Neonorange"
+    },
+    "product6": {
+      "name": "Atemschutzmaske FFP3",
+      "category": "Atemschutz",
+      "subCategory": "Masken",
+      "description": "FFP3 Atemschutzmaske mit Ausatemventil für optimalen Komfort."
+    },
+    "product7": {
+      "name": "Vollkörper-Sicherheitsgurt",
+      "category": "Absturzsicherung",
+      "subCategory": "Gurte",
+      "description": "Vollkörper-Sicherheitsgurt mit Rücken- und Brustanschlagpunkten."
+    },
+    "product8": {
+      "name": "Gehörschutz 32dB",
+      "category": "Gehörschutz",
+      "subCategory": "Gehörschutz-Kopfhörer",
+      "description": "Gehörschutz mit 32dB Dämpfung, leicht und komfortabel für längeres Tragen.",
+      "color1": "Schwarz/Rot",
+      "color2": "Schwarz/Gelb"
+    }
   },
   "HomePageLegacy": {
     "hero": {
@@ -791,30 +947,5 @@
       "email": "E-Mail",
       "requestQuote": "Angebot anfordern"
     }
-  },
-  "ThemeSwitcher": {
-    "toggleTheme": "Thema wechseln",
-    "selectTheme": "Wählen Sie ein Thema",
-    "system": "System",
-    "systemDescription": "Systemeinstellungen folgen",
-    "light": "Hell",
-    "lightDescription": "Heller Modus",
-    "dark": "Dunkel",
-    "darkDescription": "Dunkler Modus",
-    "professional": "Professionell",
-    "professionalDescription": "Professionelles Business-Thema"
-  },
-  "Cart": {
-    "shoppingCart": "Warenkorb",
-    "emptyCart": "Ihr Warenkorb ist leer",
-    "cartEmpty": "Keine Artikel im Warenkorb",
-    "itemsInCart": "{count, plural, =1 {1 Artikel} other {# Artikel}} im Warenkorb",
-    "total": "Gesamt",
-    "clearCart": "Warenkorb leeren",
-    "checkout": "Zur Kasse",
-    "viewCart": "Warenkorb ansehen",
-    "addToCart": "In den Warenkorb",
-    "removeFromCart": "Entfernen",
-    "updateQuantity": "Menge aktualisieren"
   }
 }

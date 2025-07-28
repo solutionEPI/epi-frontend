@@ -1,139 +1,139 @@
 {
   "LoginPage": {
-    "title": "Content de vous revoir",
+    "title": "Bienvenue",
     "usernameLabel": "Nom d'utilisateur",
     "passwordLabel": "Mot de passe",
     "signInButton": "Se connecter",
     "toastErrorTitle": "Échec de la connexion",
-    "toastErrorDescription": "Nom d'utilisateur ou mot de passe invalide. Veuillez réessayer.",
+    "toastErrorDescription": "Nom d'utilisateur ou mot de passe incorrect. Veuillez réessayer.",
     "toastSuccessTitle": "Connexion réussie",
     "toastSuccessDescription": "Bienvenue ! Redirection vers le tableau de bord.",
-    "toastUnexpectedErrorTitle": "Une erreur inattendue est survenue",
+    "toastUnexpectedErrorTitle": "Une erreur inattendue s'est produite",
     "toastUnexpectedErrorDescription": "Quelque chose s'est mal passé. Veuillez réessayer plus tard.",
     "toastOtpInvalidTitle": "OTP invalide",
-    "toastOtpInvalidDescription": "Le mot de passe à usage unique que vous avez entré est incorrect."
+    "toastOtpInvalidDescription": "Le mot de passe à usage unique que vous avez saisi est incorrect.",
+    "dashboardName": "Solution EPI SARL",
+    "dashboardDescription": "Fournisseur d'équipements de protection individuelle basé à Douala, Cameroun. Nous fournissons des équipements de sécurité aux entreprises d'Afrique Centrale."
   },
   "HomePage": {
     "hero": {
-      "badgeText": "Principal fournisseur d'EPI au Cameroun depuis 2009",
-      "title": "Solution EPI",
-      "description": "Solutions de sécurité professionnelles pour les lieux de travail modernes. Protégez votre équipe avec des équipements certifiés et des conseils d'experts.",
-      "viewProductsButton": "Voir les produits",
-      "getQuoteButton": "Obtenir un devis"
+      "badgeText": "Établi à Douala depuis 2009",
+      "title": "Solution EPI SARL",
+      "description": "Nous fournissons des équipements de protection individuelle aux entreprises du Cameroun et d'Afrique Centrale. Des chantiers aux usines, nous aidons à protéger les travailleurs avec des équipements de sécurité de qualité.",
+      "viewProductsButton": "Voir nos équipements",
+      "getQuoteButton": "Demander un devis"
     },
     "stats": {
-      "clientsProtected": "Clients protégés",
-      "safetySuccessRate": "Taux de réussite en matière de sécurité",
-      "equipmentDelivered": "Équipements livrés",
-      "yearsExperience": "Années d'expérience"
+      "clientsProtected": "Entreprises servies",
+      "safetySuccessRate": "Taux d'équipements de qualité",
+      "equipmentDelivered": "Articles livrés",
+      "yearsExperience": "Années d'activité"
     },
     "features": {
       "badge": "Pourquoi nous choisir",
-      "title": "L'excellence en matière de sécurité de confiance",
-      "subtitle": "Nous combinons l'expertise du secteur avec des solutions de sécurité de pointe pour protéger ce qui compte le plus.",
+      "title": "Fournisseur fiable d'équipements de sécurité",
+      "subtitle": "Nous connaissons le marché local et proposons des solutions de sécurité pratiques pour les entreprises camerounaises.",
       "certifiedProtection": {
-        "title": "Protection certifiée",
-        "description": "Tous les équipements sont conformes aux normes de sécurité internationales"
+        "title": "Équipements de qualité",
+        "description": "Tous nos équipements respectent les normes de sécurité internationales"
       },
       "fastDelivery": {
-        "title": "Livraison rapide",
-        "description": "Livraison en 24-48 heures à travers le Cameroun"
+        "title": "Livraison locale",
+        "description": "Nous livrons dans tout Douala et les principales villes du Cameroun"
       },
       "expertConsultation": {
-        "title": "Consultation d'experts",
-        "description": "Évaluation de la sécurité et formation professionnelle"
+        "title": "Connaissance locale",
+        "description": "Nous comprenons les besoins de sécurité au travail au Cameroun"
       },
       "qualityGuarantee": {
-        "title": "Garantie de qualité",
-        "description": "Garantie de satisfaction à 100% sur tous les produits"
+        "title": "Prix équitables",
+        "description": "Prix compétitifs pour des équipements de sécurité de qualité"
       }
     },
     "services": {
-      "badge": "Nos services",
-      "title": "Solutions de sécurité complètes",
-      "subtitle": "De la fourniture d'équipements à la formation et à la conformité, nous offrons des solutions de sécurité de bout en bout.",
+      "badge": "Ce que nous faisons",
+      "title": "Équipements et services de sécurité",
+      "subtitle": "Nous fournissons des équipements de protection et offrons des conseils de base pour maintenir la sécurité des travailleurs.",
       "equipmentSupply": {
-        "title": "Fourniture d'équipements de sécurité",
-        "description": "Gamme complète d'EPI pour toutes les industries",
-        "feature1": "Protection de la tête",
-        "feature2": "Sécurité respiratoire",
-        "feature3": "Protection des mains et des pieds"
+        "title": "Fourniture d'équipements",
+        "description": "Gamme complète d'équipements de sécurité pour diverses industries",
+        "feature1": "Casques et casques de sécurité",
+        "feature2": "Protection respiratoire",
+        "feature3": "Gants et chaussures de sécurité"
       },
       "training": {
-        "title": "Formation et certification en sécurité",
-        "description": "Programmes de formation professionnelle pour votre équipe",
-        "feature1": "Instructeurs certifiés",
-        "feature2": "Programmes personnalisés",
-        "feature3": "Conformité industrielle"
+        "title": "Conseils sécurité",
+        "description": "Formation de base sur l'utilisation correcte des équipements de sécurité",
+        "feature1": "Formation sur les équipements",
+        "feature2": "Briefings sécurité",
+        "feature3": "Meilleures pratiques de l'industrie"
       },
       "auditing": {
-        "title": "Audit de sécurité",
-        "description": "Évaluations complètes de la sécurité sur le lieu de travail",
-        "feature1": "Évaluation des risques",
-        "feature2": "Examen de la conformité",
-        "feature3": "Plans d'action"
+        "title": "Évaluation de site",
+        "description": "Nous pouvons visiter votre site pour recommander les équipements de sécurité appropriés",
+        "feature1": "Visites de site",
+        "feature2": "Recommandations d'équipements",
+        "feature3": "Planification sécurité"
       },
       "learnMoreButton": "En savoir plus"
     },
     "cta": {
-      "title": "Prêt à améliorer la sécurité de votre lieu de travail ?",
-      "description": "Rejoignez plus de 1 000 entreprises qui font confiance à Solution EPI pour leurs besoins en équipements de sécurité. Obtenez une consultation personnalisée dès aujourd'hui.",
-      "consultationButton": "Obtenir une consultation gratuite",
-      "catalogButton": "Parcourir le catalogue"
+      "title": "Besoin d'équipements de sécurité pour votre entreprise ?",
+      "description": "Nous travaillons avec des entreprises de construction, des usines et des entreprises à travers le Cameroun. Contactez-nous pour discuter de vos besoins en équipements de sécurité.",
+      "consultationButton": "Nous contacter",
+      "catalogButton": "Voir les équipements"
     },
     "testimonials": {
-      "badge": "Succès des clients",
-      "title": "Approuvé par les leaders de l'industrie",
-      "subtitle": "Découvrez comment nous avons aidé des entreprises à travers le Cameroun à améliorer leurs normes de sécurité.",
+      "badge": "Témoignages clients",
+      "title": "Fait confiance par les entreprises locales",
+      "subtitle": "Découvrez ce que les entreprises du Cameroun disent de leur collaboration avec Solution EPI SARL.",
       "client1": {
         "name": "Jean-Paul Mbeki",
         "company": "Industries Camerounaises SA",
-        "role": "Directeur de la sécurité",
-        "content": "Solution EPI a transformé notre culture de la sécurité. Réduction de 40% des incidents en 6 mois."
+        "role": "Responsable sécurité",
+        "content": "Solution EPI SARL fournit des équipements de bonne qualité à des prix équitables. Ils comprennent nos besoins locaux et livrent à temps."
       },
       "client2": {
         "name": "Marie Ngozi",
-        "company": "Construction Douala",
+        "company": "BTP Douala",
         "role": "Chef de projet",
-        "content": "Service et équipement de qualité exceptionnels. Nos équipes sont maintenant correctement protégées."
+        "content": "Fournisseur fiable pour nos projets de construction. Bon service et ils connaissent bien le marché camerounais."
       },
       "client3": {
         "name": "Antoine Fosso",
         "company": "Textile Bamenda",
-        "role": "Responsable de production",
-        "content": "Excellente qualité de formation et suivi personnalisé. Fortement recommandé."
+        "role": "Responsable production",
+        "content": "Ils nous ont aidés à mettre en place des équipements de sécurité appropriés pour nos travailleurs. Service professionnel et bon suivi."
       }
     },
     "finalCta": {
-      "title": "Commencez votre parcours de sécurité dès aujourd'hui",
-      "description": "Contactez nos experts en sécurité pour une consultation gratuite et des recommandations d'équipements personnalisées.",
+      "title": "Prêt à améliorer la sécurité au travail ?",
+      "description": "Contactez notre équipe à Douala pour des informations sur les équipements de sécurité et les prix pour votre entreprise.",
       "phone": "+237 6XX XXX XXX",
-      "email": "contact@solution-epi.com",
+      "email": "contact@solution-epi.cm",
       "location": "Douala, Cameroun",
-      "contactSalesButton": "Contacter l'équipe des ventes",
+      "contactSalesButton": "Contacter notre équipe",
       "getStartedButton": "Commencer",
-      "viewDashboardButton": "Voir le tableau de bord"
+      "viewDashboardButton": "Tableau de bord"
     },
     "products": {
-      "title": "Produits en vedette",
-      "subtitle": "Découvrez nos équipements de sécurité les plus populaires",
-      "viewAllButton": "Voir tous les produits",
-      "badge": "Produits en vedette",
+      "title": "Nos équipements",
+      "subtitle": "Parcourez notre gamme d'équipements de protection individuelle",
+      "viewAllButton": "Voir tous les équipements",
       "outOfStock": "Rupture de stock",
       "addToCart": "Ajouter au panier",
       "viewDetails": "Voir les détails"
     },
     "blog": {
-      "title": "Dernières informations sur la sécurité",
-      "subtitle": "Restez à jour avec les dernières nouvelles et conseils en matière de sécurité",
-      "readMoreButton": "Lire la suite",
+      "title": "Conseils et actualités sécurité",
+      "subtitle": "Conseils pratiques et mises à jour sur la sécurité au travail",
+      "readMoreButton": "Lire plus",
       "viewAllButton": "Voir tous les articles",
-      "badge": "Dernières nouvelles",
-      "noPostsFound": "Aucun article de blog trouvé."
+      "badge": "Actualités sécurité"
     }
   },
   "Header": {
-    "siteName": "Solution EPI",
+    "siteName": "Solution EPI SARL",
     "home": "Accueil",
     "blog": "Blog",
     "features": "Fonctionnalités",
@@ -141,26 +141,26 @@
     "signIn": "Se connecter",
     "dashboard": "Tableau de bord",
     "settings": "Paramètres",
-    "adminDashboard": "Tableau de bord admin",
+    "adminDashboard": "Administration",
     "signOut": "Se déconnecter",
     "signOutSuccessTitle": "Déconnecté",
     "signOutSuccessDescription": "Vous avez été déconnecté avec succès.",
-    "products": "Produits",
+    "products": "Équipements",
     "contact": "Contact",
     "user": "Utilisateur"
   },
   "Footer": {
-    "siteName": "Solution EPI",
-    "companyName": "Solution EPI",
+    "siteName": "Solution EPI SARL",
+    "companyName": "Solution EPI SARL",
     "allRightsReserved": "Tous droits réservés",
     "poweredBy": "Propulsé par",
     "categories": {
       "solutions": "Solutions",
       "support": "Support",
       "company": "Entreprise",
-      "legal": "Mentions légales",
+      "legal": "Légal",
       "language": "Langue",
-      "followUs": "Suivez-nous"
+      "followUs": "Nous suivre"
     },
     "social": {
       "github": "GitHub",
@@ -170,13 +170,13 @@
     },
     "solutions": {
       "admin": "Tableau de bord",
-      "analytics": "Analytiques",
+      "analytics": "Analyses",
       "commerce": "E-commerce",
       "insights": "Insights"
     },
     "support": {
       "docs": "Documentation",
-      "pricing": "Tarification",
+      "pricing": "Tarifs",
       "guides": "Guides",
       "api": "État de l'API"
     },
@@ -193,14 +193,15 @@
   },
   "DashboardPage": {
     "title": "Tableau de bord",
-    "description": "Content de vous revoir ! Voici un résumé de votre projet.",
+    "description": "Bienvenue ! Voici un résumé de votre projet.",
     "loadErrorTitle": "Erreur du tableau de bord",
-    "loadErrorDescription": "Un problème est survenu lors du chargement des données du tableau de bord. Certaines informations peuvent être manquantes. Utilisation de données fictives en secours.",
+    "loadErrorDescription": "Il y a eu un problème lors du chargement des données du tableau de bord. Certaines informations peuvent être manquantes. Utilisation de données de test comme solution de secours.",
+    "tryAgain": "Réessayer",
     "userSignupsCardTitle": "Inscriptions d'utilisateurs",
     "userSignupsCardDescription": "Un graphique montrant les inscriptions d'utilisateurs au cours des derniers mois.",
     "contentOverviewCardTitle": "Aperçu du contenu",
     "contentOverviewCardDescription": "Un résumé des différents types de contenu.",
-    "activityFeedCardTitle": "Fil d'activité",
+    "activityFeedCardTitle": "Flux d'activité",
     "activityFeedCardDescription": "Un journal des activités récentes.",
     "activityByUser": "par {user}",
     "mock": {
@@ -223,9 +224,9 @@
         }
       },
       "months": {
-        "jan": "Janv",
-        "feb": "Févr",
-        "mar": "Mars",
+        "jan": "Jan",
+        "feb": "Fév",
+        "mar": "Mar",
         "apr": "Avr",
         "may": "Mai",
         "jun": "Juin",
@@ -236,17 +237,17 @@
         "tasks": "Tâches",
         "users": "Utilisateurs",
         "categories": "Catégories",
-        "tags": "Tags"
+        "tags": "Étiquettes"
       },
       "feed": {
-        "newPost": "Nouveau billet de blog publié : 'L'avenir de l'IA'",
-        "newComment": "Nouveau commentaire sur 'Débuter avec Django'",
+        "newPost": "Nouvel article de blog publié : 'L'avenir de l'IA'",
+        "newComment": "Nouveau commentaire sur 'Commencer avec Django'",
         "newUser": "Nouvel utilisateur enregistré : John.Doe"
       }
     }
   },
   "ModelListPage": {
-    "createNew": "Créer",
+    "createNew": "Créer nouveau",
     "id": "ID",
     "name": "Nom / Titre",
     "createdAt": "Créé le",
@@ -255,7 +256,7 @@
     "edit": "Modifier",
     "delete": "Supprimer",
     "deleteTitle": "Êtes-vous absolument sûr ?",
-    "deleteConfirm": "Cette action est irréversible. Cela supprimera définitivement l'élément.",
+    "deleteConfirm": "Cette action ne peut pas être annulée. Cela supprimera définitivement l'élément.",
     "tryAgain": "Réessayer",
     "save": "Enregistrer les modifications",
     "errorTitle": "Erreur de chargement des données",
@@ -269,26 +270,26 @@
     "deleteSuccessTitle": "Élément supprimé",
     "deleteSuccessDescription": "L'élément avec l'ID {id} a été supprimé.",
     "deleteErrorTitle": "Échec de la suppression",
-    "deleteErrorDescription": "Échec de la suppression de l'élément {id}: {message}",
-    "exportPreparingTitle": "Préparation de l'exportation",
-    "exportPreparingDescription": "Préparation de l'exportation de {totalItems} éléments. Cela peut prendre un moment.",
-    "exportReadyTitle": "Exportation prête",
-    "exportReadyDescription": "Votre fichier {format} est prêt à être téléchargé.",
-    "exportFailedTitle": "Échec de l'exportation",
-    "exportFailedDescription": "Une erreur s'est produite lors de l'exportation: {message}",
-    "editTitle": "Modifier {modelName}: {id}",
-    "createTitle": "Créer un nouveau {modelName}",
-    "loadModelConfigFailed": "Échec du chargement de la configuration pour le modèle: {modelName}",
-    "loadModelDataFailed": "Échec du chargement des données pour le modèle: {modelName}",
+    "deleteErrorDescription": "Échec de la suppression de l'élément {id} : {message}",
+    "exportPreparingTitle": "Préparation de l'export",
+    "exportPreparingDescription": "Préparation de l'export de {totalItems} éléments. Cela peut prendre un moment.",
+    "exportReadyTitle": "Export prêt",
+    "exportReadyDescription": "Votre fichier {format} est prêt pour le téléchargement.",
+    "exportFailedTitle": "Échec de l'export",
+    "exportFailedDescription": "Une erreur s'est produite pendant l'export : {message}",
+    "editTitle": "Modifier {modelName} : {id}",
+    "createTitle": "Créer nouveau {modelName}",
+    "loadModelConfigFailed": "Échec du chargement de la configuration pour le modèle : {modelName}",
+    "loadModelDataFailed": "Échec du chargement des données pour le modèle : {modelName}",
     "loadingRelationOptions": "Chargement des options pour {fieldName}...",
     "loadingOptions": "Chargement des options...",
     "emptyCellValue": "-",
-    "errorLoadingData": "Erreur lors du chargement des données",
-    "errorLoadingConfig": "Erreur lors du chargement de la configuration",
+    "errorLoadingData": "Erreur de chargement des données",
+    "errorLoadingConfig": "Erreur de chargement de la configuration",
     "generatedItemsTitle": "Éléments générés",
     "saveAll": "Tout enregistrer",
-    "bulkSaveResultTitle": "Résultat de l'enregistrement en masse",
-    "bulkSaveResultDescription": "{count} sur {total} éléments enregistrés avec succès.",
+    "bulkSaveResultTitle": "Résultat de l'enregistrement en lot",
+    "bulkSaveResultDescription": "Enregistré avec succès {count} sur {total} éléments.",
     "aiGenerate": "Générer avec l'IA",
     "languages": {
       "en": "Anglais",
@@ -299,10 +300,10 @@
   "ModelForm": {
     "saveSuccessTitle": "Élément enregistré",
     "saveSuccessDescription": "L'élément a été enregistré avec succès.",
-    "saveErrorTitle": "Erreur lors de l'enregistrement de l'élément",
-    "bulkSaveResultTitle": "Résultat de la sauvegarde en masse",
-    "bulkSaveResultDescription": "{count} sur {total} articles enregistrés avec succès.",
-    "defaultTab": "Défaut"
+    "saveErrorTitle": "Erreur d'enregistrement de l'élément",
+    "bulkSaveResultTitle": "Résultat de l'enregistrement en lot",
+    "bulkSaveResultDescription": "Enregistré avec succès {count} sur {total} éléments.",
+    "defaultTab": "Par défaut"
   },
   "SettingsPage": {
     "title": "Paramètres",
@@ -332,27 +333,28 @@
     "disable2FA": "Désactiver la 2FA",
     "disabling": "Désactivation...",
     "scanQrCode": "Scannez le code QR ci-dessous avec votre application d'authentification.",
-    "qrCodeAlt": "Code QR pour 2FA",
-    "secretKey": "Ou entrez cette clé secrète manuellement",
+    "qrCodeAlt": "Code QR pour la 2FA",
+    "secretKey": "Ou saisissez cette clé secrète manuellement",
     "verificationCode": "Code de vérification",
-    "otpPlaceholder": "code à 6 chiffres",
+    "otpPlaceholder": "Code à 6 chiffres",
     "cancel": "Annuler",
     "verifying": "Vérification...",
     "verifyAndActivate": "Vérifier et activer",
-    "disable2faPasswordPlaceholder": "Entrez votre mot de passe pour désactiver la 2FA",
+    "disable2faPasswordPlaceholder": "Saisissez votre mot de passe pour désactiver la 2FA",
     "twoFactorEnableErrorTitle": "Échec de l'activation de la 2FA",
-    "twoFactorVerifyErrorTitle": "Échec de la vérification de l'OTP",
+    "twoFactorVerifyErrorTitle": "Échec de la vérification OTP",
     "twoFactorEnableSuccessTitle": "2FA activée",
     "twoFactorEnableSuccessDescription": "L'authentification à deux facteurs a été activée avec succès.",
     "twoFactorDisableErrorTitle": "Échec de la désactivation de la 2FA",
     "twoFactorDisableSuccessTitle": "2FA désactivée",
+    "loadError": "Échec du chargement des paramètres",
     "validation": {
       "invalidEmail": "Adresse e-mail invalide.",
       "oldPasswordRequired": "Le mot de passe actuel est requis.",
-      "newPasswordLength": "Le nouveau mot de passe doit comporter au moins 8 caractères.",
+      "newPasswordLength": "Le nouveau mot de passe doit contenir au moins 8 caractères.",
       "passwordsDontMatch": "Les mots de passe ne correspondent pas.",
-      "otpLength": "Votre mot de passe à usage unique doit comporter 6 caractères.",
-      "passwordRequiredFor2FA": "Le mot de passe est requis pour désactiver la 2FA."
+      "otpLength": "Votre mot de passe à usage unique doit contenir 6 caractères.",
+      "passwordRequiredFor2FA": "Votre mot de passe est requis pour désactiver la 2FA."
     },
     "seconds": "{count, plural, one {il y a # seconde} other {il y a # secondes}}"
   },
@@ -361,102 +363,94 @@
     "resultTitle": "Résultat",
     "summarizer": {
       "title": "Résumeur de texte",
-      "description": "Obtenez un résumé concis d'un long texte.",
+      "description": "Obtenez un résumé concis d'un texte long.",
       "textLabel": "Texte à résumer",
       "textPlaceholder": "Collez votre texte ici...",
       "button": "Résumer",
       "buttonLoading": "Résumé en cours...",
-      "prompt": "Résumez ce texte de manière concise :\n{text}"
+      "prompt": "Résumez ce texte de manière concise :\\n{text}"
     },
     "translator": {
       "title": "Traducteur",
-      "description": "Traduisez du texte d'une langue à une autre.",
+      "description": "Traduisez du texte d'une langue vers une autre.",
       "textLabel": "Texte à traduire",
-      "textPlaceholder": "Entrez le texte...",
+      "textPlaceholder": "Saisissez le texte...",
       "languageLabel": "Langue cible",
-      "languagePlaceholder": "ex: Anglais",
+      "languagePlaceholder": "ex : Espagnol",
       "button": "Traduire",
-      "buttonLoading": "Traduction en cours...",
-      "prompt": "Traduire en {targetLang}:\n{text}"
+      "buttonLoading": "Traduction...",
+      "prompt": "Traduire en {targetLang} :\\n{text}"
     },
     "emailDrafter": {
-      "title": "Rédacteur d'e-mails",
+      "title": "Rédacteur d'e-mail",
       "description": "Rédigez un e-mail professionnel sur n'importe quel sujet.",
       "topicLabel": "Sujet de l'e-mail",
-      "topicPlaceholder": "ex: Réunion de mise à jour du projet",
+      "topicPlaceholder": "ex : Réunion de mise à jour du projet",
       "button": "Générer l'e-mail",
-      "buttonLoading": "Génération en cours...",
+      "buttonLoading": "Génération...",
       "prompt": "Rédigez un e-mail professionnel sur : {topic}"
     },
     "supportReply": {
-      "title": "Générateur de réponses de support",
+      "title": "Générateur de réponse de support",
       "description": "Créez des réponses utiles aux questions des clients.",
       "questionLabel": "Question du client",
       "questionPlaceholder": "Collez le message du client ici...",
       "button": "Générer une réponse",
-      "buttonLoading": "Génération en cours...",
+      "buttonLoading": "Génération...",
       "prompt": "Rédigez une réponse de support client utile et empathique à : {question}"
     },
     "socialPost": {
       "title": "Idées de publications sociales",
       "description": "Obtenez des idées créatives pour vos réseaux sociaux.",
       "topicLabel": "Sujet",
-      "topicPlaceholder": "ex: Lancement d'un nouveau produit",
+      "topicPlaceholder": "ex : Lancement de nouveau produit",
       "button": "Obtenir des idées",
       "buttonLoading": "Recherche d'idées...",
-      "prompt": "Donnez-moi 5 idées créatives de publications sur les réseaux sociaux à propos de : {topic}"
+      "prompt": "Donnez-moi 5 idées créatives de publications sur les réseaux sociaux sur : {topic}"
     },
     "marketingIdeas": {
       "title": "Idées marketing",
-      "description": "Réfléchissez à des campagnes marketing pour un produit.",
+      "description": "Faites du brainstorming de campagnes marketing pour un produit.",
       "productLabel": "Produit/Service",
-      "productPlaceholder": "ex: Bouteille d'eau écologique",
+      "productPlaceholder": "ex : Bouteille d'eau écologique",
       "button": "Brainstormer",
-      "buttonLoading": "Brainstorming en cours...",
-      "prompt": "Proposez des idées de campagnes marketing créatives pour : {product}"
+      "buttonLoading": "Brainstorming...",
+      "prompt": "Fournissez des idées créatives de campagne marketing pour : {product}"
     },
     "newsletterThemes": {
       "title": "Thèmes de newsletter",
       "description": "Suggérez des thèmes pour votre prochaine newsletter.",
       "audienceLabel": "Public cible",
-      "audiencePlaceholder": "ex: Amateurs de technologie",
+      "audiencePlaceholder": "ex : Passionnés de technologie",
       "button": "Suggérer des thèmes",
-      "buttonLoading": "Suggestion en cours...",
-      "prompt": "Suggérez 5 thèmes de newsletter attrayants pour un public de : {audience}"
+      "buttonLoading": "Suggestion...",
+      "prompt": "Suggérez 5 thèmes de newsletter engageants pour un public de : {audience}"
     },
     "passwordGenerator": {
-      "title": "Générateur de mots de passe",
+      "title": "Générateur de mot de passe",
       "description": "Créez un mot de passe fort et sécurisé.",
       "lengthLabel": "Longueur du mot de passe",
       "numbersLabel": "Inclure des chiffres",
       "symbolsLabel": "Inclure des symboles",
-      "button": "Générer un mot de passe",
-      "buttonLoading": "Génération en cours...",
+      "button": "Générer le mot de passe",
+      "buttonLoading": "Génération...",
       "copySuccess": "Mot de passe copié !",
       "copyDescription": "Le mot de passe a été copié dans votre presse-papiers.",
-      "prompt": "Générez un mot de passe sécurisé et aléatoire d'une longueur de {length}, {includeNumbers} et {includeSymbols}. Affichez uniquement le mot de passe.",
+      "prompt": "Générez un mot de passe sécurisé et aléatoire de longueur {length}, {includeNumbers}, et {includeSymbols}. Ne sortez que le mot de passe.",
       "promptNumbers": "incluant des chiffres",
       "promptNoNumbers": "sans chiffres",
       "promptSymbols": "incluant des symboles",
       "promptNoSymbols": "sans symboles"
-    },
-    "aiGenerateButton": {
-      "promptLabel": "Invite",
-      "promptPlaceholder": "Entrez votre invite ici...",
-      "generateButton": "Générer",
-      "generatingButton": "Génération... ({current}/{total})",
-      "generationCountLabel": "Nombre d'éléments à générer",
-      "fullPrompt": "Vous êtes un assistant de génération de données pour la plateforme Solution EPI.\nVotre tâche est de générer un objet JSON complet basé sur la demande d'un utilisateur et un schéma de modèle fourni.\nL'objet JSON doit être valide et ne doit pas être enveloppé dans du markdown ou tout autre texte.\n\nDemande de l'utilisateur : \"{prompt}\"\n\nModèle : \"{modelName}\"\n\nInstructions :\n1. Analysez la demande de l'utilisateur.\n2. Examinez le schéma du modèle ci-dessous pour comprendre les champs requis, leurs types et leurs langues.\n3. **Crucial : vous devez fournir des valeurs plausibles pour TOUS les champs du schéma, en particulier pour toutes les variations de langue (par exemple, les champs se terminant par _en, _fr, _de, etc. Il peut y avoir plus ou moins de langues).** Si la demande de l'utilisateur est dans une seule langue, vous devez traduire et adapter le contenu pour les autres langues.\n4. La sortie doit être UNIQUEMENT l'objet JSON.\n\nSchéma du modèle (pour votre référence) :\n{schema}"
     }
   },
   "AuthErrorPage": {
     "credentialsSigninTitle": "Échec de la connexion",
-    "credentialsSigninDescription": "L'e-mail ou le mot de passe que vous avez entré est incorrect. Veuillez vérifier vos informations d'identification et réessayer.",
+    "credentialsSigninDescription": "L'e-mail ou le mot de passe que vous avez saisi est incorrect. Veuillez vérifier vos identifiants et réessayer.",
     "accessDeniedTitle": "Accès refusé",
-    "accessDeniedDescription": "Vous n'avez pas la permission d'accéder à cette page. Veuillez contacter un administrateur si vous pensez qu'il s'agit d'une erreur.",
+    "accessDeniedDescription": "Vous n'avez pas l'autorisation d'accéder à cette page. Veuillez contacter un administrateur si vous pensez qu'il s'agit d'une erreur.",
     "configurationTitle": "Erreur de configuration du serveur",
     "configurationDescription": "Il y a un problème avec la configuration d'authentification du serveur. Veuillez contacter le support.",
-    "defaultTitle": "Une erreur est survenue",
+    "defaultTitle": "Une erreur s'est produite",
     "defaultDescription": "Une erreur d'authentification inconnue s'est produite. Veuillez réessayer ou contacter le support si le problème persiste.",
     "backToLogin": "Retour à la connexion"
   },
@@ -468,14 +462,130 @@
   },
   "DashboardLayout": {
     "dashboard": "Tableau de bord",
-    "aiTools": "Outils d'IA",
+    "aiTools": "Outils IA",
     "blog": "Blog",
     "models": "Modèles",
     "settings": "Paramètres",
     "signOut": "Se déconnecter",
+    "signOutSuccessTitle": "Déconnecté",
+    "signOutSuccessDescription": "Vous avez été déconnecté avec succès.",
+    "failedToUpdatePreferences": "Échec de la mise à jour des préférences",
     "tools": "Outils",
     "system": "Système",
     "defaultSiteName": "Tableau de bord"
+  },
+  "Breadcrumb": {
+    "more": "Plus"
+  },
+  "FormFileUpload": {
+    "preview": "Aperçu",
+    "uploadFile": "Télécharger un fichier",
+    "dragAndDrop": "ou glisser-déposer"
+  },
+  "FormJsonEditor": {
+    "key": "Clé",
+    "value": "Valeur",
+    "addItem": "Ajouter un élément"
+  },
+  "FormMultiSelect": {
+    "selectOptions": "Sélectionner des options...",
+    "searchOrCreate": "Rechercher ou créer...",
+    "createNew": "Créer nouveau",
+    "createNewItems": "Créer de nouveaux éléments",
+    "createMultipleItemsDescription": "Vous pouvez créer plusieurs éléments en les séparant par une virgule (,).",
+    "exampleTags": "ex : Nouvelle étiquette 1, Autre étiquette, Étiquette finale",
+    "cancel": "Annuler",
+    "creating": "Création...",
+    "create": "Créer",
+    "errorCreating": "Erreur de création de {itemName}",
+    "creationNotConfigured": "La création n'est pas configurée pour ce champ.",
+    "success": "Succès",
+    "itemsCreated": "{count} nouveau(x) élément(s) créé(s)."
+  },
+  "ProductCart": {
+    "new": "Nouveau",
+    "outOfStock": "Rupture de stock",
+    "addToWishlist": "Ajouter à la liste de souhaits",
+    "quickView": "Aperçu rapide",
+    "addToCart": "Ajouter au panier",
+    "unavailable": "Indisponible",
+    "inStock": "En stock",
+    "rupture": "Rupture"
+  },
+  "QuickViewModal": {
+    "quickView": "Aperçu rapide",
+    "close": "Fermer",
+    "new": "Nouveau",
+    "outOfStock": "Rupture de stock",
+    "inStock": "En stock",
+    "rupture": "Rupture de stock",
+    "color": "Couleur",
+    "size": "Taille",
+    "certifications": "Certifications",
+    "addToCart": "Ajouter au panier",
+    "viewDetails": "Voir les détails"
+  },
+  "ProductsPage": {
+    "productUpdated": "Produit mis à jour",
+    "productUpdatedDescription": "{productName} a été mis à jour dans votre panier.",
+    "productAdded": "Produit ajouté",
+    "productAddedDescription": "{productName} a été ajouté à votre panier.",
+    "productRemoved": "Produit retiré",
+    "productRemovedDescription": "{productName} a été retiré de votre panier.",
+    "cartCleared": "Panier vidé",
+    "cartClearedDescription": "Tous les articles ont été retirés de votre panier.",
+    "yourCart": "Votre panier",
+    "cartEmpty": "Votre panier est vide",
+    "addProductsToStartShopping": "Ajoutez des produits pour commencer vos achats",
+    "viewOurProducts": "Voir nos produits",
+    "image": "Image",
+    "color": "Couleur",
+    "size": "Taille",
+    "total": "Total",
+    "placeOrder": "Passer commande",
+    "continueShopping": "Continuer les achats",
+    "headProtection": "Protection de la tête",
+    "eyeProtection": "Protection des yeux",
+    "hearingProtection": "Protection auditive",
+    "respiratoryProtection": "Protection respiratoire",
+    "protectiveClothing": "Vêtements de protection",
+    "handProtection": "Protection des mains",
+    "footProtection": "Protection des pieds",
+    "fallProtection": "Protection contre les chutes",
+    "allProducts": "Tous les produits",
+    "moreCategories": "Plus de catégories",
+    "searchProduct": "Rechercher un produit...",
+    "sortBy": "Trier par",
+    "featuredProducts": "Produits en vedette",
+    "priceAscending": "Prix (Croissant)",
+    "priceDescending": "Prix (Décroissant)",
+    "nameAscending": "Nom (A-Z)",
+    "topRated": "Mieux notés",
+    "filters": "Filtres",
+    "categories": "Catégories",
+    "allCategories": "Toutes les catégories",
+    "availability": "Disponibilité",
+    "inStockOnly": "En stock uniquement",
+    "newOnly": "Nouveautés uniquement",
+    "resetFilters": "Réinitialiser les filtres",
+    "productsFound": "{count, plural, one {# produit} other {# produits}} trouvé(s)",
+    "noProductsFound": "Aucun produit trouvé",
+    "tryModifyingFilters": "Essayez de modifier vos filtres ou votre recherche.",
+    "new": "Nouveau",
+    "outOfStock": "Rupture de stock",
+    "addToWishlist": "Ajouter à la liste de souhaits",
+    "quickView": "Aperçu rapide",
+    "inStock": "En stock",
+    "addToCart": "Ajouter au panier"
+  },
+  "Metadata": {
+    "title": "Solution EPI SARL",
+    "titleTemplate": "%s | Solution EPI SARL",
+    "description": "Fournisseur d'équipements de protection individuelle basé à Douala, Cameroun. Nous fournissons des équipements de sécurité aux entreprises d'Afrique Centrale.",
+    "keywords": "EPI, sécurité, protection individuelle, équipements, Cameroun, Solution EPI, Douala",
+    "authorName": "Solution EPI SARL",
+    "openGraphAlt": "Solution EPI SARL - Équipements de Protection Individuelle",
+    "twitterCreator": "@solutionepi"
   },
   "Time": {
     "years": "{count, plural, one {il y a # an} other {il y a # ans}}",
@@ -489,17 +599,46 @@
     "importTitle": "Importer {model}",
     "importDescription": "Téléchargez un fichier CSV ou JSON pour importer des données. Assurez-vous que la structure du fichier correspond au schéma du modèle.",
     "formatLabel": "Format de fichier",
-    "selectFormatPlaceholder": "Sélectionnez un format",
+    "selectFormatPlaceholder": "Sélectionner un format",
     "formatCsv": "CSV",
     "formatJson": "JSON",
     "fileLabel": "Fichier",
     "fileDescription": "Seuls les fichiers .csv et .json sont acceptés.",
     "cancel": "Annuler",
     "importButton": "Importer",
-    "importing": "Importation en cours...",
+    "importing": "Importation...",
     "importSuccessTitle": "Importation réussie",
     "importSuccessDescription": "{count} éléments ont été importés avec succès.",
-    "importErrorTitle": "Échec de l'importation"
+    "importErrorTitle": "Échec de l'importation",
+    "importErrorSelectFile": "Veuillez sélectionner un fichier à importer."
+  },
+  "Languages": {
+    "en": "Anglais",
+    "fr": "Français",
+    "de": "Allemand"
+  },
+  "ThemeSwitcher": {
+    "toggleTheme": "Basculer le thème",
+    "selectTheme": "Sélectionner un thème",
+    "system": "Système",
+    "systemDescription": "Suivre les préférences du système",
+    "light": "Clair",
+    "lightDescription": "Mode clair",
+    "dark": "Sombre",
+    "darkDescription": "Mode sombre"
+  },
+  "Cart": {
+    "shoppingCart": "Panier",
+    "emptyCart": "Votre panier est vide",
+    "cartEmpty": "Aucun article dans le panier",
+    "itemsInCart": "{count, plural, =1 {1 article} other {# articles}} dans le panier",
+    "total": "Total",
+    "clearCart": "Vider le panier",
+    "checkout": "Commander",
+    "viewCart": "Voir le panier",
+    "addToCart": "Ajouter au panier",
+    "removeFromCart": "Retirer",
+    "updateQuantity": "Mettre à jour la quantité"
   },
   "Common": {
     "saving": "Enregistrement...",
@@ -508,160 +647,48 @@
   },
   "BlogPage": {
     "title": "Notre Blog",
-    "readingTime": "{minutes, plural, =1 {Lecture d'une minute} other {Lecture de # minutes}}",
+    "readingTime": "{minutes, plural, =1 {# minute de lecture} other {# minutes de lecture}}",
     "searchPlaceholder": "Rechercher des articles...",
     "loading": "Chargement des articles...",
     "noResults": "Aucun article trouvé.",
     "loadingCategories": "Chargement des catégories...",
     "categoriesTitle": "Catégories",
     "allCategories": "Toutes",
+    "failedToLoadCategories": "Échec du chargement des catégories",
     "commentsTitle": "Commentaires",
     "commentPlaceholder": "Écrire un commentaire...",
     "replyPlaceholder": "Écrire une réponse...",
     "namePlaceholder": "Votre nom",
     "emailPlaceholder": "Votre e-mail",
-    "submitComment": "Envoyer le commentaire",
-    "submittingComment": "Envoi en cours...",
+    "submitComment": "Soumettre le commentaire",
+    "submittingComment": "Soumission...",
     "commentSuccess": "Commentaire publié avec succès !",
     "commentError": "Échec de la publication du commentaire.",
+    "failedToLoadComments": "Échec du chargement des commentaires",
     "loadingComments": "Chargement des commentaires...",
     "noComments": "Soyez le premier à commenter.",
     "reply": "Répondre",
-    "cancelReply": "Annuler la réponse",
-    "badge": "Dernières nouvelles"
+    "cancelReply": "Annuler la réponse"
   },
   "OtpDialog": {
-    "title": "Vérification en deux étapes",
-    "description": "Entrez le code à 6 chiffres de votre application d'authentification.",
+    "title": "Vérification à deux facteurs",
+    "description": "Saisissez le code à 6 chiffres de votre application d'authentification.",
     "placeholder": "123456",
     "cancel": "Annuler",
     "verifying": "Vérification...",
     "verify": "Vérifier"
   },
-  "ProductsPage": {
-    "productUpdated": "Produit mis à jour",
-    "productUpdatedDescription": "{productName} a été mis à jour dans votre panier.",
-    "productAdded": "Produit ajouté",
-    "productAddedDescription": "{productName} a été ajouté à votre panier.",
-    "productRemoved": "Produit retiré",
-    "productRemovedDescription": "Le produit a été retiré de votre panier.",
-    "cartCleared": "Panier vidé",
-    "cartClearedDescription": "Tous les articles ont été retirés de votre panier.",
-    "yourCart": "Votre panier",
-    "cartEmpty": "Votre panier est vide",
-    "addProductsToStartShopping": "Ajoutez des produits pour commencer vos achats",
-    "viewOurProducts": "Voir nos produits",
-    "image": "Image",
-    "color": "Couleur",
-    "size": "Taille",
-    "total": "Total",
-    "placeOrder": "Passer la commande",
-    "continueShopping": "Continuer les achats",
-    "headProtection": "Protection de la tête",
-    "eyeProtection": "Protection oculaire",
-    "hearingProtection": "Protection auditive",
-    "respiratoryProtection": "Protection respiratoire",
-    "protectiveClothing": "Vêtements de protection",
-    "handProtection": "Protection des mains",
-    "footProtection": "Protection des pieds",
-    "fallProtection": "Protection antichute",
-    "allProducts": "Tous les produits",
-    "moreCategories": "Plus de catégories",
-    "searchProduct": "Rechercher un produit...",
-    "sortBy": "Trier par",
-    "featuredProducts": "Produits en vedette",
-    "priceAscending": "Prix croissant",
-    "priceDescending": "Prix décroissant",
-    "nameAscending": "Nom (A-Z)",
-    "topRated": "Mieux notés",
-    "filters": "Filtres",
-    "categories": "Catégories",
-    "allCategories": "Toutes les catégories",
-    "availability": "Disponibilité",
-    "inStockOnly": "En stock uniquement",
-    "newOnly": "Nouveautés uniquement",
-    "resetFilters": "Réinitialiser les filtres",
-    "productsFound": "{count, plural, one {# produit} other {# produits}} trouvé",
-    "noProductsFound": "Aucun produit trouvé",
-    "tryModifyingFilters": "Essayez de modifier vos filtres ou votre recherche.",
-    "new": "Nouveau",
-    "outOfStock": "Rupture de stock",
-    "addToWishlist": "Ajouter aux favoris",
-    "quickView": "Aperçu rapide",
-    "inStock": "En stock",
-    "addToCart": "Ajouter au panier"
-  },
-  "ProductsData": {
-    "product1": {
-      "name": "Casque de sécurité Premium",
-      "category": "Protection de la tête",
-      "subCategory": "Casques",
-      "description": "Casque de sécurité robuste avec coque en ABS, réglable et ventilé pour un confort optimal.",
-      "color1": "Jaune",
-      "color2": "Blanc",
-      "color3": "Rouge",
-      "color4": "Bleu"
-    },
-    "product2": {
-      "name": "Lunettes de protection anti-UV",
-      "category": "Protection oculaire",
-      "subCategory": "Lunettes",
-      "description": "Lunettes de protection légères avec protection anti-UV et anti-rayures.",
-      "color1": "Transparent",
-      "color2": "Teinté"
-    },
-    "product3": {
-      "name": "Gants anti-coupure niveau 5",
-      "category": "Protection des mains",
-      "subCategory": "Gants",
-      "description": "Gants résistants aux coupures de niveau 5, avec revêtement en polyuréthane pour une excellente préhension."
-    },
-    "product4": {
-      "name": "Chaussures de sécurité S3",
-      "category": "Protection des pieds",
-      "subCategory": "Chaussures",
-      "description": "Chaussures de sécurité S3 avec embout en composite et semelle anti-perforation."
-    },
-    "product5": {
-      "name": "Veste haute visibilité classe 3",
-      "category": "Vêtements de protection",
-      "subCategory": "Vêtements haute visibilité",
-      "description": "Veste haute visibilité classe 3 avec bandes réfléchissantes, imperméable et respirante.",
-      "color1": "Jaune fluo",
-      "color2": "Orange fluo"
-    },
-    "product6": {
-      "name": "Masque respiratoire FFP3",
-      "category": "Protection respiratoire",
-      "subCategory": "Masques",
-      "description": "Masque respiratoire FFP3 avec valve d'expiration pour un confort optimal."
-    },
-    "product7": {
-      "name": "Harnais de sécurité complet",
-      "category": "Protection antichute",
-      "subCategory": "Harnais",
-      "description": "Harnais de sécurité complet avec points d'ancrage dorsal et sternal."
-    },
-    "product8": {
-      "name": "Casque antibruit 32dB",
-      "category": "Protection auditive",
-      "subCategory": "Casques antibruit",
-      "description": "Casque antibruit avec atténuation de 32dB, léger et confortable pour un port prolongé.",
-      "color1": "Noir/Rouge",
-      "color2": "Noir/Jaune"
-    }
-  },
   "ContactPage": {
     "title": "Nous contacter",
-    "subtitle": "Vous avez une question ou souhaitez passer une commande spéciale ? Nous serions ravis de vous entendre !",
+    "subtitle": "Vous cherchez des équipements de sécurité ou avez des questions sur nos produits ? Contactez notre équipe à Douala.",
     "ourTeam": "Notre équipe",
-    "teamDescription": "Notre équipe d'experts en sécurité est disponible pour vous conseiller sur les meilleurs équipements adaptés à vos besoins spécifiques.",
-    "certifiedISO": "Certifiés ISO 45001",
+    "teamDescription": "Notre équipe a de l'expérience avec les besoins en équipements de sécurité au Cameroun et peut vous aider à trouver les bons produits pour votre lieu de travail.",
+    "certifiedISO": "Équipements de qualité",
     "faqTitle": "Questions fréquentes",
-    "faqSubtitle": "Trouvez rapidement des réponses aux questions les plus courantes concernant nos produits et services.",
-    "ctaTitle": "Besoin d'une solution personnalisée?",
-    "ctaDescription": "Notre équipe d'experts est prête à élaborer une solution sur mesure pour répondre aux besoins spécifiques de votre entreprise.",
-    "requestAppointment": "Demander un rendez-vous",
+    "faqSubtitle": "Réponses aux questions fréquemment posées sur nos équipements et services.",
+    "ctaTitle": "Besoin d'aide pour choisir des équipements ?",
+    "ctaDescription": "Notre équipe peut visiter votre site et recommander des équipements de sécurité appropriés à vos besoins spécifiques.",
+    "requestAppointment": "Planifier une visite",
     "address": {
       "title": "Notre emplacement"
     },
@@ -669,7 +696,7 @@
       "title": "Téléphone"
     },
     "email": {
-      "title": "Email"
+      "title": "E-mail"
     },
     "hours": {
       "title": "Heures d'ouverture"
@@ -678,211 +705,21 @@
       "title": "Envoyez-nous un message",
       "firstName": "Prénom",
       "lastName": "Nom de famille",
-      "firstNamePlaceholder": "Entrez votre prénom",
-      "lastNamePlaceholder": "Entrez votre nom de famille",
-      "email": "Email",
-      "emailPlaceholder": "Entrez votre adresse email",
+      "firstNamePlaceholder": "Saisissez votre prénom",
+      "lastNamePlaceholder": "Saisissez votre nom de famille",
+      "email": "E-mail",
+      "emailPlaceholder": "Saisissez votre adresse e-mail",
       "message": "Message",
       "messagePlaceholder": "Comment pouvons-nous vous aider ?",
       "submit": "Envoyer le message",
-      "sending": "Envoi en cours...",
+      "sending": "Envoi...",
       "required": "Ce champ est requis",
-      "invalidEmail": "Veuillez entrer une adresse email valide",
+      "invalidEmail": "Veuillez saisir une adresse e-mail valide",
       "success": {
         "title": "Message envoyé !",
-        "message": "Merci de nous avoir contactés. Nous vous répondrons dans les plus brefs délais.",
+        "message": "Merci de nous avoir contactés. Nous vous répondrons dès que possible.",
         "button": "Envoyer un autre message"
       }
     }
-  },
-  "HomePageLegacy": {
-    "hero": {
-      "title": "Solution EPI",
-      "description": "Votre partenaire pour la sécurité au travail. Des équipements de protection individuelle conformes aux normes les plus strictes.",
-      "discoverProducts": "Découvrir nos produits",
-      "contactUs": "Nous contacter",
-      "headProtection": "Protection de la tête",
-      "hearingProtection": "Protection auditive",
-      "eyeProtection": "Protection oculaire",
-      "bodyProtection": "Protection corporelle"
-    },
-    "about": {
-      "title": "À propos de Solution EPI",
-      "description1": "Depuis plus de 15 ans, Solution EPI est le leader dans la fourniture d'équipements de protection individuelle au Cameroun. Notre mission est de garantir la sécurité des travailleurs dans tous les secteurs d'activité.",
-      "description2": "Nous proposons une gamme complète d'équipements certifiés conformes aux normes internationales, adaptés aux besoins spécifiques de chaque industrie et environnement de travail.",
-      "certifiedQuality": "Qualité certifiée",
-      "productsComplyWithStandards": "Produits conformes aux normes",
-      "expertise": "Expertise",
-      "personalizedAdvice": "Conseil personnalisé",
-      "learnMore": "En savoir plus",
-      "yearsOfExperience": "{years}+ ans d'expérience",
-      "dedicatedTeam": "Une équipe de professionnels dédiée à votre sécurité"
-    },
-    "productCategories": {
-      "title": "Nos catégories d'EPI",
-      "description": "Des équipements de protection individuelle adaptés à tous les types de risques professionnels.",
-      "headProtection": {
-        "name": "Protection de la tête",
-        "products": [
-          "Casques de sécurité",
-          "Casques anti-bruit",
-          "Casques de chantier"
-        ]
-      },
-      "hearingProtection": {
-        "name": "Protection auditive",
-        "products": [
-          "Bouchons d'oreilles",
-          "Casques anti-bruit",
-          "Protection auditive électronique"
-        ]
-      },
-      "eyeProtection": {
-        "name": "Protection oculaire",
-        "products": [
-          "Lunettes de sécurité",
-          "Visières de protection",
-          "Lunettes contre produits chimiques"
-        ]
-      },
-      "protectiveClothing": {
-        "name": "Vêtements de protection",
-        "products": [
-          "Combinaisons",
-          "Vêtements haute-visibilité",
-          "Vêtements résistants au feu"
-        ]
-      },
-      "footProtection": {
-        "name": "Protection des pieds",
-        "products": [
-          "Chaussures de sécurité",
-          "Bottes",
-          "Protection métatarsienne"
-        ]
-      },
-      "handProtection": {
-        "name": "Protection des mains",
-        "products": [
-          "Gants anti-coupure",
-          "Gants résistants aux produits chimiques",
-          "Gants isolants"
-        ]
-      },
-      "viewProducts": "Voir les produits",
-      "viewAllProducts": "Voir tous les produits"
-    },
-    "services": {
-      "title": "Nos services",
-      "description": "Au-delà de la fourniture d'équipements, nous offrons une gamme complète de services pour garantir la sécurité de vos collaborateurs.",
-      "safetyConsulting": {
-        "title": "Conseil en sécurité",
-        "description": "Évaluation des risques et recommandations d'équipements adaptés à votre environnement de travail spécifique."
-      },
-      "ppeTraining": {
-        "title": "Formation sur les EPI",
-        "description": "Sessions de formation sur l'utilisation correcte des équipements de protection individuelle pour vos employés."
-      },
-      "complianceAudit": {
-        "title": "Audit de conformité",
-        "description": "Vérification de la conformité de vos équipements aux normes et réglementations en vigueur."
-      },
-      "preventiveMaintenance": {
-        "title": "Maintenance préventive",
-        "description": "Services d'entretien régulier et vérification de l'état de vos équipements de protection."
-      },
-      "learnMore": "En savoir plus"
-    },
-    "standards": {
-      "title": "Normes et réglementations",
-      "description": "La sécurité au travail est encadrée par des normes strictes. Chez Solution EPI, tous nos produits sont conformes aux normes internationales et locales en vigueur.",
-      "legalObligation": "Obligation légale:",
-      "employerMustProvidePPE": "L'employeur doit fournir gratuitement les EPI adaptés aux risques.",
-      "allProductsMeetStandards": "Tous nos produits respectent les standards internationaux les plus exigeants",
-      "items": [
-        "ISO 45001 - Systèmes de management de la santé et de la sécurité au travail",
-        "EN 166 - Protection individuelle de l'œil",
-        "EN 397 - Casques de protection pour l'industrie",
-        "EN 388 - Gants de protection contre les risques mécaniques",
-        "EN 352 - Protecteurs individuels contre le bruit"
-      ]
-    },
-    "contact": {
-      "title": "Contactez-nous",
-      "description": "Besoin d'équipements de protection ou de conseils ? Notre équipe d'experts est à votre disposition.",
-      "contactUs": "Nous contacter",
-      "getInTouch": "Prenez contact",
-      "teamAvailable": "Notre équipe est disponible pour répondre à toutes vos questions",
-      "coordinates": "Coordonnées",
-      "address": "Adresse",
-      "addressValue": "Boulangerie Saker, Deido\nDouala, Cameroun",
-      "phone": "Téléphone",
-      "email": "Email",
-      "requestQuote": "Demander un devis"
-    }
-  },
-  "AiGenerateModal": {
-    "title": "Générer avec l'IA : {modelName}",
-    "description": "Décrivez ce que vous souhaitez générer. L'IA créera des éléments en fonction de votre instruction.",
-    "promptLabel": "Instruction",
-    "promptPlaceholder": "Ex : 'Créer 10 articles de blog sur les tendances du marketing numérique'",
-    "countLabel": "Nombre à générer",
-    "generateButton": "Générer",
-    "generatingButton": "Génération... ({current}/{total})",
-    "resultsLabel": "Résultats",
-    "noResultsYet": "Le contenu généré apparaîtra ici.",
-    "generationInProgress": "Génération en cours...",
-    "errorStatus": "Erreur",
-    "savedStatus": "Enregistré",
-    "closeButton": "Fermer",
-    "saveAllButton": "Tout enregistrer",
-    "savingAllButton": "Enregistrement...",
-    "bulkCreate": "Création en masse",
-    "validationErrorTitle": "Entrée invalide",
-    "validationErrorMessage": "Veuillez fournir une instruction et un nombre valide.",
-    "generationFailed": "La génération du flux a échoué : ",
-    "parsingError": "Impossible d'analyser le contenu généré.",
-    "generationSuccessTitle": "Génération terminée",
-    "generationSuccessDescription": "{count} éléments générés avec succès.",
-    "formPopulatedSuccess": "Le formulaire a été rempli avec le contenu généré par l'IA.",
-    "saveErrorTitle": "Erreur d'enregistrement",
-    "saveErrorMessage": "Une erreur inattendue est survenue lors de l'enregistrement.",
-    "bulkSaveResultTitle": "Enregistrement en masse terminé",
-    "bulkSaveResultDescription": "{count} sur {total} éléments enregistrés avec succès.",
-    "noDataToSave": "Aucune donnée valide à enregistrer.",
-    "useItemButton": "Utiliser ce contenu"
-  },
-  "ModelForm": {
-    "saveSuccessTitle": "Élément enregistré",
-    "saveSuccessDescription": "L'élément a été enregistré avec succès.",
-    "saveErrorTitle": "Erreur lors de l'enregistrement de l'élément",
-    "bulkSaveResultTitle": "Résultat de la sauvegarde en masse",
-    "bulkSaveResultDescription": "{count} sur {total} articles enregistrés avec succès.",
-    "defaultTab": "Défaut"
-  },
-  "ThemeSwitcher": {
-    "toggleTheme": "Changer de thème",
-    "selectTheme": "Sélectionner un thème",
-    "system": "Système",
-    "systemDescription": "Suivre les préférences du système",
-    "light": "Clair",
-    "lightDescription": "Mode clair",
-    "dark": "Sombre",
-    "darkDescription": "Mode sombre",
-    "professional": "Professionnel",
-    "professionalDescription": "Thème professionnel"
-  },
-  "Cart": {
-    "shoppingCart": "Panier d'achat",
-    "emptyCart": "Votre panier est vide",
-    "cartEmpty": "Aucun article dans le panier",
-    "itemsInCart": "{count, plural, =1 {1 article} other {# articles}} dans le panier",
-    "total": "Total",
-    "clearCart": "Vider le panier",
-    "checkout": "Passer à la caisse",
-    "viewCart": "Voir le panier",
-    "addToCart": "Ajouter au panier",
-    "removeFromCart": "Retirer",
-    "updateQuantity": "Mettre à jour la quantité"
   }
 }

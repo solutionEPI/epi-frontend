@@ -12,125 +12,125 @@
     "toastUnexpectedErrorDescription": "Something went wrong. Please try again later.",
     "toastOtpInvalidTitle": "Invalid OTP",
     "toastOtpInvalidDescription": "The one-time password you entered is incorrect.",
-    "dashboardName": "Solution EPI",
-    "dashboardDescription": "Your partner for workplace safety. Certified personal protective equipment that meets the strictest standards."
+    "dashboardName": "Solution EPI SARL",
+    "dashboardDescription": "Personal protective equipment supplier based in Douala, Cameroon. We provide safety equipment for workplaces across Central Africa."
   },
   "HomePage": {
     "hero": {
-      "badgeText": "Cameroon's Leading PPE Provider Since 2009",
-      "title": "Solution EPI",
-      "description": "Professional Safety Solutions for Modern Workplaces. Protect your team with certified equipment and expert guidance.",
-      "viewProductsButton": "View Products",
-      "getQuoteButton": "Get Quote"
+      "badgeText": "Established in Douala since 2009",
+      "title": "Solution EPI SARL",
+      "description": "We supply personal protective equipment to companies across Cameroon and Central Africa. From construction sites to factories, we help protect workers with quality safety gear.",
+      "viewProductsButton": "See Our Equipment",
+      "getQuoteButton": "Get a Quote"
     },
     "stats": {
-      "clientsProtected": "Clients Protected",
-      "safetySuccessRate": "Safety Success Rate",
-      "equipmentDelivered": "Equipment Delivered",
-      "yearsExperience": "Years Experience"
+      "clientsProtected": "Companies Served",
+      "safetySuccessRate": "Quality Equipment Rate",
+      "equipmentDelivered": "Items Delivered",
+      "yearsExperience": "Years in Business"
     },
     "features": {
-      "badge": "Why Choose Us",
-      "title": "Trusted Safety Excellence",
-      "subtitle": "We combine industry expertise with cutting-edge safety solutions to protect what matters most.",
+      "badge": "Why Work With Us",
+      "title": "Reliable Safety Equipment Supplier",
+      "subtitle": "We understand the local market and provide practical safety solutions for Cameroonian businesses.",
       "certifiedProtection": {
-        "title": "Certified Protection",
-        "description": "All equipment meets international safety standards"
+        "title": "Quality Equipment",
+        "description": "All our equipment meets international safety standards"
       },
       "fastDelivery": {
-        "title": "Fast Delivery",
-        "description": "24-48 hour delivery across Cameroon"
+        "title": "Local Delivery",
+        "description": "We deliver throughout Douala and other major cities in Cameroon"
       },
       "expertConsultation": {
-        "title": "Expert Consultation",
-        "description": "Professional safety assessment and training"
+        "title": "Local Knowledge",
+        "description": "We understand workplace safety needs in Cameroon"
       },
       "qualityGuarantee": {
-        "title": "Quality Guarantee",
-        "description": "100% satisfaction guarantee on all products"
+        "title": "Fair Prices",
+        "description": "Competitive pricing for quality safety equipment"
       }
     },
     "services": {
-      "badge": "Our Services",
-      "title": "Comprehensive Safety Solutions",
-      "subtitle": "From equipment supply to training and compliance, we offer end-to-end safety solutions.",
+      "badge": "What We Do",
+      "title": "Safety Equipment & Services",
+      "subtitle": "We supply protective equipment and provide basic safety guidance to help keep workers safe.",
       "equipmentSupply": {
-        "title": "Safety Equipment Supply",
-        "description": "Complete range of PPE for all industries",
-        "feature1": "Head Protection",
-        "feature2": "Respiratory Safety",
-        "feature3": "Hand & Foot Protection"
+        "title": "Equipment Supply",
+        "description": "Complete range of safety equipment for various industries",
+        "feature1": "Hard Hats & Helmets",
+        "feature2": "Breathing Protection",
+        "feature3": "Gloves & Safety Boots"
       },
       "training": {
-        "title": "Safety Training & Certification",
-        "description": "Professional training programs for your team",
-        "feature1": "Certified Instructors",
-        "feature2": "Custom Programs",
-        "feature3": "Industry Compliance"
+        "title": "Safety Guidance",
+        "description": "Basic training on proper use of safety equipment",
+        "feature1": "Equipment Training",
+        "feature2": "Safety Briefings",
+        "feature3": "Industry Best Practices"
       },
       "auditing": {
-        "title": "Safety Auditing",
-        "description": "Comprehensive workplace safety assessments",
-        "feature1": "Risk Assessment",
-        "feature2": "Compliance Review",
-        "feature3": "Action Plans"
+        "title": "Site Assessment",
+        "description": "We can visit your site to recommend appropriate safety equipment",
+        "feature1": "Site Visits",
+        "feature2": "Equipment Recommendations",
+        "feature3": "Safety Planning"
       },
       "learnMoreButton": "Learn More"
     },
     "cta": {
-      "title": "Ready to Enhance Your Workplace Safety?",
-      "description": "Join 1,000+ companies that trust Solution EPI for their safety equipment needs. Get a personalized consultation today.",
-      "consultationButton": "Get Free Consultation",
-      "catalogButton": "Browse Catalog"
+      "title": "Need Safety Equipment for Your Business?",
+      "description": "We work with construction companies, factories, and businesses across Cameroon. Contact us to discuss your safety equipment needs.",
+      "consultationButton": "Contact Us",
+      "catalogButton": "View Equipment"
     },
     "testimonials": {
-      "badge": "Client Success",
-      "title": "Trusted by Industry Leaders",
-      "subtitle": "See how we've helped companies across Cameroon improve their safety standards.",
+      "badge": "What Clients Say",
+      "title": "Trusted by Local Businesses",
+      "subtitle": "See what companies in Cameroon say about working with Solution EPI SARL.",
       "client1": {
         "name": "Jean-Paul Mbeki",
         "company": "Industries Camerounaises SA",
-        "role": "Safety Director",
-        "content": "Solution EPI transformed our safety culture. 40% reduction in incidents within 6 months."
+        "role": "Safety Manager",
+        "content": "Solution EPI SARL provides good quality equipment at fair prices. They understand our local needs and deliver on time."
       },
       "client2": {
         "name": "Marie Ngozi",
-        "company": "Construction Douala",
+        "company": "BTP Douala",
         "role": "Project Manager",
-        "content": "Outstanding service and quality equipment. Our teams are properly protected now."
+        "content": "Reliable supplier for our construction projects. Good service and they know the Cameroon market well."
       },
       "client3": {
         "name": "Antoine Fosso",
         "company": "Textile Bamenda",
         "role": "Production Manager",
-        "content": "Excellent training quality and personalized follow-up. Highly recommended."
+        "content": "They helped us set up proper safety equipment for our workers. Professional service and good follow-up."
       }
     },
     "finalCta": {
-      "title": "Start Your Safety Journey Today",
-      "description": "Contact our safety experts for a free consultation and personalized equipment recommendations.",
+      "title": "Ready to Improve Workplace Safety?",
+      "description": "Contact our team in Douala for information about safety equipment and pricing for your business.",
       "phone": "+237 6XX XXX XXX",
-      "email": "contact@solution-epi.com",
+      "email": "contact@solution-epi.cm",
       "location": "Douala, Cameroon",
-      "contactSalesButton": "Contact Sales Team",
+      "contactSalesButton": "Contact Our Team",
       "getStartedButton": "Get Started",
-      "viewDashboardButton": "View Dashboard"
+      "viewDashboardButton": "Dashboard"
     },
     "products": {
-      "title": "Featured Products",
-      "subtitle": "Discover our most popular safety equipment",
-      "viewAllButton": "View All Products"
+      "title": "Our Equipment",
+      "subtitle": "Browse our range of personal protective equipment",
+      "viewAllButton": "View All Equipment"
     },
     "blog": {
-      "title": "Latest Safety Insights",
-      "subtitle": "Stay updated with the latest safety news and tips",
+      "title": "Safety Tips & News",
+      "subtitle": "Practical advice and updates about workplace safety",
       "readMoreButton": "Read More",
       "viewAllButton": "View All Articles",
-      "badge": "Latest News"
+      "badge": "Safety News"
     }
   },
   "Header": {
-    "siteName": "Solution EPI",
+    "siteName": "Solution EPI SARL",
     "home": "Home",
     "blog": "Blog",
     "features": "Features",
@@ -142,13 +142,13 @@
     "signOut": "Sign Out",
     "signOutSuccessTitle": "Signed Out",
     "signOutSuccessDescription": "You have been successfully signed out.",
-    "products": "Products",
+    "products": "Equipment",
     "contact": "Contact",
     "user": "User"
   },
   "Footer": {
-    "siteName": "Solution EPI",
-    "companyName": "Solution EPI",
+    "siteName": "Solution EPI SARL",
+    "companyName": "Solution EPI SARL",
     "allRightsReserved": "All rights reserved",
     "poweredBy": "Powered by",
     "categories": {
@@ -166,7 +166,7 @@
       "instagram": "Instagram"
     },
     "solutions": {
-      "admin": "Admin Dashboard",
+      "admin": "Dashboard",
       "analytics": "Analytics",
       "commerce": "E-commerce",
       "insights": "Insights"
@@ -576,12 +576,12 @@
     "addToCart": "Add to Cart"
   },
   "Metadata": {
-    "title": "Solution EPI",
-    "titleTemplate": "%s | Solution EPI",
-    "description": "Your partner for workplace safety. Certified personal protective equipment that meets the strictest standards.",
-    "keywords": "EPI, sécurité, protection individuelle, équipements, Cameroun, Solution EPI",
-    "authorName": "Solution EPI",
-    "openGraphAlt": "Solution EPI - Équipements de Protection Individuelle",
+    "title": "Solution EPI SARL",
+    "titleTemplate": "%s | Solution EPI SARL",
+    "description": "Personal protective equipment supplier based in Douala, Cameroon. We provide safety equipment for workplaces across Central Africa.",
+    "keywords": "EPI, sécurité, protection individuelle, équipements, Cameroun, Solution EPI, Douala",
+    "authorName": "Solution EPI SARL",
+    "openGraphAlt": "Solution EPI SARL - Personal Protective Equipment",
     "twitterCreator": "@solutionepi"
   },
   "Time": {
@@ -622,9 +622,7 @@
     "light": "Light",
     "lightDescription": "Light mode",
     "dark": "Dark",
-    "darkDescription": "Dark mode",
-    "professional": "Professional",
-    "professionalDescription": "Professional business theme"
+    "darkDescription": "Dark mode"
   },
   "Cart": {
     "shoppingCart": "Shopping Cart",
@@ -679,15 +677,15 @@
   },
   "ContactPage": {
     "title": "Contact Us",
-    "subtitle": "Have a question or want to place a special order? We'd love to hear from you!",
+    "subtitle": "Looking for safety equipment or have questions about our products? Get in touch with our team in Douala.",
     "ourTeam": "Our Team",
-    "teamDescription": "Our safety experts team is available to advise you on the best equipment suited to your specific needs.",
-    "certifiedISO": "ISO 45001 Certified",
-    "faqTitle": "Frequently Asked Questions",
-    "faqSubtitle": "Find quick answers to the most common questions about our products and services.",
-    "ctaTitle": "Need a personalized solution?",
-    "ctaDescription": "Our team of experts is ready to develop a tailored solution to meet your company's specific needs.",
-    "requestAppointment": "Request an appointment",
+    "teamDescription": "Our team has experience with safety equipment needs in Cameroon and can help you find the right products for your workplace.",
+    "certifiedISO": "Quality Equipment",
+    "faqTitle": "Common Questions",
+    "faqSubtitle": "Answers to frequently asked questions about our equipment and services.",
+    "ctaTitle": "Need help choosing equipment?",
+    "ctaDescription": "Our team can visit your site and recommend appropriate safety equipment for your specific needs.",
+    "requestAppointment": "Schedule a visit",
     "address": {
       "title": "Our Location"
     },
@@ -775,9 +773,9 @@
   },
   "HomePageLegacy": {
     "hero": {
-      "title": "Solution EPI",
-      "description": "Your partner for workplace safety. Certified personal protective equipment that meets the strictest standards.",
-      "discoverProducts": "Discover Our Products",
+      "title": "Solution EPI SARL",
+      "description": "Personal protective equipment supplier based in Douala, Cameroon. We provide safety equipment for workplaces across Central Africa.",
+      "discoverProducts": "See Our Equipment",
       "contactUs": "Contact Us",
       "headProtection": "Head Protection",
       "hearingProtection": "Hearing Protection",
@@ -785,32 +783,28 @@
       "bodyProtection": "Body Protection"
     },
     "about": {
-      "title": "About Solution EPI",
-      "description1": "For over 15 years, Solution EPI has been the leader in providing personal protective equipment in Cameroon. Our mission is to ensure the safety of workers in all sectors of activity.",
-      "description2": "We offer a complete range of certified equipment compliant with international standards, adapted to the specific needs of each industry and work environment.",
-      "certifiedQuality": "Certified Quality",
-      "productsComplyWithStandards": "Products comply with standards",
-      "expertise": "Expertise",
-      "personalizedAdvice": "Personalized advice",
+      "title": "About Solution EPI SARL",
+      "description1": "For over 15 years, Solution EPI SARL has been providing personal protective equipment to companies across Cameroon. We understand the local market and work with businesses of all sizes.",
+      "description2": "We supply certified equipment that meets international standards, adapted to the specific needs of different industries in our region.",
+      "certifiedQuality": "Quality Equipment",
+      "productsComplyWithStandards": "Equipment meets standards",
+      "expertise": "Local Experience",
+      "personalizedAdvice": "Personal service",
       "learnMore": "Learn More",
       "yearsOfExperience": "{years}+ years of experience",
-      "dedicatedTeam": "A team of professionals dedicated to your safety"
+      "dedicatedTeam": "A team dedicated to workplace safety"
     },
     "productCategories": {
-      "title": "Our PPE Categories",
-      "description": "Personal protective equipment adapted to all types of occupational hazards.",
+      "title": "Our Equipment Categories",
+      "description": "Personal protective equipment for different types of workplace hazards.",
       "headProtection": {
         "name": "Head Protection",
-        "products": [
-          "Safety helmets",
-          "Noise-canceling helmets",
-          "Construction helmets"
-        ]
+        "products": ["Safety helmets", "Hard hats", "Construction helmets"]
       },
       "hearingProtection": {
         "name": "Hearing Protection",
         "products": [
-          "Earplugs",
+          "Ear plugs",
           "Noise-canceling headphones",
           "Electronic hearing protection"
         ]
@@ -826,7 +820,7 @@
       "protectiveClothing": {
         "name": "Protective Clothing",
         "products": [
-          "Overalls",
+          "Coveralls",
           "High-visibility clothing",
           "Flame-resistant clothing"
         ]
@@ -848,31 +842,31 @@
     },
     "services": {
       "title": "Our Services",
-      "description": "Beyond equipment supply, we offer a comprehensive range of services to ensure the safety of your employees.",
+      "description": "Beyond supplying equipment, we provide guidance to help keep your workers safe.",
       "safetyConsulting": {
-        "title": "Safety Consulting",
-        "description": "Risk assessment and equipment recommendations tailored to your specific work environment."
+        "title": "Safety Consultation",
+        "description": "Site visits and equipment recommendations based on your specific workplace needs."
       },
       "ppeTraining": {
-        "title": "PPE Training",
-        "description": "Training sessions on the correct use of personal protective equipment for your employees."
+        "title": "Equipment Training",
+        "description": "Training sessions on proper use of personal protective equipment for your employees."
       },
       "complianceAudit": {
-        "title": "Compliance Audit",
-        "description": "Verification of your equipment's compliance with current standards and regulations."
+        "title": "Compliance Check",
+        "description": "Verification that your equipment meets current standards and regulations."
       },
       "preventiveMaintenance": {
-        "title": "Preventive Maintenance",
-        "description": "Regular maintenance services and verification of the condition of your protective equipment."
+        "title": "Equipment Maintenance",
+        "description": "Regular maintenance services and condition checks for your protective equipment."
       },
       "learnMore": "Learn More"
     },
     "standards": {
-      "title": "Standards and Regulations",
-      "description": "Workplace safety is governed by strict standards. At Solution EPI, all our products comply with current international and local standards.",
+      "title": "Standards & Regulations",
+      "description": "Workplace safety is governed by strict standards. At Solution EPI SARL, all our equipment complies with current international and local standards.",
       "legalObligation": "Legal obligation:",
-      "employerMustProvidePPE": "The employer must provide appropriate PPE free of charge.",
-      "allProductsMeetStandards": "All our products meet the most demanding international standards",
+      "employerMustProvidePPE": "Employers must provide appropriate PPE free of charge.",
+      "allProductsMeetStandards": "All our equipment meets demanding international standards",
       "items": [
         "ISO 45001 - Occupational health and safety management systems",
         "EN 166 - Personal eye protection",
@@ -883,13 +877,13 @@
     },
     "contact": {
       "title": "Contact Us",
-      "description": "Need protective equipment or advice? Our team of experts is at your disposal.",
+      "description": "Need protective equipment or advice? Our team is available to help.",
       "contactUs": "Contact Us",
       "getInTouch": "Get in touch",
       "teamAvailable": "Our team is available to answer all your questions",
       "coordinates": "Contact Information",
       "address": "Address",
-      "addressValue": "Boulangerie Saker, Deido\nDouala, Cameroun",
+      "addressValue": "Boulangerie Saker, Deido\nDouala, Cameroon",
       "phone": "Phone",
       "email": "Email",
       "requestQuote": "Request a quote"
