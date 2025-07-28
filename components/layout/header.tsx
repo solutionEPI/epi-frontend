@@ -12,7 +12,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ThemeSwitcher } from "@/components/theme-switcher";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { CartIcon } from "@/components/ui/cart-icon";
 import { cn } from "@/lib/utils";
@@ -107,7 +106,6 @@ export function Header() {
 
           {/* Right Nav Section */}
           <div className="hidden md:flex items-center space-x-4">
-            <ThemeSwitcher />
             <LanguageSwitcher />
             <CartIcon variant="dropdown" />
 
@@ -186,7 +184,7 @@ export function Header() {
 
           {/* Mobile menu button */}
           <div className="flex items-center space-x-4 md:hidden">
-            <ThemeSwitcher />
+          
             <CartIcon variant="sheet" />
             <Button
               variant="ghost"
