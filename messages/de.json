@@ -117,9 +117,12 @@
       "viewDashboardButton": "Dashboard anzeigen"
     },
     "products": {
-      "title": "Vorgestellte Produkte",
-      "subtitle": "Entdecken Sie unsere beliebteste Sicherheitsausrüstung",
-      "viewAllButton": "Alle Produkte ansehen"
+      "title": "Unsere Ausrüstung",
+      "subtitle": "Durchsuchen Sie unser Sortiment an persönlicher Schutzausrüstung",
+      "viewAllButton": "Alle Ausrüstungen anzeigen",
+      "outOfStock": "Nicht vorrätig",
+      "addToCart": "In den Warenkorb",
+      "viewDetails": "Details anzeigen"
     },
     "blog": {
       "title": "Neueste Sicherheitseinblicke",
@@ -616,15 +619,13 @@
   },
   "ThemeSwitcher": {
     "toggleTheme": "Thema wechseln",
-    "selectTheme": "Wählen Sie ein Thema",
+    "selectTheme": "Ein Thema auswählen",
     "system": "System",
     "systemDescription": "Systemeinstellungen folgen",
     "light": "Hell",
     "lightDescription": "Heller Modus",
     "dark": "Dunkel",
-    "darkDescription": "Dunkler Modus",
-    "professional": "Professionell",
-    "professionalDescription": "Professionelles Business-Thema"
+    "darkDescription": "Dunkler Modus"
   },
   "Cart": {
     "shoppingCart": "Warenkorb",

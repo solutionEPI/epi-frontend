@@ -12,7 +12,7 @@ export function ThemeProvider({
       attribute="class"
       defaultTheme="system"
       enableSystem
-      themes={["light", "dark", "system", "professional"]}
+      themes={["light", "dark", "system"]}
       disableTransitionOnChange
       {...props}>
       {children}

@@ -79,13 +79,13 @@ export function Header() {
               <div className="w-10 h-10 relative mr-3">
                 <Image
                   src="/logo-solution.png"
-                  alt="Solution EPI"
+                  alt="Solution EPI SARL"
                   fill
                   className="object-contain"
                 />
               </div>
               <span className="text-lg font-bold hidden sm:inline-block text-foreground">
-                Solution EPI
+                Solution EPI SARL
               </span>
             </Link>
           </div>

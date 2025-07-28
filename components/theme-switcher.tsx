@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Moon, Sun, HardHat, Monitor } from "lucide-react";
+import { Moon, Sun, Monitor } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
@@ -29,28 +29,21 @@ const themeOptions: ThemeOption[] = [
     labelKey: "system",
     descriptionKey: "systemDescription",
     icon: <Monitor className="h-4 w-4" />,
-    colors: ["#ffffff", "#1e293b", "#f59e0b"],
+    colors: ["#ffffff", "#1e293b", "#FFD700"],
   },
   {
     value: "light",
     labelKey: "light",
     descriptionKey: "lightDescription",
     icon: <Sun className="h-4 w-4" />,
-    colors: ["#ffffff", "#f8fafc", "#f59e0b"],
+    colors: ["#ffffff", "#f8fafc", "#FFD700"],
   },
   {
     value: "dark",
     labelKey: "dark",
     descriptionKey: "darkDescription",
     icon: <Moon className="h-4 w-4" />,
-    colors: ["#1e293b", "#0f172a", "#f59e0b"],
-  },
-  {
-    value: "professional",
-    labelKey: "professional",
-    descriptionKey: "professionalDescription",
-    icon: <HardHat className="h-4 w-4" />,
-    colors: ["#ffffff", "#f59e0b", "#475569"],
+    colors: ["#1e293b", "#0f172a", "#FFEB3B"],
   },
 ];
 
