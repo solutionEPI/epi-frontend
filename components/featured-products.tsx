@@ -26,7 +26,7 @@ export function FeaturedProducts() {
     const fetchProducts = async () => {
       try {
         setIsLoading(true);
-        const data = await api.getProducts({ is_featured: true }, locale);
+        const data = await api.getProducts({ featuredOnly: true }, locale);
         setProducts(data.results || data.products || []);
       } catch (error) {
         console.error("Failed to fetch featured products:", error);

@@ -651,6 +651,7 @@ export const api = {
       category?: string;
       inStock?: boolean;
       newOnly?: boolean;
+      featuredOnly?: boolean;
       sort?: string;
     },
     locale?: string
@@ -663,6 +664,8 @@ export const api = {
       url.searchParams.append("in_stock", params.inStock.toString());
     if (params.newOnly)
       url.searchParams.append("is_new", params.newOnly.toString());
+    if (params.featuredOnly)
+      url.searchParams.append("is_featured", params.featuredOnly.toString());
     if (params.sort) url.searchParams.append("ordering", params.sort);
 
     const headers: HeadersInit = {
