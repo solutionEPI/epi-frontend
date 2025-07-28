@@ -481,7 +481,7 @@ export default function ContactPage() {
                   {isSubmitting ? (
                     <div className="flex items-center">
                       <svg
-                        className="animate-spin -ml-1 mr-3 h-4 w-4 text-white"
+                        className="animate-spin -ml-1 mr-3 h-4 w-4 text-primary-foreground"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24">
@@ -529,7 +529,7 @@ export default function ContactPage() {
                 className="absolute inset-0 w-full"></iframe>
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <motion.div
-                  className="map-pin bg-primary text-white p-3 rounded-full shadow-lg"
+                  className="map-pin bg-primary text-primary-foreground p-3 rounded-full shadow-lg"
                   animate={{ y: [0, -10, 0] }}
                   transition={{
                     duration: 2,
