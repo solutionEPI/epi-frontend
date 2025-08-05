@@ -437,7 +437,7 @@ function SidebarLink({
   const pathname = usePathname();
   const locale = pathname.split("/")[1];
   const basePath = href === "/" ? "" : href;
-  const finalHref = useLocale ? `/${locale}/dashboard${basePath}` : href;
+  const finalHref = useLocale ? `/${locale}${basePath}` : href;
 
   return (
     <Link
