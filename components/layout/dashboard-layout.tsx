@@ -2,8 +2,7 @@
 
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { signOut, useSession } from "next-auth/react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, usePathname } from "@/i18n/routing/navigation";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
@@ -204,13 +203,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
   };
 
   const isActive = (path: string) => {
-    const locale = pathname.split("/")[1];
-    const dashboardPath = path === "/" ? "" : path; // root maps to /dashboard
-    const pathWithLocale = `/${locale}/dashboard${dashboardPath}`;
-    return (
-      pathname === pathWithLocale ||
-      (dashboardPath !== "" && pathname.startsWith(pathWithLocale))
-    );
+    return pathname.startsWith(path);
   };
 
   if (!session) return null;
@@ -264,11 +257,11 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
       <ScrollArea className="flex-1 w-full">
         <nav className="px-2 py-4 space-y-1">
           <SidebarLink
-            href="/"
+            href="/dashboard"
             icon={<Layers className="h-5 w-5 flex-shrink-0" />}
             label={t("dashboard")}
             isCollapsed={isSidebarCollapsed && !isMobile}
-            isActive={isActive("/")}
+            isActive={pathname === "/dashboard"}
           />
 
           {adminConfig &&
@@ -289,7 +282,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                   {modelKeys.map((modelKey) => {
                     const model = adminConfig.models[modelKey];
                     if (!model) return null;
-                    const href = `/models/${model.model_name}`;
+                    const href = `/dashboard/models/${model.model_name}`;
                     return (
                       <SidebarLink
                         key={href}
@@ -323,18 +316,18 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
               ) : null}
             </AnimatePresence>
             <SidebarLink
-              href="/ai-tools"
+              href="/dashboard/ai-tools"
               icon={<BrainCircuit className="h-5 w-5 flex-shrink-0" />}
               label={t("aiTools")}
               isCollapsed={isSidebarCollapsed && !isMobile}
-              isActive={isActive("/ai-tools")}
+              isActive={isActive("/dashboard/ai-tools")}
             />
             <SidebarLink
-              href="/blog"
+              href="/dashboard/blog"
               icon={<Rss className="h-4 w-4" />}
               label={t("blog")}
               isCollapsed={isSidebarCollapsed && !isMobile}
-              isActive={isActive("/blog")}
+              isActive={isActive("/dashboard/blog")}
             />
           </div>
 
@@ -351,11 +344,11 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
               ) : null}
             </AnimatePresence>
             <SidebarLink
-              href="/settings"
+              href="/dashboard/settings"
               icon={<Settings className="h-5 w-5 flex-shrink-0" />}
               label={t("settings")}
               isCollapsed={isSidebarCollapsed && !isMobile}
-              isActive={isActive("/settings")}
+              isActive={isActive("/dashboard/settings")}
             />
           </div>
         </nav>
@@ -425,23 +418,16 @@ function SidebarLink({
   label,
   isCollapsed,
   isActive,
-  useLocale = true,
 }: {
   href: string;
   icon: React.ReactNode;
   label: string;
   isCollapsed: boolean;
   isActive: boolean;
-  useLocale?: boolean;
 }) {
-  const pathname = usePathname();
-  const locale = pathname.split("/")[1];
-  const basePath = href === "/" ? "" : href;
-  const finalHref = useLocale ? `/${locale}${basePath}` : href;
-
   return (
     <Link
-      href={finalHref}
+      href={href}
       className={cn(
         "flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors",
         isActive
